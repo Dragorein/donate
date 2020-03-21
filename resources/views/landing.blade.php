@@ -1,7 +1,5 @@
 @extends('layouts.app')
 
-@section('content')
-    <div id="app">
-        <landing-page></landing-page>
-    </div>
+@section('app')
+    <landing-page></landing-page>
 @endsection

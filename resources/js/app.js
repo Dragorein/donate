@@ -21,7 +21,10 @@ import Vuetify from "../plugins/vuetify"
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('landing-page', require('./components/landingPage.vue').default);
+Vue.component('navbar', require('./components/menu/navbar.vue').default);
+Vue.component('footbar', require('./components/menu/footer.vue').default);
+Vue.component('landing-page', require('./components/mainApp/landingPage.vue').default);
+Vue.component('search-page', require('./components/mainApp/searchPage.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

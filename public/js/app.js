@@ -40397,7 +40397,10 @@ var render = function() {
                         [
                           _c(
                             "v-card",
-                            { staticClass: "my-4" },
+                            {
+                              staticClass: "my-4",
+                              on: { click: function($event) {} }
+                            },
                             [
                               _c("v-img", {
                                 attrs: { src: card.src, height: "200px" }
@@ -40584,7 +40587,16 @@ var render = function() {
               staticClass: "d-flex justify-start align-center",
               attrs: { cols: "3" }
             },
-            [_c("v-toolbar-title", [_vm._v("KitaBantu")])],
+            [
+              _c("v-icon", { attrs: { left: "" } }, [
+                _vm._v("mdi-hand-heart mdi-36px")
+              ]),
+              _c(
+                "v-toolbar-title",
+                { staticClass: "headline font-weight-medium" },
+                [_vm._v("KitaBantu")]
+              )
+            ],
             1
           ),
           _vm._v(" "),
@@ -40601,7 +40613,7 @@ var render = function() {
                   "append-icon": "search"
                 },
                 on: {
-                  click: function($event) {
+                  mousedown: function($event) {
                     return _vm.reroutes("search")
                   }
                 }

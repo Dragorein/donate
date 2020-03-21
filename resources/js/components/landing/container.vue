@@ -18,7 +18,7 @@
                 <h1 class="headline text-center">Bantu siapa hari ini?</h1>
                 <v-row justify="center">
                     <v-col v-for="card in cards" :key="card.title" cols="12" sm="6" md="4">
-                        <v-card class="my-4">
+                        <v-card @click="" class="my-4">
                             <v-img :src="card.src" height="200px"></v-img>
                             <v-card-title v-text="card.title"></v-card-title>
                             <v-card-subtitle v-text="card.author"></v-card-subtitle>

@@ -3,11 +3,11 @@
     <v-toolbar flat dense extended>
         <v-row>
             <v-col class="d-flex justify-start align-center" cols="3">
-                <v-toolbar-title>KitaBantu</v-toolbar-title>
+                <v-icon left>mdi-hand-heart mdi-36px</v-icon><v-toolbar-title class="headline font-weight-medium">KitaBantu</v-toolbar-title>
             </v-col>
             
             <v-col class="d-flex justify-space-around align-center">
-                <v-text-field @click="reroutes('search')" solo hide-details dense label="Cari penggalangan dana disini" append-icon="search"></v-text-field>
+                <v-text-field @mousedown="reroutes('search')" solo hide-details dense label="Cari penggalangan dana disini" append-icon="search"></v-text-field>
             </v-col>
             
             <v-col cols="3" class="d-flex justify-end">

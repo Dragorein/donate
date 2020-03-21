@@ -9,6 +9,7 @@ require('./bootstrap');
 window.Vue = require('vue');
 
 import Vuetify from "../plugins/vuetify"
+import router from "./router"
 
 /**
  * The following block of code may be used to automatically register your
@@ -22,9 +23,11 @@ import Vuetify from "../plugins/vuetify"
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('navbar', require('./components/menu/navbar.vue').default);
+Vue.component('navbar-search', require('./components/menu/navbarSearch.vue').default);
 Vue.component('footbar', require('./components/menu/footer.vue').default);
-Vue.component('landing-page', require('./components/mainApp/landingPage.vue').default);
-Vue.component('search-page', require('./components/mainApp/searchPage.vue').default);
+Vue.component('app-container', require('./components/appContainer.vue').default);
+Vue.component('landing-page', require('./components/landing/container.vue').default);
+Vue.component('search-page', require('./components/search/container.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -34,5 +37,6 @@ Vue.component('search-page', require('./components/mainApp/searchPage.vue').defa
 
 const app = new Vue({
     vuetify: Vuetify,
+    router,
     el: '#app',
 });

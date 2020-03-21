@@ -1,5 +1,5 @@
 @extends('layouts.app')
 
 @section('app')
-    <landing-page></landing-page>
+    <app-container></app-container>
 @endsection

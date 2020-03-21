@@ -1,32 +1,6 @@
 <template>
 <v-app>
-    <v-toolbar flat dense>
-        <v-row>
-            <v-col class="d-flex justify-end align-center" cols="3">
-                <v-toolbar-items class="h-100">
-                    <v-btn href="keluar" text small>
-                        <v-icon left>mdi-chevron-double-left</v-icon>Kembali
-                    </v-btn>
-                </v-toolbar-items>
-            </v-col>
-            <v-col class="d-flex justify-space-around align-center">
-                <v-text-field solo hide-details dense label="Cari penggalangan dana disini" append-icon="search"></v-text-field>
-            </v-col>
-            <v-col cols="3" class="d-flex justify-start">
-                <v-toolbar-items>
-                    <v-chip href="profil" class="ma-2" color="blue-grey lighten-5">
-                        <v-avatar left>
-                            <v-icon>mdi-account-circle</v-icon>
-                        </v-avatar>
-                        John
-                    </v-chip>
-                    <v-btn href="keluar" text small>
-                        Keluar<v-icon right>mdi-logout-variant</v-icon>
-                    </v-btn>
-                </v-toolbar-items>
-            </v-col>
-        </v-row>  
-    </v-toolbar>
+    <navbar-search></navbar-search>
 
     <main class="h-100">
         <v-container class="fluid my-5">

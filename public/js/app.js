@@ -2119,7 +2119,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      colors: ['orange', 'indigo', 'pink darken-2', 'red lighten-1', 'deep-purple accent-4'],
+      items: [{
+        src: 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg'
+      }, {
+        src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg'
+      }, {
+        src: 'https://cdn.vuetifyjs.com/images/cards/docks.jpg'
+      }, {
+        src: 'https://cdn.vuetifyjs.com/images/cards/halcyon.png'
+      }, {
+        src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg'
+      }],
       slides: ['Pertama', 'Kedua', 'Ketiga', 'Keempat', 'Kelima'],
       cards: [{
         title: 'Supermodel',
@@ -40829,184 +40839,172 @@ var render = function() {
     [
       _c("navbar"),
       _vm._v(" "),
-      _c(
-        "main",
-        { staticClass: "h-100" },
-        [
-          _c(
-            "v-container",
-            { staticClass: "fluid my-4" },
-            [
-              _c(
-                "v-carousel",
-                {
-                  attrs: {
-                    cycle: "",
-                    height: "400",
-                    "delimiter-icon": "mdi-minus",
-                    "hide-delimiter-background": "",
-                    "show-arrows-on-hover": ""
-                  }
-                },
-                _vm._l(_vm.slides, function(slide, i) {
-                  return _c(
-                    "v-carousel-item",
-                    { key: i },
-                    [
-                      _c(
-                        "v-sheet",
-                        { attrs: { color: _vm.colors[i], height: "100%" } },
-                        [
-                          _c(
-                            "v-row",
-                            {
-                              staticClass: "fill-height",
-                              attrs: { align: "center", justify: "center" }
-                            },
-                            [
-                              _c(
-                                "v-col",
-                                [
-                                  _c(
-                                    "v-row",
-                                    { attrs: { justify: "center" } },
-                                    [
-                                      _c("div", { staticClass: "display-3" }, [
-                                        _vm._v("Salindia " + _vm._s(slide))
-                                      ])
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-row",
-                                    { attrs: { justify: "center" } },
-                                    [
-                                      _c(
-                                        "v-btn",
-                                        {
-                                          staticClass: "mt-6",
-                                          attrs: { large: "" }
-                                        },
-                                        [_vm._v("Bantu sekarang")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                }),
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-card",
-                { staticClass: "my-4 p-4" },
-                [
-                  _c("h1", { staticClass: "headline text-center" }, [
-                    _vm._v("Bantu siapa hari ini?")
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "v-row",
-                    { attrs: { justify: "center" } },
-                    _vm._l(_vm.cards, function(card) {
-                      return _c(
-                        "v-col",
-                        {
-                          key: card.title,
-                          attrs: { cols: "12", sm: "6", md: "4" }
-                        },
-                        [
-                          _c(
-                            "v-card",
-                            {
-                              staticClass: "my-4",
-                              on: {
-                                click: function($event) {
-                                  return _vm.reroutes("/campaign")
+      _c("main", { staticClass: "h-100" }, [
+        _c(
+          "div",
+          { staticClass: "fluid" },
+          [
+            _c(
+              "v-carousel",
+              {
+                attrs: {
+                  cycle: "",
+                  height: "400",
+                  "delimiter-icon": "mdi-minus",
+                  "hide-delimiter-background": "",
+                  "show-arrows-on-hover": ""
+                }
+              },
+              _vm._l(_vm.slides, function(slide, i) {
+                return _c(
+                  "v-carousel-item",
+                  { key: i, attrs: { src: _vm.items[i].src } },
+                  [
+                    _c(
+                      "v-row",
+                      {
+                        staticClass: "fill-height",
+                        attrs: { align: "center", justify: "center" }
+                      },
+                      [
+                        _c(
+                          "v-col",
+                          [
+                            _c("v-row", { attrs: { justify: "center" } }, [
+                              _c("div", { staticClass: "display-3" }, [
+                                _vm._v("Salindia " + _vm._s(slide))
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "v-row",
+                              { attrs: { justify: "center" } },
+                              [
+                                _c(
+                                  "v-btn",
+                                  { staticClass: "mt-6", attrs: { large: "" } },
+                                  [_vm._v("Bantu sekarang")]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
+              }),
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "v-card",
+              { attrs: { tile: "", flat: "", color: "white" } },
+              [
+                _c(
+                  "v-container",
+                  { staticClass: "p-5" },
+                  [
+                    _c("h1", { staticClass: "headline text-center" }, [
+                      _vm._v("Bantu siapa hari ini?")
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "v-row",
+                      { attrs: { justify: "center" } },
+                      _vm._l(_vm.cards, function(card) {
+                        return _c(
+                          "v-col",
+                          {
+                            key: card.title,
+                            attrs: { cols: "12", sm: "6", md: "4" }
+                          },
+                          [
+                            _c(
+                              "v-card",
+                              {
+                                staticClass: "my-4",
+                                on: {
+                                  click: function($event) {
+                                    return _vm.reroutes("/campaign")
+                                  }
                                 }
-                              }
-                            },
-                            [
-                              _c("v-img", {
-                                attrs: { src: card.src, height: "200px" }
-                              }),
-                              _vm._v(" "),
-                              _c("v-card-title", {
-                                domProps: { textContent: _vm._s(card.title) }
-                              }),
-                              _vm._v(" "),
-                              _c("v-card-subtitle", {
-                                domProps: { textContent: _vm._s(card.author) }
-                              }),
-                              _vm._v(" "),
-                              _c(
-                                "v-card-actions",
-                                [
-                                  _c("v-btn", {
-                                    attrs: { text: "" },
-                                    domProps: {
-                                      textContent: _vm._s(
-                                        "Terkumpul " + card.raised
-                                      )
-                                    }
-                                  }),
-                                  _vm._v(" "),
-                                  _c("v-spacer"),
-                                  _vm._v(" "),
-                                  _c("v-btn", {
-                                    attrs: { color: "orange", text: "" },
-                                    domProps: {
-                                      textContent: _vm._s(
-                                        card.daysleft + " hari lagi"
-                                      )
-                                    }
-                                  })
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c("v-progress-linear", {
-                                attrs: {
-                                  height: "8",
-                                  color: "yellow accent-4"
-                                },
-                                model: {
-                                  value: card.progress,
-                                  callback: function($$v) {
-                                    _vm.$set(card, "progress", $$v)
+                              },
+                              [
+                                _c("v-img", {
+                                  attrs: { src: card.src, height: "200px" }
+                                }),
+                                _vm._v(" "),
+                                _c("v-card-title", {
+                                  domProps: { textContent: _vm._s(card.title) }
+                                }),
+                                _vm._v(" "),
+                                _c("v-card-subtitle", {
+                                  domProps: { textContent: _vm._s(card.author) }
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "v-card-actions",
+                                  [
+                                    _c("v-btn", {
+                                      attrs: { text: "" },
+                                      domProps: {
+                                        textContent: _vm._s(
+                                          "Terkumpul " + card.raised
+                                        )
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    _c("v-spacer"),
+                                    _vm._v(" "),
+                                    _c("v-btn", {
+                                      attrs: { color: "orange", text: "" },
+                                      domProps: {
+                                        textContent: _vm._s(
+                                          card.daysleft + " hari lagi"
+                                        )
+                                      }
+                                    })
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c("v-progress-linear", {
+                                  attrs: {
+                                    height: "8",
+                                    color: "yellow accent-4"
                                   },
-                                  expression: "card.progress"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    }),
-                    1
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          )
-        ],
-        1
-      ),
+                                  model: {
+                                    value: card.progress,
+                                    callback: function($$v) {
+                                      _vm.$set(card, "progress", $$v)
+                                    },
+                                    expression: "card.progress"
+                                  }
+                                })
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      }),
+                      1
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            )
+          ],
+          1
+        )
+      ]),
       _vm._v(" "),
       _c("footbar")
     ],
@@ -97324,7 +97322,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vuetify/lib/components/VGrid */ "./node_modules/vuetify/lib/components/VGrid/index.js");
 /* harmony import */ var vuetify_lib_components_VImg__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vuetify/lib/components/VImg */ "./node_modules/vuetify/lib/components/VImg/index.js");
 /* harmony import */ var vuetify_lib_components_VProgressLinear__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! vuetify/lib/components/VProgressLinear */ "./node_modules/vuetify/lib/components/VProgressLinear/index.js");
-/* harmony import */ var vuetify_lib_components_VSheet__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! vuetify/lib/components/VSheet */ "./node_modules/vuetify/lib/components/VSheet/index.js");
 
 
 
@@ -97360,8 +97357,7 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 
 
-
-_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4___default()(component, {VApp: vuetify_lib_components_VApp__WEBPACK_IMPORTED_MODULE_5__["VApp"],VBtn: vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_6__["VBtn"],VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__["VCard"],VCardActions: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__["VCardActions"],VCardSubtitle: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__["VCardSubtitle"],VCardTitle: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__["VCardTitle"],VCarousel: vuetify_lib_components_VCarousel__WEBPACK_IMPORTED_MODULE_8__["VCarousel"],VCarouselItem: vuetify_lib_components_VCarousel__WEBPACK_IMPORTED_MODULE_8__["VCarouselItem"],VCol: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_9__["VCol"],VContainer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_9__["VContainer"],VImg: vuetify_lib_components_VImg__WEBPACK_IMPORTED_MODULE_10__["VImg"],VProgressLinear: vuetify_lib_components_VProgressLinear__WEBPACK_IMPORTED_MODULE_11__["VProgressLinear"],VRow: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_9__["VRow"],VSheet: vuetify_lib_components_VSheet__WEBPACK_IMPORTED_MODULE_12__["VSheet"],VSpacer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_9__["VSpacer"]})
+_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4___default()(component, {VApp: vuetify_lib_components_VApp__WEBPACK_IMPORTED_MODULE_5__["VApp"],VBtn: vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_6__["VBtn"],VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__["VCard"],VCardActions: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__["VCardActions"],VCardSubtitle: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__["VCardSubtitle"],VCardTitle: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__["VCardTitle"],VCarousel: vuetify_lib_components_VCarousel__WEBPACK_IMPORTED_MODULE_8__["VCarousel"],VCarouselItem: vuetify_lib_components_VCarousel__WEBPACK_IMPORTED_MODULE_8__["VCarouselItem"],VCol: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_9__["VCol"],VContainer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_9__["VContainer"],VImg: vuetify_lib_components_VImg__WEBPACK_IMPORTED_MODULE_10__["VImg"],VProgressLinear: vuetify_lib_components_VProgressLinear__WEBPACK_IMPORTED_MODULE_11__["VProgressLinear"],VRow: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_9__["VRow"],VSpacer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_9__["VSpacer"]})
 
 
 /* hot reload */

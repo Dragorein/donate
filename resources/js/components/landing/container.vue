@@ -3,10 +3,9 @@
     <navbar></navbar>
 
     <main class="h-100">
-        <v-container class="fluid my-4">
+        <div class="fluid">
             <v-carousel cycle height="400" delimiter-icon="mdi-minus" hide-delimiter-background show-arrows-on-hover>
-                <v-carousel-item v-for="(slide, i) in slides" :key="i">
-                    <v-sheet :color="colors[i]" height="100%">
+                <v-carousel-item v-for="(slide, i) in slides" :key="i" :src="items[i].src">
                         <v-row class="fill-height" align="center" justify="center">
                             <v-col>
                                 <v-row justify="center">
@@ -17,29 +16,30 @@
                                 </v-row>
                             </v-col>
                         </v-row>
-                    </v-sheet>
                 </v-carousel-item>
             </v-carousel>
 
-            <v-card class="my-4 p-4">
-                <h1 class="headline text-center">Bantu siapa hari ini?</h1>
-                <v-row justify="center">
-                    <v-col v-for="card in cards" :key="card.title" cols="12" sm="6" md="4">
-                        <v-card @click="reroutes('/campaign')" class="my-4">
-                            <v-img :src="card.src" height="200px"></v-img>
-                            <v-card-title v-text="card.title"></v-card-title>
-                            <v-card-subtitle v-text="card.author"></v-card-subtitle>
-                            <v-card-actions>
-                                <v-btn text v-text="'Terkumpul ' + card.raised"></v-btn>
-                                <v-spacer></v-spacer>
-                                <v-btn color="orange" text v-text="card.daysleft + ' hari lagi'"></v-btn>
-                            </v-card-actions>
-                            <v-progress-linear height="8" v-model="card.progress" color="yellow accent-4"></v-progress-linear>
-                        </v-card>
-                    </v-col>
-                </v-row>
+            <v-card tile flat color="white">
+                <v-container class="p-5">
+                    <h1 class="headline text-center">Bantu siapa hari ini?</h1>
+                    <v-row justify="center">
+                        <v-col v-for="card in cards" :key="card.title" cols="12" sm="6" md="4">
+                            <v-card @click="reroutes('/campaign')" class="my-4">
+                                <v-img :src="card.src" height="200px"></v-img>
+                                <v-card-title v-text="card.title"></v-card-title>
+                                <v-card-subtitle v-text="card.author"></v-card-subtitle>
+                                <v-card-actions>
+                                    <v-btn text v-text="'Terkumpul ' + card.raised"></v-btn>
+                                    <v-spacer></v-spacer>
+                                    <v-btn color="orange" text v-text="card.daysleft + ' hari lagi'"></v-btn>
+                                </v-card-actions>
+                                <v-progress-linear height="8" v-model="card.progress" color="yellow accent-4"></v-progress-linear>
+                            </v-card>
+                        </v-col>
+                    </v-row>
+                </v-container>
             </v-card>
-        </v-container>
+        </div>
     </main>
 
     <footbar></footbar>
@@ -49,13 +49,23 @@
 <script>
     export default {
         data: () => ({
-            colors: [
-                'orange',
-                'indigo',
-                'pink darken-2',
-                'red lighten-1',
-                'deep-purple accent-4',
-            ],
+            items: [
+          {
+            src: 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
+          },
+          {
+            src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg',
+          },
+          {
+            src: 'https://cdn.vuetifyjs.com/images/cards/docks.jpg',
+          },
+          {
+            src: 'https://cdn.vuetifyjs.com/images/cards/halcyon.png',
+          },
+          {
+            src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg',
+          },
+        ],
             slides: [
                 'Pertama',
                 'Kedua',

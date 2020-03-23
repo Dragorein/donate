@@ -5,6 +5,7 @@ Vue.use(VueRouter)
 
 import Search from "../components/search/container"
 import Landing from "../components/landing/container"
+import Campaign from "../components/campaign/container"
 
 const routes = [
     {
@@ -16,6 +17,11 @@ const routes = [
         component: Search,
         name: "search",
         path: "/search"
+    },
+    {
+        component: Campaign,
+        name: "campaign",
+        path: "/campaign"
     },
 ];
 

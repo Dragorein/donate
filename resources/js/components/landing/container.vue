@@ -8,7 +8,14 @@
                 <v-carousel-item v-for="(slide, i) in slides" :key="i">
                     <v-sheet :color="colors[i]" height="100%">
                         <v-row class="fill-height" align="center" justify="center">
-                            <div class="display-3">Salindia {{ slide }}</div>
+                            <v-col>
+                                <v-row justify="center">
+                                    <div class="display-3">Salindia {{ slide }}</div>
+                                </v-row>
+                                <v-row justify="center">
+                                    <v-btn large class="mt-6">Bantu sekarang</v-btn>
+                                </v-row>
+                            </v-col>
                         </v-row>
                     </v-sheet>
                 </v-carousel-item>
@@ -18,7 +25,7 @@
                 <h1 class="headline text-center">Bantu siapa hari ini?</h1>
                 <v-row justify="center">
                     <v-col v-for="card in cards" :key="card.title" cols="12" sm="6" md="4">
-                        <v-card @click="" class="my-4">
+                        <v-card @click="reroutes('/campaign')" class="my-4">
                             <v-img :src="card.src" height="200px"></v-img>
                             <v-card-title v-text="card.title"></v-card-title>
                             <v-card-subtitle v-text="card.author"></v-card-subtitle>
@@ -64,6 +71,11 @@
                 {title:'Best airlines', src:'https://cdn.vuetifyjs.com/images/cards/plane.jpg', author:'Tommy', progress:60, raised:'Rp 16.251.026', daysleft:'23'},
             ],
         }),
+        methods: {
+            reroutes: function (url) {
+                this.$router.push({ path: url });
+            }
+        }
     }
 </script>
 

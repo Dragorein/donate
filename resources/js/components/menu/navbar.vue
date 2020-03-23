@@ -3,7 +3,9 @@
     <v-toolbar flat dense extended>
         <v-row>
             <v-col class="d-flex justify-start align-center" cols="3">
-                <v-icon left>mdi-hand-heart mdi-36px</v-icon><v-toolbar-title class="headline font-weight-medium">KitaBantu</v-toolbar-title>
+                <v-toolbar-title @click="reroutes('/')" class="headline font-weight-medium" style="cursor: pointer">
+                    <v-icon color="black" left>mdi-hand-heart mdi-36px</v-icon>Kindly
+                </v-toolbar-title>
             </v-col>
             
             <v-col class="d-flex justify-space-around align-center">

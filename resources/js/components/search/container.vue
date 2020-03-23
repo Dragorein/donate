@@ -10,7 +10,7 @@
                         <v-subheader>Results</v-subheader>
 
                         <template v-for="card in cards">
-                            <v-list-item @click="">
+                            <v-list-item @click="reroutes('/campaign')">
                                 <v-list-item-avatar tile size="70" width="120">
                                     <v-img :src="card.src"></v-img>
                                 </v-list-item-avatar>
@@ -54,6 +54,11 @@
                 {title:'Best airlines', src:'https://cdn.vuetifyjs.com/images/cards/plane.jpg', author:'Tommy', progress:60, raised:'Rp 16.251.026', daysleft:'23'},
             ],
         }),
+        methods: {
+            reroutes: function (url) {
+                this.$router.push({ path: url });
+            }
+        }
     }
 </script>
 

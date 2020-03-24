@@ -1,6 +1,6 @@
 <template>
 
-    <v-toolbar flat dense extended>
+    <v-app-bar id="navbar" fixed elevate-on-scroll class="py-4 h-auto">
         <v-row>
             <v-col class="d-flex justify-start align-center" cols="3">
                 <v-toolbar-title @click="reroutes('/')" class="headline font-weight-medium" style="cursor: pointer">
@@ -9,7 +9,7 @@
             </v-col>
             
             <v-col class="d-flex justify-space-around align-center">
-                <v-text-field @mousedown="reroutes('search')" solo hide-details dense label="Cari penggalangan dana disini" append-icon="search"></v-text-field>
+                <v-text-field background-color="transparent" @mousedown="reroutes('search')" solo hide-details dense label="Cari penggalangan dana disini" append-icon="search"></v-text-field>
             </v-col>
             
             <v-col cols="3" class="d-flex justify-end">
@@ -26,32 +26,42 @@
                 </v-toolbar-items>
             </v-col>
         </v-row>
-
-        <v-row slot="extension">
-            <v-col class="d-flex justify-center align-center">
-                <v-btn href="donasi" text>Donasi</v-btn>
-                <v-btn href="galang" text>Galang Dana</v-btn>
-                <v-btn href="bantuan" text>Bantuan</v-btn>
-            </v-col>   
-        </v-row>
-    </v-toolbar>
+    </v-app-bar>
 
 </template>
 
 <script>
     export default {
         data: () => ({
-            
+            navbar: '#navbar',
         }),
         methods: {
             reroutes: function (url) {
                 this.$router.push({ path: url });
+            },
+            handleScroll: function() {
+                if(window.scrollY > 0) {
+                    navbar.classList.add("nav-bg");
+                } else {
+                    navbar.classList.remove("nav-bg");
+                }
             }
+        },
+        mounted(){
+            window.addEventListener('scroll', this.handleScroll);
         }
     }
 </script>
 
 <style>
+    #navbar {
+        background: transparent;
+    }
+
+    .nav-bg {
+        background: linear-gradient(rgba(255,255,255,1), rgba(255,255,255,.7))!important;
+    }
+
     .v-btn:focus {
         outline: 0;
     }

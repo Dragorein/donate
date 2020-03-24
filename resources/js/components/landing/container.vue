@@ -4,27 +4,31 @@
 
     <main class="h-100">
         <div class="fluid">
-            <v-carousel cycle height="400" delimiter-icon="mdi-minus" hide-delimiter-background show-arrows-on-hover>
-                <v-carousel-item v-for="(slide, i) in slides" :key="i" :src="items[i].src">
-                        <v-row class="fill-height" align="center" justify="center">
-                            <v-col>
-                                <v-row justify="center">
-                                    <div class="display-3">Salindia {{ slide }}</div>
+            <v-card tile flat color="#F2F2F2" class="top-space">
+                <v-container class="py-12">
+                    <v-carousel cycle height="500" delimiter-icon="mdi-minus" hide-delimiter-background show-arrows-on-hover class="elevation-24" style="border-radius:4px;">
+                        <v-carousel-item v-for="(slide, i) in slides" :key="i" :src="items[i]" gradient="rgba(255,255,255,.8), rgba(255,255,255,0.3)">
+                                <v-row class="fill-height" align="center" justify="center">
+                                    <v-col>
+                                        <v-row justify="center">
+                                            <div class="display-3">Salindia {{ slide }}</div>
+                                        </v-row>
+                                        <v-row justify="center">
+                                            <v-btn large class="mt-6">Bantu sekarang</v-btn>
+                                        </v-row>
+                                    </v-col>
                                 </v-row>
-                                <v-row justify="center">
-                                    <v-btn large class="mt-6">Bantu sekarang</v-btn>
-                                </v-row>
-                            </v-col>
-                        </v-row>
-                </v-carousel-item>
-            </v-carousel>
+                        </v-carousel-item>
+                    </v-carousel>
+                </v-container>
+            </v-card>
 
             <v-card tile flat color="white">
-                <v-container class="p-5">
-                    <h1 class="headline text-center">Bantu siapa hari ini?</h1>
-                    <v-row justify="center">
+                <v-container class="py-12">
+                    <h1 class="display-1 font-weight-bold text-center">Bantu siapa hari ini?</h1>
+                    <v-row>
                         <v-col v-for="card in cards" :key="card.title" cols="12" sm="6" md="4">
-                            <v-card @click="reroutes('/campaign')" class="my-4">
+                            <v-card @click="reroutes('/campaign')" class="elevation-24 my-4">
                                 <v-img :src="card.src" height="200px"></v-img>
                                 <v-card-title v-text="card.title"></v-card-title>
                                 <v-card-subtitle v-text="card.author"></v-card-subtitle>
@@ -36,6 +40,9 @@
                                 <v-progress-linear height="8" v-model="card.progress" color="yellow accent-4"></v-progress-linear>
                             </v-card>
                         </v-col>
+                    </v-row>
+                    <v-row justify="center">
+                        <v-btn text large class="mt-12 font-weight-bold">Lihat semua<v-icon right>mdi-arrow-top-right mdi-rotate-45</v-icon></v-btn>
                     </v-row>
                 </v-container>
             </v-card>
@@ -50,22 +57,12 @@
     export default {
         data: () => ({
             items: [
-          {
-            src: 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
-          },
-          {
-            src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg',
-          },
-          {
-            src: 'https://cdn.vuetifyjs.com/images/cards/docks.jpg',
-          },
-          {
-            src: 'https://cdn.vuetifyjs.com/images/cards/halcyon.png',
-          },
-          {
-            src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg',
-          },
-        ],
+                'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
+                'https://cdn.vuetifyjs.com/images/cards/house.jpg',
+                'https://cdn.vuetifyjs.com/images/cards/docks.jpg',
+                'https://cdn.vuetifyjs.com/images/cards/halcyon.png',
+                'https://cdn.vuetifyjs.com/images/cards/plane.jpg',
+            ],
             slides: [
                 'Pertama',
                 'Kedua',
@@ -90,6 +87,10 @@
 </script>
 
 <style>
+    .top-space {
+        padding-top: 96px!important;
+    }
+
     .v-btn:focus {
         outline: 0;
     }
@@ -97,4 +98,5 @@
     a.v-btn:hover, .v-chip:hover {
         text-decoration: none;
     }
+    /*@import './assets/styles/yourstyles.css';*/
 </style>

@@ -3,8 +3,8 @@
     <navbar></navbar>
 
     <main class="h-100">
-        <v-container class="fluid my-5">
-            <v-row justify="center">
+        <v-container class="fluid">
+            <v-row>
                 <v-col v-for="card in cards" :key="card.title" cols="12">
                     <v-card>
                         <v-img :src="card.src" height="450px"></v-img>

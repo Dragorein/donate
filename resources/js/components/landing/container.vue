@@ -14,7 +14,7 @@
                                             <div class="display-3">Salindia {{ slide }}</div>
                                         </v-row>
                                         <v-row justify="center">
-                                            <v-btn large class="mt-6">Bantu sekarang</v-btn>
+                                            <v-btn large @click="reroutes('/payment')" :elevation="hover ? 24 : 6" class="mt-6">Bantu sekarang</v-btn>
                                         </v-row>
                                     </v-col>
                                 </v-row>

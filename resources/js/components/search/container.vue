@@ -5,7 +5,7 @@
     <main class="h-100">
         <v-container class="fluid my-5">
             <v-row justify="center">
-                <v-card width="90%" class="mb-3">
+                <v-card width="90%" class="mb-3 elevation-12">
                     <v-list two-line>
                         <v-subheader>Results</v-subheader>
 

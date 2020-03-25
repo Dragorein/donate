@@ -59,7 +59,7 @@
     }
 
     .nav-bg {
-        background: linear-gradient(rgba(255,255,255,1), rgba(255,255,255,.7))!important;
+        background: linear-gradient(rgba(255,255,255,1), rgba(255,255,255,.8))!important;
     }
 
     .v-btn:focus {

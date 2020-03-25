@@ -2010,17 +2010,60 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      cards: [{
-        title: 'Supermodel',
-        src: 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
-        author: 'Louise',
-        progress: 50,
-        raised: 'Rp 3.003.132',
-        daysleft: '30'
-      }],
+      title: 'Supermodel',
+      src: 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
+      author: 'Louise',
+      target: 'Josh',
+      progress: 50,
+      raised: 'Rp 3.003.132',
+      total: 'Rp 10.000.000',
+      daysleft: '30',
       tab: null,
       text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
       items: [{
@@ -2068,6 +2111,9 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
 //
 //
 //
@@ -8759,7 +8805,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.v-btn:focus {\n    outline: 0;\n}\na.v-btn:hover, .v-chip:hover, .v-tab:hover {\n    text-decoration: none;\n}\n", ""]);
+exports.push([module.i, "\n.top-space {\n    padding-top: 96px!important;\n}\n.v-btn:focus {\n    outline: 0;\n}\na.v-btn:hover, .v-chip:hover, .v-tab:hover {\n    text-decoration: none;\n}\n", ""]);
 
 // exports
 
@@ -8778,7 +8824,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.top-space {\n    padding-top: 96px!important;\n}\n.v-btn:focus {\n    outline: 0;\n}\na.v-btn:hover, .v-chip:hover {\n    text-decoration: none;\n}\n/*@import './assets/styles/yourstyles.css';*/\n", ""]);
+exports.push([module.i, "\n.bg-section-1 {\n    background: #F2F2F2;\n}\n.bg-section-2 {\n    background: white;\n}\nsection .v-card {\n    transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1) all;\n}\nsection .card-transform:hover {\n    transform: translatey(-10px);\n}\n.top-space {\n    padding-top: 96px!important;\n}\n.v-btn:focus {\n    outline: 0;\n}\na.v-btn:hover, .v-chip:hover {\n    text-decoration: none;\n}\n/*@import './assets/styles/yourstyles.css';*/\n", ""]);
 
 // exports
 
@@ -8816,7 +8862,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n#navbar {\n    background: transparent;\n}\n.nav-bg {\n    background: linear-gradient(rgba(255,255,255,1), rgba(255,255,255,.7))!important;\n}\n.v-btn:focus {\n    outline: 0;\n}\na.v-btn:hover, .v-chip:hover {\n    text-decoration: none;\n}\n", ""]);
+exports.push([module.i, "\n#navbar {\n    background: transparent;\n}\n.nav-bg {\n    background: linear-gradient(rgba(255,255,255,1), rgba(255,255,255,.8))!important;\n}\n.v-btn:focus {\n    outline: 0;\n}\na.v-btn:hover, .v-chip:hover {\n    text-decoration: none;\n}\n", ""]);
 
 // exports
 
@@ -40535,184 +40581,97 @@ var render = function() {
     [
       _c("navbar"),
       _vm._v(" "),
-      _c(
-        "main",
-        { staticClass: "h-100" },
-        [
+      _c("main", { staticClass: "h-100" }, [
+        _c("div", { staticClass: "fluid" }, [
           _c(
-            "v-container",
-            { staticClass: "fluid" },
+            "section",
+            { staticClass: "top-space" },
             [
               _c(
-                "v-row",
-                _vm._l(_vm.cards, function(card) {
-                  return _c(
-                    "v-col",
-                    { key: card.title, attrs: { cols: "12" } },
-                    [
-                      _c(
-                        "v-card",
-                        [
-                          _c("v-img", {
-                            attrs: { src: card.src, height: "450px" }
-                          }),
-                          _vm._v(" "),
-                          _c("v-card-title", {
-                            domProps: { textContent: _vm._s(card.title) }
-                          }),
-                          _vm._v(" "),
-                          _c("v-card-subtitle", {
-                            domProps: { textContent: _vm._s(card.author) }
-                          }),
-                          _vm._v(" "),
-                          _c(
-                            "v-card-actions",
-                            [
-                              _c("v-btn", {
-                                attrs: { text: "" },
-                                domProps: {
-                                  textContent: _vm._s(
-                                    "Terkumpul " + card.raised
-                                  )
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c("v-spacer"),
-                              _vm._v(" "),
-                              _c("v-btn", {
-                                attrs: { color: "orange", text: "" },
-                                domProps: {
-                                  textContent: _vm._s(
-                                    card.daysleft + " hari lagi"
-                                  )
-                                }
-                              })
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c("v-progress-linear", {
-                            attrs: { height: "8", color: "yellow accent-4" },
-                            model: {
-                              value: card.progress,
-                              callback: function($$v) {
-                                _vm.$set(card, "progress", $$v)
-                              },
-                              expression: "card.progress"
-                            }
-                          })
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                }),
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-row",
+                "v-container",
+                { staticClass: "py-6" },
                 [
                   _c(
-                    "v-col",
-                    { attrs: { cols: "12", md: "8" } },
+                    "v-row",
                     [
                       _c(
-                        "v-card",
-                        { attrs: { height: "100%" } },
+                        "v-col",
+                        { attrs: { cols: "12" } },
                         [
                           _c(
-                            "v-tabs",
-                            {
-                              attrs: {
-                                "background-color": "orange",
-                                centered: "",
-                                dark: "",
-                                "icons-and-text": ""
-                              },
-                              model: {
-                                value: _vm.tab,
-                                callback: function($$v) {
-                                  _vm.tab = $$v
-                                },
-                                expression: "tab"
-                              }
-                            },
+                            "v-card",
                             [
-                              _c("v-tabs-slider"),
+                              _c("v-img", {
+                                attrs: { src: _vm.src, height: "450px" }
+                              }),
                               _vm._v(" "),
                               _c(
-                                "v-tab",
-                                { attrs: { href: "#tab-1" } },
+                                "v-card-text",
                                 [
-                                  _vm._v(
-                                    "\r\n                                Cerita "
-                                  ),
-                                  _c("v-icon", [_vm._v("mdi-account-search")])
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-tab",
-                                { attrs: { href: "#tab-2" } },
-                                [
-                                  _vm._v(
-                                    "\r\n                                Perkembangan "
-                                  ),
-                                  _c("v-icon", [
-                                    _vm._v("mdi-account-heart mdi-flip-h")
+                                  _c("h2", {
+                                    staticStyle: {},
+                                    domProps: { textContent: _vm._s(_vm.title) }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("span", [
+                                    _c(
+                                      "strong",
+                                      { staticClass: "orange--text title" },
+                                      [_vm._v(_vm._s(_vm.raised))]
+                                    ),
+                                    _vm._v(
+                                      _vm._s(" Terkumpul dari " + _vm.total)
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("v-progress-linear", {
+                                    staticClass: "my-4",
+                                    attrs: {
+                                      rounded: "",
+                                      height: "8",
+                                      color: "yellow accent-4"
+                                    },
+                                    model: {
+                                      value: _vm.progress,
+                                      callback: function($$v) {
+                                        _vm.progress = $$v
+                                      },
+                                      expression: "progress"
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("span", [
+                                    _c(
+                                      "strong",
+                                      { staticClass: "orange--text title" },
+                                      [_vm._v(_vm._s(_vm.daysleft))]
+                                    ),
+                                    _vm._v(" hari lagi")
                                   ])
                                 ],
                                 1
                               ),
                               _vm._v(" "),
                               _c(
-                                "v-tab",
-                                { attrs: { href: "#tab-3" } },
-                                [
-                                  _vm._v(
-                                    "\r\n                                Rincian Dana "
-                                  ),
-                                  _c("v-icon", [_vm._v("mdi-cash-usd")])
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-tabs-items",
-                            {
-                              model: {
-                                value: _vm.tab,
-                                callback: function($$v) {
-                                  _vm.tab = $$v
-                                },
-                                expression: "tab"
-                              }
-                            },
-                            _vm._l(3, function(i) {
-                              return _c(
-                                "v-tab-item",
-                                { key: i, attrs: { value: "tab-" + i } },
+                                "v-card-text",
                                 [
                                   _c(
-                                    "v-card",
-                                    { attrs: { flat: "" } },
-                                    [
-                                      _c("v-card-text", [
-                                        _vm._v(_vm._s(_vm.text))
-                                      ])
-                                    ],
-                                    1
+                                    "v-btn",
+                                    {
+                                      attrs: {
+                                        rounded: "",
+                                        block: "",
+                                        depressed: "",
+                                        large: "",
+                                        color: "error"
+                                      }
+                                    },
+                                    [_vm._v("Donasi Sekarang")]
                                   )
                                 ],
                                 1
                               )
-                            }),
+                            ],
                             1
                           )
                         ],
@@ -40723,75 +40682,361 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c(
-                    "v-col",
-                    { attrs: { cols: "12", md: "4" } },
+                    "v-row",
                     [
                       _c(
-                        "v-card",
-                        { staticClass: "mx-auto" },
+                        "v-col",
+                        { attrs: { cols: "12" } },
                         [
                           _c(
-                            "v-list",
-                            { attrs: { "two-line": "", dense: "" } },
+                            "v-card",
                             [
-                              _vm._l(_vm.items, function(item, index) {
-                                return [
-                                  item.header
-                                    ? _c("v-subheader", {
-                                        key: item.header,
-                                        staticClass: "title",
-                                        domProps: {
-                                          textContent: _vm._s(
-                                            item.header +
-                                              " (" +
-                                              (_vm.items.length - 1) +
-                                              ")"
-                                          )
-                                        }
-                                      })
-                                    : _c(
-                                        "v-list-item",
-                                        {
-                                          key: item.donor,
-                                          on: { click: function($event) {} }
-                                        },
-                                        [
-                                          _c(
-                                            "v-list-item-avatar",
-                                            [
-                                              _c("v-img", {
-                                                attrs: { src: item.avatar }
-                                              })
-                                            ],
-                                            1
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "v-list-item-content",
-                                            [
-                                              _c("v-list-item-title", {
-                                                domProps: {
-                                                  innerHTML: _vm._s(item.donor)
-                                                }
-                                              }),
-                                              _vm._v(" "),
-                                              _c("v-list-item-subtitle", {
-                                                domProps: {
-                                                  innerHTML: _vm._s(
-                                                    item.comments
+                              _c("v-card-title", { staticClass: "title" }, [
+                                _vm._v("Informasi Penggalangan Dana")
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "v-card-text",
+                                [
+                                  _c(
+                                    "v-card",
+                                    { staticClass: "mb-6" },
+                                    [
+                                      _c(
+                                        "v-card-title",
+                                        { staticClass: "subtitle-1" },
+                                        [_vm._v("Penggalang")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("v-card-text", [
+                                        _c(
+                                          "div",
+                                          {
+                                            staticClass: "d-flex align-center"
+                                          },
+                                          [
+                                            _c(
+                                              "v-avatar",
+                                              { attrs: { left: "" } },
+                                              [
+                                                _c("img", {
+                                                  attrs: {
+                                                    src:
+                                                      "https://cdn.vuetifyjs.com/images/john.jpg",
+                                                    alt: "John"
+                                                  }
+                                                })
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c("div", { staticClass: "mx-3" }, [
+                                              _c(
+                                                "span",
+                                                { staticClass: "green--text" },
+                                                [
+                                                  _vm._v(_vm._s(_vm.author)),
+                                                  _c(
+                                                    "v-icon",
+                                                    {
+                                                      attrs: {
+                                                        right: "",
+                                                        color: "green"
+                                                      }
+                                                    },
+                                                    [
+                                                      _vm._v(
+                                                        "mdi-check-circle mdi-18px"
+                                                      )
+                                                    ]
                                                   )
-                                                }
-                                              })
-                                            ],
-                                            1
-                                          )
+                                                ],
+                                                1
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "div",
+                                                { staticClass: "caption" },
+                                                [
+                                                  _vm._v(
+                                                    "Identitas terverifikasi"
+                                                  )
+                                                ]
+                                              )
+                                            ])
+                                          ],
+                                          1
+                                        )
+                                      ])
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-card",
+                                    { staticClass: "mb-6" },
+                                    [
+                                      _c(
+                                        "v-card-title",
+                                        { staticClass: "subtitle-1" },
+                                        [_vm._v("Penerima Manfaat")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("v-card-text", [
+                                        _c(
+                                          "div",
+                                          {
+                                            staticClass:
+                                              "d-flex align-center pl-4"
+                                          },
+                                          [
+                                            _c(
+                                              "v-avatar",
+                                              { attrs: { left: "" } },
+                                              [
+                                                _c("v-icon", [
+                                                  _vm._v(
+                                                    "mdi-account-circle mdi-48px"
+                                                  )
+                                                ])
+                                              ],
+                                              1
+                                            ),
+                                            _vm._v(" "),
+                                            _c("div", { staticClass: "mx-3" }, [
+                                              _c("span", [
+                                                _vm._v(_vm._s(_vm.target))
+                                              ]),
+                                              _vm._v(" "),
+                                              _c(
+                                                "div",
+                                                { staticClass: "caption" },
+                                                [
+                                                  _vm._v(
+                                                    "Sesuai dokumen medis"
+                                                  ),
+                                                  _c(
+                                                    "v-icon",
+                                                    {
+                                                      attrs: { color: "green" }
+                                                    },
+                                                    [
+                                                      _vm._v(
+                                                        "mdi-check-circle-outline mdi-18px"
+                                                      )
+                                                    ]
+                                                  )
+                                                ],
+                                                1
+                                              )
+                                            ])
+                                          ],
+                                          1
+                                        )
+                                      ])
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-row",
+                    [
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "12", md: "8" } },
+                        [
+                          _c(
+                            "v-card",
+                            { attrs: { height: "100%" } },
+                            [
+                              _c(
+                                "v-tabs",
+                                {
+                                  attrs: {
+                                    "background-color": "orange",
+                                    centered: "",
+                                    dark: "",
+                                    "icons-and-text": ""
+                                  },
+                                  model: {
+                                    value: _vm.tab,
+                                    callback: function($$v) {
+                                      _vm.tab = $$v
+                                    },
+                                    expression: "tab"
+                                  }
+                                },
+                                [
+                                  _c("v-tabs-slider"),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-tab",
+                                    { attrs: { href: "#tab-1" } },
+                                    [
+                                      _vm._v(
+                                        "\r\n                                        Cerita "
+                                      ),
+                                      _c("v-icon", [
+                                        _vm._v("mdi-account-search")
+                                      ])
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-tab",
+                                    { attrs: { href: "#tab-2" } },
+                                    [
+                                      _vm._v(
+                                        "\r\n                                        Perkembangan "
+                                      ),
+                                      _c("v-icon", [
+                                        _vm._v("mdi-account-heart mdi-flip-h")
+                                      ])
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-tab",
+                                    { attrs: { href: "#tab-3" } },
+                                    [
+                                      _vm._v(
+                                        "\r\n                                        Rincian Dana "
+                                      ),
+                                      _c("v-icon", [_vm._v("mdi-cash-usd")])
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-tabs-items",
+                                {
+                                  model: {
+                                    value: _vm.tab,
+                                    callback: function($$v) {
+                                      _vm.tab = $$v
+                                    },
+                                    expression: "tab"
+                                  }
+                                },
+                                _vm._l(3, function(i) {
+                                  return _c(
+                                    "v-tab-item",
+                                    { key: i, attrs: { value: "tab-" + i } },
+                                    [
+                                      _c(
+                                        "v-card",
+                                        { attrs: { flat: "" } },
+                                        [
+                                          _c("v-card-text", [
+                                            _vm._v(_vm._s(_vm.text))
+                                          ])
                                         ],
                                         1
                                       )
-                                ]
-                              })
+                                    ],
+                                    1
+                                  )
+                                }),
+                                1
+                              )
                             ],
-                            2
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "12", md: "4" } },
+                        [
+                          _c(
+                            "v-card",
+                            { staticClass: "mx-auto" },
+                            [
+                              _c(
+                                "v-list",
+                                { attrs: { "two-line": "", dense: "" } },
+                                [
+                                  _vm._l(_vm.items, function(item, index) {
+                                    return [
+                                      item.header
+                                        ? _c("v-subheader", {
+                                            key: item.header,
+                                            staticClass: "title",
+                                            domProps: {
+                                              textContent: _vm._s(
+                                                item.header +
+                                                  " (" +
+                                                  (_vm.items.length - 1) +
+                                                  ")"
+                                              )
+                                            }
+                                          })
+                                        : _c(
+                                            "v-list-item",
+                                            {
+                                              key: item.donor,
+                                              on: { click: function($event) {} }
+                                            },
+                                            [
+                                              _c(
+                                                "v-list-item-avatar",
+                                                [
+                                                  _c("v-img", {
+                                                    attrs: { src: item.avatar }
+                                                  })
+                                                ],
+                                                1
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "v-list-item-content",
+                                                [
+                                                  _c("v-list-item-title", {
+                                                    domProps: {
+                                                      innerHTML: _vm._s(
+                                                        item.donor
+                                                      )
+                                                    }
+                                                  }),
+                                                  _vm._v(" "),
+                                                  _c("v-list-item-subtitle", {
+                                                    domProps: {
+                                                      innerHTML: _vm._s(
+                                                        item.comments
+                                                      )
+                                                    }
+                                                  })
+                                                ],
+                                                1
+                                              )
+                                            ],
+                                            1
+                                          )
+                                    ]
+                                  })
+                                ],
+                                2
+                              )
+                            ],
+                            1
                           )
                         ],
                         1
@@ -40805,9 +41050,8 @@ var render = function() {
             ],
             1
           )
-        ],
-        1
-      ),
+        ])
+      ]),
       _vm._v(" "),
       _c("footbar")
     ],
@@ -40842,228 +41086,245 @@ var render = function() {
       _c("navbar"),
       _vm._v(" "),
       _c("main", { staticClass: "h-100" }, [
-        _c(
-          "div",
-          { staticClass: "fluid" },
-          [
-            _c(
-              "v-card",
-              {
-                staticClass: "top-space",
-                attrs: { tile: "", flat: "", color: "#F2F2F2" }
-              },
-              [
-                _c(
-                  "v-container",
-                  { staticClass: "py-12" },
-                  [
-                    _c(
-                      "v-carousel",
-                      {
-                        staticClass: "elevation-24",
-                        staticStyle: { "border-radius": "4px" },
-                        attrs: {
-                          cycle: "",
-                          height: "500",
-                          "delimiter-icon": "mdi-minus",
-                          "hide-delimiter-background": "",
-                          "show-arrows-on-hover": ""
-                        }
-                      },
-                      _vm._l(_vm.slides, function(slide, i) {
-                        return _c(
-                          "v-carousel-item",
-                          {
-                            key: i,
-                            attrs: {
-                              src: _vm.items[i],
-                              gradient:
-                                "rgba(255,255,255,.8), rgba(255,255,255,0.3)"
-                            }
-                          },
-                          [
-                            _c(
-                              "v-row",
-                              {
-                                staticClass: "fill-height",
-                                attrs: { align: "center", justify: "center" }
-                              },
+        _c("div", { staticClass: "fluid" }, [
+          _c(
+            "section",
+            { staticClass: "top-space bg-section-1" },
+            [
+              _c(
+                "v-container",
+                { staticClass: "py-12" },
+                [
+                  _c(
+                    "v-carousel",
+                    {
+                      staticClass: "elevation-24",
+                      staticStyle: { "border-radius": "4px" },
+                      attrs: {
+                        cycle: "",
+                        height: "500",
+                        "delimiter-icon": "mdi-minus",
+                        "hide-delimiter-background": "",
+                        "show-arrows-on-hover": ""
+                      }
+                    },
+                    _vm._l(_vm.slides, function(slide, i) {
+                      return _c(
+                        "v-carousel-item",
+                        {
+                          key: i,
+                          attrs: {
+                            src: _vm.items[i],
+                            gradient:
+                              "rgba(255,255,255,.8), rgba(255,255,255,0.3)"
+                          }
+                        },
+                        [
+                          _c(
+                            "v-row",
+                            {
+                              staticClass: "fill-height",
+                              attrs: { align: "center", justify: "center" }
+                            },
+                            [
+                              _c(
+                                "v-col",
+                                [
+                                  _c(
+                                    "v-row",
+                                    { attrs: { justify: "center" } },
+                                    [
+                                      _c("div", { staticClass: "display-3" }, [
+                                        _vm._v("Salindia " + _vm._s(slide))
+                                      ])
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-row",
+                                    { attrs: { justify: "center" } },
+                                    [
+                                      _c(
+                                        "v-btn",
+                                        {
+                                          staticClass: "mt-6",
+                                          attrs: { large: "" }
+                                        },
+                                        [_vm._v("Bantu sekarang")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    }),
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "section",
+            { staticClass: "bg-section-2" },
+            [
+              _c(
+                "v-container",
+                { staticClass: "py-12" },
+                [
+                  _c(
+                    "h1",
+                    { staticClass: "display-1 font-weight-bold text-center" },
+                    [_vm._v("Bantu siapa hari ini?")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-row",
+                    _vm._l(_vm.cards, function(card) {
+                      return _c(
+                        "v-col",
+                        {
+                          key: card.title,
+                          attrs: { cols: "12", sm: "6", md: "4" }
+                        },
+                        [
+                          _c("v-hover", {
+                            scopedSlots: _vm._u(
                               [
-                                _c(
-                                  "v-col",
-                                  [
-                                    _c(
-                                      "v-row",
-                                      { attrs: { justify: "center" } },
-                                      [
-                                        _c(
-                                          "div",
-                                          { staticClass: "display-3" },
-                                          [_vm._v("Salindia " + _vm._s(slide))]
-                                        )
-                                      ]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "v-row",
-                                      { attrs: { justify: "center" } },
-                                      [
-                                        _c(
-                                          "v-btn",
-                                          {
-                                            staticClass: "mt-6",
-                                            attrs: { large: "" }
-                                          },
-                                          [_vm._v("Bantu sekarang")]
-                                        )
-                                      ],
-                                      1
-                                    )
-                                  ],
-                                  1
-                                )
-                              ],
-                              1
-                            )
-                          ],
-                          1
-                        )
-                      }),
-                      1
-                    )
-                  ],
-                  1
-                )
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "v-card",
-              { attrs: { tile: "", flat: "", color: "white" } },
-              [
-                _c(
-                  "v-container",
-                  { staticClass: "py-12" },
-                  [
-                    _c(
-                      "h1",
-                      { staticClass: "display-1 font-weight-bold text-center" },
-                      [_vm._v("Bantu siapa hari ini?")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "v-row",
-                      _vm._l(_vm.cards, function(card) {
-                        return _c(
-                          "v-col",
-                          {
-                            key: card.title,
-                            attrs: { cols: "12", sm: "6", md: "4" }
-                          },
-                          [
-                            _c(
-                              "v-card",
-                              {
-                                staticClass: "elevation-24 my-4",
-                                on: {
-                                  click: function($event) {
-                                    return _vm.reroutes("/campaign")
+                                {
+                                  key: "default",
+                                  fn: function(ref) {
+                                    var hover = ref.hover
+                                    return [
+                                      _c(
+                                        "v-card",
+                                        {
+                                          staticClass: "my-4 card-transform",
+                                          attrs: { elevation: hover ? 24 : 6 },
+                                          on: {
+                                            click: function($event) {
+                                              return _vm.reroutes("/campaign")
+                                            }
+                                          }
+                                        },
+                                        [
+                                          _c("v-img", {
+                                            attrs: {
+                                              src: card.src,
+                                              height: "200px"
+                                            }
+                                          }),
+                                          _vm._v(" "),
+                                          _c("v-card-title", {
+                                            domProps: {
+                                              textContent: _vm._s(card.title)
+                                            }
+                                          }),
+                                          _vm._v(" "),
+                                          _c("v-card-subtitle", {
+                                            domProps: {
+                                              textContent: _vm._s(card.author)
+                                            }
+                                          }),
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-card-actions",
+                                            [
+                                              _c("v-btn", {
+                                                attrs: { text: "" },
+                                                domProps: {
+                                                  textContent: _vm._s(
+                                                    "Terkumpul " + card.raised
+                                                  )
+                                                }
+                                              }),
+                                              _vm._v(" "),
+                                              _c("v-spacer"),
+                                              _vm._v(" "),
+                                              _c("v-btn", {
+                                                attrs: {
+                                                  color: "orange",
+                                                  text: ""
+                                                },
+                                                domProps: {
+                                                  textContent: _vm._s(
+                                                    card.daysleft + " hari lagi"
+                                                  )
+                                                }
+                                              })
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c("v-progress-linear", {
+                                            attrs: {
+                                              height: "8",
+                                              color: "yellow accent-4"
+                                            },
+                                            model: {
+                                              value: card.progress,
+                                              callback: function($$v) {
+                                                _vm.$set(card, "progress", $$v)
+                                              },
+                                              expression: "card.progress"
+                                            }
+                                          })
+                                        ],
+                                        1
+                                      )
+                                    ]
                                   }
                                 }
-                              },
-                              [
-                                _c("v-img", {
-                                  attrs: { src: card.src, height: "200px" }
-                                }),
-                                _vm._v(" "),
-                                _c("v-card-title", {
-                                  domProps: { textContent: _vm._s(card.title) }
-                                }),
-                                _vm._v(" "),
-                                _c("v-card-subtitle", {
-                                  domProps: { textContent: _vm._s(card.author) }
-                                }),
-                                _vm._v(" "),
-                                _c(
-                                  "v-card-actions",
-                                  [
-                                    _c("v-btn", {
-                                      attrs: { text: "" },
-                                      domProps: {
-                                        textContent: _vm._s(
-                                          "Terkumpul " + card.raised
-                                        )
-                                      }
-                                    }),
-                                    _vm._v(" "),
-                                    _c("v-spacer"),
-                                    _vm._v(" "),
-                                    _c("v-btn", {
-                                      attrs: { color: "orange", text: "" },
-                                      domProps: {
-                                        textContent: _vm._s(
-                                          card.daysleft + " hari lagi"
-                                        )
-                                      }
-                                    })
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c("v-progress-linear", {
-                                  attrs: {
-                                    height: "8",
-                                    color: "yellow accent-4"
-                                  },
-                                  model: {
-                                    value: card.progress,
-                                    callback: function($$v) {
-                                      _vm.$set(card, "progress", $$v)
-                                    },
-                                    expression: "card.progress"
-                                  }
-                                })
                               ],
-                              1
+                              null,
+                              true
                             )
-                          ],
-                          1
-                        )
-                      }),
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "v-row",
-                      { attrs: { justify: "center" } },
-                      [
-                        _c(
-                          "v-btn",
-                          {
-                            staticClass: "mt-12 font-weight-bold",
-                            attrs: { text: "", large: "" }
-                          },
-                          [
-                            _vm._v("Lihat semua"),
-                            _c("v-icon", { attrs: { right: "" } }, [
-                              _vm._v("mdi-arrow-top-right mdi-rotate-45")
-                            ])
-                          ],
-                          1
-                        )
-                      ],
-                      1
-                    )
-                  ],
-                  1
-                )
-              ],
-              1
-            )
-          ],
-          1
-        )
+                          })
+                        ],
+                        1
+                      )
+                    }),
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-row",
+                    { attrs: { justify: "center" } },
+                    [
+                      _c(
+                        "v-btn",
+                        {
+                          staticClass: "mt-12 font-weight-bold",
+                          attrs: { text: "", large: "" }
+                        },
+                        [
+                          _vm._v("Lihat semua"),
+                          _c("v-icon", { attrs: { right: "" } }, [
+                            _vm._v("mdi-arrow-top-right mdi-rotate-45")
+                          ])
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ])
       ]),
       _vm._v(" "),
       _c("footbar")
@@ -41411,7 +41672,10 @@ var render = function() {
                 [
                   _c(
                     "v-card",
-                    { staticClass: "mb-3", attrs: { width: "90%" } },
+                    {
+                      staticClass: "mb-3 elevation-12",
+                      attrs: { width: "90%" }
+                    },
                     [
                       _c(
                         "v-list",
@@ -97224,15 +97488,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../node_modules/vuetify-loader/lib/runtime/installComponents.js */ "./node_modules/vuetify-loader/lib/runtime/installComponents.js");
 /* harmony import */ var _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var vuetify_lib_components_VApp__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuetify/lib/components/VApp */ "./node_modules/vuetify/lib/components/VApp/index.js");
-/* harmony import */ var vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuetify/lib/components/VBtn */ "./node_modules/vuetify/lib/components/VBtn/index.js");
-/* harmony import */ var vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuetify/lib/components/VCard */ "./node_modules/vuetify/lib/components/VCard/index.js");
-/* harmony import */ var vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vuetify/lib/components/VGrid */ "./node_modules/vuetify/lib/components/VGrid/index.js");
-/* harmony import */ var vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vuetify/lib/components/VIcon */ "./node_modules/vuetify/lib/components/VIcon/index.js");
-/* harmony import */ var vuetify_lib_components_VImg__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vuetify/lib/components/VImg */ "./node_modules/vuetify/lib/components/VImg/index.js");
-/* harmony import */ var vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! vuetify/lib/components/VList */ "./node_modules/vuetify/lib/components/VList/index.js");
-/* harmony import */ var vuetify_lib_components_VProgressLinear__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! vuetify/lib/components/VProgressLinear */ "./node_modules/vuetify/lib/components/VProgressLinear/index.js");
-/* harmony import */ var vuetify_lib_components_VSubheader__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! vuetify/lib/components/VSubheader */ "./node_modules/vuetify/lib/components/VSubheader/index.js");
-/* harmony import */ var vuetify_lib_components_VTabs__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! vuetify/lib/components/VTabs */ "./node_modules/vuetify/lib/components/VTabs/index.js");
+/* harmony import */ var vuetify_lib_components_VAvatar__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuetify/lib/components/VAvatar */ "./node_modules/vuetify/lib/components/VAvatar/index.js");
+/* harmony import */ var vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuetify/lib/components/VBtn */ "./node_modules/vuetify/lib/components/VBtn/index.js");
+/* harmony import */ var vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vuetify/lib/components/VCard */ "./node_modules/vuetify/lib/components/VCard/index.js");
+/* harmony import */ var vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vuetify/lib/components/VGrid */ "./node_modules/vuetify/lib/components/VGrid/index.js");
+/* harmony import */ var vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vuetify/lib/components/VIcon */ "./node_modules/vuetify/lib/components/VIcon/index.js");
+/* harmony import */ var vuetify_lib_components_VImg__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! vuetify/lib/components/VImg */ "./node_modules/vuetify/lib/components/VImg/index.js");
+/* harmony import */ var vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! vuetify/lib/components/VList */ "./node_modules/vuetify/lib/components/VList/index.js");
+/* harmony import */ var vuetify_lib_components_VProgressLinear__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! vuetify/lib/components/VProgressLinear */ "./node_modules/vuetify/lib/components/VProgressLinear/index.js");
+/* harmony import */ var vuetify_lib_components_VSubheader__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! vuetify/lib/components/VSubheader */ "./node_modules/vuetify/lib/components/VSubheader/index.js");
+/* harmony import */ var vuetify_lib_components_VTabs__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! vuetify/lib/components/VTabs */ "./node_modules/vuetify/lib/components/VTabs/index.js");
 
 
 
@@ -97278,9 +97543,7 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 
 
-
-
-_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4___default()(component, {VApp: vuetify_lib_components_VApp__WEBPACK_IMPORTED_MODULE_5__["VApp"],VBtn: vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_6__["VBtn"],VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__["VCard"],VCardActions: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__["VCardActions"],VCardSubtitle: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__["VCardSubtitle"],VCardText: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__["VCardText"],VCardTitle: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__["VCardTitle"],VCol: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_8__["VCol"],VContainer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_8__["VContainer"],VIcon: vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_9__["VIcon"],VImg: vuetify_lib_components_VImg__WEBPACK_IMPORTED_MODULE_10__["VImg"],VList: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_11__["VList"],VListItem: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_11__["VListItem"],VListItemAvatar: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_11__["VListItemAvatar"],VListItemContent: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_11__["VListItemContent"],VListItemSubtitle: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_11__["VListItemSubtitle"],VListItemTitle: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_11__["VListItemTitle"],VProgressLinear: vuetify_lib_components_VProgressLinear__WEBPACK_IMPORTED_MODULE_12__["VProgressLinear"],VRow: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_8__["VRow"],VSpacer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_8__["VSpacer"],VSubheader: vuetify_lib_components_VSubheader__WEBPACK_IMPORTED_MODULE_13__["VSubheader"],VTab: vuetify_lib_components_VTabs__WEBPACK_IMPORTED_MODULE_14__["VTab"],VTabItem: vuetify_lib_components_VTabs__WEBPACK_IMPORTED_MODULE_14__["VTabItem"],VTabs: vuetify_lib_components_VTabs__WEBPACK_IMPORTED_MODULE_14__["VTabs"],VTabsItems: vuetify_lib_components_VTabs__WEBPACK_IMPORTED_MODULE_14__["VTabsItems"],VTabsSlider: vuetify_lib_components_VTabs__WEBPACK_IMPORTED_MODULE_14__["VTabsSlider"]})
+_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4___default()(component, {VApp: vuetify_lib_components_VApp__WEBPACK_IMPORTED_MODULE_5__["VApp"],VAvatar: vuetify_lib_components_VAvatar__WEBPACK_IMPORTED_MODULE_6__["VAvatar"],VBtn: vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_7__["VBtn"],VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_8__["VCard"],VCardText: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_8__["VCardText"],VCardTitle: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_8__["VCardTitle"],VCol: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_9__["VCol"],VContainer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_9__["VContainer"],VIcon: vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_10__["VIcon"],VImg: vuetify_lib_components_VImg__WEBPACK_IMPORTED_MODULE_11__["VImg"],VList: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_12__["VList"],VListItem: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_12__["VListItem"],VListItemAvatar: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_12__["VListItemAvatar"],VListItemContent: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_12__["VListItemContent"],VListItemSubtitle: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_12__["VListItemSubtitle"],VListItemTitle: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_12__["VListItemTitle"],VProgressLinear: vuetify_lib_components_VProgressLinear__WEBPACK_IMPORTED_MODULE_13__["VProgressLinear"],VRow: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_9__["VRow"],VSubheader: vuetify_lib_components_VSubheader__WEBPACK_IMPORTED_MODULE_14__["VSubheader"],VTab: vuetify_lib_components_VTabs__WEBPACK_IMPORTED_MODULE_15__["VTab"],VTabItem: vuetify_lib_components_VTabs__WEBPACK_IMPORTED_MODULE_15__["VTabItem"],VTabs: vuetify_lib_components_VTabs__WEBPACK_IMPORTED_MODULE_15__["VTabs"],VTabsItems: vuetify_lib_components_VTabs__WEBPACK_IMPORTED_MODULE_15__["VTabsItems"],VTabsSlider: vuetify_lib_components_VTabs__WEBPACK_IMPORTED_MODULE_15__["VTabsSlider"]})
 
 
 /* hot reload */
@@ -97358,9 +97621,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuetify/lib/components/VCard */ "./node_modules/vuetify/lib/components/VCard/index.js");
 /* harmony import */ var vuetify_lib_components_VCarousel__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vuetify/lib/components/VCarousel */ "./node_modules/vuetify/lib/components/VCarousel/index.js");
 /* harmony import */ var vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vuetify/lib/components/VGrid */ "./node_modules/vuetify/lib/components/VGrid/index.js");
-/* harmony import */ var vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vuetify/lib/components/VIcon */ "./node_modules/vuetify/lib/components/VIcon/index.js");
-/* harmony import */ var vuetify_lib_components_VImg__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! vuetify/lib/components/VImg */ "./node_modules/vuetify/lib/components/VImg/index.js");
-/* harmony import */ var vuetify_lib_components_VProgressLinear__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! vuetify/lib/components/VProgressLinear */ "./node_modules/vuetify/lib/components/VProgressLinear/index.js");
+/* harmony import */ var vuetify_lib_components_VHover__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vuetify/lib/components/VHover */ "./node_modules/vuetify/lib/components/VHover/index.js");
+/* harmony import */ var vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! vuetify/lib/components/VIcon */ "./node_modules/vuetify/lib/components/VIcon/index.js");
+/* harmony import */ var vuetify_lib_components_VImg__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! vuetify/lib/components/VImg */ "./node_modules/vuetify/lib/components/VImg/index.js");
+/* harmony import */ var vuetify_lib_components_VProgressLinear__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! vuetify/lib/components/VProgressLinear */ "./node_modules/vuetify/lib/components/VProgressLinear/index.js");
 
 
 
@@ -97397,7 +97661,8 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 
 
-_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4___default()(component, {VApp: vuetify_lib_components_VApp__WEBPACK_IMPORTED_MODULE_5__["VApp"],VBtn: vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_6__["VBtn"],VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__["VCard"],VCardActions: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__["VCardActions"],VCardSubtitle: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__["VCardSubtitle"],VCardTitle: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__["VCardTitle"],VCarousel: vuetify_lib_components_VCarousel__WEBPACK_IMPORTED_MODULE_8__["VCarousel"],VCarouselItem: vuetify_lib_components_VCarousel__WEBPACK_IMPORTED_MODULE_8__["VCarouselItem"],VCol: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_9__["VCol"],VContainer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_9__["VContainer"],VIcon: vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_10__["VIcon"],VImg: vuetify_lib_components_VImg__WEBPACK_IMPORTED_MODULE_11__["VImg"],VProgressLinear: vuetify_lib_components_VProgressLinear__WEBPACK_IMPORTED_MODULE_12__["VProgressLinear"],VRow: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_9__["VRow"],VSpacer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_9__["VSpacer"]})
+
+_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4___default()(component, {VApp: vuetify_lib_components_VApp__WEBPACK_IMPORTED_MODULE_5__["VApp"],VBtn: vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_6__["VBtn"],VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__["VCard"],VCardActions: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__["VCardActions"],VCardSubtitle: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__["VCardSubtitle"],VCardTitle: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__["VCardTitle"],VCarousel: vuetify_lib_components_VCarousel__WEBPACK_IMPORTED_MODULE_8__["VCarousel"],VCarouselItem: vuetify_lib_components_VCarousel__WEBPACK_IMPORTED_MODULE_8__["VCarouselItem"],VCol: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_9__["VCol"],VContainer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_9__["VContainer"],VHover: vuetify_lib_components_VHover__WEBPACK_IMPORTED_MODULE_10__["VHover"],VIcon: vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_11__["VIcon"],VImg: vuetify_lib_components_VImg__WEBPACK_IMPORTED_MODULE_12__["VImg"],VProgressLinear: vuetify_lib_components_VProgressLinear__WEBPACK_IMPORTED_MODULE_13__["VProgressLinear"],VRow: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_9__["VRow"],VSpacer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_9__["VSpacer"]})
 
 
 /* hot reload */

@@ -4,7 +4,7 @@
 
     <main class="h-100">
         <div class="fluid">
-            <v-card tile flat color="#F2F2F2" class="top-space">
+            <section class="top-space bg-section-1">
                 <v-container class="py-12">
                     <v-carousel cycle height="500" delimiter-icon="mdi-minus" hide-delimiter-background show-arrows-on-hover class="elevation-24" style="border-radius:4px;">
                         <v-carousel-item v-for="(slide, i) in slides" :key="i" :src="items[i]" gradient="rgba(255,255,255,.8), rgba(255,255,255,0.3)">
@@ -21,14 +21,15 @@
                         </v-carousel-item>
                     </v-carousel>
                 </v-container>
-            </v-card>
+            </section>
 
-            <v-card tile flat color="white">
+            <section class="bg-section-2">
                 <v-container class="py-12">
                     <h1 class="display-1 font-weight-bold text-center">Bantu siapa hari ini?</h1>
                     <v-row>
                         <v-col v-for="card in cards" :key="card.title" cols="12" sm="6" md="4">
-                            <v-card @click="reroutes('/campaign')" class="elevation-24 my-4">
+                        <v-hover v-slot:default="{ hover }">
+                            <v-card @click="reroutes('/campaign')" :elevation="hover ? 24 : 6" class="my-4 card-transform">
                                 <v-img :src="card.src" height="200px"></v-img>
                                 <v-card-title v-text="card.title"></v-card-title>
                                 <v-card-subtitle v-text="card.author"></v-card-subtitle>
@@ -39,13 +40,15 @@
                                 </v-card-actions>
                                 <v-progress-linear height="8" v-model="card.progress" color="yellow accent-4"></v-progress-linear>
                             </v-card>
+                        </v-hover>
                         </v-col>
                     </v-row>
+
                     <v-row justify="center">
                         <v-btn text large class="mt-12 font-weight-bold">Lihat semua<v-icon right>mdi-arrow-top-right mdi-rotate-45</v-icon></v-btn>
                     </v-row>
                 </v-container>
-            </v-card>
+            </section>
         </div>
     </main>
 
@@ -87,6 +90,22 @@
 </script>
 
 <style>
+    .bg-section-1 {
+        background: #F2F2F2;
+    }
+
+    .bg-section-2 {
+        background: white;
+    }
+
+    section .v-card {
+        transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1) all;
+    }
+
+    section .card-transform:hover {
+        transform: translatey(-10px);
+    }
+
     .top-space {
         padding-top: 96px!important;
     }

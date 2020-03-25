@@ -2050,9 +2050,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -40686,159 +40683,123 @@ var render = function() {
                     [
                       _c(
                         "v-col",
-                        { attrs: { cols: "12" } },
+                        { attrs: { cols: "12", md: "6" } },
                         [
                           _c(
                             "v-card",
+                            { staticClass: "mb-6" },
                             [
                               _c("v-card-title", { staticClass: "title" }, [
-                                _vm._v("Informasi Penggalangan Dana")
+                                _vm._v("Penggalang")
                               ]),
                               _vm._v(" "),
-                              _c(
-                                "v-card-text",
-                                [
-                                  _c(
-                                    "v-card",
-                                    { staticClass: "mb-6" },
-                                    [
+                              _c("v-card-text", [
+                                _c(
+                                  "div",
+                                  { staticClass: "d-flex align-center pl-4" },
+                                  [
+                                    _c("v-avatar", { attrs: { left: "" } }, [
+                                      _c("img", {
+                                        attrs: {
+                                          src:
+                                            "https://cdn.vuetifyjs.com/images/john.jpg",
+                                          alt: "John"
+                                        }
+                                      })
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("div", { staticClass: "mx-3" }, [
                                       _c(
-                                        "v-card-title",
-                                        { staticClass: "subtitle-1" },
-                                        [_vm._v("Penggalang")]
+                                        "span",
+                                        { staticClass: "green--text" },
+                                        [
+                                          _vm._v(_vm._s(_vm.author)),
+                                          _c(
+                                            "v-icon",
+                                            {
+                                              attrs: {
+                                                right: "",
+                                                color: "green"
+                                              }
+                                            },
+                                            [
+                                              _vm._v(
+                                                "mdi-check-circle mdi-18px"
+                                              )
+                                            ]
+                                          )
+                                        ],
+                                        1
                                       ),
                                       _vm._v(" "),
-                                      _c("v-card-text", [
-                                        _c(
-                                          "div",
-                                          {
-                                            staticClass: "d-flex align-center"
-                                          },
-                                          [
-                                            _c(
-                                              "v-avatar",
-                                              { attrs: { left: "" } },
-                                              [
-                                                _c("img", {
-                                                  attrs: {
-                                                    src:
-                                                      "https://cdn.vuetifyjs.com/images/john.jpg",
-                                                    alt: "John"
-                                                  }
-                                                })
-                                              ]
-                                            ),
-                                            _vm._v(" "),
-                                            _c("div", { staticClass: "mx-3" }, [
-                                              _c(
-                                                "span",
-                                                { staticClass: "green--text" },
-                                                [
-                                                  _vm._v(_vm._s(_vm.author)),
-                                                  _c(
-                                                    "v-icon",
-                                                    {
-                                                      attrs: {
-                                                        right: "",
-                                                        color: "green"
-                                                      }
-                                                    },
-                                                    [
-                                                      _vm._v(
-                                                        "mdi-check-circle mdi-18px"
-                                                      )
-                                                    ]
-                                                  )
-                                                ],
-                                                1
-                                              ),
-                                              _vm._v(" "),
-                                              _c(
-                                                "div",
-                                                { staticClass: "caption" },
-                                                [
-                                                  _vm._v(
-                                                    "Identitas terverifikasi"
-                                                  )
-                                                ]
-                                              )
-                                            ])
-                                          ],
-                                          1
-                                        )
+                                      _c("div", { staticClass: "caption" }, [
+                                        _vm._v("Identitas terverifikasi")
                                       ])
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-card",
-                                    { staticClass: "mb-6" },
-                                    [
-                                      _c(
-                                        "v-card-title",
-                                        { staticClass: "subtitle-1" },
-                                        [_vm._v("Penerima Manfaat")]
-                                      ),
+                                    ])
+                                  ],
+                                  1
+                                )
+                              ])
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "12", md: "6" } },
+                        [
+                          _c(
+                            "v-card",
+                            { staticClass: "mb-6" },
+                            [
+                              _c("v-card-title", { staticClass: "title" }, [
+                                _vm._v("Penerima Manfaat")
+                              ]),
+                              _vm._v(" "),
+                              _c("v-card-text", [
+                                _c(
+                                  "div",
+                                  { staticClass: "d-flex align-center pl-4" },
+                                  [
+                                    _c(
+                                      "v-avatar",
+                                      { attrs: { left: "" } },
+                                      [
+                                        _c("v-icon", [
+                                          _vm._v("mdi-account-circle mdi-48px")
+                                        ])
+                                      ],
+                                      1
+                                    ),
+                                    _vm._v(" "),
+                                    _c("div", { staticClass: "mx-3" }, [
+                                      _c("span", [_vm._v(_vm._s(_vm.target))]),
                                       _vm._v(" "),
-                                      _c("v-card-text", [
-                                        _c(
-                                          "div",
-                                          {
-                                            staticClass:
-                                              "d-flex align-center pl-4"
-                                          },
-                                          [
-                                            _c(
-                                              "v-avatar",
-                                              { attrs: { left: "" } },
-                                              [
-                                                _c("v-icon", [
-                                                  _vm._v(
-                                                    "mdi-account-circle mdi-48px"
-                                                  )
-                                                ])
-                                              ],
-                                              1
-                                            ),
-                                            _vm._v(" "),
-                                            _c("div", { staticClass: "mx-3" }, [
-                                              _c("span", [
-                                                _vm._v(_vm._s(_vm.target))
-                                              ]),
-                                              _vm._v(" "),
-                                              _c(
-                                                "div",
-                                                { staticClass: "caption" },
-                                                [
-                                                  _vm._v(
-                                                    "Sesuai dokumen medis"
-                                                  ),
-                                                  _c(
-                                                    "v-icon",
-                                                    {
-                                                      attrs: { color: "green" }
-                                                    },
-                                                    [
-                                                      _vm._v(
-                                                        "mdi-check-circle-outline mdi-18px"
-                                                      )
-                                                    ]
-                                                  )
-                                                ],
-                                                1
+                                      _c(
+                                        "div",
+                                        { staticClass: "caption" },
+                                        [
+                                          _vm._v("Sesuai dokumen medis"),
+                                          _c(
+                                            "v-icon",
+                                            { attrs: { color: "green" } },
+                                            [
+                                              _vm._v(
+                                                "mdi-check-circle-outline mdi-18px"
                                               )
-                                            ])
-                                          ],
-                                          1
-                                        )
-                                      ])
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              )
+                                            ]
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ])
+                                  ],
+                                  1
+                                )
+                              ])
                             ],
                             1
                           )

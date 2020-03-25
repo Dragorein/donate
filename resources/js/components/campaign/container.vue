@@ -24,38 +24,35 @@
                     </v-row>
 
                     <v-row>
-                        <v-col cols="12">
-                            <v-card>
-                                <v-card-title class="title">Informasi Penggalangan Dana</v-card-title>
+                        <v-col cols="12" md="6">
+                            <v-card class="mb-6">
+                                <v-card-title class="title">Penggalang</v-card-title>
                                 <v-card-text>
-                                    <v-card class="mb-6">
-                                        <v-card-title class="subtitle-1">Penggalang</v-card-title>
-                                        <v-card-text>
-                                            <div class="d-flex align-center">
-                                                <v-avatar left>
-                                                    <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John">
-                                                </v-avatar>
-                                                <div class="mx-3">
-                                                    <span class="green--text">{{author}}<v-icon right color="green">mdi-check-circle mdi-18px</v-icon></span>
-                                                    <div class="caption">Identitas terverifikasi</div>
-                                                </div>
-                                            </div>
-                                        </v-card-text>
-                                    </v-card>
-                                    <v-card class="mb-6">
-                                        <v-card-title class="subtitle-1">Penerima Manfaat</v-card-title>
-                                        <v-card-text>
-                                            <div class="d-flex align-center pl-4">
-                                                <v-avatar left>
-                                                    <v-icon>mdi-account-circle mdi-48px</v-icon>
-                                                </v-avatar>
-                                                <div class="mx-3">
-                                                    <span>{{target}}</span>
-                                                    <div class="caption">Sesuai dokumen medis<v-icon color="green">mdi-check-circle-outline mdi-18px</v-icon></div>
-                                                </div>
-                                            </div>
-                                        </v-card-text>
-                                    </v-card>
+                                    <div class="d-flex align-center pl-4">
+                                        <v-avatar left>
+                                            <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John">
+                                        </v-avatar>
+                                        <div class="mx-3">
+                                            <span class="green--text">{{author}}<v-icon right color="green">mdi-check-circle mdi-18px</v-icon></span>
+                                            <div class="caption">Identitas terverifikasi</div>
+                                        </div>
+                                    </div>
+                                </v-card-text>
+                            </v-card>
+                        </v-col>
+                        <v-col cols="12" md="6">
+                            <v-card class="mb-6">
+                                <v-card-title class="title">Penerima Manfaat</v-card-title>
+                                <v-card-text>
+                                    <div class="d-flex align-center pl-4">
+                                        <v-avatar left>
+                                            <v-icon>mdi-account-circle mdi-48px</v-icon>
+                                        </v-avatar>
+                                        <div class="mx-3">
+                                            <span>{{target}}</span>
+                                            <div class="caption">Sesuai dokumen medis<v-icon color="green">mdi-check-circle-outline mdi-18px</v-icon></div>
+                                        </div>
+                                    </div>
                                 </v-card-text>
                             </v-card>
                         </v-col>

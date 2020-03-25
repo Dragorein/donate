@@ -2050,6 +2050,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -40582,7 +40590,7 @@ var render = function() {
         _c("div", { staticClass: "fluid" }, [
           _c(
             "section",
-            { staticClass: "top-space" },
+            { staticClass: "top-space bg-section-1" },
             [
               _c(
                 "v-container",
@@ -40687,7 +40695,6 @@ var render = function() {
                         [
                           _c(
                             "v-card",
-                            { staticClass: "mb-6" },
                             [
                               _c("v-card-title", { staticClass: "title" }, [
                                 _vm._v("Penggalang")
@@ -40753,7 +40760,6 @@ var render = function() {
                         [
                           _c(
                             "v-card",
-                            { staticClass: "mb-6" },
                             [
                               _c("v-card-title", { staticClass: "title" }, [
                                 _vm._v("Penerima Manfaat")
@@ -40808,8 +40814,22 @@ var render = function() {
                       )
                     ],
                     1
-                  ),
-                  _vm._v(" "),
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "section",
+            { staticClass: " bg-section-2" },
+            [
+              _c(
+                "v-container",
+                { staticClass: "py-6" },
+                [
                   _c(
                     "v-row",
                     [
@@ -40995,6 +41015,18 @@ var render = function() {
                                   })
                                 ],
                                 2
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-btn",
+                                { attrs: { block: "", text: "", large: "" } },
+                                [
+                                  _vm._v("Lihat lebih"),
+                                  _c("v-icon", { attrs: { right: "" } }, [
+                                    _vm._v("mdi-dots-horizontal")
+                                  ])
+                                ],
+                                1
                               )
                             ],
                             1

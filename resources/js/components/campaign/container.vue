@@ -4,18 +4,20 @@
 
     <main class="h-100">
         <div class="fluid">
-            <section class="top-space">
+            <section class="top-space bg-section-1">
                 <v-container class="py-6">
                     <v-row>
                         <v-col cols="12">
                             <v-card>
                                 <v-img :src="src" height="450px"></v-img>
+
                                 <v-card-text>
                                     <h2 style="display-1" v-text="title"></h2>
                                     <span><strong class="orange--text title">{{raised}}</strong>{{' Terkumpul dari ' + total}}</span>
                                     <v-progress-linear rounded height="8" v-model="progress" color="yellow accent-4" class="my-4"></v-progress-linear>
                                     <span><strong class="orange--text title">{{daysleft}}</strong> hari lagi</span>
                                 </v-card-text>
+
                                 <v-card-text>
                                     <v-btn rounded block depressed large color="error">Donasi Sekarang</v-btn>
                                 </v-card-text>
@@ -25,7 +27,7 @@
 
                     <v-row>
                         <v-col cols="12" md="6">
-                            <v-card class="mb-6">
+                            <v-card>
                                 <v-card-title class="title">Penggalang</v-card-title>
                                 <v-card-text>
                                     <div class="d-flex align-center pl-4">
@@ -40,8 +42,9 @@
                                 </v-card-text>
                             </v-card>
                         </v-col>
+
                         <v-col cols="12" md="6">
-                            <v-card class="mb-6">
+                            <v-card>
                                 <v-card-title class="title">Penerima Manfaat</v-card-title>
                                 <v-card-text>
                                     <div class="d-flex align-center pl-4">
@@ -57,7 +60,11 @@
                             </v-card>
                         </v-col>
                     </v-row>
+                </v-container>
+            </section>
 
+            <section class=" bg-section-2">
+                <v-container class="py-6">
                     <v-row>
                         <v-col cols="12" md="8">
                             <v-card height="100%">
@@ -105,6 +112,7 @@
                                         </v-list-item>
                                     </template>
                                 </v-list>
+                                <v-btn block text large>Lihat lebih<v-icon right>mdi-dots-horizontal</v-icon></v-btn>
                             </v-card>
                         </v-col>
                     </v-row>

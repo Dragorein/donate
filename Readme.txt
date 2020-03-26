@@ -17,3 +17,7 @@ yg satu lagi jalanin 'npm run watch'
 tanpa kutip
 
 step 1-4 cuma buat awal clone pertama kali.
+
+Note Migrate DB :
+
+Kalo blm ada DB nya ketik "php artisan migrate" di cmd

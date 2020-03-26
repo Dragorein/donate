@@ -18,6 +18,7 @@ class CreateTSubmisiVerifikasi extends Migration
             $table->unsignedInteger('submisi_id');
             $table->foreign('submisi_id')->references('submisi_id')->on('t_submisi');
             $table->string('submisi_foto_verifikasi', 255);
+            $table->boolean('submisi_is_verifikasi');
             $table->timestamps();
         });
     }

@@ -48,6 +48,7 @@
             }
         },
         mounted(){
+            this.handleScroll();
             window.addEventListener('scroll', this.handleScroll);
         }
     }

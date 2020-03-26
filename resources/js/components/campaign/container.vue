@@ -5,116 +5,53 @@
     <main class="h-100">
         <div class="fluid">
             <section class="top-space bg-section-1">
-                <v-container class="py-6">
+                <v-container class="py-12">
+                    <h1 class="display-1 font-weight-bold text-left">Galang Dana</h1>
+                    <p>Dukung mereka untuk sembuh kembali. Mulai dari seribu rupiah.</p>
+                    
+                    <v-combobox v-model="chips" :items="filter" chips clearable label="Your favorite hobbies" multiple prepend-icon="filter_list" solo>
+                        <template v-slot:selection="{ attrs, item, select, selected }">
+                            <v-chip v-bind="attrs" :input-value="selected" close @click="select" @click:close="remove(item)">
+                                <strong>{{ item }}</strong>
+                            </v-chip>
+                        </template>
+                    </v-combobox>
+
                     <v-row>
-                        <v-col cols="12">
-                            <v-card>
-                                <v-img :src="src" height="450px"></v-img>
+                        <v-col v-for="card in cards" :key="card.title" cols="12" sm="6" md="4">
+                        <v-hover v-slot:default="{ hover }">
+                            <v-card @click="reroutes('/campaign/detail')" :elevation="hover ? 24 : 6" class="my-4 card-transform">
+                                <v-img :src="card.src" height="200px"></v-img>
+
+                                <v-card-title v-text="card.title"></v-card-title>
+
+                                <v-card-subtitle v-text="card.author"></v-card-subtitle>
 
                                 <v-card-text>
-                                    <h2 style="display-1" v-text="title"></h2>
-                                    <span><strong class="orange--text title">{{raised}}</strong>{{' Terkumpul dari ' + total}}</span>
-                                    <v-progress-linear rounded height="8" v-model="progress" color="yellow accent-4" class="my-4"></v-progress-linear>
-                                    <span><strong class="orange--text title">{{daysleft}}</strong> hari lagi</span>
+                                    <v-progress-linear rounded height="8" v-model="card.progress" color="yellow accent-4"></v-progress-linear>
                                 </v-card-text>
 
+                                <v-card-text class="d-flex justify-space-between">
+                                    <span><strong class="orange--text title">{{card.raised}}</strong> Terkumpul</span>
+                                    <span><strong class="orange--text title">{{card.daysleft}}</strong> hari lagi</span>
+                                </v-card-text>
+
+                                <v-divider class="my-0 mx-4"></v-divider>
+
                                 <v-card-text>
-                                    <v-btn rounded block depressed large color="error">Donasi Sekarang</v-btn>
+                                    <v-chip class="mr-2">
+                                        <v-icon left>mdi-charity</v-icon>Galang
+                                    </v-chip>
+                                    <v-chip class="mr-2">
+                                        <v-icon left>mdi-cash-usd</v-icon>Dana
+                                    </v-chip>
                                 </v-card-text>
                             </v-card>
+                        </v-hover>
                         </v-col>
                     </v-row>
-
-                    <v-row>
-                        <v-col cols="12" md="6">
-                            <v-card>
-                                <v-card-title class="title">Penggalang</v-card-title>
-                                <v-card-text>
-                                    <div class="d-flex align-center pl-4">
-                                        <v-avatar left>
-                                            <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John">
-                                        </v-avatar>
-                                        <div class="mx-3">
-                                            <span class="green--text">{{author}}<v-icon right color="green">mdi-check-circle mdi-18px</v-icon></span>
-                                            <div class="caption">Identitas terverifikasi</div>
-                                        </div>
-                                    </div>
-                                </v-card-text>
-                            </v-card>
-                        </v-col>
-
-                        <v-col cols="12" md="6">
-                            <v-card>
-                                <v-card-title class="title">Penerima Manfaat</v-card-title>
-                                <v-card-text>
-                                    <div class="d-flex align-center pl-4">
-                                        <v-avatar left>
-                                            <v-icon>mdi-account-circle mdi-48px</v-icon>
-                                        </v-avatar>
-                                        <div class="mx-3">
-                                            <span>{{target}}</span>
-                                            <div class="caption">Sesuai dokumen medis<v-icon color="green">mdi-check-circle-outline mdi-18px</v-icon></div>
-                                        </div>
-                                    </div>
-                                </v-card-text>
-                            </v-card>
-                        </v-col>
-                    </v-row>
-                </v-container>
-            </section>
-
-            <section class=" bg-section-2">
-                <v-container class="py-6">
-                    <v-row>
-                        <v-col cols="12" md="8">
-                            <v-card height="100%">
-                                <v-tabs v-model="tab" background-color="orange" centered dark icons-and-text>
-                                    <v-tabs-slider></v-tabs-slider>
-
-                                    <v-tab href="#tab-1">
-                                        Cerita <v-icon>mdi-account-search</v-icon>
-                                    </v-tab>
-
-                                    <v-tab href="#tab-2">
-                                        Perkembangan <v-icon>mdi-account-heart mdi-flip-h</v-icon>
-                                    </v-tab>
-
-                                    <v-tab href="#tab-3">
-                                        Rincian Dana <v-icon>mdi-cash-usd</v-icon>
-                                    </v-tab>
-                                </v-tabs>
-
-                                <v-tabs-items v-model="tab">
-                                    <v-tab-item v-for="i in 3" :key="i" :value="'tab-' + i">
-                                        <v-card flat>
-                                            <v-card-text>{{ text }}</v-card-text>
-                                        </v-card>
-                                    </v-tab-item>
-                                </v-tabs-items>
-                            </v-card>
-                        </v-col>
-
-                        <v-col cols="12" md="4">
-                            <v-card class="mx-auto">
-                                <v-list two-line dense>
-                                    <template v-for="(item, index) in items">
-                                        <v-subheader class="title" v-if="item.header" :key="item.header" v-text="item.header + ' (' + (items.length - 1) + ')'"></v-subheader>
-
-                                        <v-list-item v-else :key="item.donor" @click="">
-                                        <v-list-item-avatar>
-                                            <v-img :src="item.avatar"></v-img>
-                                        </v-list-item-avatar>
-
-                                        <v-list-item-content>
-                                            <v-list-item-title v-html="item.donor"></v-list-item-title>
-                                            <v-list-item-subtitle v-html="item.comments"></v-list-item-subtitle>
-                                        </v-list-item-content>
-                                        </v-list-item>
-                                    </template>
-                                </v-list>
-                                <v-btn block text large>Lihat lebih<v-icon right>mdi-dots-horizontal</v-icon></v-btn>
-                            </v-card>
-                        </v-col>
+                    <v-row justify="center">
+                        <v-btn @click="" text large class="font-weight-bold">Tambah<v-icon right>mdi-plus</v-icon></v-btn>
                     </v-row>
                 </v-container>
             </section>
@@ -128,54 +65,59 @@
 <script>
     export default {
         data: () => ({
-            title:'Supermodel',
-            src:'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
-            author:'Louise',
-            target:'Josh',
-            progress:50,
-            raised:'Rp 3.003.132',
-            total:'Rp 10.000.000',
-            daysleft:'30',
-            tab: null,
-            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            chips: [],
+            filter: ['Galang', 'Dana'],
             items: [
-                { header : 'Donatur'},
-                {
-                avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg',
-                donor: 'Ali Connors',
-                comments: "I'll be in your neighborhood doing errands this weekend. Do you want to hang out?",
-                },
-                {
-                avatar: 'https://cdn.vuetifyjs.com/images/lists/2.jpg',
-                donor: 'Alex Scott',
-                comments: "Wish I could come, but I'm out of town this weekend.",
-                },
-                {
-                avatar: 'https://cdn.vuetifyjs.com/images/lists/3.jpg',
-                donor: 'Sandra Adams',
-                comments: "Do you have Paris recommendations? Have you ever been?",
-                },
-                {
-                avatar: 'https://cdn.vuetifyjs.com/images/lists/4.jpg',
-                donor: 'Rachel',
-                comments: "Have any ideas about what we should get Heidi for her birthday?",
-                },
-                {
-                avatar: 'https://cdn.vuetifyjs.com/images/lists/5.jpg',
-                donor: 'Britta Holt',
-                comments: "We should eat this: Grate, Squash, Corn, and tomatillo Tacos.",
-                },
+                'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
+                'https://cdn.vuetifyjs.com/images/cards/house.jpg',
+                'https://cdn.vuetifyjs.com/images/cards/docks.jpg',
+                'https://cdn.vuetifyjs.com/images/cards/halcyon.png',
+                'https://cdn.vuetifyjs.com/images/cards/plane.jpg',
+            ],
+            slides: [
+                'Pertama',
+                'Kedua',
+                'Ketiga',
+                'Keempat',
+                'Kelima',
+            ],
+            cards: [
+                {title:'Supermodel', src:'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg', author:'Louise', progress:50, raised:'Rp 3.003.132', daysleft:'30'},
+                {title:'Halcyon Days', src:'https://cdn.vuetifyjs.com/images/cards/house.jpg', author:'Danny', progress:80, raised:'Rp 5.012.500', daysleft:'3'},
+                {title:'Top western road trips', src:'https://cdn.vuetifyjs.com/images/cards/docks.jpg', author:'Rachel', progress:5, raised:'Rp 176.320', daysleft:'56'},
+                {title:'Unlimited music now', src:'https://cdn.vuetifyjs.com/images/cards/halcyon.png', author:'Ellie', progress:100, raised:'Rp 152.901.000', daysleft:'1'},
+                {title:'Best airlines', src:'https://cdn.vuetifyjs.com/images/cards/plane.jpg', author:'Tommy', progress:60, raised:'Rp 16.251.026', daysleft:'23'},
             ],
         }),
         methods: {
             reroutes: function (url) {
                 this.$router.push({ path: url });
-            }
+            },
+            remove (item) {
+                this.chips.splice(this.chips.indexOf(item), 1)
+                this.chips = [...this.chips]
+            },
         }
     }
 </script>
 
 <style>
+    .bg-section-1 {
+        background: #F2F2F2;
+    }
+
+    .bg-section-2 {
+        background: white;
+    }
+
+    section .v-card {
+        transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1) all;
+    }
+
+    section .card-transform:hover {
+        transform: translatey(-10px);
+    }
+
     .top-space {
         padding-top: 96px!important;
     }
@@ -184,7 +126,8 @@
         outline: 0;
     }
     
-    a.v-btn:hover, .v-chip:hover, .v-tab:hover {
+    a.v-btn:hover, .v-chip:hover {
         text-decoration: none;
     }
+    /*@import './assets/styles/yourstyles.css';*/
 </style>

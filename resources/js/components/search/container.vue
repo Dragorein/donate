@@ -10,7 +10,7 @@
                         <v-subheader>Results</v-subheader>
 
                         <template v-for="card in cards">
-                            <v-list-item @click="reroutes('/campaign')">
+                            <v-list-item @click="reroutes('/campaign/detail')">
                                 <v-list-item-avatar tile size="70" width="120">
                                     <v-img :src="card.src"></v-img>
                                 </v-list-item-avatar>

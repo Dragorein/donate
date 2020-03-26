@@ -23,29 +23,55 @@
                 </v-container>
             </section>
 
-            <section class="bg-section-2">
+            <section class="bg-section-2" style="border-radius:">
                 <v-container class="py-12">
-                    <h1 class="display-1 font-weight-bold text-center">Bantu siapa hari ini?</h1>
+                    <h1 class="display-1 font-weight-bold text-center">Bantu siapa hari ini ?</h1>
                     <v-row>
-                        <v-col v-for="card in cards" :key="card.title" cols="12" sm="6" md="4">
+                        <v-col v-for="(card, index) in cards" v-if="index < 6" :key="card.title" cols="12" sm="6" md="4">
                         <v-hover v-slot:default="{ hover }">
-                            <v-card @click="reroutes('/campaign')" :elevation="hover ? 24 : 6" class="my-4 card-transform">
+                            <v-card @click="reroutes('/campaign/detail')" :elevation="hover ? 24 : 6" class="my-4 card-transform">
                                 <v-img :src="card.src" height="200px"></v-img>
+
                                 <v-card-title v-text="card.title"></v-card-title>
+
                                 <v-card-subtitle v-text="card.author"></v-card-subtitle>
-                                <v-card-actions>
-                                    <v-btn text v-text="'Terkumpul ' + card.raised"></v-btn>
-                                    <v-spacer></v-spacer>
-                                    <v-btn color="orange" text v-text="card.daysleft + ' hari lagi'"></v-btn>
-                                </v-card-actions>
-                                <v-progress-linear height="8" v-model="card.progress" color="yellow accent-4"></v-progress-linear>
+
+                                <v-card-text>
+                                    <v-progress-linear rounded height="8" v-model="card.progress" color="yellow accent-4"></v-progress-linear>
+                                </v-card-text>
+
+                                <v-card-text class="d-flex justify-space-between">
+                                    <span><strong class="orange--text title">{{card.raised}}</strong> Terkumpul</span>
+                                    <span><strong class="orange--text title">{{card.daysleft}}</strong> hari lagi</span>
+                                </v-card-text>
+
+                                <v-divider class="my-0 mx-4"></v-divider>
+
+                                <v-card-text>
+                                    <v-chip class="mr-2">
+                                        <v-icon left>mdi-charity</v-icon>Galang
+                                    </v-chip>
+                                    <v-chip class="mr-2">
+                                        <v-icon left>mdi-cash-usd</v-icon>Dana
+                                    </v-chip>
+                                </v-card-text>
                             </v-card>
                         </v-hover>
                         </v-col>
                     </v-row>
-
                     <v-row justify="center">
-                        <v-btn text large class="mt-12 font-weight-bold">Lihat semua<v-icon right>mdi-arrow-top-right mdi-rotate-45</v-icon></v-btn>
+                        <v-btn @click="reroutes('/campaign')" text large class="font-weight-bold">Lihat semua<v-icon right>mdi-arrow-top-right mdi-rotate-45</v-icon></v-btn>
+                    </v-row>
+                </v-container>
+            </section>
+
+            <section class="yellow lighten-1">
+                <v-container class="py-12">
+                    <h1 class="display-1 font-weight-bold text-center">Mengapa Kindly ?</h1>
+                    <v-row>
+                        <v-col>
+                            <p class="text-center">Karena bla bla bla</p>
+                        </v-col>
                     </v-row>
                 </v-container>
             </section>

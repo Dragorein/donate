@@ -7,13 +7,13 @@
         <div class="fluid">
             <section class="top-space bg-section">
                 <v-container class="py-6">
-                    <!-- <h1>test</h1> -->
+                    <h1>test</h1>
                 </v-container>
             </section>
         </div>
     </main>
 
-    <footer></footer>
+    <footbar></footbar>
 
 </v-app>
 </template>

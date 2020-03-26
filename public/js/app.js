@@ -41670,13 +41670,17 @@ var render = function() {
           _c(
             "section",
             { staticClass: "top-space bg-section" },
-            [_c("v-container", { staticClass: "py-6" })],
+            [
+              _c("v-container", { staticClass: "py-6" }, [
+                _c("h1", [_vm._v("test")])
+              ])
+            ],
             1
           )
         ])
       ]),
       _vm._v(" "),
-      _c("footer")
+      _c("footbar")
     ],
     1
   )

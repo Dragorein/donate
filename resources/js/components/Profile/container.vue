@@ -59,6 +59,59 @@
                             <p class="headline text-uppercase">Theodurus</p>
                             <p class="headline text-uppercase">Dewa</p>
                             <p class="headline text-uppercase">Sukietra</p>
+
+                            <v-dialog v-model="buat" persistent max-width="600px">
+                                <template v-slot:activator="{ on }">
+                                    <v-btn color="primary" dark v-on="on">Buka submisi</v-btn>
+                                </template>
+                                <v-card>
+                                    <v-card-title>
+                                    <span class="headline">Galangdana</span>
+                                    </v-card-title>
+                                    <v-card-text>
+                                    <v-container>
+                                        <v-row>
+                                        <v-col cols="12">
+                                            <v-text-field label="Judul*" required></v-text-field>
+                                        </v-col>
+                                        <v-col cols="12">
+                                            <v-text-field label="Nama Penerima*" type="text" required></v-text-field>
+                                        </v-col>
+                                        <v-col cols="12" sm="6">
+                                            <v-text-field
+                                                    v-model="date"
+                                                    label="Tenggat Waktu"
+                                                    prepend-icon="event"
+                                                    readonly
+                                                    v-on="on"
+                                                ></v-text-field>
+                                        </v-col>
+                                        <v-col cols="12" sm="6">
+                                            <v-autocomplete required
+                                            :items="['Skiing', 'Ice hockey', 'Soccer', 'Basketball', 'Hockey', 'Reading', 'Writing', 'Coding', 'Basejump']"
+                                            label="Kategori*"
+                                            multiple
+                                            ></v-autocomplete>
+                                        </v-col>
+                                        <v-col cols="12">
+                                            <v-text-field required
+                                                label="Target Dana*"
+                                                value="10.000.000"
+                                                prefix="Rp"
+                                                ></v-text-field>
+                                        </v-col>
+
+                                        </v-row>
+                                    </v-container>
+                                    <small>*wajib untuk di isi</small>
+                                    </v-card-text>
+                                    <v-card-actions>
+                                    <v-spacer></v-spacer>
+                                    <v-btn color="blue darken-1" text @click="buka = false">Close</v-btn>
+                                    <v-btn color="blue darken-1" text @click="buka = false">Save</v-btn>
+                                    </v-card-actions>
+                                </v-card>
+                                </v-dialog>
                         </v-col>
 
                         <v-col cols="12" sm="6 " md="auto">
@@ -368,6 +421,7 @@
 <script>
     export default {
         data: () => ({
+            buka: false,
             tutup: false,
             dialog: false,
 

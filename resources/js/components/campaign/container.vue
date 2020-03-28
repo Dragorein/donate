@@ -18,7 +18,7 @@
                     </v-combobox>
 
                     <v-row>
-                        <v-col v-for="card in cards" :key="card.title" cols="12" sm="6" md="4">
+                        <v-col v-for="card in cards" :key="card.title" cols="12" sm="6" md="4" xl="3">
                         <v-hover v-slot:default="{ hover }">
                             <v-card @click="reroutes('/campaign/detail')" :elevation="hover ? 24 : 6" class="my-4 card-transform">
                                 <v-img :src="card.src" height="200px"></v-img>
@@ -51,7 +51,7 @@
                         </v-col>
                     </v-row>
                     <v-row justify="center">
-                        <v-btn @click="" text large class="font-weight-bold">Tambah<v-icon right>mdi-plus</v-icon></v-btn>
+                        <v-pagination color="orange" v-model="page" :length="length" :page="page" :total-visible="totalVisible"></v-pagination>
                     </v-row>
                 </v-container>
             </section>
@@ -67,27 +67,25 @@
         data: () => ({
             chips: [],
             filter: ['Galang', 'Dana'],
-            items: [
-                'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
-                'https://cdn.vuetifyjs.com/images/cards/house.jpg',
-                'https://cdn.vuetifyjs.com/images/cards/docks.jpg',
-                'https://cdn.vuetifyjs.com/images/cards/halcyon.png',
-                'https://cdn.vuetifyjs.com/images/cards/plane.jpg',
-            ],
-            slides: [
-                'Pertama',
-                'Kedua',
-                'Ketiga',
-                'Keempat',
-                'Kelima',
-            ],
             cards: [
                 {title:'Supermodel', src:'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg', author:'Louise', progress:50, raised:'Rp 3.003.132', daysleft:'30'},
                 {title:'Halcyon Days', src:'https://cdn.vuetifyjs.com/images/cards/house.jpg', author:'Danny', progress:80, raised:'Rp 5.012.500', daysleft:'3'},
                 {title:'Top western road trips', src:'https://cdn.vuetifyjs.com/images/cards/docks.jpg', author:'Rachel', progress:5, raised:'Rp 176.320', daysleft:'56'},
                 {title:'Unlimited music now', src:'https://cdn.vuetifyjs.com/images/cards/halcyon.png', author:'Ellie', progress:100, raised:'Rp 152.901.000', daysleft:'1'},
                 {title:'Best airlines', src:'https://cdn.vuetifyjs.com/images/cards/plane.jpg', author:'Tommy', progress:60, raised:'Rp 16.251.026', daysleft:'23'},
+                {title:'Supermodel', src:'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg', author:'Louise', progress:50, raised:'Rp 3.003.132', daysleft:'30'},
+                {title:'Halcyon Days', src:'https://cdn.vuetifyjs.com/images/cards/house.jpg', author:'Danny', progress:80, raised:'Rp 5.012.500', daysleft:'3'},
+                {title:'Top western road trips', src:'https://cdn.vuetifyjs.com/images/cards/docks.jpg', author:'Rachel', progress:5, raised:'Rp 176.320', daysleft:'56'},
+                {title:'Unlimited music now', src:'https://cdn.vuetifyjs.com/images/cards/halcyon.png', author:'Ellie', progress:100, raised:'Rp 152.901.000', daysleft:'1'},
+                {title:'Supermodel', src:'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg', author:'Louise', progress:50, raised:'Rp 3.003.132', daysleft:'30'},
+                {title:'Halcyon Days', src:'https://cdn.vuetifyjs.com/images/cards/house.jpg', author:'Danny', progress:80, raised:'Rp 5.012.500', daysleft:'3'},
+                {title:'Best airlines', src:'https://cdn.vuetifyjs.com/images/cards/plane.jpg', author:'Tommy', progress:60, raised:'Rp 16.251.026', daysleft:'23'},
             ],
+            length: 10,
+            nextIcon: 'navigate_next',
+            prevIcon: 'navigate_before',
+            page: 1,
+            totalVisible: 10,
         }),
         methods: {
             reroutes: function (url) {

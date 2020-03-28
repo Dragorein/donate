@@ -1,12 +1,13 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
+import Vue from "vue";
+import VueRouter from "vue-router";
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
-import Search from "../components/search/container"
-import Landing from "../components/landing/container"
-import Campaign from "../components/campaign/container"
-import CampaignDetail from "../components/campaign/detailContainer"
+import Search from "../components/search/container";
+import Landing from "../components/landing/container";
+import Campaign from "../components/campaign/container";
+import CampaignDetail from "../components/campaign/detailContainer";
+import regis from "../components/regis/container";
 
 const routes = [
     {
@@ -29,12 +30,17 @@ const routes = [
         name: "campaignDetail",
         path: "/campaign/detail"
     },
+    {
+        component: regis,
+        name: "regis",
+        path: "/regis"
+    }
 ];
 
 export default new VueRouter({
-    mode: 'history',
-    scrollBehavior (to, from, savedPosition) {
-        return { x: 0, y: 0 }
+    mode: "history",
+    scrollBehavior(to, from, savedPosition) {
+        return { x: 0, y: 0 };
     },
     routes
 });

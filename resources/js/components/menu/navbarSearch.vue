@@ -13,10 +13,10 @@
             <v-col class="d-flex justify-space-around align-center">
                 <v-text-field ref="search" solo hide-details dense label="Cari penggalangan dana disini" append-icon="search"></v-text-field>
             </v-col>
-            
+
             <v-col cols="3" class="d-flex justify-end">
             </v-col>
-        </v-row>  
+        </v-row>
     </v-app-bar>
 
 </template>
@@ -24,7 +24,7 @@
 <script>
     export default {
         data: () => ({
-            
+
         }),
         methods: {
             goBack: function () {
@@ -41,7 +41,7 @@
     .v-btn:focus {
         outline: 0;
     }
-    
+
     a.v-btn:hover, .v-chip:hover {
         text-decoration: none;
     }

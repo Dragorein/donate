@@ -7,6 +7,7 @@ import Search from "../components/search/container"
 import Landing from "../components/landing/container"
 import Campaign from "../components/campaign/container"
 import CampaignDetail from "../components/campaign/detailContainer"
+import Profile from "../components/Profile/container"
 
 const routes = [
     {
@@ -28,6 +29,11 @@ const routes = [
         component: CampaignDetail,
         name: "campaignDetail",
         path: "/campaign/detail"
+    },
+    {
+        component: Profile,
+        name: "Profile",
+        path: "/Profile"
     },
 ];
 

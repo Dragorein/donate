@@ -3,8 +3,9 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
-import Search from "../components/search/container"
 import Landing from "../components/landing/container"
+import Search from "../components/search/container"
+import Register from "../components/register/container"
 import Campaign from "../components/campaign/container"
 import CampaignDetail from "../components/campaign/detailContainer"
 import Payment from "../components/payment/container"
@@ -19,6 +20,11 @@ const routes = [
         component: Search,
         name: "search",
         path: "/search"
+    },
+    {
+        component: Register,
+        name: "register",
+        path: "/register"
     },
     {
         component: Campaign,

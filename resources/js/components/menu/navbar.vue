@@ -40,7 +40,7 @@
                                                 <v-btn color="success darken-1" block large @click="logindialog = false, loggedin = true">Masuk Sekarang</v-btn>
                                             </v-col>
                                             <v-col cols="12" class="text-center">
-                                                <p>Belum punya akun Kindly? <a href="#">Daftar</a></p>
+                                                <p>Belum punya akun Kindly? <a href="register">Daftar</a></p>
                                             </v-col>
                                         </v-row>
                                     </v-container>

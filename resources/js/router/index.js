@@ -9,6 +9,7 @@ import Register from "../components/register/container"
 import Campaign from "../components/campaign/container"
 import CampaignDetail from "../components/campaign/detailContainer"
 import Payment from "../components/payment/container"
+import Profile from "../components/profile/container"
 
 const routes = [
     {
@@ -40,7 +41,12 @@ const routes = [
         component: Payment,
         name: "payment",
         path: "/payment"
-    }
+    },
+    {
+        component: Profile,
+        name: "profile",
+        path: "/profile"
+    },
 ];
 
 export default new VueRouter({

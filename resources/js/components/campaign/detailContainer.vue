@@ -19,7 +19,7 @@
                                 </v-card-text>
 
                                 <v-card-text>
-                                    <v-btn rounded block depressed large color="error">Donasi Sekarang</v-btn>
+                                    <v-btn @click="reroutes('/payment')" rounded block depressed large color="error">Donasi Sekarang</v-btn>
                                 </v-card-text>
                             </v-card>
                         </v-col>

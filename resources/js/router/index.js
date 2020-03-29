@@ -3,11 +3,13 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
-import Search from "../components/search/container"
 import Landing from "../components/landing/container"
+import Search from "../components/search/container"
+import Register from "../components/register/container"
 import Campaign from "../components/campaign/container"
 import CampaignDetail from "../components/campaign/detailContainer"
-import Profile from "../components/Profile/container"
+import Payment from "../components/payment/container"
+import Profile from "../components/profile/container"
 
 const routes = [
     {
@@ -21,6 +23,11 @@ const routes = [
         path: "/search"
     },
     {
+        component: Register,
+        name: "register",
+        path: "/register"
+    },
+    {
         component: Campaign,
         name: "campaign",
         path: "/campaign"
@@ -31,9 +38,14 @@ const routes = [
         path: "/campaign/detail"
     },
     {
+        component: Payment,
+        name: "payment",
+        path: "/payment"
+    },
+    {
         component: Profile,
-        name: "Profile",
-        path: "/Profile"
+        name: "profile",
+        path: "/profile"
     },
 ];
 

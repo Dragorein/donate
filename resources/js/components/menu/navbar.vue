@@ -40,7 +40,7 @@
                                                 <v-btn color="success darken-1" block large @click="logindialog = false, loggedin = true">Masuk Sekarang</v-btn>
                                             </v-col>
                                             <v-col cols="12" class="text-center">
-                                                <p>Belum punya akun Kindly? <a href="#">Daftar</a></p>
+                                                <p>Belum punya akun Kindly? <a href="register">Daftar</a></p>
                                             </v-col>
                                         </v-row>
                                     </v-container>
@@ -49,15 +49,25 @@
                         </v-dialog>
                     </template>
                     <template v-else>
-                        <v-chip href="profil" class="ma-2" color="blue-grey lighten-5">
-                            <v-avatar left>
-                                <v-icon>mdi-account-circle</v-icon>
-                            </v-avatar>
-                            John
-                        </v-chip>
-                        <v-btn @click="loggedin = false" text small>
-                            Keluar<v-icon right>mdi-logout-variant</v-icon>
-                        </v-btn>
+                        <v-menu offset-y open-on-hover transition="slide-y-transition" bottom>
+                            <template v-slot:activator="{ on }">
+                                <v-btn text large v-on="on">
+                                    <v-icon left>mdi-account-circle</v-icon>John
+                                </v-btn>
+                            </template>
+                            <v-list>
+                                <v-list-item @click="reroutes('/profile')">
+                                    <v-list-item-title>
+                                        <v-icon left>mdi-account-search</v-icon>Profil
+                                    </v-list-item-title>
+                                </v-list-item>
+                                <v-list-item @click="loggedin = false">
+                                    <v-list-item-title>
+                                        <v-icon left>mdi-logout-variant</v-icon>Keluar
+                                    </v-list-item-title>
+                                </v-list-item>
+                            </v-list>
+                        </v-menu>
                     </template>
                 </v-toolbar-items>
             </v-col>
@@ -105,7 +115,7 @@
         outline: 0;
     }
     
-    a.v-btn:hover, .v-chip:hover {
+    a.v-btn:hover, a.v-list-item, .v-chip:hover {
         text-decoration: none;
     }
 </style>

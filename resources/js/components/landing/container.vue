@@ -6,7 +6,7 @@
         <div class="fluid">
             <section class="top-space bg-section-1">
                 <v-container class="py-12">
-                    <v-carousel cycle height="500" delimiter-icon="mdi-minus" hide-delimiter-background show-arrows-on-hover class="elevation-24" style="border-radius:4px;">
+                    <v-carousel cycle delimiter-icon="mdi-minus" hide-delimiter-background show-arrows-on-hover class="elevation-24" style="border-radius:4px;">
                         <v-carousel-item v-for="(slide, i) in slides" :key="i" :src="items[i]" gradient="rgba(255,255,255,.8), rgba(255,255,255,0.3)">
                                 <v-row class="fill-height" align="center" justify="center">
                                     <v-col>

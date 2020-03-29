@@ -10,6 +10,7 @@ import Campaign from "../components/campaign/container"
 import CampaignDetail from "../components/campaign/detailContainer"
 import Payment from "../components/payment/container"
 import PaymentDone from "../components/payment/doneContainer"
+import Profile from "../components/profile/container"
 
 const routes = [
     {
@@ -46,6 +47,11 @@ const routes = [
         component: PaymentDone,
         name: "payment",
         path: "/payment/done"
+    },
+    {
+        component: Profile,
+        name: "profile",
+        path: "/profile"
     }
 ];
 

@@ -9,7 +9,7 @@
             </v-col>
             
             <v-col class="d-flex justify-space-around align-center">
-                <v-text-field background-color="transparent" @mousedown="reroutes('search')" solo hide-details dense label="Cari penggalangan dana disini" append-icon="search"></v-text-field>
+                <v-text-field background-color="transparent" @mousedown="reroutes('/search')" solo hide-details dense label="Cari penggalangan dana disini" append-icon="search"></v-text-field>
             </v-col>
             
             <v-col cols="3" class="d-flex justify-end">

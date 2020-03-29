@@ -73,7 +73,10 @@
                                                     </v-list-item>
                                                     <v-list-item>
                                                         <v-list-item-content>
+                                                            <v-col md="5">
                                                             <v-list-item-title>Penerima Manfaat</v-list-item-title>
+                                                            </v-col>
+                                                            <v-col md="7">
                                                             <div class="d-flex align-center pt-2">
                                                                 <v-avatar left>
                                                                     <v-icon>mdi-account-circle mdi-48px</v-icon>
@@ -83,6 +86,7 @@
                                                                     <div class="caption">Sesuai dokumen medis<v-icon color="green">mdi-check-circle-outline mdi-18px</v-icon></div>
                                                                 </div>
                                                             </div>
+                                                            </v-col>
                                                         </v-list-item-content>
                                                     </v-list-item>
                                                 </v-list>

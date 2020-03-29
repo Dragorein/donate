@@ -2935,6 +2935,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -44120,82 +44124,98 @@ var render = function() {
                                                   _c(
                                                     "v-list-item-content",
                                                     [
-                                                      _c("v-list-item-title", [
-                                                        _vm._v(
-                                                          "Penerima Manfaat"
-                                                        )
-                                                      ]),
-                                                      _vm._v(" "),
                                                       _c(
-                                                        "div",
-                                                        {
-                                                          staticClass:
-                                                            "d-flex align-center pt-2"
-                                                        },
+                                                        "v-col",
+                                                        { attrs: { md: "5" } },
                                                         [
                                                           _c(
-                                                            "v-avatar",
-                                                            {
-                                                              attrs: {
-                                                                left: ""
-                                                              }
-                                                            },
+                                                            "v-list-item-title",
                                                             [
-                                                              _c("v-icon", [
-                                                                _vm._v(
-                                                                  "mdi-account-circle mdi-48px"
-                                                                )
-                                                              ])
-                                                            ],
-                                                            1
-                                                          ),
-                                                          _vm._v(" "),
-                                                          _c(
-                                                            "div",
-                                                            {
-                                                              staticClass:
-                                                                "mx-3"
-                                                            },
-                                                            [
-                                                              _c("span", [
-                                                                _vm._v(
-                                                                  _vm._s(
-                                                                    _vm.target
-                                                                  )
-                                                                )
-                                                              ]),
-                                                              _vm._v(" "),
-                                                              _c(
-                                                                "div",
-                                                                {
-                                                                  staticClass:
-                                                                    "caption"
-                                                                },
-                                                                [
-                                                                  _vm._v(
-                                                                    "Sesuai dokumen medis"
-                                                                  ),
-                                                                  _c(
-                                                                    "v-icon",
-                                                                    {
-                                                                      attrs: {
-                                                                        color:
-                                                                          "green"
-                                                                      }
-                                                                    },
-                                                                    [
-                                                                      _vm._v(
-                                                                        "mdi-check-circle-outline mdi-18px"
-                                                                      )
-                                                                    ]
-                                                                  )
-                                                                ],
-                                                                1
+                                                              _vm._v(
+                                                                "Penerima Manfaat"
                                                               )
                                                             ]
                                                           )
                                                         ],
                                                         1
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "v-col",
+                                                        { attrs: { md: "7" } },
+                                                        [
+                                                          _c(
+                                                            "div",
+                                                            {
+                                                              staticClass:
+                                                                "d-flex align-center pt-2"
+                                                            },
+                                                            [
+                                                              _c(
+                                                                "v-avatar",
+                                                                {
+                                                                  attrs: {
+                                                                    left: ""
+                                                                  }
+                                                                },
+                                                                [
+                                                                  _c("v-icon", [
+                                                                    _vm._v(
+                                                                      "mdi-account-circle mdi-48px"
+                                                                    )
+                                                                  ])
+                                                                ],
+                                                                1
+                                                              ),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "div",
+                                                                {
+                                                                  staticClass:
+                                                                    "mx-3"
+                                                                },
+                                                                [
+                                                                  _c("span", [
+                                                                    _vm._v(
+                                                                      _vm._s(
+                                                                        _vm.target
+                                                                      )
+                                                                    )
+                                                                  ]),
+                                                                  _vm._v(" "),
+                                                                  _c(
+                                                                    "div",
+                                                                    {
+                                                                      staticClass:
+                                                                        "caption"
+                                                                    },
+                                                                    [
+                                                                      _vm._v(
+                                                                        "Sesuai dokumen medis"
+                                                                      ),
+                                                                      _c(
+                                                                        "v-icon",
+                                                                        {
+                                                                          attrs: {
+                                                                            color:
+                                                                              "green"
+                                                                          }
+                                                                        },
+                                                                        [
+                                                                          _vm._v(
+                                                                            "mdi-check-circle-outline mdi-18px"
+                                                                          )
+                                                                        ]
+                                                                      )
+                                                                    ],
+                                                                    1
+                                                                  )
+                                                                ]
+                                                              )
+                                                            ],
+                                                            1
+                                                          )
+                                                        ]
                                                       )
                                                     ],
                                                     1

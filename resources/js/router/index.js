@@ -7,6 +7,7 @@ import Search from "../components/search/container"
 import Landing from "../components/landing/container"
 import Campaign from "../components/campaign/container"
 import CampaignDetail from "../components/campaign/detailContainer"
+import Payment from "../components/payment/container"
 
 const routes = [
     {
@@ -29,6 +30,11 @@ const routes = [
         name: "campaignDetail",
         path: "/campaign/detail"
     },
+    {
+        component: Payment,
+        name: "payment",
+        path: "/payment"
+    }
 ];
 
 export default new VueRouter({

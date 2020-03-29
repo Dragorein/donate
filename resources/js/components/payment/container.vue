@@ -79,7 +79,7 @@
 
                                     <div class="d-flex justify-center pt-2">
                                         <v-btn color="danger" class="mr-2 w-50" @click="goBack">Batal</v-btn>
-                                        <v-btn color="success" class="mr-2 w-50" @click="">Lanjut</v-btn>
+                                        <v-btn color="success" class="mr-2 w-50" @click="reroutes('/payment/done')">Lanjut</v-btn>
                                     </div>
                                 </form>
                             </v-col>

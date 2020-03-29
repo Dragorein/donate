@@ -9,6 +9,7 @@ import Register from "../components/register/container"
 import Campaign from "../components/campaign/container"
 import CampaignDetail from "../components/campaign/detailContainer"
 import Payment from "../components/payment/container"
+import PaymentDone from "../components/payment/doneContainer"
 
 const routes = [
     {
@@ -40,6 +41,11 @@ const routes = [
         component: Payment,
         name: "payment",
         path: "/payment"
+    },
+    {
+        component: PaymentDone,
+        name: "payment",
+        path: "/payment/done"
     }
 ];
 

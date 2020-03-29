@@ -99368,7 +99368,6 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 
 Vue.component('navbar', __webpack_require__(/*! ./components/menu/navbar.vue */ "./resources/js/components/menu/navbar.vue")["default"]);
 Vue.component('navbar-search', __webpack_require__(/*! ./components/menu/navbarSearch.vue */ "./resources/js/components/menu/navbarSearch.vue")["default"]);
-Vue.component('navbar-back', __webpack_require__(/*! ./components/menu/navbarBack.vue */ "./resources/js/components/menu/navbarBack.vue")["default"]);
 Vue.component('footbar', __webpack_require__(/*! ./components/menu/footer.vue */ "./resources/js/components/menu/footer.vue")["default"]);
 Vue.component('app-container', __webpack_require__(/*! ./components/appContainer.vue */ "./resources/js/components/appContainer.vue")["default"]);
 Vue.component('landing-page', __webpack_require__(/*! ./components/landing/container.vue */ "./resources/js/components/landing/container.vue")["default"]);
@@ -100123,17 +100122,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_navbar_vue_vue_type_template_id_62645c76___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
-
-/***/ }),
-
-/***/ "./resources/js/components/menu/navbarBack.vue":
-/*!*****************************************************!*\
-  !*** ./resources/js/components/menu/navbarBack.vue ***!
-  \*****************************************************/
-/*! exports provided: default */
-/***/ (function(module, exports) {
-
-throw new Error("Module build failed (from ./node_modules/vue-loader/lib/index.js):\nError: ENOENT: no such file or directory, open 'D:\\xampp\\htdocs\\donate\\resources\\js\\components\\menu\\navbarBack.vue'");
 
 /***/ }),
 

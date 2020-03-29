@@ -19,7 +19,7 @@
                                             <v-text-field label="Email" name="email" prepend-inner-icon="mail" type="text" :rules="emailRules" required outlined clearable/>
                                             <v-text-field label="Nomor Handphone" name="noHandphone" prepend-inner-icon="phone" type="text" :rules="noHandphoneRules" :counter="14" required outlined clearable/>
                                             <v-btn color="primary" @click="e1 = 2" class="mr-2">Lanjut</v-btn>
-                                            <v-btn text class="mr-2">Batal</v-btn>
+                                            <v-btn text class="mr-2" @click="goBack">Batal</v-btn>
                                         </v-form>
                                     </v-card-text>
                                 </v-stepper-content>
@@ -72,6 +72,9 @@ export default {
         },
         reroutes: function(url) {
             this.$router.push({ path: url });
+        },
+        goBack: function () {
+            this.$router.go(-1);
         }
     }
 };

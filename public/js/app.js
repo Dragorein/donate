@@ -3196,6 +3196,9 @@ __webpack_require__.r(__webpack_exports__);
       this.$router.push({
         path: url
       });
+    },
+    goBack: function goBack() {
+      this.$router.go(-1);
     }
   }
 });
@@ -44585,7 +44588,8 @@ var render = function() {
                                         "v-btn",
                                         {
                                           staticClass: "mr-2",
-                                          attrs: { text: "" }
+                                          attrs: { text: "" },
+                                          on: { click: _vm.goBack }
                                         },
                                         [_vm._v("Batal")]
                                       )

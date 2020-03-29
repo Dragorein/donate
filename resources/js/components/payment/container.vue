@@ -1,150 +1,96 @@
 <template>
 <v-app>
-    
     <navbar></navbar>
 
     <main class="h-100">
         <div class="fluid">
-            <section class="top-space bg-section">
-                <v-container class="py-6" rows="3">
-                    <v-row>
-                        <v-col lg="2"></v-col>
-
-                        <v-col lg="8">
-                            <v-card class="mx-5 my-3" min-width="650" max-width="1100">
-                                <v-row>
-                                    <v-col lg="6" class="">
-                                        <form>
-                                            <!-- field nama -->
-                                            <v-row align="center" class="px-8 pt-5">
-                                                <v-col>
-                                                    <v-text-field label="Nama Donatur" clearable :rules="rulesNama" counter maxlength="30" flat></v-text-field>
-                                                </v-col>
-                                            </v-row>
-
-                                            <!-- field Email -->
-                                            <v-row align="center" class="px-8">
-                                                <v-col class="pb-0">
-                                                    <v-text-field label="Email Donatur" clearable :rules="rulesEmail" flat></v-text-field>
-                                                </v-col>
-                                            </v-row>
-
-                                            <!-- field Bank -->
-                                            <v-row align="center" class="px-5">
-                                                <v-col class="pt-0">
-                                                    <v-list rounded>
-                                                        <v-subheader>Pembayaran dengan</v-subheader>
-                                                        <v-list-item-group v-model="item" color="success">
-                                                            <v-list-item
-                                                                v-for="item in items"
-                                                                :key="item.title"
-                                                            >
-
-                                                                <v-list-item-content>
-                                                                    <v-list-item-title v-text="item.title"></v-list-item-title>
-                                                                </v-list-item-content>
-
-                                                                <v-list-item-avatar>
-                                                                    <v-img :src="item.avatar"></v-img>
-                                                                </v-list-item-avatar>
-                                                            </v-list-item>
-                                                        </v-list-item-group>
-                                                    </v-list>
-                                                </v-col>
-                                            </v-row>
-
-                                            <!-- field Donasi -->
-                                            <v-row align="center" class="px-8">
-                                                <v-col>
-                                                    <v-text-field label="Jumlah Donasi" prefix="Rp " clearable :rules="rulesDonasi" flat></v-text-field>
-                                                </v-col>
-                                            </v-row>
-
-                                            <!-- button -->
-                                            <v-row align="center" class="px-5 pb-5">
-                                                <v-col cols="2"></v-col>
-                                                <v-col cols="3"><v-btn block color="danger" @click="reroutes('/campaign')">Cancel</v-btn></v-col>
-                                                <v-col cols="2"></v-col>
-                                                <v-col cols="3"><v-btn block color="success">Donasi</v-btn></v-col>
-                                                <v-col cols="2"></v-col>
-                                            </v-row>
-                                        </form>
-                                    </v-col>
+            <section class="top-space bg-section-1">
+                <v-container class="py-6">
+                    <v-card>
+                        <v-row>
+                            <v-col md="6">
+                                <v-card class="ma-6 mr-md-0">
+                                    <v-card-title>Donasi Untuk: {{title}}</v-card-title>
                                     
-                                    <!-- kanan form donasi -->
-                                    <v-col lg="6">
-                                        <v-card class="mx-5 my-3">
-                                            
-                                            <!-- judul donasi -->
-                                            <v-card-title v-text="title"></v-card-title>
-                                            
-                                            <!-- progress bar -->
-                                            <v-progress-linear height="10" v-model="progress" color="yellow accent-4"></v-progress-linear>
-                                            
-                                            <!-- bawah progress bar -->
-                                            <v-row>
-                                                <v-col lg="9">
-                                                    <v-card-text v-text="'Dana terkumpul '+ donasi"></v-card-text>
-                                                </v-col>
-                                                <v-col lg="3">
-                                                    <v-card-text v-text="durasi + ' Hari lagi'"></v-card-text>
-                                                </v-col>
-                                            </v-row>
-                                            
-                                            <!-- keterangan donasi -->
-                                            <v-list rounded three-line>
+                                    <v-list rounded dense three-line>
+                                        <v-list-item>
+                                            <v-list-item-content>
+                                                <v-list-item-title>Penggalang</v-list-item-title>
+                                                <div class="d-flex align-center pt-2">
+                                                    <v-avatar left>
+                                                        <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John">
+                                                    </v-avatar>
+                                                    <div class="mx-3">
+                                                        <span class="green--text">{{author}}<v-icon right color="green">mdi-check-circle mdi-18px</v-icon></span>
+                                                        <div class="caption">Identitas terverifikasi</div>
+                                                    </div>
+                                                </div>
+                                            </v-list-item-content>
+                                        </v-list-item>
+                                        
+                                        <v-divider class="my-1"></v-divider>
 
-                                                <!-- Penggalang -->
-                                                <v-list-item>
-                                                    <v-list-item-content class="d-flex">
-                                                        <v-col lg="8">
-                                                            <v-list-item-title>Penggalang</v-list-item-title>
-                                                            <v-list-item-subtitle class="text--primary pt-3" v-text="person" ></v-list-item-subtitle>
-                                                        </v-col>
-                                                        <v-col lg="4">
-                                                            <v-avatar><img :src="personAvatar"></v-avatar>
-                                                        </v-col>
+                                        <v-list-item>
+                                            <v-list-item-content>
+                                                <v-list-item-title>Penerima Manfaat</v-list-item-title>
+                                                    <div class="d-flex align-center pt-2">
+                                                        <v-avatar left>
+                                                            <v-icon>mdi-account-circle mdi-48px</v-icon>
+                                                        </v-avatar>
+                                                        <div class="mx-3">
+                                                            <span>{{target}}</span>
+                                                            <div class="caption">Sesuai dokumen medis<v-icon color="green">mdi-check-circle-outline mdi-18px</v-icon></div>
+                                                        </div>
+                                                    </div>
+                                            </v-list-item-content>
+                                        </v-list-item>
+                                        
+                                        <v-divider class="my-1"></v-divider>
 
-                                                    </v-list-item-content>
-                                                </v-list-item>
+                                        <v-list-item>
+                                            <v-list-item-content class="d-flex px-2">
+                                                <v-list-item-title>Cerita</v-list-item-title>
+                                                <v-list-item-subtitle v-text="text"></v-list-item-subtitle>
+                                            </v-list-item-content>
+                                        </v-list-item>
+                                    </v-list>
+                                </v-card>
+                            </v-col>
+                            <v-col md="6">
+                                <form class="ma-6 ml-md-0">
+                                    <v-text-field label="Nama donatur" outlined clearable :rules="rulesNama" counter maxlength="30"></v-text-field>
+                                    <v-text-field label="Email donatur" outlined clearable :rules="rulesEmail"></v-text-field>
 
-                                                    <v-divider></v-divider>
+                                    <v-list>
+                                        <v-subheader>Pembayaran dengan</v-subheader>
+                                        <v-list-item-group v-model="item" color="success">
+                                            <v-list-item v-for="item in items" :key="item.title">
+                                                <v-list-item-avatar tile>
+                                                    <v-img :src="item.avatar"></v-img>
+                                                </v-list-item-avatar>
+                                                <v-list-item-content>
+                                                    <v-list-item-title v-text="item.title"></v-list-item-title>
+                                                </v-list-item-content>
+                                            </v-list-item>
+                                        </v-list-item-group>
+                                    </v-list>
 
-                                                <!-- cerita donasi -->
-                                                    <v-list-item>
-                                                    <v-list-item-content class="d-flex px-2">
-                                                        <v-list-item-title>Cerita</v-list-item-title>
-                                                        <v-list-item-subtitle v-text="text"></v-list-item-subtitle>
-                                                    </v-list-item-content>
-                                                </v-list-item>
+                                    <v-text-field label="Nominal donasi" prefix="Rp " outlined clearable :rules="rulesDonasi"></v-text-field>
 
-                                                <v-divider></v-divider>
-                                                
-                                                <!-- perkembagan donasi -->
-                                                <v-list-item>
-                                                    <v-list-item-content class="d-flex px-2">
-                                                        <v-list-item-title>Perkembangan</v-list-item-title>
-                                                        <v-list-item-subtitle  v-text="text"></v-list-item-subtitle>
-                                                    </v-list-item-content>                                                    
-                                                </v-list-item>
-
-                                            </v-list>
-
-                                        </v-card>
-                                    </v-col>
-                                </v-row>
-                            </v-card>
-                        </v-col>
-
-                        <v-col lg="2"></v-col>
-                    </v-row>
+                                    <div class="d-flex justify-center pt-2">
+                                        <v-btn color="danger" class="mr-2 w-50" @click="goBack">Batal</v-btn>
+                                        <v-btn color="success" class="mr-2 w-50" @click="">Lanjut</v-btn>
+                                    </div>
+                                </form>
+                            </v-col>
+                        </v-row>
+                    </v-card>
                 </v-container>
             </section>
         </div>
     </main>
 
     <footbar></footbar>
-
 </v-app>
 </template>
 
@@ -174,8 +120,8 @@
             { title: 'Permata', avatar: '/icon/Permata.png' },
         ],
 
-        person: 'Louise',
-        personAvatar : 'https://cdn.vuetifyjs.com/images/john.jpg',
+        author: 'Louise',
+        target:'Josh',
         text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         title: 'Supermodel',
         progress:50,
@@ -185,6 +131,9 @@
         methods: {
             reroutes: function (url) {
                 this.$router.push({ path: url });
+            },
+            goBack: function () {
+                this.$router.go(-1);
             }
         }
     }

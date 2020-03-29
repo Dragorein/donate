@@ -23,7 +23,7 @@
                 </v-container>
             </section>
 
-            <section class="bg-section-2" style="border-radius:">
+            <section class="bg-section-2">
                 <v-container class="py-12">
                     <h1 class="display-1 font-weight-bold text-center">Bantu siapa hari ini ?</h1>
                     <v-row>

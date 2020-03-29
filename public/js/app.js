@@ -2574,10 +2574,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      loggedin: false,
+      loggedin: true,
       logindialog: false,
       navbar: '#navbar'
     };
@@ -2757,60 +2767,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2842,8 +2798,8 @@ __webpack_require__.r(__webpack_exports__);
         title: 'Permata',
         avatar: '/icon/Permata.png'
       }],
-      person: 'Louise',
-      personAvatar: 'https://cdn.vuetifyjs.com/images/john.jpg',
+      author: 'Louise',
+      target: 'Josh',
       text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
       title: 'Supermodel',
       progress: 50,
@@ -2856,6 +2812,9 @@ __webpack_require__.r(__webpack_exports__);
       this.$router.push({
         path: url
       });
+    },
+    goBack: function goBack() {
+      this.$router.go(-1);
     }
   }
 });
@@ -9537,7 +9496,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n#navbar {\n    background: transparent;\n}\n.nav-bg {\n    background: linear-gradient(rgba(255,255,255,1), rgba(255,255,255,.8))!important;\n}\n.v-btn:focus {\n    outline: 0;\n}\na.v-btn:hover, .v-chip:hover {\n    text-decoration: none;\n}\n", ""]);
+exports.push([module.i, "\n#navbar {\n    background: transparent;\n}\n.nav-bg {\n    background: linear-gradient(rgba(255,255,255,1), rgba(255,255,255,.8))!important;\n}\n.v-btn:focus {\n    outline: 0;\n}\na.v-btn:hover, a.v-list-item, .v-chip:hover {\n    text-decoration: none;\n}\n", ""]);
 
 // exports
 
@@ -42181,7 +42140,7 @@ var render = function() {
           _vm._v(" "),
           _c(
             "section",
-            { staticClass: "bg-section-2", staticStyle: {} },
+            { staticClass: "bg-section-2" },
             [
               _c(
                 "v-container",
@@ -42800,43 +42759,100 @@ var render = function() {
                       ]
                     : [
                         _c(
-                          "v-chip",
+                          "v-menu",
                           {
-                            staticClass: "ma-2",
                             attrs: {
-                              href: "profil",
-                              color: "blue-grey lighten-5"
-                            }
-                          },
-                          [
-                            _c(
-                              "v-avatar",
-                              { attrs: { left: "" } },
-                              [_c("v-icon", [_vm._v("mdi-account-circle")])],
-                              1
-                            ),
-                            _vm._v(
-                              "\n                        John\n                    "
-                            )
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "v-btn",
-                          {
-                            attrs: { text: "", small: "" },
-                            on: {
-                              click: function($event) {
-                                _vm.loggedin = false
+                              "offset-y": "",
+                              "open-on-hover": "",
+                              transition: "slide-y-transition",
+                              bottom: ""
+                            },
+                            scopedSlots: _vm._u([
+                              {
+                                key: "activator",
+                                fn: function(ref) {
+                                  var on = ref.on
+                                  return [
+                                    _c(
+                                      "v-btn",
+                                      _vm._g(
+                                        { attrs: { text: "", large: "" } },
+                                        on
+                                      ),
+                                      [
+                                        _c("v-icon", { attrs: { left: "" } }, [
+                                          _vm._v("mdi-account-circle")
+                                        ]),
+                                        _vm._v(
+                                          "John\n                            "
+                                        )
+                                      ],
+                                      1
+                                    )
+                                  ]
+                                }
                               }
-                            }
+                            ])
                           },
                           [
-                            _vm._v("\n                        Keluar"),
-                            _c("v-icon", { attrs: { right: "" } }, [
-                              _vm._v("mdi-logout-variant")
-                            ])
+                            _vm._v(" "),
+                            _c(
+                              "v-list",
+                              [
+                                _c(
+                                  "v-list-item",
+                                  {
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.reroutes("/profile")
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c(
+                                      "v-list-item-title",
+                                      [
+                                        _c("v-icon", { attrs: { left: "" } }, [
+                                          _vm._v("mdi-account-search")
+                                        ]),
+                                        _vm._v(
+                                          "Profil\n                                "
+                                        )
+                                      ],
+                                      1
+                                    )
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-list-item",
+                                  {
+                                    on: {
+                                      click: function($event) {
+                                        _vm.loggedin = false
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c(
+                                      "v-list-item-title",
+                                      [
+                                        _c("v-icon", { attrs: { left: "" } }, [
+                                          _vm._v("mdi-logout-variant")
+                                        ]),
+                                        _vm._v(
+                                          "Keluar\n                                "
+                                        )
+                                      ],
+                                      1
+                                    )
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            )
                           ],
                           1
                         )
@@ -42975,469 +42991,223 @@ var render = function() {
         _c("div", { staticClass: "fluid" }, [
           _c(
             "section",
-            { staticClass: "top-space bg-section" },
+            { staticClass: "top-space bg-section-1" },
             [
               _c(
                 "v-container",
-                { staticClass: "py-6", attrs: { rows: "3" } },
+                { staticClass: "py-6" },
                 [
                   _c(
-                    "v-row",
+                    "v-card",
                     [
-                      _c("v-col", { attrs: { lg: "2" } }),
-                      _vm._v(" "),
                       _c(
-                        "v-col",
-                        { attrs: { lg: "8" } },
+                        "v-row",
                         [
                           _c(
-                            "v-card",
-                            {
-                              staticClass: "mx-5 my-3",
-                              attrs: { "min-width": "650", "max-width": "1100" }
-                            },
+                            "v-col",
+                            { attrs: { md: "6" } },
                             [
                               _c(
-                                "v-row",
+                                "v-card",
+                                { staticClass: "ma-6 mr-md-0" },
                                 [
-                                  _c("v-col", { attrs: { lg: "6" } }, [
-                                    _c(
-                                      "form",
-                                      [
-                                        _c(
-                                          "v-row",
-                                          {
-                                            staticClass: "px-8 pt-5",
-                                            attrs: { align: "center" }
-                                          },
-                                          [
-                                            _c(
-                                              "v-col",
-                                              [
-                                                _c("v-text-field", {
-                                                  attrs: {
-                                                    label: "Nama Donatur",
-                                                    clearable: "",
-                                                    rules: _vm.rulesNama,
-                                                    counter: "",
-                                                    maxlength: "30",
-                                                    flat: ""
-                                                  }
-                                                })
-                                              ],
-                                              1
-                                            )
-                                          ],
-                                          1
-                                        ),
-                                        _vm._v(" "),
-                                        _c(
-                                          "v-row",
-                                          {
-                                            staticClass: "px-8",
-                                            attrs: { align: "center" }
-                                          },
-                                          [
-                                            _c(
-                                              "v-col",
-                                              { staticClass: "pb-0" },
-                                              [
-                                                _c("v-text-field", {
-                                                  attrs: {
-                                                    label: "Email Donatur",
-                                                    clearable: "",
-                                                    rules: _vm.rulesEmail,
-                                                    flat: ""
-                                                  }
-                                                })
-                                              ],
-                                              1
-                                            )
-                                          ],
-                                          1
-                                        ),
-                                        _vm._v(" "),
-                                        _c(
-                                          "v-row",
-                                          {
-                                            staticClass: "px-5",
-                                            attrs: { align: "center" }
-                                          },
-                                          [
-                                            _c(
-                                              "v-col",
-                                              { staticClass: "pt-0" },
-                                              [
-                                                _c(
-                                                  "v-list",
-                                                  { attrs: { rounded: "" } },
-                                                  [
-                                                    _c("v-subheader", [
-                                                      _vm._v(
-                                                        "Pembayaran dengan"
-                                                      )
-                                                    ]),
-                                                    _vm._v(" "),
-                                                    _c(
-                                                      "v-list-item-group",
-                                                      {
-                                                        attrs: {
-                                                          color: "success"
-                                                        },
-                                                        model: {
-                                                          value: _vm.item,
-                                                          callback: function(
-                                                            $$v
-                                                          ) {
-                                                            _vm.item = $$v
-                                                          },
-                                                          expression: "item"
-                                                        }
-                                                      },
-                                                      _vm._l(
-                                                        _vm.items,
-                                                        function(item) {
-                                                          return _c(
-                                                            "v-list-item",
-                                                            { key: item.title },
-                                                            [
-                                                              _c(
-                                                                "v-list-item-content",
-                                                                [
-                                                                  _c(
-                                                                    "v-list-item-title",
-                                                                    {
-                                                                      domProps: {
-                                                                        textContent: _vm._s(
-                                                                          item.title
-                                                                        )
-                                                                      }
-                                                                    }
-                                                                  )
-                                                                ],
-                                                                1
-                                                              ),
-                                                              _vm._v(" "),
-                                                              _c(
-                                                                "v-list-item-avatar",
-                                                                [
-                                                                  _c("v-img", {
-                                                                    attrs: {
-                                                                      src:
-                                                                        item.avatar
-                                                                    }
-                                                                  })
-                                                                ],
-                                                                1
-                                                              )
-                                                            ],
-                                                            1
-                                                          )
-                                                        }
-                                                      ),
-                                                      1
-                                                    )
-                                                  ],
-                                                  1
-                                                )
-                                              ],
-                                              1
-                                            )
-                                          ],
-                                          1
-                                        ),
-                                        _vm._v(" "),
-                                        _c(
-                                          "v-row",
-                                          {
-                                            staticClass: "px-8",
-                                            attrs: { align: "center" }
-                                          },
-                                          [
-                                            _c(
-                                              "v-col",
-                                              [
-                                                _c("v-text-field", {
-                                                  attrs: {
-                                                    label: "Jumlah Donasi",
-                                                    prefix: "Rp ",
-                                                    clearable: "",
-                                                    rules: _vm.rulesDonasi,
-                                                    flat: ""
-                                                  }
-                                                })
-                                              ],
-                                              1
-                                            )
-                                          ],
-                                          1
-                                        ),
-                                        _vm._v(" "),
-                                        _c(
-                                          "v-row",
-                                          {
-                                            staticClass: "px-5 pb-5",
-                                            attrs: { align: "center" }
-                                          },
-                                          [
-                                            _c("v-col", {
-                                              attrs: { cols: "2" }
-                                            }),
-                                            _vm._v(" "),
-                                            _c(
-                                              "v-col",
-                                              { attrs: { cols: "3" } },
-                                              [
-                                                _c(
-                                                  "v-btn",
-                                                  {
-                                                    attrs: {
-                                                      block: "",
-                                                      color: "danger"
-                                                    },
-                                                    on: {
-                                                      click: function($event) {
-                                                        return _vm.reroutes(
-                                                          "/campaign"
-                                                        )
-                                                      }
-                                                    }
-                                                  },
-                                                  [_vm._v("Cancel")]
-                                                )
-                                              ],
-                                              1
-                                            ),
-                                            _vm._v(" "),
-                                            _c("v-col", {
-                                              attrs: { cols: "2" }
-                                            }),
-                                            _vm._v(" "),
-                                            _c(
-                                              "v-col",
-                                              { attrs: { cols: "3" } },
-                                              [
-                                                _c(
-                                                  "v-btn",
-                                                  {
-                                                    attrs: {
-                                                      block: "",
-                                                      color: "success"
-                                                    }
-                                                  },
-                                                  [_vm._v("Donasi")]
-                                                )
-                                              ],
-                                              1
-                                            ),
-                                            _vm._v(" "),
-                                            _c("v-col", {
-                                              attrs: { cols: "2" }
-                                            })
-                                          ],
-                                          1
-                                        )
-                                      ],
-                                      1
-                                    )
+                                  _c("v-card-title", [
+                                    _vm._v("Donasi Untuk: " + _vm._s(_vm.title))
                                   ]),
                                   _vm._v(" "),
                                   _c(
-                                    "v-col",
-                                    { attrs: { lg: "6" } },
+                                    "v-list",
+                                    {
+                                      attrs: {
+                                        rounded: "",
+                                        dense: "",
+                                        "three-line": ""
+                                      }
+                                    },
                                     [
                                       _c(
-                                        "v-card",
-                                        { staticClass: "mx-5 my-3" },
+                                        "v-list-item",
                                         [
-                                          _c("v-card-title", {
-                                            domProps: {
-                                              textContent: _vm._s(_vm.title)
-                                            }
-                                          }),
-                                          _vm._v(" "),
-                                          _c("v-progress-linear", {
-                                            attrs: {
-                                              height: "10",
-                                              color: "yellow accent-4"
-                                            },
-                                            model: {
-                                              value: _vm.progress,
-                                              callback: function($$v) {
-                                                _vm.progress = $$v
-                                              },
-                                              expression: "progress"
-                                            }
-                                          }),
-                                          _vm._v(" "),
                                           _c(
-                                            "v-row",
+                                            "v-list-item-content",
                                             [
-                                              _c(
-                                                "v-col",
-                                                { attrs: { lg: "9" } },
-                                                [
-                                                  _c("v-card-text", {
-                                                    domProps: {
-                                                      textContent: _vm._s(
-                                                        "Dana terkumpul " +
-                                                          _vm.donasi
-                                                      )
-                                                    }
-                                                  })
-                                                ],
-                                                1
-                                              ),
+                                              _c("v-list-item-title", [
+                                                _vm._v("Penggalang")
+                                              ]),
                                               _vm._v(" "),
                                               _c(
-                                                "v-col",
-                                                { attrs: { lg: "3" } },
+                                                "div",
+                                                {
+                                                  staticClass:
+                                                    "d-flex align-center pt-2"
+                                                },
                                                 [
-                                                  _c("v-card-text", {
-                                                    domProps: {
-                                                      textContent: _vm._s(
-                                                        _vm.durasi +
-                                                          " Hari lagi"
+                                                  _c(
+                                                    "v-avatar",
+                                                    { attrs: { left: "" } },
+                                                    [
+                                                      _c("img", {
+                                                        attrs: {
+                                                          src:
+                                                            "https://cdn.vuetifyjs.com/images/john.jpg",
+                                                          alt: "John"
+                                                        }
+                                                      })
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "div",
+                                                    { staticClass: "mx-3" },
+                                                    [
+                                                      _c(
+                                                        "span",
+                                                        {
+                                                          staticClass:
+                                                            "green--text"
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            _vm._s(_vm.author)
+                                                          ),
+                                                          _c(
+                                                            "v-icon",
+                                                            {
+                                                              attrs: {
+                                                                right: "",
+                                                                color: "green"
+                                                              }
+                                                            },
+                                                            [
+                                                              _vm._v(
+                                                                "mdi-check-circle mdi-18px"
+                                                              )
+                                                            ]
+                                                          )
+                                                        ],
+                                                        1
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass: "caption"
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            "Identitas terverifikasi"
+                                                          )
+                                                        ]
                                                       )
-                                                    }
-                                                  })
+                                                    ]
+                                                  )
                                                 ],
                                                 1
                                               )
                                             ],
                                             1
-                                          ),
-                                          _vm._v(" "),
+                                          )
+                                        ],
+                                        1
+                                      ),
+                                      _vm._v(" "),
+                                      _c("v-divider", { staticClass: "my-1" }),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-list-item",
+                                        [
                                           _c(
-                                            "v-list",
-                                            {
-                                              attrs: {
-                                                rounded: "",
-                                                "three-line": ""
-                                              }
-                                            },
+                                            "v-list-item-content",
                                             [
+                                              _c("v-list-item-title", [
+                                                _vm._v("Penerima Manfaat")
+                                              ]),
+                                              _vm._v(" "),
                                               _c(
-                                                "v-list-item",
+                                                "div",
+                                                {
+                                                  staticClass:
+                                                    "d-flex align-center pt-2"
+                                                },
                                                 [
                                                   _c(
-                                                    "v-list-item-content",
-                                                    { staticClass: "d-flex" },
+                                                    "v-avatar",
+                                                    { attrs: { left: "" } },
                                                     [
+                                                      _c("v-icon", [
+                                                        _vm._v(
+                                                          "mdi-account-circle mdi-48px"
+                                                        )
+                                                      ])
+                                                    ],
+                                                    1
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "div",
+                                                    { staticClass: "mx-3" },
+                                                    [
+                                                      _c("span", [
+                                                        _vm._v(
+                                                          _vm._s(_vm.target)
+                                                        )
+                                                      ]),
+                                                      _vm._v(" "),
                                                       _c(
-                                                        "v-col",
-                                                        { attrs: { lg: "8" } },
+                                                        "div",
+                                                        {
+                                                          staticClass: "caption"
+                                                        },
                                                         [
+                                                          _vm._v(
+                                                            "Sesuai dokumen medis"
+                                                          ),
                                                           _c(
-                                                            "v-list-item-title",
+                                                            "v-icon",
+                                                            {
+                                                              attrs: {
+                                                                color: "green"
+                                                              }
+                                                            },
                                                             [
                                                               _vm._v(
-                                                                "Penggalang"
+                                                                "mdi-check-circle-outline mdi-18px"
                                                               )
                                                             ]
-                                                          ),
-                                                          _vm._v(" "),
-                                                          _c(
-                                                            "v-list-item-subtitle",
-                                                            {
-                                                              staticClass:
-                                                                "text--primary pt-3",
-                                                              domProps: {
-                                                                textContent: _vm._s(
-                                                                  _vm.person
-                                                                )
-                                                              }
-                                                            }
                                                           )
                                                         ],
                                                         1
-                                                      ),
-                                                      _vm._v(" "),
-                                                      _c(
-                                                        "v-col",
-                                                        { attrs: { lg: "4" } },
-                                                        [
-                                                          _c("v-avatar", [
-                                                            _c("img", {
-                                                              attrs: {
-                                                                src:
-                                                                  _vm.personAvatar
-                                                              }
-                                                            })
-                                                          ])
-                                                        ],
-                                                        1
                                                       )
-                                                    ],
-                                                    1
-                                                  )
-                                                ],
-                                                1
-                                              ),
-                                              _vm._v(" "),
-                                              _c("v-divider"),
-                                              _vm._v(" "),
-                                              _c(
-                                                "v-list-item",
-                                                [
-                                                  _c(
-                                                    "v-list-item-content",
-                                                    {
-                                                      staticClass: "d-flex px-2"
-                                                    },
-                                                    [
-                                                      _c("v-list-item-title", [
-                                                        _vm._v("Cerita")
-                                                      ]),
-                                                      _vm._v(" "),
-                                                      _c(
-                                                        "v-list-item-subtitle",
-                                                        {
-                                                          domProps: {
-                                                            textContent: _vm._s(
-                                                              _vm.text
-                                                            )
-                                                          }
-                                                        }
-                                                      )
-                                                    ],
-                                                    1
-                                                  )
-                                                ],
-                                                1
-                                              ),
-                                              _vm._v(" "),
-                                              _c("v-divider"),
-                                              _vm._v(" "),
-                                              _c(
-                                                "v-list-item",
-                                                [
-                                                  _c(
-                                                    "v-list-item-content",
-                                                    {
-                                                      staticClass: "d-flex px-2"
-                                                    },
-                                                    [
-                                                      _c("v-list-item-title", [
-                                                        _vm._v("Perkembangan")
-                                                      ]),
-                                                      _vm._v(" "),
-                                                      _c(
-                                                        "v-list-item-subtitle",
-                                                        {
-                                                          domProps: {
-                                                            textContent: _vm._s(
-                                                              _vm.text
-                                                            )
-                                                          }
-                                                        }
-                                                      )
-                                                    ],
-                                                    1
+                                                    ]
                                                   )
                                                 ],
                                                 1
                                               )
+                                            ],
+                                            1
+                                          )
+                                        ],
+                                        1
+                                      ),
+                                      _vm._v(" "),
+                                      _c("v-divider", { staticClass: "my-1" }),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-list-item",
+                                        [
+                                          _c(
+                                            "v-list-item-content",
+                                            { staticClass: "d-flex px-2" },
+                                            [
+                                              _c("v-list-item-title", [
+                                                _vm._v("Cerita")
+                                              ]),
+                                              _vm._v(" "),
+                                              _c("v-list-item-subtitle", {
+                                                domProps: {
+                                                  textContent: _vm._s(_vm.text)
+                                                }
+                                              })
                                             ],
                                             1
                                           )
@@ -43452,12 +43222,134 @@ var render = function() {
                               )
                             ],
                             1
-                          )
+                          ),
+                          _vm._v(" "),
+                          _c("v-col", { attrs: { md: "6" } }, [
+                            _c(
+                              "form",
+                              { staticClass: "ma-6 ml-md-0" },
+                              [
+                                _c("v-text-field", {
+                                  attrs: {
+                                    label: "Nama donatur",
+                                    outlined: "",
+                                    clearable: "",
+                                    rules: _vm.rulesNama,
+                                    counter: "",
+                                    maxlength: "30"
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _c("v-text-field", {
+                                  attrs: {
+                                    label: "Email donatur",
+                                    outlined: "",
+                                    clearable: "",
+                                    rules: _vm.rulesEmail
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "v-list",
+                                  [
+                                    _c("v-subheader", [
+                                      _vm._v("Pembayaran dengan")
+                                    ]),
+                                    _vm._v(" "),
+                                    _c(
+                                      "v-list-item-group",
+                                      {
+                                        attrs: { color: "success" },
+                                        model: {
+                                          value: _vm.item,
+                                          callback: function($$v) {
+                                            _vm.item = $$v
+                                          },
+                                          expression: "item"
+                                        }
+                                      },
+                                      _vm._l(_vm.items, function(item) {
+                                        return _c(
+                                          "v-list-item",
+                                          { key: item.title },
+                                          [
+                                            _c(
+                                              "v-list-item-avatar",
+                                              { attrs: { tile: "" } },
+                                              [
+                                                _c("v-img", {
+                                                  attrs: { src: item.avatar }
+                                                })
+                                              ],
+                                              1
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "v-list-item-content",
+                                              [
+                                                _c("v-list-item-title", {
+                                                  domProps: {
+                                                    textContent: _vm._s(
+                                                      item.title
+                                                    )
+                                                  }
+                                                })
+                                              ],
+                                              1
+                                            )
+                                          ],
+                                          1
+                                        )
+                                      }),
+                                      1
+                                    )
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c("v-text-field", {
+                                  attrs: {
+                                    label: "Nominal donasi",
+                                    prefix: "Rp ",
+                                    outlined: "",
+                                    clearable: "",
+                                    rules: _vm.rulesDonasi
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  { staticClass: "d-flex justify-center pt-2" },
+                                  [
+                                    _c(
+                                      "v-btn",
+                                      {
+                                        staticClass: "mr-2 w-50",
+                                        attrs: { color: "danger" },
+                                        on: { click: _vm.goBack }
+                                      },
+                                      [_vm._v("Batal")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "v-btn",
+                                      {
+                                        staticClass: "mr-2 w-50",
+                                        attrs: { color: "success" },
+                                        on: { click: function($event) {} }
+                                      },
+                                      [_vm._v("Lanjut")]
+                                    )
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            )
+                          ])
                         ],
                         1
-                      ),
-                      _vm._v(" "),
-                      _c("v-col", { attrs: { lg: "2" } })
+                      )
                     ],
                     1
                   )
@@ -99476,6 +99368,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 
 Vue.component('navbar', __webpack_require__(/*! ./components/menu/navbar.vue */ "./resources/js/components/menu/navbar.vue")["default"]);
 Vue.component('navbar-search', __webpack_require__(/*! ./components/menu/navbarSearch.vue */ "./resources/js/components/menu/navbarSearch.vue")["default"]);
+Vue.component('navbar-back', __webpack_require__(/*! ./components/menu/navbarBack.vue */ "./resources/js/components/menu/navbarBack.vue")["default"]);
 Vue.component('footbar', __webpack_require__(/*! ./components/menu/footer.vue */ "./resources/js/components/menu/footer.vue")["default"]);
 Vue.component('app-container', __webpack_require__(/*! ./components/appContainer.vue */ "./resources/js/components/appContainer.vue")["default"]);
 Vue.component('landing-page', __webpack_require__(/*! ./components/landing/container.vue */ "./resources/js/components/landing/container.vue")["default"]);
@@ -100128,13 +100021,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../node_modules/vuetify-loader/lib/runtime/installComponents.js */ "./node_modules/vuetify-loader/lib/runtime/installComponents.js");
 /* harmony import */ var _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var vuetify_lib_components_VAppBar__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuetify/lib/components/VAppBar */ "./node_modules/vuetify/lib/components/VAppBar/index.js");
-/* harmony import */ var vuetify_lib_components_VAvatar__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuetify/lib/components/VAvatar */ "./node_modules/vuetify/lib/components/VAvatar/index.js");
-/* harmony import */ var vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuetify/lib/components/VBtn */ "./node_modules/vuetify/lib/components/VBtn/index.js");
-/* harmony import */ var vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vuetify/lib/components/VCard */ "./node_modules/vuetify/lib/components/VCard/index.js");
-/* harmony import */ var vuetify_lib_components_VChip__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vuetify/lib/components/VChip */ "./node_modules/vuetify/lib/components/VChip/index.js");
-/* harmony import */ var vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vuetify/lib/components/VGrid */ "./node_modules/vuetify/lib/components/VGrid/index.js");
-/* harmony import */ var vuetify_lib_components_VDialog__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! vuetify/lib/components/VDialog */ "./node_modules/vuetify/lib/components/VDialog/index.js");
-/* harmony import */ var vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! vuetify/lib/components/VIcon */ "./node_modules/vuetify/lib/components/VIcon/index.js");
+/* harmony import */ var vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuetify/lib/components/VBtn */ "./node_modules/vuetify/lib/components/VBtn/index.js");
+/* harmony import */ var vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuetify/lib/components/VCard */ "./node_modules/vuetify/lib/components/VCard/index.js");
+/* harmony import */ var vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vuetify/lib/components/VGrid */ "./node_modules/vuetify/lib/components/VGrid/index.js");
+/* harmony import */ var vuetify_lib_components_VDialog__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vuetify/lib/components/VDialog */ "./node_modules/vuetify/lib/components/VDialog/index.js");
+/* harmony import */ var vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vuetify/lib/components/VIcon */ "./node_modules/vuetify/lib/components/VIcon/index.js");
+/* harmony import */ var vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! vuetify/lib/components/VList */ "./node_modules/vuetify/lib/components/VList/index.js");
+/* harmony import */ var vuetify_lib_components_VMenu__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! vuetify/lib/components/VMenu */ "./node_modules/vuetify/lib/components/VMenu/index.js");
 /* harmony import */ var vuetify_lib_components_VTextField__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! vuetify/lib/components/VTextField */ "./node_modules/vuetify/lib/components/VTextField/index.js");
 /* harmony import */ var vuetify_lib_components_VToolbar__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! vuetify/lib/components/VToolbar */ "./node_modules/vuetify/lib/components/VToolbar/index.js");
 
@@ -100173,7 +100066,9 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 
 
-_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4___default()(component, {VAppBar: vuetify_lib_components_VAppBar__WEBPACK_IMPORTED_MODULE_5__["VAppBar"],VAvatar: vuetify_lib_components_VAvatar__WEBPACK_IMPORTED_MODULE_6__["VAvatar"],VBtn: vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_7__["VBtn"],VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_8__["VCard"],VCardText: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_8__["VCardText"],VCardTitle: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_8__["VCardTitle"],VChip: vuetify_lib_components_VChip__WEBPACK_IMPORTED_MODULE_9__["VChip"],VCol: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_10__["VCol"],VContainer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_10__["VContainer"],VDialog: vuetify_lib_components_VDialog__WEBPACK_IMPORTED_MODULE_11__["VDialog"],VIcon: vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_12__["VIcon"],VRow: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_10__["VRow"],VTextField: vuetify_lib_components_VTextField__WEBPACK_IMPORTED_MODULE_13__["VTextField"],VToolbarItems: vuetify_lib_components_VToolbar__WEBPACK_IMPORTED_MODULE_14__["VToolbarItems"],VToolbarTitle: vuetify_lib_components_VToolbar__WEBPACK_IMPORTED_MODULE_14__["VToolbarTitle"]})
+
+
+_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4___default()(component, {VAppBar: vuetify_lib_components_VAppBar__WEBPACK_IMPORTED_MODULE_5__["VAppBar"],VBtn: vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_6__["VBtn"],VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__["VCard"],VCardText: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__["VCardText"],VCardTitle: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__["VCardTitle"],VCol: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_8__["VCol"],VContainer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_8__["VContainer"],VDialog: vuetify_lib_components_VDialog__WEBPACK_IMPORTED_MODULE_9__["VDialog"],VIcon: vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_10__["VIcon"],VList: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_11__["VList"],VListItem: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_11__["VListItem"],VListItemTitle: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_11__["VListItemTitle"],VMenu: vuetify_lib_components_VMenu__WEBPACK_IMPORTED_MODULE_12__["VMenu"],VRow: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_8__["VRow"],VTextField: vuetify_lib_components_VTextField__WEBPACK_IMPORTED_MODULE_13__["VTextField"],VToolbarItems: vuetify_lib_components_VToolbar__WEBPACK_IMPORTED_MODULE_14__["VToolbarItems"],VToolbarTitle: vuetify_lib_components_VToolbar__WEBPACK_IMPORTED_MODULE_14__["VToolbarTitle"]})
 
 
 /* hot reload */
@@ -100228,6 +100123,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_navbar_vue_vue_type_template_id_62645c76___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
+
+/***/ }),
+
+/***/ "./resources/js/components/menu/navbarBack.vue":
+/*!*****************************************************!*\
+  !*** ./resources/js/components/menu/navbarBack.vue ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, exports) {
+
+throw new Error("Module build failed (from ./node_modules/vue-loader/lib/index.js):\nError: ENOENT: no such file or directory, open 'D:\\xampp\\htdocs\\donate\\resources\\js\\components\\menu\\navbarBack.vue'");
 
 /***/ }),
 
@@ -100358,9 +100264,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuetify/lib/components/VCard */ "./node_modules/vuetify/lib/components/VCard/index.js");
 /* harmony import */ var vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vuetify/lib/components/VGrid */ "./node_modules/vuetify/lib/components/VGrid/index.js");
 /* harmony import */ var vuetify_lib_components_VDivider__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vuetify/lib/components/VDivider */ "./node_modules/vuetify/lib/components/VDivider/index.js");
-/* harmony import */ var vuetify_lib_components_VImg__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vuetify/lib/components/VImg */ "./node_modules/vuetify/lib/components/VImg/index.js");
-/* harmony import */ var vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! vuetify/lib/components/VList */ "./node_modules/vuetify/lib/components/VList/index.js");
-/* harmony import */ var vuetify_lib_components_VProgressLinear__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! vuetify/lib/components/VProgressLinear */ "./node_modules/vuetify/lib/components/VProgressLinear/index.js");
+/* harmony import */ var vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vuetify/lib/components/VIcon */ "./node_modules/vuetify/lib/components/VIcon/index.js");
+/* harmony import */ var vuetify_lib_components_VImg__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! vuetify/lib/components/VImg */ "./node_modules/vuetify/lib/components/VImg/index.js");
+/* harmony import */ var vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! vuetify/lib/components/VList */ "./node_modules/vuetify/lib/components/VList/index.js");
 /* harmony import */ var vuetify_lib_components_VSubheader__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! vuetify/lib/components/VSubheader */ "./node_modules/vuetify/lib/components/VSubheader/index.js");
 /* harmony import */ var vuetify_lib_components_VTextField__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! vuetify/lib/components/VTextField */ "./node_modules/vuetify/lib/components/VTextField/index.js");
 
@@ -100403,8 +100309,7 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 
 
-
-_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3___default()(component, {VApp: vuetify_lib_components_VApp__WEBPACK_IMPORTED_MODULE_4__["VApp"],VAvatar: vuetify_lib_components_VAvatar__WEBPACK_IMPORTED_MODULE_5__["VAvatar"],VBtn: vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_6__["VBtn"],VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__["VCard"],VCardText: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__["VCardText"],VCardTitle: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__["VCardTitle"],VCol: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_8__["VCol"],VContainer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_8__["VContainer"],VDivider: vuetify_lib_components_VDivider__WEBPACK_IMPORTED_MODULE_9__["VDivider"],VImg: vuetify_lib_components_VImg__WEBPACK_IMPORTED_MODULE_10__["VImg"],VList: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_11__["VList"],VListItem: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_11__["VListItem"],VListItemAvatar: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_11__["VListItemAvatar"],VListItemContent: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_11__["VListItemContent"],VListItemGroup: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_11__["VListItemGroup"],VListItemSubtitle: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_11__["VListItemSubtitle"],VListItemTitle: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_11__["VListItemTitle"],VProgressLinear: vuetify_lib_components_VProgressLinear__WEBPACK_IMPORTED_MODULE_12__["VProgressLinear"],VRow: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_8__["VRow"],VSubheader: vuetify_lib_components_VSubheader__WEBPACK_IMPORTED_MODULE_13__["VSubheader"],VTextField: vuetify_lib_components_VTextField__WEBPACK_IMPORTED_MODULE_14__["VTextField"]})
+_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3___default()(component, {VApp: vuetify_lib_components_VApp__WEBPACK_IMPORTED_MODULE_4__["VApp"],VAvatar: vuetify_lib_components_VAvatar__WEBPACK_IMPORTED_MODULE_5__["VAvatar"],VBtn: vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_6__["VBtn"],VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__["VCard"],VCardTitle: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__["VCardTitle"],VCol: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_8__["VCol"],VContainer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_8__["VContainer"],VDivider: vuetify_lib_components_VDivider__WEBPACK_IMPORTED_MODULE_9__["VDivider"],VIcon: vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_10__["VIcon"],VImg: vuetify_lib_components_VImg__WEBPACK_IMPORTED_MODULE_11__["VImg"],VList: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_12__["VList"],VListItem: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_12__["VListItem"],VListItemAvatar: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_12__["VListItemAvatar"],VListItemContent: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_12__["VListItemContent"],VListItemGroup: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_12__["VListItemGroup"],VListItemSubtitle: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_12__["VListItemSubtitle"],VListItemTitle: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_12__["VListItemTitle"],VRow: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_8__["VRow"],VSubheader: vuetify_lib_components_VSubheader__WEBPACK_IMPORTED_MODULE_13__["VSubheader"],VTextField: vuetify_lib_components_VTextField__WEBPACK_IMPORTED_MODULE_14__["VTextField"]})
 
 
 /* hot reload */

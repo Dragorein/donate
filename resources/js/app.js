@@ -24,6 +24,7 @@ import router from "./router"
 
 Vue.component('navbar', require('./components/menu/navbar.vue').default);
 Vue.component('navbar-search', require('./components/menu/navbarSearch.vue').default);
+Vue.component('navbar-back', require('./components/menu/navbarBack.vue').default);
 Vue.component('footbar', require('./components/menu/footer.vue').default);
 Vue.component('app-container', require('./components/appContainer.vue').default);
 Vue.component('landing-page', require('./components/landing/container.vue').default);

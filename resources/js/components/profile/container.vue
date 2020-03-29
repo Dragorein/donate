@@ -45,7 +45,7 @@
             <section class="bg-section-2">
                 <v-container class="py-12">
                     <v-card>
-                        <v-tabs vertical hide-slider background-color="orange" dark>
+                        <v-tabs show-arrows vertical hide-slider background-color="orange" dark>
                             <v-tab>
                                 <v-icon left>mdi-account</v-icon>Penggalangan Aktif
                             </v-tab>
@@ -56,24 +56,110 @@
                                 <v-icon left>mdi-history</v-icon>Riwayat Donasi
                             </v-tab>
                             <v-tab>
-                                <v-icon left>mdi-account-edit</v-icon>Edit Profil
+                                <v-icon left>mdi-account-edit</v-icon>Ubah Profil
+                            </v-tab>
+                            <v-tab>
+                                <v-icon left>mdi-textbox-password</v-icon>Ganti Password
                             </v-tab>
 
-                            <v-tab-item class="w-auto">
-                                <v-card>
-                                    <div class="d-flex">
+                            <v-tab-item>
+                                <v-card-title>Penggalangan Aktif</v-card-title>
+                                <v-card-subtitle>Menampilkan semua penggalangan dana-mu yang sedang aktif.</v-card-subtitle>
+                                <v-list two-line>
+                                    <template v-for="active in actives">
+                                        <v-list-item @click="reroutes('/campaign/detail')">
+                                            <v-list-item-avatar tile size="70" width="120">
+                                                <v-img :src="active.src"></v-img>
+                                            </v-list-item-avatar>
+                                            
+                                            <v-list-item-content>
+                                                <v-list-item-title v-html="active.title"></v-list-item-title>
+                                                <v-list-item-subtitle>Aktif</v-list-item-subtitle>
+                                                <v-list-item-subtitle v-html="active.daysleft + ' hari lagi'"></v-list-item-subtitle>
+                                            </v-list-item-content>
+
+                                            <v-list-item-content>
+                                                <v-btn color="error">Tutup</v-btn>
+                                            </v-list-item-content>
+                                        </v-list-item>
+                                    </template>
+                                </v-list>
+                            </v-tab-item>
+                            <v-tab-item>
+                                <v-card-title>Riwayat Penggalangan</v-card-title>
+                                <v-card-subtitle>Menampilkan semua riwayat penggalangan dana yang sudah kamu buka, mulai dari yang aktif sampai yang sudah tutup.</v-card-subtitle>
+                                <v-list two-line>
+                                    <template v-for="card in cards">
+                                        <v-list-item @click="reroutes('/campaign/detail')">
+                                            <v-list-item-avatar tile size="70" width="120">
+                                                <v-img :src="card.src"></v-img>
+                                            </v-list-item-avatar>
+                                            
+                                            <v-list-item-content>
+                                                <v-list-item-title v-html="card.title"></v-list-item-title>
+                                                <v-list-item-subtitle>Ditutup</v-list-item-subtitle>
+                                            </v-list-item-content>
+                                        </v-list-item>
+                                    </template>
+                                    <v-pagination color="orange" v-model="page" :length="length" :page="page" :total-visible="totalVisible"></v-pagination>
+                                </v-list>
+                            </v-tab-item>
+                            <v-tab-item>
+                                <v-card-title>Riwayat Donasi</v-card-title>
+                                <v-card-subtitle>Menampilkan semua riwayat donasi yang telah kamu salurkan.</v-card-subtitle>
+                                <v-list two-line>
+                                    <template v-for="card in cards">
+                                        <v-list-item @click="reroutes('/campaign/detail')">
+                                            <v-list-item-avatar tile size="70" width="120">
+                                                <v-img :src="card.src"></v-img>
+                                            </v-list-item-avatar>
+                                            
+                                            <v-list-item-content>
+                                                <v-list-item-title v-html="card.title"></v-list-item-title>
+                                                <v-list-item-subtitle v-html="'Dibuka oleh ' + card.author + ' - ' + card.raised"></v-list-item-subtitle>
+                                            </v-list-item-content>
+                                        </v-list-item>
+                                    </template>
+                                    <v-pagination color="orange" v-model="page" :length="length" :page="page" :total-visible="totalVisible"></v-pagination>
+                                </v-list>
+                            </v-tab-item>
+                            <v-tab-item>
+                                <v-card-title>Ubah Profil</v-card-title>
+                                <v-card-subtitle></v-card-subtitle>
+                                <v-form>
+                                    <v-container class="px-12 pb-12">
                                     
-                                    </div>
-                                </v-card>
+                                        <div class="d-flex align-center mb-4">
+                                            <v-avatar size="96" left>
+                                                <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John">
+                                            </v-avatar>
+                                            <v-card-subtitle>Maksimal ukuran foto 1MB. Disarankan beresolusi 180px x 180px.</v-card-subtitle>
+                                        </div>
+                                        <v-file-input label="Foto Profil" prepend-icon="" prepend-inner-icon="mdi-paperclip" outlined clearable/>
+                                        <v-divider/>
+                                        <v-text-field label="Nama Depan" name="firstname" prepend-inner-icon="person" type="text" value="John" :rules="firstnameRules" required outlined clearable/>
+                                        <v-text-field label="Nama Belakang" name="lastname" prepend-inner-icon="person" type="text" value="Tanaka" :rules="lastnameRules" required outlined clearable/>
+                                        <v-text-field label="Email" name="email" prepend-inner-icon="mail" type="text" value="John@gmail.com" :rules="emailRules" required outlined clearable/>
+                                        <v-text-field label="Nomor Handphone" name="noHandphone" prepend-inner-icon="phone" value="08955128756" type="text" :rules="noHandphoneRules" :counter="14" required outlined clearable/>
+                                        <v-divider/>
+                                        <v-btn color="success" class="mr-2">Ganti</v-btn>
+                                        <v-btn text class="mr-2">Batal</v-btn>
+                                    </v-container>
+                                </v-form>
                             </v-tab-item>
                             <v-tab-item>
-                                
-                            </v-tab-item>
-                            <v-tab-item>
-                                
-                            </v-tab-item>
-                            <v-tab-item>
-                                
+                                <v-card-title>Ganti Password</v-card-title>
+                                <v-card-subtitle></v-card-subtitle>
+                                <v-form>
+                                    <v-container class="px-12 pb-12">
+                                            <v-text-field id="password" label="Password Saat Ini" name="password" prepend-inner-icon="mdi-lock-question" type="password" :rules="passwordRules" required outlined clearable/>
+                                            <v-text-field id="password" label="Password Baru" name="password" prepend-inner-icon="mdi-lock-open" type="password" :rules="passwordRules" required outlined clearable/>
+                                            <v-text-field id="passwordconfirm" label="Ketik Ulang Password Baru" name="passwordconfirm" prepend-inner-icon="lock" type="password" :rules="passwordRules" required outlined clearable/>
+                                        <v-divider/>
+                                        <v-btn color="success" class="mr-2">Ganti</v-btn>
+                                        <v-btn text class="mr-2">Batal</v-btn>
+                                    </v-container>
+                                </v-form>
                             </v-tab-item>
                         </v-tabs>
                     </v-card>
@@ -101,6 +187,22 @@
                 {title:'Best airlines', src:'https://cdn.vuetifyjs.com/images/cards/plane.jpg', author:'Tommy', progress:60, raised:'Rp 16.251.026', daysleft:'23'},
                 {title:'Supermodel', src:'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg', author:'Louise', progress:50, raised:'Rp 3.003.132', daysleft:'30'},
             ],
+
+            length: 2,
+            nextIcon: 'navigate_next',
+            prevIcon: 'navigate_before',
+            page: 1,
+            totalVisible: 10,
+
+            valid: true,
+            firstnameRules: [v => !!v || "First Name is required"],
+            lastnameRules: [v => !!v || "Last Name is required"],
+            emailRules: [v => !!v || "E-mail is required"],
+            noHandphoneRules: [
+                v => !!v || "No.Handphone is required",
+                v => v && v.length <= 14
+            ],
+            passwordRules: [v => !!v || "Password is required"],
         }),
         methods: {
             reroutes: function (url) {
@@ -139,7 +241,7 @@
         text-decoration: none;
     }
 
-    .v-tab {
+    .v-tabs--vertical .v-tab {
         justify-content: start;
     }
 

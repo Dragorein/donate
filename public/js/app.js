@@ -2918,6 +2918,92 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2978,6 +3064,29 @@ __webpack_require__.r(__webpack_exports__);
         progress: 50,
         raised: 'Rp 3.003.132',
         daysleft: '30'
+      }],
+      length: 2,
+      nextIcon: 'navigate_next',
+      prevIcon: 'navigate_before',
+      page: 1,
+      totalVisible: 10,
+      valid: true,
+      firstnameRules: [function (v) {
+        return !!v || "First Name is required";
+      }],
+      lastnameRules: [function (v) {
+        return !!v || "Last Name is required";
+      }],
+      emailRules: [function (v) {
+        return !!v || "E-mail is required";
+      }],
+      noHandphoneRules: [function (v) {
+        return !!v || "No.Handphone is required";
+      }, function (v) {
+        return v && v.length <= 14;
+      }],
+      passwordRules: [function (v) {
+        return !!v || "Password is required";
       }]
     };
   },
@@ -9630,7 +9739,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.bg-section-1 {\n    background: #F2F2F2;\n}\n.bg-section-2 {\n    background: white;\n}\nsection .v-card {\n    transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1) all;\n}\nsection .card-transform:hover {\n    transform: translatey(-10px);\n}\n.top-space {\n    padding-top: 96px!important;\n}\n.v-btn:focus {\n    outline: 0;\n}\na.v-btn:hover, .v-chip:hover {\n    text-decoration: none;\n}\n.v-tab {\n    justify-content: start;\n}\n@media only screen and (max-width: 600px) {\n.v-tabs--vertical {\n        flex-direction: column;\n}\n}\n/*@import './assets/styles/yourstyles.css';*/\n", ""]);
+exports.push([module.i, "\n.bg-section-1 {\n    background: #F2F2F2;\n}\n.bg-section-2 {\n    background: white;\n}\nsection .v-card {\n    transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1) all;\n}\nsection .card-transform:hover {\n    transform: translatey(-10px);\n}\n.top-space {\n    padding-top: 96px!important;\n}\n.v-btn:focus {\n    outline: 0;\n}\na.v-btn:hover, .v-chip:hover {\n    text-decoration: none;\n}\n.v-tabs--vertical .v-tab {\n    justify-content: start;\n}\n@media only screen and (max-width: 600px) {\n.v-tabs--vertical {\n        flex-direction: column;\n}\n}\n/*@import './assets/styles/yourstyles.css';*/\n", ""]);
 
 // exports
 
@@ -43729,6 +43838,7 @@ var render = function() {
                         "v-tabs",
                         {
                           attrs: {
+                            "show-arrows": "",
                             vertical: "",
                             "hide-slider": "",
                             "background-color": "orange",
@@ -43782,7 +43892,20 @@ var render = function() {
                                 _vm._v("mdi-account-edit")
                               ]),
                               _vm._v(
-                                "Edit Profil\r\n                            "
+                                "Ubah Profil\r\n                            "
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-tab",
+                            [
+                              _c("v-icon", { attrs: { left: "" } }, [
+                                _vm._v("mdi-textbox-password")
+                              ]),
+                              _vm._v(
+                                "Ganti Password\r\n                            "
                               )
                             ],
                             1
@@ -43790,20 +43913,516 @@ var render = function() {
                           _vm._v(" "),
                           _c(
                             "v-tab-item",
-                            { staticClass: "w-auto" },
                             [
-                              _c("v-card", [
-                                _c("div", { staticClass: "d-flex" })
-                              ])
+                              _c("v-card-title", [
+                                _vm._v("Penggalangan Aktif")
+                              ]),
+                              _vm._v(" "),
+                              _c("v-card-subtitle", [
+                                _vm._v(
+                                  "Menampilkan semua penggalangan dana-mu yang sedang aktif."
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "v-list",
+                                { attrs: { "two-line": "" } },
+                                [
+                                  _vm._l(_vm.actives, function(active) {
+                                    return [
+                                      _c(
+                                        "v-list-item",
+                                        {
+                                          on: {
+                                            click: function($event) {
+                                              return _vm.reroutes(
+                                                "/campaign/detail"
+                                              )
+                                            }
+                                          }
+                                        },
+                                        [
+                                          _c(
+                                            "v-list-item-avatar",
+                                            {
+                                              attrs: {
+                                                tile: "",
+                                                size: "70",
+                                                width: "120"
+                                              }
+                                            },
+                                            [
+                                              _c("v-img", {
+                                                attrs: { src: active.src }
+                                              })
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-list-item-content",
+                                            [
+                                              _c("v-list-item-title", {
+                                                domProps: {
+                                                  innerHTML: _vm._s(
+                                                    active.title
+                                                  )
+                                                }
+                                              }),
+                                              _vm._v(" "),
+                                              _c("v-list-item-subtitle", [
+                                                _vm._v("Aktif")
+                                              ]),
+                                              _vm._v(" "),
+                                              _c("v-list-item-subtitle", {
+                                                domProps: {
+                                                  innerHTML: _vm._s(
+                                                    active.daysleft +
+                                                      " hari lagi"
+                                                  )
+                                                }
+                                              })
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-list-item-content",
+                                            [
+                                              _c(
+                                                "v-btn",
+                                                { attrs: { color: "error" } },
+                                                [_vm._v("Tutup")]
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ]
+                                  })
+                                ],
+                                2
+                              )
                             ],
                             1
                           ),
                           _vm._v(" "),
-                          _c("v-tab-item"),
+                          _c(
+                            "v-tab-item",
+                            [
+                              _c("v-card-title", [
+                                _vm._v("Riwayat Penggalangan")
+                              ]),
+                              _vm._v(" "),
+                              _c("v-card-subtitle", [
+                                _vm._v(
+                                  "Menampilkan semua riwayat penggalangan dana yang sudah kamu buka, mulai dari yang aktif sampai yang sudah tutup."
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "v-list",
+                                { attrs: { "two-line": "" } },
+                                [
+                                  _vm._l(_vm.cards, function(card) {
+                                    return [
+                                      _c(
+                                        "v-list-item",
+                                        {
+                                          on: {
+                                            click: function($event) {
+                                              return _vm.reroutes(
+                                                "/campaign/detail"
+                                              )
+                                            }
+                                          }
+                                        },
+                                        [
+                                          _c(
+                                            "v-list-item-avatar",
+                                            {
+                                              attrs: {
+                                                tile: "",
+                                                size: "70",
+                                                width: "120"
+                                              }
+                                            },
+                                            [
+                                              _c("v-img", {
+                                                attrs: { src: card.src }
+                                              })
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-list-item-content",
+                                            [
+                                              _c("v-list-item-title", {
+                                                domProps: {
+                                                  innerHTML: _vm._s(card.title)
+                                                }
+                                              }),
+                                              _vm._v(" "),
+                                              _c("v-list-item-subtitle", [
+                                                _vm._v("Ditutup")
+                                              ])
+                                            ],
+                                            1
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ]
+                                  }),
+                                  _vm._v(" "),
+                                  _c("v-pagination", {
+                                    attrs: {
+                                      color: "orange",
+                                      length: _vm.length,
+                                      page: _vm.page,
+                                      "total-visible": _vm.totalVisible
+                                    },
+                                    model: {
+                                      value: _vm.page,
+                                      callback: function($$v) {
+                                        _vm.page = $$v
+                                      },
+                                      expression: "page"
+                                    }
+                                  })
+                                ],
+                                2
+                              )
+                            ],
+                            1
+                          ),
                           _vm._v(" "),
-                          _c("v-tab-item"),
+                          _c(
+                            "v-tab-item",
+                            [
+                              _c("v-card-title", [_vm._v("Riwayat Donasi")]),
+                              _vm._v(" "),
+                              _c("v-card-subtitle", [
+                                _vm._v(
+                                  "Menampilkan semua riwayat donasi yang telah kamu salurkan."
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "v-list",
+                                { attrs: { "two-line": "" } },
+                                [
+                                  _vm._l(_vm.cards, function(card) {
+                                    return [
+                                      _c(
+                                        "v-list-item",
+                                        {
+                                          on: {
+                                            click: function($event) {
+                                              return _vm.reroutes(
+                                                "/campaign/detail"
+                                              )
+                                            }
+                                          }
+                                        },
+                                        [
+                                          _c(
+                                            "v-list-item-avatar",
+                                            {
+                                              attrs: {
+                                                tile: "",
+                                                size: "70",
+                                                width: "120"
+                                              }
+                                            },
+                                            [
+                                              _c("v-img", {
+                                                attrs: { src: card.src }
+                                              })
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-list-item-content",
+                                            [
+                                              _c("v-list-item-title", {
+                                                domProps: {
+                                                  innerHTML: _vm._s(card.title)
+                                                }
+                                              }),
+                                              _vm._v(" "),
+                                              _c("v-list-item-subtitle", {
+                                                domProps: {
+                                                  innerHTML: _vm._s(
+                                                    "Dibuka oleh " +
+                                                      card.author +
+                                                      " - " +
+                                                      card.raised
+                                                  )
+                                                }
+                                              })
+                                            ],
+                                            1
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ]
+                                  }),
+                                  _vm._v(" "),
+                                  _c("v-pagination", {
+                                    attrs: {
+                                      color: "orange",
+                                      length: _vm.length,
+                                      page: _vm.page,
+                                      "total-visible": _vm.totalVisible
+                                    },
+                                    model: {
+                                      value: _vm.page,
+                                      callback: function($$v) {
+                                        _vm.page = $$v
+                                      },
+                                      expression: "page"
+                                    }
+                                  })
+                                ],
+                                2
+                              )
+                            ],
+                            1
+                          ),
                           _vm._v(" "),
-                          _c("v-tab-item")
+                          _c(
+                            "v-tab-item",
+                            [
+                              _c("v-card-title", [_vm._v("Ubah Profil")]),
+                              _vm._v(" "),
+                              _c("v-card-subtitle"),
+                              _vm._v(" "),
+                              _c(
+                                "v-form",
+                                [
+                                  _c(
+                                    "v-container",
+                                    { staticClass: "px-12 pb-12" },
+                                    [
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass:
+                                            "d-flex align-center mb-4"
+                                        },
+                                        [
+                                          _c(
+                                            "v-avatar",
+                                            { attrs: { size: "96", left: "" } },
+                                            [
+                                              _c("img", {
+                                                attrs: {
+                                                  src:
+                                                    "https://cdn.vuetifyjs.com/images/john.jpg",
+                                                  alt: "John"
+                                                }
+                                              })
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c("v-card-subtitle", [
+                                            _vm._v(
+                                              "Maksimal ukuran foto 1MB. Disarankan beresolusi 180px x 180px."
+                                            )
+                                          ])
+                                        ],
+                                        1
+                                      ),
+                                      _vm._v(" "),
+                                      _c("v-file-input", {
+                                        attrs: {
+                                          label: "Foto Profil",
+                                          "prepend-icon": "",
+                                          "prepend-inner-icon": "mdi-paperclip",
+                                          outlined: "",
+                                          clearable: ""
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _c("v-divider"),
+                                      _vm._v(" "),
+                                      _c("v-text-field", {
+                                        attrs: {
+                                          label: "Nama Depan",
+                                          name: "firstname",
+                                          "prepend-inner-icon": "person",
+                                          type: "text",
+                                          value: "John",
+                                          rules: _vm.firstnameRules,
+                                          required: "",
+                                          outlined: "",
+                                          clearable: ""
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _c("v-text-field", {
+                                        attrs: {
+                                          label: "Nama Belakang",
+                                          name: "lastname",
+                                          "prepend-inner-icon": "person",
+                                          type: "text",
+                                          value: "Tanaka",
+                                          rules: _vm.lastnameRules,
+                                          required: "",
+                                          outlined: "",
+                                          clearable: ""
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _c("v-text-field", {
+                                        attrs: {
+                                          label: "Email",
+                                          name: "email",
+                                          "prepend-inner-icon": "mail",
+                                          type: "text",
+                                          value: "John@gmail.com",
+                                          rules: _vm.emailRules,
+                                          required: "",
+                                          outlined: "",
+                                          clearable: ""
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _c("v-text-field", {
+                                        attrs: {
+                                          label: "Nomor Handphone",
+                                          name: "noHandphone",
+                                          "prepend-inner-icon": "phone",
+                                          value: "08955128756",
+                                          type: "text",
+                                          rules: _vm.noHandphoneRules,
+                                          counter: 14,
+                                          required: "",
+                                          outlined: "",
+                                          clearable: ""
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _c("v-divider"),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-btn",
+                                        {
+                                          staticClass: "mr-2",
+                                          attrs: { color: "success" }
+                                        },
+                                        [_vm._v("Ganti")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-btn",
+                                        {
+                                          staticClass: "mr-2",
+                                          attrs: { text: "" }
+                                        },
+                                        [_vm._v("Batal")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-tab-item",
+                            [
+                              _c("v-card-title", [_vm._v("Ganti Password")]),
+                              _vm._v(" "),
+                              _c("v-card-subtitle"),
+                              _vm._v(" "),
+                              _c(
+                                "v-form",
+                                [
+                                  _c(
+                                    "v-container",
+                                    { staticClass: "px-12 pb-12" },
+                                    [
+                                      _c("v-text-field", {
+                                        attrs: {
+                                          id: "password",
+                                          label: "Password Saat Ini",
+                                          name: "password",
+                                          "prepend-inner-icon":
+                                            "mdi-lock-question",
+                                          type: "password",
+                                          rules: _vm.passwordRules,
+                                          required: "",
+                                          outlined: "",
+                                          clearable: ""
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _c("v-text-field", {
+                                        attrs: {
+                                          id: "password",
+                                          label: "Password Baru",
+                                          name: "password",
+                                          "prepend-inner-icon": "mdi-lock-open",
+                                          type: "password",
+                                          rules: _vm.passwordRules,
+                                          required: "",
+                                          outlined: "",
+                                          clearable: ""
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _c("v-text-field", {
+                                        attrs: {
+                                          id: "passwordconfirm",
+                                          label: "Ketik Ulang Password Baru",
+                                          name: "passwordconfirm",
+                                          "prepend-inner-icon": "lock",
+                                          type: "password",
+                                          rules: _vm.passwordRules,
+                                          required: "",
+                                          outlined: "",
+                                          clearable: ""
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _c("v-divider"),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-btn",
+                                        {
+                                          staticClass: "mr-2",
+                                          attrs: { color: "success" }
+                                        },
+                                        [_vm._v("Ganti")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-btn",
+                                        {
+                                          staticClass: "mr-2",
+                                          attrs: { text: "" }
+                                        },
+                                        [_vm._v("Batal")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
                         ],
                         1
                       )
@@ -43897,7 +44516,7 @@ var render = function() {
                                     [
                                       _c("v-text-field", {
                                         attrs: {
-                                          label: "First Name",
+                                          label: "Name Depan",
                                           name: "firstname",
                                           "prepend-inner-icon": "person",
                                           type: "text",
@@ -43910,7 +44529,7 @@ var render = function() {
                                       _vm._v(" "),
                                       _c("v-text-field", {
                                         attrs: {
-                                          label: "Last Name",
+                                          label: "Nama Belakang",
                                           name: "lastname",
                                           "prepend-inner-icon": "person",
                                           type: "text",
@@ -43936,7 +44555,7 @@ var render = function() {
                                       _vm._v(" "),
                                       _c("v-text-field", {
                                         attrs: {
-                                          label: "No.Handphone",
+                                          label: "Nomor Handphone",
                                           name: "noHandphone",
                                           "prepend-inner-icon": "phone",
                                           type: "text",
@@ -44001,7 +44620,7 @@ var render = function() {
                                           id: "password",
                                           label: "Password",
                                           name: "password",
-                                          "prepend-icon": "lock",
+                                          "prepend-inner-icon": "mdi-lock-open",
                                           type: "password",
                                           rules: _vm.passwordRules,
                                           required: "",
@@ -44013,9 +44632,9 @@ var render = function() {
                                       _c("v-text-field", {
                                         attrs: {
                                           id: "passwordconfirm",
-                                          label: "Confirm Password",
+                                          label: "Ketik Ulang Password",
                                           name: "passwordconfirm",
-                                          "prepend-icon": "lock",
+                                          "prepend-inner-icon": "lock",
                                           type: "password",
                                           rules: _vm.passwordRules,
                                           required: "",
@@ -100750,10 +101369,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var vuetify_lib_components_VApp__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuetify/lib/components/VApp */ "./node_modules/vuetify/lib/components/VApp/index.js");
 /* harmony import */ var vuetify_lib_components_VAvatar__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuetify/lib/components/VAvatar */ "./node_modules/vuetify/lib/components/VAvatar/index.js");
-/* harmony import */ var vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuetify/lib/components/VCard */ "./node_modules/vuetify/lib/components/VCard/index.js");
-/* harmony import */ var vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vuetify/lib/components/VGrid */ "./node_modules/vuetify/lib/components/VGrid/index.js");
-/* harmony import */ var vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vuetify/lib/components/VIcon */ "./node_modules/vuetify/lib/components/VIcon/index.js");
-/* harmony import */ var vuetify_lib_components_VTabs__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vuetify/lib/components/VTabs */ "./node_modules/vuetify/lib/components/VTabs/index.js");
+/* harmony import */ var vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuetify/lib/components/VBtn */ "./node_modules/vuetify/lib/components/VBtn/index.js");
+/* harmony import */ var vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vuetify/lib/components/VCard */ "./node_modules/vuetify/lib/components/VCard/index.js");
+/* harmony import */ var vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vuetify/lib/components/VGrid */ "./node_modules/vuetify/lib/components/VGrid/index.js");
+/* harmony import */ var vuetify_lib_components_VDivider__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vuetify/lib/components/VDivider */ "./node_modules/vuetify/lib/components/VDivider/index.js");
+/* harmony import */ var vuetify_lib_components_VFileInput__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! vuetify/lib/components/VFileInput */ "./node_modules/vuetify/lib/components/VFileInput/index.js");
+/* harmony import */ var vuetify_lib_components_VForm__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! vuetify/lib/components/VForm */ "./node_modules/vuetify/lib/components/VForm/index.js");
+/* harmony import */ var vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! vuetify/lib/components/VIcon */ "./node_modules/vuetify/lib/components/VIcon/index.js");
+/* harmony import */ var vuetify_lib_components_VImg__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! vuetify/lib/components/VImg */ "./node_modules/vuetify/lib/components/VImg/index.js");
+/* harmony import */ var vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! vuetify/lib/components/VList */ "./node_modules/vuetify/lib/components/VList/index.js");
+/* harmony import */ var vuetify_lib_components_VPagination__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! vuetify/lib/components/VPagination */ "./node_modules/vuetify/lib/components/VPagination/index.js");
+/* harmony import */ var vuetify_lib_components_VTabs__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! vuetify/lib/components/VTabs */ "./node_modules/vuetify/lib/components/VTabs/index.js");
+/* harmony import */ var vuetify_lib_components_VTextField__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! vuetify/lib/components/VTextField */ "./node_modules/vuetify/lib/components/VTextField/index.js");
 
 
 
@@ -100788,7 +101415,20 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 
 
-_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4___default()(component, {VApp: vuetify_lib_components_VApp__WEBPACK_IMPORTED_MODULE_5__["VApp"],VAvatar: vuetify_lib_components_VAvatar__WEBPACK_IMPORTED_MODULE_6__["VAvatar"],VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__["VCard"],VCardSubtitle: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__["VCardSubtitle"],VCardText: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__["VCardText"],VCardTitle: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__["VCardTitle"],VCol: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_8__["VCol"],VContainer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_8__["VContainer"],VIcon: vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_9__["VIcon"],VRow: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_8__["VRow"],VTab: vuetify_lib_components_VTabs__WEBPACK_IMPORTED_MODULE_10__["VTab"],VTabItem: vuetify_lib_components_VTabs__WEBPACK_IMPORTED_MODULE_10__["VTabItem"],VTabs: vuetify_lib_components_VTabs__WEBPACK_IMPORTED_MODULE_10__["VTabs"]})
+
+
+
+
+
+
+
+
+
+
+
+
+
+_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4___default()(component, {VApp: vuetify_lib_components_VApp__WEBPACK_IMPORTED_MODULE_5__["VApp"],VAvatar: vuetify_lib_components_VAvatar__WEBPACK_IMPORTED_MODULE_6__["VAvatar"],VBtn: vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_7__["VBtn"],VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_8__["VCard"],VCardSubtitle: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_8__["VCardSubtitle"],VCardText: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_8__["VCardText"],VCardTitle: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_8__["VCardTitle"],VCol: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_9__["VCol"],VContainer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_9__["VContainer"],VDivider: vuetify_lib_components_VDivider__WEBPACK_IMPORTED_MODULE_10__["VDivider"],VFileInput: vuetify_lib_components_VFileInput__WEBPACK_IMPORTED_MODULE_11__["VFileInput"],VForm: vuetify_lib_components_VForm__WEBPACK_IMPORTED_MODULE_12__["VForm"],VIcon: vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_13__["VIcon"],VImg: vuetify_lib_components_VImg__WEBPACK_IMPORTED_MODULE_14__["VImg"],VList: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_15__["VList"],VListItem: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_15__["VListItem"],VListItemAvatar: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_15__["VListItemAvatar"],VListItemContent: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_15__["VListItemContent"],VListItemSubtitle: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_15__["VListItemSubtitle"],VListItemTitle: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_15__["VListItemTitle"],VPagination: vuetify_lib_components_VPagination__WEBPACK_IMPORTED_MODULE_16__["VPagination"],VRow: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_9__["VRow"],VTab: vuetify_lib_components_VTabs__WEBPACK_IMPORTED_MODULE_17__["VTab"],VTabItem: vuetify_lib_components_VTabs__WEBPACK_IMPORTED_MODULE_17__["VTabItem"],VTabs: vuetify_lib_components_VTabs__WEBPACK_IMPORTED_MODULE_17__["VTabs"],VTextField: vuetify_lib_components_VTextField__WEBPACK_IMPORTED_MODULE_18__["VTextField"]})
 
 
 /* hot reload */

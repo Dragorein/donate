@@ -102461,6 +102461,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
 
 
 
+
+
 var routes = [{
   component: _components_landing_container__WEBPACK_IMPORTED_MODULE_2__["default"],
   name: "landing",
@@ -102469,6 +102471,14 @@ var routes = [{
   component: _components_search_container__WEBPACK_IMPORTED_MODULE_3__["default"],
   name: "search",
   path: "/search"
+}, {
+  component: _components_search_container__WEBPACK_IMPORTED_MODULE_3__["default"],
+  name: "search",
+  path: "/campaign/search"
+}, {
+  component: _components_search_container__WEBPACK_IMPORTED_MODULE_3__["default"],
+  name: "search",
+  path: "/payment/search"
 }, {
   component: _components_register_container__WEBPACK_IMPORTED_MODULE_4__["default"],
   name: "register",

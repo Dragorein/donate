@@ -5,6 +5,8 @@ Vue.use(VueRouter)
 
 import Landing from "../components/landing/container"
 import Search from "../components/search/container"
+import SearchCampaign from "../components/search/container"
+import SearchPayment from "../components/search/container"
 import Register from "../components/register/container"
 import Campaign from "../components/campaign/container"
 import CampaignDetail from "../components/campaign/detailContainer"
@@ -22,6 +24,16 @@ const routes = [
         component: Search,
         name: "search",
         path: "/search"
+    },
+    {
+        component: SearchCampaign,
+        name: "search",
+        path: "/campaign/search"
+    },
+    {
+        component: SearchPayment,
+        name: "search",
+        path: "/payment/search"
     },
     {
         component: Register,

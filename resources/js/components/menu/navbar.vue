@@ -14,15 +14,51 @@
             
             <v-col cols="3" class="d-flex justify-end">
                 <v-toolbar-items>
-                    <v-chip href="profil" class="ma-2" color="blue-grey lighten-5">
-                        <v-avatar left>
-                            <v-icon>mdi-account-circle</v-icon>
-                        </v-avatar>
-                        John
-                    </v-chip>
-                    <v-btn href="keluar" text small>
-                        Keluar<v-icon right>mdi-logout-variant</v-icon>
-                    </v-btn>
+                    <template v-if="loggedin == false">
+                        <v-dialog v-model="logindialog" max-width="600px">
+                            <template v-slot:activator="{ on }">
+                                <v-btn large color="success" v-on="on">
+                                    Masuk<v-icon right>mdi-login-variant</v-icon>
+                                </v-btn>
+                            </template>
+
+                            <v-card tile color="#F1F1F1">
+                                <v-card-title class="d-flex justify-center pt-6">
+                                    <div class="headline">Masuk</div>
+                                </v-card-title>
+
+                                <v-card-text>
+                                    <v-container>
+                                        <v-row>
+                                            <v-col cols="12" class="py-0">
+                                                <v-text-field solo flat label="Email" required></v-text-field>
+                                            </v-col>
+                                            <v-col cols="12" class="py-0">
+                                                <v-text-field solo flat label="Password" type="password" required></v-text-field>
+                                            </v-col>
+                                            <v-col cols="12">
+                                                <v-btn color="success darken-1" block large @click="logindialog = false, loggedin = true">Masuk Sekarang</v-btn>
+                                            </v-col>
+                                            <v-col cols="12" class="text-center">
+                                                <p>Belum punya akun Kindly? <a href="register">Daftar</a></p>
+                                            </v-col>
+                                        </v-row>
+                                    </v-container>
+                                </v-card-text>
+                            </v-card>
+                        </v-dialog>
+                    </template>
+                    <template v-else>
+                        <v-chip href="profil" class="ma-2" color="blue-grey lighten-5">
+                            <v-avatar left>
+                                <v-icon>mdi-account-circle</v-icon>
+                            </v-avatar>
+                            John
+                        </v-chip>
+                        <v-btn @click="loggedin = false" text small>
+                            Keluar<v-icon right>mdi-logout-variant</v-icon>
+                        </v-btn>
+                    </template>
                 </v-toolbar-items>
             </v-col>
         </v-row>
@@ -33,6 +69,8 @@
 <script>
     export default {
         data: () => ({
+            loggedin: false,
+            logindialog: false,
             navbar: '#navbar',
         }),
         methods: {
@@ -48,6 +86,7 @@
             }
         },
         mounted(){
+            this.handleScroll();
             window.addEventListener('scroll', this.handleScroll);
         }
     }

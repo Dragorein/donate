@@ -42323,7 +42323,6 @@ var render = function() {
                       staticStyle: { "border-radius": "4px" },
                       attrs: {
                         cycle: "",
-                        height: "500",
                         "delimiter-icon": "mdi-minus",
                         "hide-delimiter-background": "",
                         "show-arrows-on-hover": ""

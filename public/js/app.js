@@ -2821,6 +2821,135 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vuetify-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/payment/doneContainer.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vuetify-loader/lib/loader.js??ref--11-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/payment/doneContainer.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      author: 'Louise',
+      target: 'Josh',
+      title: 'Supermodel',
+      donasi: '10.000',
+      bank: 'BCA',
+      icon: '/icon/BCA.png'
+    };
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vuetify-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/register/container.vue?vue&type=script&lang=js&":
 /*!************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vuetify-loader/lib/loader.js??ref--11-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/register/container.vue?vue&type=script&lang=js& ***!
@@ -43331,77 +43460,429 @@ var render = function() {
             [
               _c(
                 "v-container",
-                { staticStyle: { "padding-top": "300px" } },
+                { staticStyle: { "padding-top": "60px" } },
                 [
                   _c(
-                    "v-card",
-                    { attrs: { raised: "" } },
+                    "v-row",
                     [
-                      _c(
-                        "v-layout",
-                        {
-                          attrs: {
-                            row: "",
-                            "justify-center": "",
-                            "align-center": ""
-                          }
-                        },
-                        [
-                          _c(
-                            "v-row",
-                            [
-                              _c("v-col", { attrs: { lg: "5" } }),
-                              _vm._v(" "),
-                              _c(
-                                "v-col",
-                                { attrs: { lg: "3", "align-self": "center" } },
-                                [
-                                  _c("v-card-title", [
-                                    _vm._v("Transaksi Anda Telah Berhasil")
-                                  ])
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
+                      _c("v-col", { attrs: { md: "4" } }),
                       _vm._v(" "),
                       _c(
-                        "v-layout",
-                        {
-                          attrs: {
-                            row: "",
-                            "justify-center": "",
-                            "align-center": ""
-                          }
-                        },
+                        "v-col",
                         [
                           _c(
-                            "v-row",
+                            "v-card",
+                            { attrs: { raised: "", "max-width": "600px" } },
                             [
-                              _c("v-col", { attrs: { sm: "6" } }),
-                              _vm._v(" "),
                               _c(
-                                "v-col",
-                                { attrs: { sm: "1" } },
+                                "v-layout",
+                                {
+                                  attrs: {
+                                    row: "",
+                                    "justify-center": "",
+                                    "align-center": ""
+                                  }
+                                },
                                 [
                                   _c(
-                                    "v-icon",
-                                    {
-                                      attrs: {
-                                        large: "",
-                                        color: "green darken-2"
-                                      }
-                                    },
+                                    "v-row",
                                     [
-                                      _vm._v(
-                                        "mdi-checkbox-marked-circle-outline"
+                                      _c("v-col", { attrs: { lg: "3" } }),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-col",
+                                        { attrs: { "align-self": "center" } },
+                                        [
+                                          _c("v-card-title", [
+                                            _vm._v(
+                                              "Transaksi Anda Telah Berhasil"
+                                            )
+                                          ])
+                                        ],
+                                        1
                                       )
-                                    ]
+                                    ],
+                                    1
                                   )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-layout",
+                                {
+                                  attrs: {
+                                    row: "",
+                                    "justify-center": "",
+                                    "align-center": ""
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "v-row",
+                                    [
+                                      _c("v-col", { attrs: { md: "5" } }),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-col",
+                                        { attrs: { md: "1" } },
+                                        [
+                                          _c(
+                                            "v-icon",
+                                            {
+                                              staticStyle: {
+                                                "padding-left": "25px"
+                                              },
+                                              attrs: {
+                                                large: "",
+                                                color: "green"
+                                              }
+                                            },
+                                            [
+                                              _vm._v(
+                                                "mdi-checkbox-marked-circle-outline"
+                                              )
+                                            ]
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-layout",
+                                {
+                                  attrs: {
+                                    row: "",
+                                    "justify-center": "",
+                                    "align-center": ""
+                                  }
+                                },
+                                [
+                                  _c("v-col", { attrs: { md: "1" } }),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-row",
+                                    [
+                                      _c(
+                                        "v-col",
+                                        [
+                                          _c(
+                                            "v-list",
+                                            {
+                                              staticClass: "ml-5",
+                                              attrs: { "max-width": "550px" }
+                                            },
+                                            [
+                                              _c(
+                                                "v-list-item",
+                                                [
+                                                  _c(
+                                                    "v-list-item-content",
+                                                    [
+                                                      _c("v-list-item-title", [
+                                                        _vm._v(
+                                                          "Anda mendonasikan "
+                                                        )
+                                                      ]),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "v-list-item-subtitle",
+                                                        [
+                                                          _vm._v(
+                                                            "Rp " +
+                                                              _vm._s(_vm.donasi)
+                                                          )
+                                                        ]
+                                                      )
+                                                    ],
+                                                    1
+                                                  )
+                                                ],
+                                                1
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "v-list-item",
+                                                [
+                                                  _c(
+                                                    "v-list-item-content",
+                                                    [
+                                                      _c("v-list-item-title", [
+                                                        _vm._v("Melalui")
+                                                      ]),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "v-row",
+                                                        [
+                                                          _c(
+                                                            "v-col",
+                                                            {
+                                                              attrs: { md: "9" }
+                                                            },
+                                                            [
+                                                              _c(
+                                                                "v-list-item-subtitle",
+                                                                {
+                                                                  staticStyle: {
+                                                                    "font-size":
+                                                                      "24pt"
+                                                                  },
+                                                                  domProps: {
+                                                                    textContent: _vm._s(
+                                                                      _vm.bank
+                                                                    )
+                                                                  }
+                                                                }
+                                                              )
+                                                            ],
+                                                            1
+                                                          ),
+                                                          _vm._v(" "),
+                                                          _c(
+                                                            "v-col",
+                                                            [
+                                                              _c(
+                                                                "v-avatar",
+                                                                {
+                                                                  attrs: {
+                                                                    right: ""
+                                                                  }
+                                                                },
+                                                                [
+                                                                  _c("img", {
+                                                                    attrs: {
+                                                                      src:
+                                                                        _vm.icon
+                                                                    }
+                                                                  })
+                                                                ]
+                                                              )
+                                                            ],
+                                                            1
+                                                          )
+                                                        ],
+                                                        1
+                                                      )
+                                                    ],
+                                                    1
+                                                  )
+                                                ],
+                                                1
+                                              ),
+                                              _vm._v(" "),
+                                              _c("v-divider"),
+                                              _vm._v(" "),
+                                              _c(
+                                                "v-list-item",
+                                                [
+                                                  _c(
+                                                    "v-col",
+                                                    { attrs: { md: "5" } },
+                                                    [
+                                                      _c("v-list-item-title", [
+                                                        _vm._v("Penggalang")
+                                                      ])
+                                                    ],
+                                                    1
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "v-col",
+                                                    { attrs: { md: "7" } },
+                                                    [
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "d-flex align-center pt-2"
+                                                        },
+                                                        [
+                                                          _c(
+                                                            "v-avatar",
+                                                            {
+                                                              attrs: {
+                                                                left: ""
+                                                              }
+                                                            },
+                                                            [
+                                                              _c("img", {
+                                                                attrs: {
+                                                                  src:
+                                                                    "https://cdn.vuetifyjs.com/images/john.jpg",
+                                                                  alt: "John"
+                                                                }
+                                                              })
+                                                            ]
+                                                          ),
+                                                          _vm._v(" "),
+                                                          _c(
+                                                            "div",
+                                                            {
+                                                              staticClass:
+                                                                "mx-3"
+                                                            },
+                                                            [
+                                                              _c(
+                                                                "span",
+                                                                {
+                                                                  staticClass:
+                                                                    "green--text"
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    _vm._s(
+                                                                      _vm.author
+                                                                    )
+                                                                  ),
+                                                                  _c(
+                                                                    "v-icon",
+                                                                    {
+                                                                      attrs: {
+                                                                        right:
+                                                                          "",
+                                                                        color:
+                                                                          "green"
+                                                                      }
+                                                                    },
+                                                                    [
+                                                                      _vm._v(
+                                                                        "mdi-check-circle mdi-18px"
+                                                                      )
+                                                                    ]
+                                                                  )
+                                                                ],
+                                                                1
+                                                              ),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "div",
+                                                                {
+                                                                  staticClass:
+                                                                    "caption"
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    "Identitas terverifikasi"
+                                                                  )
+                                                                ]
+                                                              )
+                                                            ]
+                                                          )
+                                                        ],
+                                                        1
+                                                      )
+                                                    ]
+                                                  )
+                                                ],
+                                                1
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "v-list-item",
+                                                [
+                                                  _c(
+                                                    "v-list-item-content",
+                                                    [
+                                                      _c("v-list-item-title", [
+                                                        _vm._v(
+                                                          "Penerima Manfaat"
+                                                        )
+                                                      ]),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "d-flex align-center pt-2"
+                                                        },
+                                                        [
+                                                          _c(
+                                                            "v-avatar",
+                                                            {
+                                                              attrs: {
+                                                                left: ""
+                                                              }
+                                                            },
+                                                            [
+                                                              _c("v-icon", [
+                                                                _vm._v(
+                                                                  "mdi-account-circle mdi-48px"
+                                                                )
+                                                              ])
+                                                            ],
+                                                            1
+                                                          ),
+                                                          _vm._v(" "),
+                                                          _c(
+                                                            "div",
+                                                            {
+                                                              staticClass:
+                                                                "mx-3"
+                                                            },
+                                                            [
+                                                              _c("span", [
+                                                                _vm._v(
+                                                                  _vm._s(
+                                                                    _vm.target
+                                                                  )
+                                                                )
+                                                              ]),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "div",
+                                                                {
+                                                                  staticClass:
+                                                                    "caption"
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    "Sesuai dokumen medis"
+                                                                  ),
+                                                                  _c(
+                                                                    "v-icon",
+                                                                    {
+                                                                      attrs: {
+                                                                        color:
+                                                                          "green"
+                                                                      }
+                                                                    },
+                                                                    [
+                                                                      _vm._v(
+                                                                        "mdi-check-circle-outline mdi-18px"
+                                                                      )
+                                                                    ]
+                                                                  )
+                                                                ],
+                                                                1
+                                                              )
+                                                            ]
+                                                          )
+                                                        ],
+                                                        1
+                                                      )
+                                                    ],
+                                                    1
+                                                  )
+                                                ],
+                                                1
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c("v-col", { attrs: { md: "1" } })
                                 ],
                                 1
                               )
@@ -100347,21 +100828,26 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _doneContainer_vue_vue_type_template_id_44ed529b___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./doneContainer.vue?vue&type=template&id=44ed529b& */ "./resources/js/components/payment/doneContainer.vue?vue&type=template&id=44ed529b&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-/* harmony import */ var _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vuetify-loader/lib/runtime/installComponents.js */ "./node_modules/vuetify-loader/lib/runtime/installComponents.js");
-/* harmony import */ var _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var vuetify_lib_components_VApp__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuetify/lib/components/VApp */ "./node_modules/vuetify/lib/components/VApp/index.js");
-/* harmony import */ var vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuetify/lib/components/VCard */ "./node_modules/vuetify/lib/components/VCard/index.js");
-/* harmony import */ var vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuetify/lib/components/VGrid */ "./node_modules/vuetify/lib/components/VGrid/index.js");
-/* harmony import */ var vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuetify/lib/components/VIcon */ "./node_modules/vuetify/lib/components/VIcon/index.js");
+/* harmony import */ var _doneContainer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./doneContainer.vue?vue&type=script&lang=js& */ "./resources/js/components/payment/doneContainer.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vuetify-loader/lib/runtime/installComponents.js */ "./node_modules/vuetify-loader/lib/runtime/installComponents.js");
+/* harmony import */ var _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var vuetify_lib_components_VApp__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuetify/lib/components/VApp */ "./node_modules/vuetify/lib/components/VApp/index.js");
+/* harmony import */ var vuetify_lib_components_VAvatar__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuetify/lib/components/VAvatar */ "./node_modules/vuetify/lib/components/VAvatar/index.js");
+/* harmony import */ var vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuetify/lib/components/VCard */ "./node_modules/vuetify/lib/components/VCard/index.js");
+/* harmony import */ var vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuetify/lib/components/VGrid */ "./node_modules/vuetify/lib/components/VGrid/index.js");
+/* harmony import */ var vuetify_lib_components_VDivider__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vuetify/lib/components/VDivider */ "./node_modules/vuetify/lib/components/VDivider/index.js");
+/* harmony import */ var vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vuetify/lib/components/VIcon */ "./node_modules/vuetify/lib/components/VIcon/index.js");
+/* harmony import */ var vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vuetify/lib/components/VList */ "./node_modules/vuetify/lib/components/VList/index.js");
 
-var script = {}
+
+
 
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
-  script,
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _doneContainer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
   _doneContainer_vue_vue_type_template_id_44ed529b___WEBPACK_IMPORTED_MODULE_0__["render"],
   _doneContainer_vue_vue_type_template_id_44ed529b___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
@@ -100381,13 +100867,34 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 
 
-_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_2___default()(component, {VApp: vuetify_lib_components_VApp__WEBPACK_IMPORTED_MODULE_3__["VApp"],VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_4__["VCard"],VCardTitle: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_4__["VCardTitle"],VCol: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_5__["VCol"],VContainer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_5__["VContainer"],VIcon: vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_6__["VIcon"],VLayout: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_5__["VLayout"],VRow: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_5__["VRow"]})
+
+
+
+
+
+
+
+_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3___default()(component, {VApp: vuetify_lib_components_VApp__WEBPACK_IMPORTED_MODULE_4__["VApp"],VAvatar: vuetify_lib_components_VAvatar__WEBPACK_IMPORTED_MODULE_5__["VAvatar"],VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCard"],VCardTitle: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCardTitle"],VCol: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VCol"],VContainer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VContainer"],VDivider: vuetify_lib_components_VDivider__WEBPACK_IMPORTED_MODULE_8__["VDivider"],VIcon: vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_9__["VIcon"],VLayout: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VLayout"],VList: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_10__["VList"],VListItem: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_10__["VListItem"],VListItemContent: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_10__["VListItemContent"],VListItemSubtitle: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_10__["VListItemSubtitle"],VListItemTitle: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_10__["VListItemTitle"],VRow: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VRow"]})
 
 
 /* hot reload */
 if (false) { var api; }
 component.options.__file = "resources/js/components/payment/doneContainer.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/payment/doneContainer.vue?vue&type=script&lang=js&":
+/*!************************************************************************************!*\
+  !*** ./resources/js/components/payment/doneContainer.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vuetify_loader_lib_loader_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_doneContainer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vuetify-loader/lib/loader.js??ref--11-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./doneContainer.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vuetify-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/payment/doneContainer.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vuetify_loader_lib_loader_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_doneContainer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 

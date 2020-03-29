@@ -2587,7 +2587,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      loggedin: true,
+      loggedin: false,
       logindialog: false,
       navbar: '#navbar'
     };
@@ -2830,81 +2830,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -43389,302 +43314,239 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("v-app", [
-    _c("main", { staticClass: "h-100" }, [
-      _c("div", { staticClass: "fluid" }, [
-        _c(
-          "section",
-          [
-            _c(
-              "v-btn",
-              {
-                attrs: { rounded: "" },
-                on: {
-                  click: function($event) {
-                    return _vm.reroutes("/campaign")
-                  }
-                }
-              },
-              [_vm._v("Back")]
-            ),
-            _vm._v(" "),
-            _c(
-              "v-container",
-              { staticClass: "py-8" },
-              [
-                _c(
-                  "v-toolbar",
-                  { attrs: { color: "#FFA726", flat: "" } },
-                  [
-                    _c("v-toolbar-title", [_vm._v("Registration Form")]),
-                    _vm._v(" "),
-                    _c("v-spacer")
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "v-stepper",
-                  {
-                    model: {
-                      value: _vm.e1,
-                      callback: function($$v) {
-                        _vm.e1 = $$v
-                      },
-                      expression: "e1"
-                    }
-                  },
-                  [
-                    _c(
-                      "v-stepper-header",
-                      [
-                        _c(
-                          "v-stepper-step",
-                          { attrs: { complete: _vm.e1 > 1, step: "1" } },
-                          [_vm._v("Personal Data")]
-                        ),
-                        _vm._v(" "),
-                        _c("v-divider"),
-                        _vm._v(" "),
-                        _c(
-                          "v-stepper-step",
-                          { attrs: { complete: _vm.e1 > 2, step: "2" } },
-                          [_vm._v("Password")]
-                        )
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "v-stepper-items",
-                      [
-                        _c(
-                          "v-stepper-content",
-                          { attrs: { step: "1" } },
-                          [
-                            _c(
-                              "v-card-text",
-                              [
-                                _c(
-                                  "v-form",
-                                  [
-                                    _c(
-                                      "v-row",
-                                      {
-                                        staticClass: "px-5",
-                                        attrs: { align: "center" }
-                                      },
-                                      [
-                                        _c("v-text-field", {
-                                          attrs: {
-                                            label: "First Name",
-                                            name: "firstname",
-                                            "prepend-icon": "person",
-                                            type: "text",
-                                            rules: _vm.firstnameRules,
-                                            required: "",
-                                            outlined: "",
-                                            clearable: ""
+  return _c(
+    "v-app",
+    [
+      _c("navbar"),
+      _vm._v(" "),
+      _c("main", { staticClass: "h-100" }, [
+        _c("div", { staticClass: "fluid" }, [
+          _c(
+            "section",
+            { staticClass: "top-space bg-section-1" },
+            [
+              _c(
+                "v-container",
+                { staticClass: "py-12" },
+                [
+                  _c(
+                    "v-card",
+                    [
+                      _c("v-card-title", [_vm._v("Daftar Akun Baru")]),
+                      _vm._v(" "),
+                      _c(
+                        "v-stepper",
+                        {
+                          attrs: { vertical: "" },
+                          model: {
+                            value: _vm.e1,
+                            callback: function($$v) {
+                              _vm.e1 = $$v
+                            },
+                            expression: "e1"
+                          }
+                        },
+                        [
+                          _c(
+                            "v-stepper-step",
+                            { attrs: { complete: _vm.e1 > 1, step: "1" } },
+                            [_vm._v("Data Pribadi")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-stepper-content",
+                            { attrs: { step: "1" } },
+                            [
+                              _c(
+                                "v-card-text",
+                                [
+                                  _c(
+                                    "v-form",
+                                    [
+                                      _c("v-text-field", {
+                                        attrs: {
+                                          label: "First Name",
+                                          name: "firstname",
+                                          "prepend-inner-icon": "person",
+                                          type: "text",
+                                          rules: _vm.firstnameRules,
+                                          required: "",
+                                          outlined: "",
+                                          clearable: ""
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _c("v-text-field", {
+                                        attrs: {
+                                          label: "Last Name",
+                                          name: "lastname",
+                                          "prepend-inner-icon": "person",
+                                          type: "text",
+                                          rules: _vm.lastnameRules,
+                                          required: "",
+                                          outlined: "",
+                                          clearable: ""
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _c("v-text-field", {
+                                        attrs: {
+                                          label: "Email",
+                                          name: "email",
+                                          "prepend-inner-icon": "mail",
+                                          type: "text",
+                                          rules: _vm.emailRules,
+                                          required: "",
+                                          outlined: "",
+                                          clearable: ""
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _c("v-text-field", {
+                                        attrs: {
+                                          label: "No.Handphone",
+                                          name: "noHandphone",
+                                          "prepend-inner-icon": "phone",
+                                          type: "text",
+                                          rules: _vm.noHandphoneRules,
+                                          counter: 14,
+                                          required: "",
+                                          outlined: "",
+                                          clearable: ""
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-btn",
+                                        {
+                                          staticClass: "mr-2",
+                                          attrs: { color: "primary" },
+                                          on: {
+                                            click: function($event) {
+                                              _vm.e1 = 2
+                                            }
                                           }
-                                        })
-                                      ],
-                                      1
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "v-row",
-                                      {
-                                        staticClass: "px-5 pt-5",
-                                        attrs: { align: "center" }
-                                      },
-                                      [
-                                        _c("v-text-field", {
-                                          attrs: {
-                                            label: "Last Name",
-                                            name: "lastname",
-                                            "prepend-icon": "person",
-                                            type: "text",
-                                            rules: _vm.lastnameRules,
-                                            required: "",
-                                            outlined: "",
-                                            clearable: ""
+                                        },
+                                        [_vm._v("Lanjut")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-btn",
+                                        {
+                                          staticClass: "mr-2",
+                                          attrs: { text: "" }
+                                        },
+                                        [_vm._v("Batal")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-stepper-step",
+                            { attrs: { complete: _vm.e1 > 2, step: "2" } },
+                            [_vm._v("Password")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-stepper-content",
+                            { attrs: { step: "2" } },
+                            [
+                              _c(
+                                "v-card-text",
+                                [
+                                  _c(
+                                    "v-form",
+                                    [
+                                      _c("v-text-field", {
+                                        attrs: {
+                                          id: "password",
+                                          label: "Password",
+                                          name: "password",
+                                          "prepend-icon": "lock",
+                                          type: "password",
+                                          rules: _vm.passwordRules,
+                                          required: "",
+                                          outlined: "",
+                                          clearable: ""
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _c("v-text-field", {
+                                        attrs: {
+                                          id: "passwordconfirm",
+                                          label: "Confirm Password",
+                                          name: "passwordconfirm",
+                                          "prepend-icon": "lock",
+                                          type: "password",
+                                          rules: _vm.passwordRules,
+                                          required: "",
+                                          outlined: "",
+                                          clearable: ""
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-btn",
+                                        {
+                                          staticClass: "mr-2",
+                                          attrs: { color: "primary" },
+                                          on: {
+                                            click: function($event) {
+                                              return _vm.reroutes("/")
+                                            }
                                           }
-                                        })
-                                      ],
-                                      1
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "v-row",
-                                      {
-                                        staticClass: "px-5 pt-5",
-                                        attrs: { align: "center" }
-                                      },
-                                      [
-                                        _c("v-text-field", {
-                                          attrs: {
-                                            label: "E-Mail",
-                                            name: "email",
-                                            "prepend-icon": "mail",
-                                            type: "text",
-                                            rules: _vm.emailRules,
-                                            required: "",
-                                            outlined: "",
-                                            clearable: ""
+                                        },
+                                        [_vm._v("Daftar")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-btn",
+                                        {
+                                          staticClass: "mr-2",
+                                          attrs: { text: "" },
+                                          on: {
+                                            click: function($event) {
+                                              _vm.e1 = 1
+                                            }
                                           }
-                                        })
-                                      ],
-                                      1
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "v-row",
-                                      {
-                                        staticClass: "px-5 pt-5",
-                                        attrs: { align: "center" }
-                                      },
-                                      [
-                                        _c("v-text-field", {
-                                          attrs: {
-                                            label: "No.Handphone",
-                                            name: "noHandphone",
-                                            "prepend-icon": "phone",
-                                            type: "text",
-                                            rules: _vm.noHandphoneRules,
-                                            counter: 14,
-                                            required: "",
-                                            outlined: "",
-                                            clearable: ""
-                                          }
-                                        })
-                                      ],
-                                      1
-                                    )
-                                  ],
-                                  1
-                                )
-                              ],
-                              1
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "v-btn",
-                              {
-                                attrs: { color: "primary" },
-                                on: {
-                                  click: function($event) {
-                                    _vm.e1 = 2
-                                  }
-                                }
-                              },
-                              [_vm._v("Continue")]
-                            ),
-                            _vm._v(" "),
-                            _c("v-btn", { attrs: { text: "" } }, [
-                              _vm._v("Cancel")
-                            ])
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "v-stepper-content",
-                          { attrs: { step: "2" } },
-                          [
-                            _c(
-                              "v-card-text",
-                              [
-                                _c(
-                                  "v-form",
-                                  [
-                                    _c(
-                                      "v-row",
-                                      {
-                                        staticClass: "px-5 pt-5",
-                                        attrs: { align: "center" }
-                                      },
-                                      [
-                                        _c("v-text-field", {
-                                          attrs: {
-                                            id: "password",
-                                            label: "Password",
-                                            name: "password",
-                                            "prepend-icon": "lock",
-                                            type: "password",
-                                            rules: _vm.passwordRules,
-                                            required: "",
-                                            outlined: "",
-                                            clearable: ""
-                                          }
-                                        })
-                                      ],
-                                      1
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "v-row",
-                                      {
-                                        staticClass: "px-5 pt-5",
-                                        attrs: { align: "center" }
-                                      },
-                                      [
-                                        _c("v-text-field", {
-                                          attrs: {
-                                            id: "passwordconfirm",
-                                            label: "Confirm Password",
-                                            name: "passwordconfirm",
-                                            "prepend-icon": "lock",
-                                            type: "password",
-                                            rules: _vm.passwordRules,
-                                            required: "",
-                                            outlined: "",
-                                            clearable: ""
-                                          }
-                                        })
-                                      ],
-                                      1
-                                    )
-                                  ],
-                                  1
-                                )
-                              ],
-                              1
-                            ),
-                            _vm._v(" "),
-                            _c("v-btn", { attrs: { color: "primary" } }, [
-                              _vm._v("Continue")
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "v-btn",
-                              {
-                                attrs: { text: "" },
-                                on: {
-                                  click: function($event) {
-                                    _vm.e1 = 1
-                                  }
-                                }
-                              },
-                              [_vm._v("Cancel")]
-                            )
-                          ],
-                          1
-                        )
-                      ],
-                      1
-                    )
-                  ],
-                  1
-                )
-              ],
-              1
-            )
-          ],
-          1
-        )
-      ])
-    ])
-  ])
+                                        },
+                                        [_vm._v("Kembali")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("footbar")
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -100357,11 +100219,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuetify/lib/components/VBtn */ "./node_modules/vuetify/lib/components/VBtn/index.js");
 /* harmony import */ var vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuetify/lib/components/VCard */ "./node_modules/vuetify/lib/components/VCard/index.js");
 /* harmony import */ var vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuetify/lib/components/VGrid */ "./node_modules/vuetify/lib/components/VGrid/index.js");
-/* harmony import */ var vuetify_lib_components_VDivider__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vuetify/lib/components/VDivider */ "./node_modules/vuetify/lib/components/VDivider/index.js");
-/* harmony import */ var vuetify_lib_components_VForm__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vuetify/lib/components/VForm */ "./node_modules/vuetify/lib/components/VForm/index.js");
-/* harmony import */ var vuetify_lib_components_VStepper__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vuetify/lib/components/VStepper */ "./node_modules/vuetify/lib/components/VStepper/index.js");
-/* harmony import */ var vuetify_lib_components_VTextField__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! vuetify/lib/components/VTextField */ "./node_modules/vuetify/lib/components/VTextField/index.js");
-/* harmony import */ var vuetify_lib_components_VToolbar__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! vuetify/lib/components/VToolbar */ "./node_modules/vuetify/lib/components/VToolbar/index.js");
+/* harmony import */ var vuetify_lib_components_VForm__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vuetify/lib/components/VForm */ "./node_modules/vuetify/lib/components/VForm/index.js");
+/* harmony import */ var vuetify_lib_components_VStepper__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vuetify/lib/components/VStepper */ "./node_modules/vuetify/lib/components/VStepper/index.js");
+/* harmony import */ var vuetify_lib_components_VTextField__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vuetify/lib/components/VTextField */ "./node_modules/vuetify/lib/components/VTextField/index.js");
 
 
 
@@ -100393,12 +100253,7 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 
 
-
-
-
-
-
-_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3___default()(component, {VApp: vuetify_lib_components_VApp__WEBPACK_IMPORTED_MODULE_4__["VApp"],VBtn: vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_5__["VBtn"],VCardText: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCardText"],VContainer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VContainer"],VDivider: vuetify_lib_components_VDivider__WEBPACK_IMPORTED_MODULE_8__["VDivider"],VForm: vuetify_lib_components_VForm__WEBPACK_IMPORTED_MODULE_9__["VForm"],VRow: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VRow"],VSpacer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VSpacer"],VStepper: vuetify_lib_components_VStepper__WEBPACK_IMPORTED_MODULE_10__["VStepper"],VStepperContent: vuetify_lib_components_VStepper__WEBPACK_IMPORTED_MODULE_10__["VStepperContent"],VStepperHeader: vuetify_lib_components_VStepper__WEBPACK_IMPORTED_MODULE_10__["VStepperHeader"],VStepperItems: vuetify_lib_components_VStepper__WEBPACK_IMPORTED_MODULE_10__["VStepperItems"],VStepperStep: vuetify_lib_components_VStepper__WEBPACK_IMPORTED_MODULE_10__["VStepperStep"],VTextField: vuetify_lib_components_VTextField__WEBPACK_IMPORTED_MODULE_11__["VTextField"],VToolbar: vuetify_lib_components_VToolbar__WEBPACK_IMPORTED_MODULE_12__["VToolbar"],VToolbarTitle: vuetify_lib_components_VToolbar__WEBPACK_IMPORTED_MODULE_12__["VToolbarTitle"]})
+_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3___default()(component, {VApp: vuetify_lib_components_VApp__WEBPACK_IMPORTED_MODULE_4__["VApp"],VBtn: vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_5__["VBtn"],VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCard"],VCardText: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCardText"],VCardTitle: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCardTitle"],VContainer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VContainer"],VForm: vuetify_lib_components_VForm__WEBPACK_IMPORTED_MODULE_8__["VForm"],VStepper: vuetify_lib_components_VStepper__WEBPACK_IMPORTED_MODULE_9__["VStepper"],VStepperContent: vuetify_lib_components_VStepper__WEBPACK_IMPORTED_MODULE_9__["VStepperContent"],VStepperStep: vuetify_lib_components_VStepper__WEBPACK_IMPORTED_MODULE_9__["VStepperStep"],VTextField: vuetify_lib_components_VTextField__WEBPACK_IMPORTED_MODULE_10__["VTextField"]})
 
 
 /* hot reload */

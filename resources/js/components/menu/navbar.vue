@@ -79,7 +79,7 @@
 <script>
     export default {
         data: () => ({
-            loggedin: true,
+            loggedin: false,
             logindialog: false,
             navbar: '#navbar',
         }),

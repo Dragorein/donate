@@ -102454,8 +102454,6 @@ __webpack_require__.r(__webpack_exports__);
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
 
- // import SearchCampaign from "../components/search/container"
-// import SearchPayment from "../components/search/container"
 
 
 
@@ -102471,17 +102469,7 @@ var routes = [{
   component: _components_search_container__WEBPACK_IMPORTED_MODULE_3__["default"],
   name: "search",
   path: "/search"
-}, // {
-//     component: SearchCampaign,
-//     name: "search",
-//     path: "/campaign/search"
-// },
-// {
-//     component: SearchPayment,
-//     name: "search",
-//     path: "/payment/search"
-// },
-{
+}, {
   component: _components_register_container__WEBPACK_IMPORTED_MODULE_4__["default"],
   name: "register",
   path: "/register"

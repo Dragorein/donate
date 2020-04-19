@@ -5,7 +5,7 @@
     <main class="h-100">
         <div class="fluid">
             <section class="top-space bg-section-1">
-                <v-container class="py-12">
+                <v-container class="pb-12">
                     <h1 class="display-1 font-weight-bold text-left">Galang Dana</h1>
                     <p>Dukung mereka untuk sembuh kembali. Mulai dari seribu rupiah.</p>
                     

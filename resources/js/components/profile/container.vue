@@ -5,7 +5,7 @@
     <main class="h-100">
         <div class="fluid">
             <section class="top-space bg-section-1">
-                <v-container class="py-12">
+                <v-container class="pb-12">
                     <v-card>
                         <v-row>
                             <v-col cols="12" md="6">
@@ -245,7 +245,7 @@
         justify-content: start;
     }
 
-    @media only screen and (max-width: 600px) {
+    @media only screen and (max-width: 768px) {
         .v-tabs--vertical {
             flex-direction: column;
         }

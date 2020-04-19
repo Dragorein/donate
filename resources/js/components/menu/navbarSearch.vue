@@ -1,16 +1,14 @@
 <template>
 
-    <v-app-bar flat color="white" class="py-4 h-auto">
+    <v-app-bar flat color="white" class="py-2 h-auto">
         <v-row>
-            <v-col class="d-flex justify-start align-center" cols="3">
-                <v-toolbar-items class="h-100">
-                    <v-btn @click="goBack" text small>
-                        <v-icon left>mdi-chevron-double-left</v-icon>Kembali
-                    </v-btn>
-                </v-toolbar-items>
+            <v-col class="d-flex align-center" cols="2" md="3">
+                <v-btn @click="goBack" small fab>
+                    <v-icon>mdi-chevron-double-left</v-icon>
+                </v-btn>
             </v-col>
 
-            <v-col class="d-flex justify-space-around align-center">
+            <v-col class="d-flex align-center" cols="10" md="6">
                 <v-text-field ref="search" solo hide-details dense label="Cari penggalangan dana disini" append-icon="search"></v-text-field>
             </v-col>
             

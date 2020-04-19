@@ -5,7 +5,7 @@
     <main class="h-100">
         <div class="fluid">
             <section class="top-space bg-section-1">
-                <v-container class="py-12">
+                <v-container class="pb-12">
                     <v-card>
                         <v-card-title>Daftar Akun Baru</v-card-title>
                         <v-stepper v-model="e1" vertical>

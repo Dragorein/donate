@@ -1,19 +1,19 @@
 <template>
 
-    <v-app-bar id="navbar" fixed elevate-on-scroll class="py-4 h-auto">
+    <v-app-bar id="navbar" fixed elevate-on-scroll class="py-2 h-auto">
         <v-row>
-            <v-col class="d-flex justify-start align-center" cols="3">
+            <v-col class="d-flex align-center">
                 <v-toolbar-title @click="reroutes('/')" class="headline font-weight-medium" style="cursor: pointer">
-                    <v-icon color="black" left>mdi-hand-heart mdi-36px</v-icon>Kindly
+                    <v-icon color="black" left>mdi-alpha-k-circle mdi-36px</v-icon>Kindly
                 </v-toolbar-title>
             </v-col>
             
-            <v-col class="d-flex justify-space-around align-center">
+            <v-col class="search-lg" cols="6">
                 <v-text-field background-color="transparent" @mousedown="reroutes('/search')" solo hide-details dense label="Cari penggalangan dana disini" append-icon="search"></v-text-field>
             </v-col>
             
-            <v-col cols="3" class="d-flex justify-end">
-                <v-toolbar-items>
+            <v-col class="d-flex justify-end align-center">
+                <v-btn class="search-md mr-2" @mousedown="reroutes('/search')" icon><v-icon>mdi-magnify</v-icon></v-btn>
                     <template v-if="loggedin == false">
                         <v-dialog v-model="logindialog" max-width="600px">
                             <template v-slot:activator="{ on }">
@@ -51,8 +51,8 @@
                     <template v-else>
                         <v-menu offset-y open-on-hover transition="slide-y-transition" bottom>
                             <template v-slot:activator="{ on }">
-                                <v-btn text large v-on="on">
-                                    <v-icon left>mdi-account-circle</v-icon>John
+                                <v-btn large text v-on="on">
+                                    <v-icon left>mdi-account-circle mdi-24px</v-icon>John
                                 </v-btn>
                             </template>
                             <v-list>
@@ -69,7 +69,6 @@
                             </v-list>
                         </v-menu>
                     </template>
-                </v-toolbar-items>
             </v-col>
         </v-row>
     </v-app-bar>
@@ -105,6 +104,25 @@
 <style>
     #navbar {
         background: transparent;
+    }
+
+    #navbar .search-lg {
+        display: flex;
+        align-items: center;
+    }
+
+    #navbar .search-md {
+        display: none;
+    }
+
+    @media only screen and (max-width: 768px) {
+        #navbar .search-lg {
+            display: none;
+        }
+
+        #navbar .search-md {
+            display: block;
+        }
     }
 
     .nav-bg {

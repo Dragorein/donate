@@ -1,30 +1,34 @@
 <template>
 <v-app>
-    <navbar-search></navbar-search>
+    <navbar-search/>
 
     <main class="h-100">
-        <v-container class="fluid my-5">
-            <v-row justify="center">
-                <v-card width="90%" class="mb-3 elevation-12">
-                    <v-list two-line>
-                        <v-subheader>Results</v-subheader>
+        <div class="fluid">
+            <section>
+                <v-container class="pb-12">
+                    <v-row justify="center">
+                        <v-card width="95%" class="mb-3 elevation-12">
+                            <v-list two-line>
+                                <v-subheader>Results</v-subheader>
 
-                        <template v-for="card in cards">
-                            <v-list-item @click="reroutes('/campaign/detail')">
-                                <v-list-item-avatar tile size="70" width="120">
-                                    <v-img :src="card.src"></v-img>
-                                </v-list-item-avatar>
-                                
-                                <v-list-item-content>
-                                    <v-list-item-title v-html="card.title"></v-list-item-title>
-                                    <v-list-item-subtitle v-html="card.author + ' ' + card.raised"></v-list-item-subtitle>
-                                </v-list-item-content>
-                            </v-list-item>
-                        </template>
-                    </v-list>
-                </v-card>  
-            </v-row>
-        </v-container>
+                                <template v-for="card in cards">
+                                    <v-list-item @click="reroutes('/campaign/detail')">
+                                        <v-list-item-avatar tile size="70" width="120">
+                                            <v-img :src="card.src"></v-img>
+                                        </v-list-item-avatar>
+                                        
+                                        <v-list-item-content>
+                                            <v-list-item-title v-html="card.title"></v-list-item-title>
+                                            <v-list-item-subtitle v-html="card.author + ' ' + card.raised"></v-list-item-subtitle>
+                                        </v-list-item-content>
+                                    </v-list-item>
+                                </template>
+                            </v-list>
+                        </v-card>  
+                    </v-row>
+                </v-container>
+            </section>
+        </div>
     </main>
 </v-app>
 </template>

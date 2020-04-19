@@ -5,7 +5,7 @@
     <main class="h-100">
         <div class="fluid">
             <section class="top-space bg-section-1">
-                <v-container class="py-6">
+                <v-container class="pb-6">
                     <v-row>
                         <v-col cols="12">
                             <v-card>

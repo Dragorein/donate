@@ -100,14 +100,6 @@
 </script>
 
 <style>
-    .bg-section-1 {
-        background: #F2F2F2;
-    }
-
-    .bg-section-2 {
-        background: white;
-    }
-
     section .v-card {
         transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1) all;
     }

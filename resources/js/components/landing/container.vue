@@ -14,7 +14,7 @@
                                             <div class="display-3">Salindia {{ slide }}</div>
                                         </v-row>
                                         <v-row justify="center">
-                                            <v-btn large class="mt-6">Bantu sekarang</v-btn>
+                                            <v-btn large color="red" dark class="mt-6">Bantu sekarang</v-btn>
                                         </v-row>
                                     </v-col>
                                 </v-row>
@@ -37,12 +37,12 @@
                                 <v-card-subtitle v-text="card.author"></v-card-subtitle>
 
                                 <v-card-text>
-                                    <v-progress-linear rounded height="8" v-model="card.progress" color="yellow accent-4"></v-progress-linear>
+                                    <v-progress-linear rounded height="8" v-model="card.progress" color="deep-orange"></v-progress-linear>
                                 </v-card-text>
 
                                 <v-card-text class="d-flex justify-space-between">
-                                    <span><strong class="orange--text title">{{card.raised}}</strong> Terkumpul</span>
-                                    <span><strong class="orange--text title">{{card.daysleft}}</strong> hari lagi</span>
+                                    <span><strong class="deep-orange--text title">{{card.raised}}</strong> Terkumpul</span>
+                                    <span><strong class="deep-orange--text title">{{card.daysleft}}</strong> hari lagi</span>
                                 </v-card-text>
 
                                 <v-divider class="my-0 mx-4"></v-divider>
@@ -65,12 +65,40 @@
                 </v-container>
             </section>
 
-            <section class="yellow lighten-1">
+            <section class="bg-section-1">
                 <v-container class="py-12">
-                    <h1 class="display-1 font-weight-bold text-center">Mengapa Kindly ?</h1>
+                    <h1 class="display-1 font-weight-bold text-center">Pilihan kami</h1>
                     <v-row>
-                        <v-col>
-                            <p class="text-center">Karena bla bla bla</p>
+                        <v-col v-for="(card, index) in cards" v-if="index < 3" :key="card.title" cols="12" sm="6" md="4">
+                        <v-hover v-slot:default="{ hover }">
+                            <v-card @click="reroutes('/campaign/detail')" :elevation="hover ? 24 : 6" class="my-4 card-transform">
+                                <v-img :src="card.src" height="200px"></v-img>
+
+                                <v-card-title v-text="card.title"></v-card-title>
+
+                                <v-card-subtitle v-text="card.author"></v-card-subtitle>
+
+                                <v-card-text>
+                                    <v-progress-linear rounded height="8" v-model="card.progress" color="deep-orange"></v-progress-linear>
+                                </v-card-text>
+
+                                <v-card-text class="d-flex justify-space-between">
+                                    <span><strong class="deep-orange--text title">{{card.raised}}</strong> Terkumpul</span>
+                                    <span><strong class="deep-orange--text title">{{card.daysleft}}</strong> hari lagi</span>
+                                </v-card-text>
+
+                                <v-divider class="my-0 mx-4"></v-divider>
+
+                                <v-card-text>
+                                    <v-chip class="mr-2">
+                                        <v-icon left>mdi-charity</v-icon>Galang
+                                    </v-chip>
+                                    <v-chip class="mr-2">
+                                        <v-icon left>mdi-cash-usd</v-icon>Dana
+                                    </v-chip>
+                                </v-card-text>
+                            </v-card>
+                        </v-hover>
                         </v-col>
                     </v-row>
                 </v-container>
@@ -118,11 +146,15 @@
 
 <style>
     .bg-section-1 {
-        background: #F2F2F2;
+        background: #FAFAFA;
     }
 
     .bg-section-2 {
-        background: white;
+        background: #FFEBEE;
+    }
+
+    .bg-section-3 {
+        background: #5E0606;
     }
 
     section .v-card {

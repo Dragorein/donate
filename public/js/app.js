@@ -2486,6 +2486,34 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -9855,7 +9883,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.bg-section-1 {\n    background: #F2F2F2;\n}\n.bg-section-2 {\n    background: white;\n}\nsection .v-card {\n    transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1) all;\n}\nsection .card-transform:hover {\n    transform: translatey(-10px);\n}\n.top-space {\n    padding-top: 96px!important;\n}\n.v-btn:focus {\n    outline: 0;\n}\na.v-btn:hover, .v-chip:hover {\n    text-decoration: none;\n}\n/*@import './assets/styles/yourstyles.css';*/\n", ""]);
+exports.push([module.i, "\nsection .v-card {\n    transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1) all;\n}\nsection .card-transform:hover {\n    transform: translatey(-10px);\n}\n.top-space {\n    padding-top: 96px!important;\n}\n.v-btn:focus {\n    outline: 0;\n}\na.v-btn:hover, .v-chip:hover {\n    text-decoration: none;\n}\n/*@import './assets/styles/yourstyles.css';*/\n", ""]);
 
 // exports
 
@@ -9893,7 +9921,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.bg-section-1 {\n    background: #F2F2F2;\n}\n.bg-section-2 {\n    background: white;\n}\nsection .v-card {\n    transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1) all;\n}\nsection .card-transform:hover {\n    transform: translatey(-10px);\n}\n.top-space {\n    padding-top: 80px!important;\n}\n.v-btn:focus {\n    outline: 0;\n}\na.v-btn:hover, .v-chip:hover {\n    text-decoration: none;\n}\n/*@import './assets/styles/yourstyles.css';*/\n", ""]);
+exports.push([module.i, "\nsection .v-card {\n    transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1) all;\n}\nsection .card-transform:hover {\n    transform: translatey(-10px);\n}\n.top-space {\n    padding-top: 80px!important;\n}\n.v-btn:focus {\n    outline: 0;\n}\na.v-btn:hover, .v-chip:hover {\n    text-decoration: none;\n}\n/*@import './assets/styles/yourstyles.css';*/\n", ""]);
 
 // exports
 
@@ -9912,7 +9940,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.bg-section-1 {\n    background: #F2F2F2;\n}\n.bg-section-2 {\n    background: white;\n}\nsection .v-card {\n    transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1) all;\n}\nsection .card-transform:hover {\n    transform: translatey(-10px);\n}\n.top-space {\n    padding-top: 80px!important;\n}\n.v-btn:focus {\n    outline: 0;\n}\na.v-btn:hover, .v-chip:hover {\n    text-decoration: none;\n}\n/*@import './assets/styles/yourstyles.css';*/\n", ""]);
+exports.push([module.i, "\n.bg-section-1 {\n    background: #FAFAFA;\n}\n.bg-section-2 {\n    background: #FFEBEE;\n}\n.bg-section-3 {\n    background: #5E0606;\n}\nsection .v-card {\n    transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1) all;\n}\nsection .card-transform:hover {\n    transform: translatey(-10px);\n}\n.top-space {\n    padding-top: 80px!important;\n}\n.v-btn:focus {\n    outline: 0;\n}\na.v-btn:hover, .v-chip:hover {\n    text-decoration: none;\n}\n/*@import './assets/styles/yourstyles.css';*/\n", ""]);
 
 // exports
 
@@ -9988,7 +10016,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.bg-section-1 {\n    background: #F2F2F2;\n}\n.bg-section-2 {\n    background: white;\n}\nsection .v-card {\n    transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1) all;\n}\nsection .card-transform:hover {\n    transform: translatey(-10px);\n}\n.top-space {\n    padding-top: 96px!important;\n}\n.v-btn:focus {\n    outline: 0;\n}\na.v-btn:hover, .v-chip:hover {\n    text-decoration: none;\n}\n.v-tabs--vertical .v-tab {\n    justify-content: start;\n}\n@media only screen and (max-width: 768px) {\n.v-tabs--vertical {\n        flex-direction: column;\n}\n}\n/*@import './assets/styles/yourstyles.css';*/\n", ""]);
+exports.push([module.i, "\nsection .v-card {\n    transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1) all;\n}\nsection .card-transform:hover {\n    transform: translatey(-10px);\n}\n.top-space {\n    padding-top: 96px!important;\n}\n.v-btn:focus {\n    outline: 0;\n}\na.v-btn:hover, .v-chip:hover {\n    text-decoration: none;\n}\n.v-tabs--vertical .v-tab {\n    justify-content: start;\n}\n@media only screen and (max-width: 768px) {\n.v-tabs--vertical {\n        flex-direction: column;\n}\n}\n/*@import './assets/styles/yourstyles.css';*/\n", ""]);
 
 // exports
 
@@ -42790,7 +42818,11 @@ var render = function() {
                                         "v-btn",
                                         {
                                           staticClass: "mt-6",
-                                          attrs: { large: "" }
+                                          attrs: {
+                                            large: "",
+                                            color: "red",
+                                            dark: ""
+                                          }
                                         },
                                         [_vm._v("Bantu sekarang")]
                                       )
@@ -42896,7 +42928,7 @@ var render = function() {
                                                     attrs: {
                                                       rounded: "",
                                                       height: "8",
-                                                      color: "yellow accent-4"
+                                                      color: "deep-orange"
                                                     },
                                                     model: {
                                                       value: card.progress,
@@ -42927,7 +42959,7 @@ var render = function() {
                                                       "strong",
                                                       {
                                                         staticClass:
-                                                          "orange--text title"
+                                                          "deep-orange--text title"
                                                       },
                                                       [
                                                         _vm._v(
@@ -42943,7 +42975,7 @@ var render = function() {
                                                       "strong",
                                                       {
                                                         staticClass:
-                                                          "orange--text title"
+                                                          "deep-orange--text title"
                                                       },
                                                       [
                                                         _vm._v(
@@ -43051,7 +43083,7 @@ var render = function() {
           _vm._v(" "),
           _c(
             "section",
-            { staticClass: "yellow lighten-1" },
+            { staticClass: "bg-section-1" },
             [
               _c(
                 "v-container",
@@ -43060,18 +43092,192 @@ var render = function() {
                   _c(
                     "h1",
                     { staticClass: "display-1 font-weight-bold text-center" },
-                    [_vm._v("Mengapa Kindly ?")]
+                    [_vm._v("Pilihan kami")]
                   ),
                   _vm._v(" "),
                   _c(
                     "v-row",
-                    [
-                      _c("v-col", [
-                        _c("p", { staticClass: "text-center" }, [
-                          _vm._v("Karena bla bla bla")
-                        ])
-                      ])
-                    ],
+                    _vm._l(_vm.cards, function(card, index) {
+                      return index < 3
+                        ? _c(
+                            "v-col",
+                            {
+                              key: card.title,
+                              attrs: { cols: "12", sm: "6", md: "4" }
+                            },
+                            [
+                              _c("v-hover", {
+                                scopedSlots: _vm._u(
+                                  [
+                                    {
+                                      key: "default",
+                                      fn: function(ref) {
+                                        var hover = ref.hover
+                                        return [
+                                          _c(
+                                            "v-card",
+                                            {
+                                              staticClass:
+                                                "my-4 card-transform",
+                                              attrs: {
+                                                elevation: hover ? 24 : 6
+                                              },
+                                              on: {
+                                                click: function($event) {
+                                                  return _vm.reroutes(
+                                                    "/campaign/detail"
+                                                  )
+                                                }
+                                              }
+                                            },
+                                            [
+                                              _c("v-img", {
+                                                attrs: {
+                                                  src: card.src,
+                                                  height: "200px"
+                                                }
+                                              }),
+                                              _vm._v(" "),
+                                              _c("v-card-title", {
+                                                domProps: {
+                                                  textContent: _vm._s(
+                                                    card.title
+                                                  )
+                                                }
+                                              }),
+                                              _vm._v(" "),
+                                              _c("v-card-subtitle", {
+                                                domProps: {
+                                                  textContent: _vm._s(
+                                                    card.author
+                                                  )
+                                                }
+                                              }),
+                                              _vm._v(" "),
+                                              _c(
+                                                "v-card-text",
+                                                [
+                                                  _c("v-progress-linear", {
+                                                    attrs: {
+                                                      rounded: "",
+                                                      height: "8",
+                                                      color: "deep-orange"
+                                                    },
+                                                    model: {
+                                                      value: card.progress,
+                                                      callback: function($$v) {
+                                                        _vm.$set(
+                                                          card,
+                                                          "progress",
+                                                          $$v
+                                                        )
+                                                      },
+                                                      expression:
+                                                        "card.progress"
+                                                    }
+                                                  })
+                                                ],
+                                                1
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "v-card-text",
+                                                {
+                                                  staticClass:
+                                                    "d-flex justify-space-between"
+                                                },
+                                                [
+                                                  _c("span", [
+                                                    _c(
+                                                      "strong",
+                                                      {
+                                                        staticClass:
+                                                          "deep-orange--text title"
+                                                      },
+                                                      [
+                                                        _vm._v(
+                                                          _vm._s(card.raised)
+                                                        )
+                                                      ]
+                                                    ),
+                                                    _vm._v(" Terkumpul")
+                                                  ]),
+                                                  _vm._v(" "),
+                                                  _c("span", [
+                                                    _c(
+                                                      "strong",
+                                                      {
+                                                        staticClass:
+                                                          "deep-orange--text title"
+                                                      },
+                                                      [
+                                                        _vm._v(
+                                                          _vm._s(card.daysleft)
+                                                        )
+                                                      ]
+                                                    ),
+                                                    _vm._v(" hari lagi")
+                                                  ])
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c("v-divider", {
+                                                staticClass: "my-0 mx-4"
+                                              }),
+                                              _vm._v(" "),
+                                              _c(
+                                                "v-card-text",
+                                                [
+                                                  _c(
+                                                    "v-chip",
+                                                    { staticClass: "mr-2" },
+                                                    [
+                                                      _c(
+                                                        "v-icon",
+                                                        { attrs: { left: "" } },
+                                                        [_vm._v("mdi-charity")]
+                                                      ),
+                                                      _vm._v(
+                                                        "Galang\r\n                                    "
+                                                      )
+                                                    ],
+                                                    1
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "v-chip",
+                                                    { staticClass: "mr-2" },
+                                                    [
+                                                      _c(
+                                                        "v-icon",
+                                                        { attrs: { left: "" } },
+                                                        [_vm._v("mdi-cash-usd")]
+                                                      ),
+                                                      _vm._v(
+                                                        "Dana\r\n                                    "
+                                                      )
+                                                    ],
+                                                    1
+                                                  )
+                                                ],
+                                                1
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        ]
+                                      }
+                                    }
+                                  ],
+                                  null,
+                                  true
+                                )
+                              })
+                            ],
+                            1
+                          )
+                        : _vm._e()
+                    }),
                     1
                   )
                 ],
@@ -43117,7 +43323,7 @@ var render = function() {
       _c(
         "v-card",
         {
-          staticClass: "orange lighten-1 white--text text-center w-100",
+          staticClass: "red accent-2 white--text text-center w-100",
           attrs: { flat: "", tile: "" }
         },
         [
@@ -43202,7 +43408,8 @@ var render = function() {
               _c(
                 "v-toolbar-title",
                 {
-                  staticClass: "headline font-weight-medium",
+                  staticClass:
+                    "headline font-weight-medium d-flex align-center",
                   staticStyle: { cursor: "pointer" },
                   on: {
                     click: function($event) {
@@ -43211,9 +43418,11 @@ var render = function() {
                   }
                 },
                 [
-                  _c("v-icon", { attrs: { color: "black", left: "" } }, [
-                    _vm._v("mdi-alpha-k-circle mdi-36px")
-                  ]),
+                  _c(
+                    "v-icon",
+                    { attrs: { color: "red lighten-1", left: "" } },
+                    [_vm._v("mdi-alpha-k-circle mdi-36px")]
+                  ),
                   _vm._v("Kindly\n            ")
                 ],
                 1
@@ -43281,7 +43490,11 @@ var render = function() {
                                     "v-btn",
                                     _vm._g(
                                       {
-                                        attrs: { large: "", color: "success" }
+                                        attrs: {
+                                          large: "",
+                                          color: "red",
+                                          dark: ""
+                                        }
                                       },
                                       on
                                     ),
@@ -43301,7 +43514,7 @@ var render = function() {
                           ],
                           null,
                           false,
-                          1721028859
+                          1049757729
                         ),
                         model: {
                           value: _vm.logindialog,

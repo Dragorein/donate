@@ -3,8 +3,8 @@
     <v-app-bar id="navbar" fixed elevate-on-scroll class="py-2 h-auto">
         <v-row>
             <v-col class="d-flex align-center">
-                <v-toolbar-title @click="reroutes('/')" class="headline font-weight-medium" style="cursor: pointer">
-                    <v-icon color="black" left>mdi-alpha-k-circle mdi-36px</v-icon>Kindly
+                <v-toolbar-title @click="reroutes('/')" class="headline font-weight-medium d-flex align-center" style="cursor: pointer">
+                    <v-icon color="red lighten-1" left>mdi-alpha-k-circle mdi-36px</v-icon>Kindly
                 </v-toolbar-title>
             </v-col>
             
@@ -17,7 +17,7 @@
                     <template v-if="loggedin == false">
                         <v-dialog v-model="logindialog" max-width="600px">
                             <template v-slot:activator="{ on }">
-                                <v-btn large color="success" v-on="on">
+                                <v-btn large color="red" dark v-on="on">
                                     Masuk<v-icon right>mdi-login-variant</v-icon>
                                 </v-btn>
                             </template>

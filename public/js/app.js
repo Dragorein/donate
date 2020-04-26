@@ -9838,7 +9838,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n#navbar {\n    background: transparent;\n}\n#navbar .search-lg {\n    display: flex;\n    align-items: center;\n}\n#navbar .search-md {\n    display: none;\n}\n@media only screen and (max-width: 768px) {\n#navbar .search-lg {\n        display: none;\n}\n#navbar .search-md {\n        display: block;\n}\n}\n.nav-bg {\n    background: linear-gradient(rgba(255,255,255,1), rgba(255,255,255,.8))!important;\n}\n.v-btn:focus {\n    outline: 0;\n}\na.v-btn:hover, a.v-list-item, .v-chip:hover {\n    text-decoration: none;\n}\n", ""]);
+exports.push([module.i, "\n#navbar {\n    background: transparent;\n}\n#navbar .search-lg {\n    display: flex;\n    align-items: center;\n}\n#navbar .search-md {\n    display: none;\n}\n@media only screen and (max-width: 959px) {\n#navbar .search-lg {\n        display: none;\n}\n#navbar .search-md {\n        display: block;\n}\n}\n.nav-bg {\n    background: linear-gradient(rgba(255,255,255,1), rgba(255,255,255,.8))!important;\n}\n.v-btn:focus {\n    outline: 0;\n}\na.v-btn:hover, a.v-list-item, .v-chip:hover {\n    text-decoration: none;\n}\n", ""]);
 
 // exports
 
@@ -9857,7 +9857,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.v-btn:focus {\n    outline: 0;\n}\na.v-btn:hover, .v-chip:hover {\n    text-decoration: none;\n}\n", ""]);
+exports.push([module.i, "\n.back-lg {\n    display: block;\n}\n.back-md {\n    display: none;\n}\n@media only screen and (max-width: 959px) {\n.back-lg {\n        display: none;\n}\n.back-md {\n        display: block;\n}\n}\n.v-btn:focus {\n    outline: 0;\n}\na.v-btn:hover, .v-chip:hover {\n    text-decoration: none;\n}\n", ""]);
 
 // exports
 
@@ -43286,15 +43286,17 @@ var render = function() {
         [
           _c(
             "v-col",
-            {
-              staticClass: "d-flex align-center",
-              attrs: { cols: "2", md: "3" }
-            },
+            { staticClass: "back-lg", attrs: { cols: "2", md: "3" } },
             [
               _c(
                 "v-btn",
-                { attrs: { small: "", fab: "" }, on: { click: _vm.goBack } },
-                [_c("v-icon", [_vm._v("mdi-chevron-double-left")])],
+                { attrs: { text: "" }, on: { click: _vm.goBack } },
+                [
+                  _c("v-icon", { attrs: { left: "" } }, [
+                    _vm._v("mdi-chevron-double-left")
+                  ]),
+                  _vm._v("Kembali\n            ")
+                ],
                 1
               )
             ],
@@ -43304,10 +43306,21 @@ var render = function() {
           _c(
             "v-col",
             {
-              staticClass: "d-flex align-center",
-              attrs: { cols: "10", md: "6" }
+              staticClass: "d-flex align-start",
+              attrs: { cols: "12", md: "6" }
             },
             [
+              _c(
+                "v-btn",
+                {
+                  staticClass: "back-md mr-3",
+                  attrs: { small: "", fab: "" },
+                  on: { click: _vm.goBack }
+                },
+                [_c("v-icon", [_vm._v("mdi-chevron-double-left")])],
+                1
+              ),
+              _vm._v(" "),
               _c("v-text-field", {
                 ref: "search",
                 attrs: {
@@ -43320,12 +43333,7 @@ var render = function() {
               })
             ],
             1
-          ),
-          _vm._v(" "),
-          _c("v-col", {
-            staticClass: "d-flex justify-end",
-            attrs: { cols: "3" }
-          })
+          )
         ],
         1
       )

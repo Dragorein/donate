@@ -18,22 +18,22 @@
                     </v-combobox>
 
                     <v-row>
-                        <v-col v-for="card in cards" :key="card.title" cols="12" sm="6" md="4" xl="3">
+                        <v-col v-for="submisi in submisis" :key="submisi.submisi_judul" cols="12" sm="6" md="4" xl="3">
                         <v-hover v-slot:default="{ hover }">
                             <v-card @click="reroutes('/campaign/detail')" :elevation="hover ? 24 : 6" class="my-4 card-transform">
-                                <v-img :src="card.src" height="200px"></v-img>
+                                <v-img :src="'/picture/' + submisi.submisi_foto" height="200px"></v-img>
 
-                                <v-card-title v-text="card.title"></v-card-title>
+                                <v-card-title v-text="submisi.submisi_judul"></v-card-title>
 
-                                <v-card-subtitle v-text="card.author"></v-card-subtitle>
+                                <v-card-subtitle v-text="submisi.submisi_judul"></v-card-subtitle>
 
                                 <v-card-text>
-                                    <v-progress-linear rounded height="8" v-model="card.progress" color="yellow accent-4"></v-progress-linear>
+                                    <v-progress-linear rounded height="8" v-model="submisi.submisi_id" color="yellow accent-4"></v-progress-linear>
                                 </v-card-text>
 
                                 <v-card-text class="d-flex justify-space-between">
-                                    <span><strong class="orange--text title">{{card.raised}}</strong> Terkumpul</span>
-                                    <span><strong class="orange--text title">{{card.daysleft}}</strong> hari lagi</span>
+                                    <span><strong class="orange--text title">{{submisi.submisi_judul}}</strong> Terkumpul</span>
+                                    <span><strong class="orange--text title">{{submisi.submisi_judul}}</strong> hari lagi</span>
                                 </v-card-text>
 
                                 <v-divider class="my-0 mx-4"></v-divider>
@@ -66,28 +66,23 @@
     export default {
         data: () => ({
             chips: [],
+            submisis: [],
             filter: ['Galang', 'Dana'],
-            cards: [
-                {title:'Supermodel', src:'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg', author:'Louise', progress:50, raised:'Rp 3.003.132', daysleft:'30'},
-                {title:'Halcyon Days', src:'https://cdn.vuetifyjs.com/images/cards/house.jpg', author:'Danny', progress:80, raised:'Rp 5.012.500', daysleft:'3'},
-                {title:'Top western road trips', src:'https://cdn.vuetifyjs.com/images/cards/docks.jpg', author:'Rachel', progress:5, raised:'Rp 176.320', daysleft:'56'},
-                {title:'Unlimited music now', src:'https://cdn.vuetifyjs.com/images/cards/halcyon.png', author:'Ellie', progress:100, raised:'Rp 152.901.000', daysleft:'1'},
-                {title:'Best airlines', src:'https://cdn.vuetifyjs.com/images/cards/plane.jpg', author:'Tommy', progress:60, raised:'Rp 16.251.026', daysleft:'23'},
-                {title:'Supermodel', src:'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg', author:'Louise', progress:50, raised:'Rp 3.003.132', daysleft:'30'},
-                {title:'Halcyon Days', src:'https://cdn.vuetifyjs.com/images/cards/house.jpg', author:'Danny', progress:80, raised:'Rp 5.012.500', daysleft:'3'},
-                {title:'Top western road trips', src:'https://cdn.vuetifyjs.com/images/cards/docks.jpg', author:'Rachel', progress:5, raised:'Rp 176.320', daysleft:'56'},
-                {title:'Unlimited music now', src:'https://cdn.vuetifyjs.com/images/cards/halcyon.png', author:'Ellie', progress:100, raised:'Rp 152.901.000', daysleft:'1'},
-                {title:'Supermodel', src:'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg', author:'Louise', progress:50, raised:'Rp 3.003.132', daysleft:'30'},
-                {title:'Halcyon Days', src:'https://cdn.vuetifyjs.com/images/cards/house.jpg', author:'Danny', progress:80, raised:'Rp 5.012.500', daysleft:'3'},
-                {title:'Best airlines', src:'https://cdn.vuetifyjs.com/images/cards/plane.jpg', author:'Tommy', progress:60, raised:'Rp 16.251.026', daysleft:'23'},
-            ],
             length: 10,
             nextIcon: 'navigate_next',
             prevIcon: 'navigate_before',
             page: 1,
             totalVisible: 10,
         }),
+        created() {
+            this.loadData();
+        },
         methods: {
+            loadData() {
+            axios.get("http://localhost:8000/api/").then(response => {
+                this.submisis = response.data;
+            });
+            },
             reroutes: function (url) {
                 this.$router.push({ path: url });
             },
@@ -95,6 +90,9 @@
                 this.chips.splice(this.chips.indexOf(item), 1)
                 this.chips = [...this.chips]
             },
+            getImgUrl(pic) {
+                return require('./picture/'+pic)
+            }
         }
     }
 </script>

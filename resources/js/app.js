@@ -8,8 +8,12 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+// import dependecies tambahan
+import VueAxios from 'vue-axios';
+import Axios from 'axios';
 import Vuetify from "../plugins/vuetify"
 import router from "./router"
+Vue.use(VueAxios,Axios);
 
 /**
  * The following block of code may be used to automatically register your

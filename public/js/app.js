@@ -2007,92 +2007,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   data: function data() {
     return {
       chips: [],
+      submisis: [],
       filter: ['Galang', 'Dana'],
-      cards: [{
-        title: 'Supermodel',
-        src: 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
-        author: 'Louise',
-        progress: 50,
-        raised: 'Rp 3.003.132',
-        daysleft: '30'
-      }, {
-        title: 'Halcyon Days',
-        src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg',
-        author: 'Danny',
-        progress: 80,
-        raised: 'Rp 5.012.500',
-        daysleft: '3'
-      }, {
-        title: 'Top western road trips',
-        src: 'https://cdn.vuetifyjs.com/images/cards/docks.jpg',
-        author: 'Rachel',
-        progress: 5,
-        raised: 'Rp 176.320',
-        daysleft: '56'
-      }, {
-        title: 'Unlimited music now',
-        src: 'https://cdn.vuetifyjs.com/images/cards/halcyon.png',
-        author: 'Ellie',
-        progress: 100,
-        raised: 'Rp 152.901.000',
-        daysleft: '1'
-      }, {
-        title: 'Best airlines',
-        src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg',
-        author: 'Tommy',
-        progress: 60,
-        raised: 'Rp 16.251.026',
-        daysleft: '23'
-      }, {
-        title: 'Supermodel',
-        src: 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
-        author: 'Louise',
-        progress: 50,
-        raised: 'Rp 3.003.132',
-        daysleft: '30'
-      }, {
-        title: 'Halcyon Days',
-        src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg',
-        author: 'Danny',
-        progress: 80,
-        raised: 'Rp 5.012.500',
-        daysleft: '3'
-      }, {
-        title: 'Top western road trips',
-        src: 'https://cdn.vuetifyjs.com/images/cards/docks.jpg',
-        author: 'Rachel',
-        progress: 5,
-        raised: 'Rp 176.320',
-        daysleft: '56'
-      }, {
-        title: 'Unlimited music now',
-        src: 'https://cdn.vuetifyjs.com/images/cards/halcyon.png',
-        author: 'Ellie',
-        progress: 100,
-        raised: 'Rp 152.901.000',
-        daysleft: '1'
-      }, {
-        title: 'Supermodel',
-        src: 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
-        author: 'Louise',
-        progress: 50,
-        raised: 'Rp 3.003.132',
-        daysleft: '30'
-      }, {
-        title: 'Halcyon Days',
-        src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg',
-        author: 'Danny',
-        progress: 80,
-        raised: 'Rp 5.012.500',
-        daysleft: '3'
-      }, {
-        title: 'Best airlines',
-        src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg',
-        author: 'Tommy',
-        progress: 60,
-        raised: 'Rp 16.251.026',
-        daysleft: '23'
-      }],
       length: 10,
       nextIcon: 'navigate_next',
       prevIcon: 'navigate_before',
@@ -2100,7 +2016,17 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       totalVisible: 10
     };
   },
+  created: function created() {
+    this.loadData();
+  },
   methods: {
+    loadData: function loadData() {
+      var _this = this;
+
+      axios.get("http://localhost:8000/api/").then(function (response) {
+        _this.submisis = response.data;
+      });
+    },
     reroutes: function reroutes(url) {
       this.$router.push({
         path: url
@@ -2109,6 +2035,9 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     remove: function remove(item) {
       this.chips.splice(this.chips.indexOf(item), 1);
       this.chips = _toConsumableArray(this.chips);
+    },
+    getImgUrl: function getImgUrl(pic) {
+      return !(function webpackMissingModule() { var e = new Error("Cannot find module 'undefined'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
     }
   }
 });
@@ -41346,6 +41275,19 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 /***/ }),
 
+/***/ "./node_modules/vue-axios/dist/vue-axios.min.js":
+/*!******************************************************!*\
+  !*** ./node_modules/vue-axios/dist/vue-axios.min.js ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(o){return typeof o}:function(o){return o&&"function"==typeof Symbol&&o.constructor===Symbol&&o!==Symbol.prototype?"symbol":typeof o};!function(){function o(e,t){if(!o.installed){if(o.installed=!0,!t)return void console.error("You have to install axios");e.axios=t,Object.defineProperties(e.prototype,{axios:{get:function(){return t}},$http:{get:function(){return t}}})}}"object"==( false?undefined:_typeof(exports))?module.exports=o: true?!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function(){return o}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)):undefined}();
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vuetify-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/appContainer.vue?vue&type=template&id=49a171aa&":
 /*!**********************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vuetify-loader/lib/loader.js??ref--11-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/appContainer.vue?vue&type=template&id=49a171aa& ***!
@@ -41464,11 +41406,11 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "v-row",
-                    _vm._l(_vm.cards, function(card) {
+                    _vm._l(_vm.submisis, function(submisi) {
                       return _c(
                         "v-col",
                         {
-                          key: card.title,
+                          key: submisi.submisi_judul,
                           attrs: { cols: "12", sm: "6", md: "4", xl: "3" }
                         },
                         [
@@ -41496,20 +41438,26 @@ var render = function() {
                                         [
                                           _c("v-img", {
                                             attrs: {
-                                              src: card.src,
+                                              src:
+                                                "/picture/" +
+                                                submisi.submisi_foto,
                                               height: "200px"
                                             }
                                           }),
                                           _vm._v(" "),
                                           _c("v-card-title", {
                                             domProps: {
-                                              textContent: _vm._s(card.title)
+                                              textContent: _vm._s(
+                                                submisi.submisi_judul
+                                              )
                                             }
                                           }),
                                           _vm._v(" "),
                                           _c("v-card-subtitle", {
                                             domProps: {
-                                              textContent: _vm._s(card.author)
+                                              textContent: _vm._s(
+                                                submisi.submisi_judul
+                                              )
                                             }
                                           }),
                                           _vm._v(" "),
@@ -41523,15 +41471,16 @@ var render = function() {
                                                   color: "yellow accent-4"
                                                 },
                                                 model: {
-                                                  value: card.progress,
+                                                  value: submisi.submisi_id,
                                                   callback: function($$v) {
                                                     _vm.$set(
-                                                      card,
-                                                      "progress",
+                                                      submisi,
+                                                      "submisi_id",
                                                       $$v
                                                     )
                                                   },
-                                                  expression: "card.progress"
+                                                  expression:
+                                                    "submisi.submisi_id"
                                                 }
                                               })
                                             ],
@@ -41552,7 +41501,13 @@ var render = function() {
                                                     staticClass:
                                                       "orange--text title"
                                                   },
-                                                  [_vm._v(_vm._s(card.raised))]
+                                                  [
+                                                    _vm._v(
+                                                      _vm._s(
+                                                        submisi.submisi_judul
+                                                      )
+                                                    )
+                                                  ]
                                                 ),
                                                 _vm._v(" Terkumpul")
                                               ]),
@@ -41566,7 +41521,9 @@ var render = function() {
                                                   },
                                                   [
                                                     _vm._v(
-                                                      _vm._s(card.daysleft)
+                                                      _vm._s(
+                                                        submisi.submisi_judul
+                                                      )
                                                     )
                                                   ]
                                                 ),
@@ -99738,8 +99695,12 @@ module.exports = function(module) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _plugins_vuetify__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../plugins/vuetify */ "./resources/plugins/vuetify.js");
-/* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./router */ "./resources/js/router/index.js");
+/* harmony import */ var vue_axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-axios */ "./node_modules/vue-axios/dist/vue-axios.min.js");
+/* harmony import */ var vue_axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _plugins_vuetify__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../plugins/vuetify */ "./resources/plugins/vuetify.js");
+/* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./router */ "./resources/js/router/index.js");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -99747,9 +99708,13 @@ __webpack_require__.r(__webpack_exports__);
  */
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
-window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js"); // import dependecies tambahan
 
 
+
+
+
+Vue.use(vue_axios__WEBPACK_IMPORTED_MODULE_0___default.a, axios__WEBPACK_IMPORTED_MODULE_1___default.a);
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -99773,8 +99738,8 @@ Vue.component('search-page', __webpack_require__(/*! ./components/search/contain
  */
 
 var app = new Vue({
-  vuetify: _plugins_vuetify__WEBPACK_IMPORTED_MODULE_0__["default"],
-  router: _router__WEBPACK_IMPORTED_MODULE_1__["default"],
+  vuetify: _plugins_vuetify__WEBPACK_IMPORTED_MODULE_2__["default"],
+  router: _router__WEBPACK_IMPORTED_MODULE_3__["default"],
   el: '#app'
 });
 
@@ -101161,8 +101126,8 @@ var opts = {};
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\xampp\htdocs\donate\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\xampp\htdocs\donate\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\donate\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\donate\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

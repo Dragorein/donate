@@ -90,9 +90,6 @@
                 this.chips.splice(this.chips.indexOf(item), 1)
                 this.chips = [...this.chips]
             },
-            getImgUrl(pic) {
-                return require('./picture/'+pic)
-            }
         }
     }
 </script>

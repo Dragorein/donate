@@ -1,6 +1,6 @@
 <template>
 <v-app>
-    <navbar></navbar>
+    <navbar/>
 
     <main class="h-100">
         <div class="fluid">
@@ -28,12 +28,12 @@
                                 <v-card-subtitle v-text="card.author"></v-card-subtitle>
 
                                 <v-card-text>
-                                    <v-progress-linear rounded height="8" v-model="card.progress" color="yellow accent-4"></v-progress-linear>
+                                    <v-progress-linear rounded height="8" v-model="card.progress" color="deep-orange"></v-progress-linear>
                                 </v-card-text>
 
                                 <v-card-text class="d-flex justify-space-between">
-                                    <span><strong class="orange--text title">{{card.raised}}</strong> Terkumpul</span>
-                                    <span><strong class="orange--text title">{{card.daysleft}}</strong> hari lagi</span>
+                                    <span><strong class="deep-orange--text title">{{card.raised}}</strong> Terkumpul</span>
+                                    <span><strong class="deep-orange--text title">{{card.daysleft}}</strong> hari lagi</span>
                                 </v-card-text>
 
                                 <v-divider class="my-0 mx-4"></v-divider>
@@ -51,14 +51,14 @@
                         </v-col>
                     </v-row>
                     <v-row justify="center">
-                        <v-pagination color="orange" v-model="page" :length="length" :page="page" :total-visible="totalVisible"></v-pagination>
+                        <v-pagination color="deep-orange" v-model="page" :length="length" :page="page" :total-visible="totalVisible"></v-pagination>
                     </v-row>
                 </v-container>
             </section>
         </div>
     </main>
 
-    <footbar></footbar>
+    <footbar/>
 </v-app>
 </template>
 

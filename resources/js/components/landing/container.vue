@@ -1,12 +1,12 @@
 <template>
 <v-app>
-    <navbar></navbar>
+    <navbar/>
 
     <main class="h-100">
         <div class="fluid">
-            <section class="top-space bg-section-1">
-                <v-container class="pb-12">
-                    <v-carousel cycle delimiter-icon="mdi-minus" hide-delimiter-background show-arrows-on-hover class="elevation-24" style="border-radius:4px;">
+            <section class="bg-section-1">
+                <div>
+                    <v-carousel height="600" cycle delimiter-icon="mdi-minus" hide-delimiter-background show-arrows-on-hover>
                         <v-carousel-item v-for="(slide, i) in slides" :key="i" :src="items[i]" gradient="rgba(255,255,255,.8), rgba(255,255,255,0.3)">
                                 <v-row class="fill-height" align="center" justify="center">
                                     <v-col>
@@ -14,17 +14,17 @@
                                             <div class="display-3">Salindia {{ slide }}</div>
                                         </v-row>
                                         <v-row justify="center">
-                                            <v-btn large color="red" dark class="mt-6">Bantu sekarang</v-btn>
+                                            <v-btn large color="error" class="mt-6">Bantu sekarang</v-btn>
                                         </v-row>
                                     </v-col>
                                 </v-row>
                         </v-carousel-item>
                     </v-carousel>
-                </v-container>
+                </div>
             </section>
 
             <section class="bg-section-2">
-                <v-container class="py-12">
+                <v-container class="py-12 px-lg-12">
                     <h1 class="display-1 font-weight-bold text-center">Bantu siapa hari ini ?</h1>
                     <v-row>
                         <v-col v-for="(card, index) in cards" v-if="index < 6" :key="card.title" cols="12" sm="6" md="4">
@@ -66,7 +66,7 @@
             </section>
 
             <section class="bg-section-1">
-                <v-container class="py-12">
+                <v-container class="py-12 px-lg-12">
                     <h1 class="display-1 font-weight-bold text-center">Pilihan kami</h1>
                     <v-row>
                         <v-col v-for="(card, index) in cards" v-if="index < 3" :key="card.title" cols="12" sm="6" md="4">
@@ -106,7 +106,7 @@
         </div>
     </main>
 
-    <footbar></footbar>
+    <footbar/>
 </v-app>
 </template>
 

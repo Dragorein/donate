@@ -18,22 +18,22 @@
                     </v-combobox>
 
                     <v-row>
-                        <v-col v-for="submisi in submisis" :key="submisi.submisi_judul" cols="12" sm="6" md="4" xl="3">
+                        <v-col v-for="submisi in submisis" :key="submisi.submisi_id" cols="12" sm="6" md="4" xl="3">
                         <v-hover v-slot:default="{ hover }">
                             <v-card @click="reroutes('/campaign/detail')" :elevation="hover ? 24 : 6" class="my-4 card-transform">
                                 <v-img :src="'/picture/' + submisi.submisi_foto" height="200px"></v-img>
 
                                 <v-card-title v-text="submisi.submisi_judul"></v-card-title>
 
-                                <v-card-subtitle v-text="submisi.submisi_judul"></v-card-subtitle>
+                                <v-card-subtitle v-text="submisi.user_name"></v-card-subtitle>
 
                                 <v-card-text>
-                                    <v-progress-linear rounded height="8" v-model="submisi.submisi_id" color="yellow accent-4"></v-progress-linear>
+                                    <v-progress-linear rounded height="8" v-model="submisi.kekurangan_donasi" color="yellow accent-4"></v-progress-linear>
                                 </v-card-text>
 
                                 <v-card-text class="d-flex justify-space-between">
-                                    <span><strong class="orange--text title">{{submisi.submisi_judul}}</strong> Terkumpul</span>
-                                    <span><strong class="orange--text title">{{submisi.submisi_judul}}</strong> hari lagi</span>
+                                    <span><strong class="orange--text title">{{submisi.total_donasi}}</strong> Terkumpul</span>
+                                    <span><strong class="orange--text title">{{submisi.day_left}}</strong> hari lagi</span>
                                 </v-card-text>
 
                                 <v-divider class="my-0 mx-4"></v-divider>
@@ -51,7 +51,7 @@
                         </v-col>
                     </v-row>
                     <v-row justify="center">
-                        <v-pagination color="orange" v-model="page" :length="length" :page="page" :total-visible="totalVisible"></v-pagination>
+                         <v-pagination color="orange" v-model="page" :length="length" :page="page" :total-visible="totalVisible" @input="next"></v-pagination>
                     </v-row>
                 </v-container>
             </section>
@@ -90,7 +90,7 @@
                 this.chips.splice(this.chips.indexOf(item), 1)
                 this.chips = [...this.chips]
             },
-        }
+        },
     }
 </script>
 

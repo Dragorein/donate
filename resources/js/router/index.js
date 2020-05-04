@@ -9,7 +9,9 @@ import Register from "../components/register/container"
 import Campaign from "../components/campaign/container"
 import CampaignDetail from "../components/campaign/detailContainer"
 import Payment from "../components/payment/container"
+import PaymentDone from "../components/payment/doneContainer"
 import Profile from "../components/profile/container"
+import Dashboard from "../components/dashboard/container"
 
 const routes = [
     {
@@ -43,10 +45,20 @@ const routes = [
         path: "/payment"
     },
     {
+        component: PaymentDone,
+        name: "payment",
+        path: "/payment/done"
+    },
+    {
         component: Profile,
         name: "profile",
         path: "/profile"
     },
+    {
+        component: Dashboard,
+        name: "dashboard",
+        path: "/dashboard"
+    }
 ];
 
 export default new VueRouter({

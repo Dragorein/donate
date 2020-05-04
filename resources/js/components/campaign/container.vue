@@ -1,11 +1,11 @@
 <template>
 <v-app>
-    <navbar></navbar>
+    <navbar/>
 
     <main class="h-100">
         <div class="fluid">
             <section class="top-space bg-section-1">
-                <v-container class="py-12">
+                <v-container class="pb-12">
                     <h1 class="display-1 font-weight-bold text-left">Galang Dana</h1>
                     <p>Dukung mereka untuk sembuh kembali. Mulai dari seribu rupiah.</p>
                     
@@ -58,7 +58,7 @@
         </div>
     </main>
 
-    <footbar></footbar>
+    <footbar/>
 </v-app>
 </template>
 
@@ -95,14 +95,6 @@
 </script>
 
 <style>
-    .bg-section-1 {
-        background: #F2F2F2;
-    }
-
-    .bg-section-2 {
-        background: white;
-    }
-
     section .v-card {
         transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1) all;
     }

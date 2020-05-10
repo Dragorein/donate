@@ -1,10 +1,11 @@
 <template>
 <v-app>
-    <navbar></navbar>
-
-    <main class="h-100">
+    
+    <drawer-admin/>
+    
+    <v-content>
         <div class="fluid">
-            <section class="top-space bg-section-1">
+            <section class="bg-section-1">
                 <v-container class="py-12">
                     <v-card>
                         <v-card-title> 
@@ -30,9 +31,9 @@
                 </v-container>
             </section>
         </div>
-    </main>
+    </v-content>
 
-    <footbar></footbar>
+    <footbar/>
 </v-app>
 </template>
 

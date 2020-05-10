@@ -16,36 +16,23 @@
         <v-divider/>
 
         <v-list nav dense>
-            <v-list-item link>
-                <v-list-item-icon><v-icon>mdi-apps</v-icon></v-list-item-icon>
-                <v-list-item-title>Feeds</v-list-item-title>
-            </v-list-item>
-
-            <v-list-item link>
-                <v-list-item-icon><v-icon>mdi-charity</v-icon></v-list-item-icon>
-                <v-list-item-title>Daftar Penggalangan</v-list-item-title>
-            </v-list-item>
-
-            <v-list-item link>
-                <v-list-item-icon><v-icon>mdi-cash-multiple</v-icon></v-list-item-icon>
-                <v-list-item-title>Daftar Transfer</v-list-item-title>
-            </v-list-item>
-
-            <v-list-item link>
-                <v-list-item-icon><v-icon>mdi-account-group</v-icon></v-list-item-icon>
-                <v-list-item-title>Daftar Pengguna</v-list-item-title>
-            </v-list-item>
+            <template v-for="(page, index) in pages" :value="index">
+                <v-list-item @click="changePage(page.name)" :dark=page.active :class="{ primary: page.active}">
+                    <v-list-item-icon><v-icon>{{page.icon}}</v-icon></v-list-item-icon>
+                    <v-list-item-title>{{page.title}}</v-list-item-title>
+                </v-list-item>
+            </template>
         </v-list>
-        
+
         <v-spacer/>
 
         <v-list nav dense>
-            <v-list-item link>
+            <v-list-item link @click="reroutes('/profile')">
                 <v-list-item-icon><v-icon>mdi-account</v-icon></v-list-item-icon>
                 <v-list-item-title>Profil</v-list-item-title>
             </v-list-item>
 
-            <v-list-item link>
+            <v-list-item link @click="reroutes('/')">
                 <v-list-item-icon><v-icon>mdi-logout-variant</v-icon></v-list-item-icon>
                 <v-list-item-title>Keluar</v-list-item-title>
             </v-list-item>
@@ -56,56 +43,41 @@
 
 <script>
     export default {
+        props: ['start'],
         data: () => ({
-            brand: 'Kindly', 
-            logo: '/img/brand.png',
-            loggedin: false,
-            logindialog: false,
-            navbar: '#navbar',
+            currentPage: '',
+            pages: [
+                {name:'feeds', icon:'mdi-apps', title:'Feeds', active:false},
+                {name:'campaigns', icon:'mdi-charity', title:'Daftar Penggalangan', active:false},
+                {name:'transactions', icon:'mdi-cash-multiple', title:'Daftar Transfer', active:false},
+                {name:'users', icon:'mdi-account-group', title:'Daftar Pengguna', active:false},
+            ]
         }),
         methods: {
             reroutes: function (url) {
                 this.$router.push({ path: url });
             },
-            handleScroll: function() {
-                if(window.scrollY > 0) {
-                    navbar.classList.add("nav-bg");
-                } else {
-                    navbar.classList.remove("nav-bg");
-                }
+            changePage(text) {
+                this.page = text;
+                this.$emit('pageChanged', this.page);
+                this.pages.filter(function(elem){
+                    if(elem.name == text) elem.active = true;
+                    else elem.active = false;
+                });
             }
         },
-        mounted(){
-            this.handleScroll();
-            window.addEventListener('scroll', this.handleScroll);
+        created: function(){
+            var i = this.start
+            this.currentPage = i;
+            this.pages.filter(function(elem){
+                if(elem.name == i) elem.active = true;
+                else elem.active = false;
+            });
         }
     }
 </script>
 
 <style>
-    #navbar {
-        background: transparent;
-    }
-
-    #navbar .search-lg {
-        display: flex;
-        align-items: center;
-    }
-
-    #navbar .search-md {
-        display: none;
-    }
-
-    @media only screen and (max-width: 959px) {
-        #navbar .search-lg {
-            display: none;
-        }
-
-        #navbar .search-md {
-            display: block;
-        }
-    }
-
     .nav-bg {
         background: linear-gradient(to right, #E7E1F7, #FCBFBB)!important;
     }

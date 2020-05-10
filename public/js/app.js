@@ -2348,9 +2348,75 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      page: 'feeds',
       search: '',
       headers: [{
         text: 'Id',
@@ -2628,27 +2694,32 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['start'],
   data: function data() {
     return {
-      brand: 'Kindly',
-      logo: '/img/brand.png',
-      loggedin: false,
-      logindialog: false,
-      navbar: '#navbar'
+      currentPage: '',
+      pages: [{
+        name: 'feeds',
+        icon: 'mdi-apps',
+        title: 'Feeds',
+        active: false
+      }, {
+        name: 'campaigns',
+        icon: 'mdi-charity',
+        title: 'Daftar Penggalangan',
+        active: false
+      }, {
+        name: 'transactions',
+        icon: 'mdi-cash-multiple',
+        title: 'Daftar Transfer',
+        active: false
+      }, {
+        name: 'users',
+        icon: 'mdi-account-group',
+        title: 'Daftar Pengguna',
+        active: false
+      }]
     };
   },
   methods: {
@@ -2657,17 +2728,20 @@ __webpack_require__.r(__webpack_exports__);
         path: url
       });
     },
-    handleScroll: function handleScroll() {
-      if (window.scrollY > 0) {
-        navbar.classList.add("nav-bg");
-      } else {
-        navbar.classList.remove("nav-bg");
-      }
+    changePage: function changePage(text) {
+      this.page = text;
+      this.$emit('pageChanged', this.page);
+      this.pages.filter(function (elem) {
+        if (elem.name == text) elem.active = true;else elem.active = false;
+      });
     }
   },
-  mounted: function mounted() {
-    this.handleScroll();
-    window.addEventListener('scroll', this.handleScroll);
+  created: function created() {
+    var i = this.start;
+    this.currentPage = i;
+    this.pages.filter(function (elem) {
+      if (elem.name == i) elem.active = true;else elem.active = false;
+    });
   }
 });
 
@@ -10029,7 +10103,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n#navbar {\n    background: transparent;\n}\n#navbar .search-lg {\n    display: flex;\n    align-items: center;\n}\n#navbar .search-md {\n    display: none;\n}\n@media only screen and (max-width: 959px) {\n#navbar .search-lg {\n        display: none;\n}\n#navbar .search-md {\n        display: block;\n}\n}\n.nav-bg {\n    background: linear-gradient(to right, #E7E1F7, #FCBFBB)!important;\n}\n.v-btn:focus {\n    outline: 0;\n}\na.v-btn:hover, a.v-list-item, .v-chip:hover {\n    text-decoration: none;\n}\n", ""]);
+exports.push([module.i, "\n.nav-bg {\n    background: linear-gradient(to right, #E7E1F7, #FCBFBB)!important;\n}\n.v-btn:focus {\n    outline: 0;\n}\na.v-btn:hover, a.v-list-item, .v-chip:hover {\n    text-decoration: none;\n}\n", ""]);
 
 // exports
 
@@ -42731,58 +42805,26 @@ var render = function() {
   return _c(
     "v-app",
     [
-      _c("drawer-admin"),
+      _c("drawer-admin", {
+        attrs: { start: _vm.page },
+        on: {
+          pageChanged: function($event) {
+            _vm.page = $event
+          }
+        }
+      }),
       _vm._v(" "),
-      _c("v-content", [
+      _c("v-content", { staticClass: "bg-section-1" }, [
         _c("div", { staticClass: "fluid" }, [
           _c(
             "section",
-            { staticClass: "bg-section-1" },
             [
               _c(
                 "v-container",
-                { staticClass: "py-12" },
                 [
-                  _c(
-                    "v-card",
-                    [
-                      _c(
-                        "v-card-title",
-                        [
-                          _vm._v(
-                            " \r\n                            Daftar Penggalangan\r\n                            "
-                          ),
-                          _c("v-spacer"),
-                          _vm._v(" "),
-                          _c("v-text-field", {
-                            attrs: {
-                              "append-icon": "mdi-magnify",
-                              label: "Search",
-                              "single-line": "",
-                              "hide-details": ""
-                            },
-                            model: {
-                              value: _vm.search,
-                              callback: function($$v) {
-                                _vm.search = $$v
-                              },
-                              expression: "search"
-                            }
-                          })
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c("v-data-table", {
-                        attrs: {
-                          headers: _vm.headers,
-                          items: _vm.campaigns,
-                          search: _vm.search
-                        }
-                      })
-                    ],
-                    1
-                  )
+                  _c("v-card-title", { staticClass: "display-2" }, [
+                    _vm._v("Dashboard")
+                  ])
                 ],
                 1
               )
@@ -42792,62 +42834,397 @@ var render = function() {
           _vm._v(" "),
           _c(
             "section",
-            { staticClass: "bg-section-2" },
             [
               _c(
                 "v-container",
-                { staticClass: "py-12" },
+                { staticClass: "pb-12" },
                 [
-                  _c(
-                    "v-card",
-                    [
-                      _c(
-                        "v-card-title",
-                        [
-                          _vm._v(
-                            " \r\n                            Daftar Transfer\r\n                            "
-                          ),
-                          _c("v-spacer"),
-                          _vm._v(" "),
-                          _c("v-text-field", {
-                            attrs: {
-                              "append-icon": "mdi-magnify",
-                              label: "Search",
-                              "single-line": "",
-                              "hide-details": ""
-                            },
-                            model: {
-                              value: _vm.search,
-                              callback: function($$v) {
-                                _vm.search = $$v
-                              },
-                              expression: "search"
-                            }
-                          })
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c("v-data-table", {
-                        attrs: {
-                          headers: _vm.headers,
-                          items: _vm.campaigns,
-                          search: _vm.search
-                        }
-                      })
-                    ],
-                    1
-                  )
+                  _vm.page == "feeds"
+                    ? [
+                        _c(
+                          "v-row",
+                          [
+                            _c(
+                              "v-col",
+                              { attrs: { cols: "12", md: "6", lg: "3" } },
+                              [
+                                _c(
+                                  "v-card",
+                                  {
+                                    staticClass: "pl-2",
+                                    attrs: { color: "blue lighten-1" }
+                                  },
+                                  [
+                                    _c(
+                                      "v-card",
+                                      { attrs: { flat: "" } },
+                                      [
+                                        _c(
+                                          "v-card-title",
+                                          { staticClass: "title" },
+                                          [
+                                            _vm._v("Total Galang Dana"),
+                                            _c(
+                                              "v-icon",
+                                              { attrs: { right: "" } },
+                                              [_vm._v("mdi-charity")]
+                                            )
+                                          ],
+                                          1
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "v-card-subtitle",
+                                          {
+                                            staticClass:
+                                              "headline font-weight-bold"
+                                          },
+                                          [_vm._v("30")]
+                                        )
+                                      ],
+                                      1
+                                    )
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "v-col",
+                              { attrs: { cols: "12", md: "6", lg: "3" } },
+                              [
+                                _c(
+                                  "v-card",
+                                  {
+                                    staticClass: "pl-2",
+                                    attrs: { color: "green lighten-1" }
+                                  },
+                                  [
+                                    _c(
+                                      "v-card",
+                                      { attrs: { flat: "" } },
+                                      [
+                                        _c(
+                                          "v-card-title",
+                                          { staticClass: "title" },
+                                          [
+                                            _vm._v("Total Pengguna"),
+                                            _c(
+                                              "v-icon",
+                                              { attrs: { right: "" } },
+                                              [_vm._v("mdi-account-group")]
+                                            )
+                                          ],
+                                          1
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "v-card-subtitle",
+                                          {
+                                            staticClass:
+                                              "headline font-weight-bold"
+                                          },
+                                          [_vm._v("120")]
+                                        )
+                                      ],
+                                      1
+                                    )
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "v-col",
+                              { attrs: { cols: "12", md: "6", lg: "3" } },
+                              [
+                                _c(
+                                  "v-card",
+                                  {
+                                    staticClass: "pl-2",
+                                    attrs: { color: "cyan lighten-1" }
+                                  },
+                                  [
+                                    _c(
+                                      "v-card",
+                                      { attrs: { flat: "" } },
+                                      [
+                                        _c(
+                                          "v-card-title",
+                                          { staticClass: "title" },
+                                          [
+                                            _vm._v("Bantuan Per Bulan"),
+                                            _c(
+                                              "v-icon",
+                                              { attrs: { right: "" } },
+                                              [_vm._v("mdi-cash-multiple")]
+                                            )
+                                          ],
+                                          1
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "v-card-subtitle",
+                                          {
+                                            staticClass:
+                                              "headline font-weight-bold"
+                                          },
+                                          [_vm._v("Rp 12,031,649,998")]
+                                        )
+                                      ],
+                                      1
+                                    )
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "v-col",
+                              { attrs: { cols: "12", md: "6", lg: "3" } },
+                              [
+                                _c(
+                                  "v-card",
+                                  {
+                                    staticClass: "pl-2",
+                                    attrs: { color: "yellow lighten-1" }
+                                  },
+                                  [
+                                    _c(
+                                      "v-card",
+                                      { attrs: { flat: "" } },
+                                      [
+                                        _c(
+                                          "v-card-title",
+                                          { staticClass: "title" },
+                                          [
+                                            _vm._v("Notifikasi"),
+                                            _c(
+                                              "v-icon",
+                                              { attrs: { right: "" } },
+                                              [_vm._v("mdi-chat-alert")]
+                                            )
+                                          ],
+                                          1
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "v-card-subtitle",
+                                          {
+                                            staticClass:
+                                              "headline font-weight-bold"
+                                          },
+                                          [_vm._v("12")]
+                                        )
+                                      ],
+                                      1
+                                    )
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "v-card",
+                          { staticClass: "mx-auto px-6 py-12 mt-6" },
+                          [
+                            _c(
+                              "v-card-text",
+                              [
+                                _c(
+                                  "p",
+                                  {
+                                    staticClass:
+                                      "display-1 font-weight-light text--primary"
+                                  },
+                                  [_vm._v("Hai, Sandra!")]
+                                ),
+                                _vm._v(" "),
+                                _c("v-divider"),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  { staticClass: "subtitle-1 text--primary" },
+                                  [
+                                    _vm._v(
+                                      "Tidak ada aktivitas baru hari ini."
+                                    ),
+                                    _c("br"),
+                                    _vm._v("Teruskan kerja bagusmu!")
+                                  ]
+                                )
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "v-card-actions",
+                              [
+                                _c("v-btn", { staticClass: "primary" }, [
+                                  _vm._v("ke halaman utama!")
+                                ])
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      ]
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.page == "campaigns"
+                    ? [
+                        _c(
+                          "v-card",
+                          [
+                            _c(
+                              "v-card-title",
+                              [
+                                _vm._v(
+                                  " \r\n                                Daftar Penggalangan\r\n                                "
+                                ),
+                                _c("v-spacer"),
+                                _vm._v(" "),
+                                _c("v-text-field", {
+                                  attrs: {
+                                    "append-icon": "mdi-magnify",
+                                    label: "Search",
+                                    "single-line": "",
+                                    "hide-details": ""
+                                  },
+                                  model: {
+                                    value: _vm.search,
+                                    callback: function($$v) {
+                                      _vm.search = $$v
+                                    },
+                                    expression: "search"
+                                  }
+                                })
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c("v-data-table", {
+                              attrs: {
+                                headers: _vm.headers,
+                                items: _vm.campaigns,
+                                search: _vm.search
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      ]
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.page == "transactions"
+                    ? [
+                        _c(
+                          "v-card",
+                          [
+                            _c(
+                              "v-card-title",
+                              [
+                                _vm._v(
+                                  " \r\n                                Daftar Transfer\r\n                                "
+                                ),
+                                _c("v-spacer"),
+                                _vm._v(" "),
+                                _c("v-text-field", {
+                                  attrs: {
+                                    "append-icon": "mdi-magnify",
+                                    label: "Search",
+                                    "single-line": "",
+                                    "hide-details": ""
+                                  },
+                                  model: {
+                                    value: _vm.search,
+                                    callback: function($$v) {
+                                      _vm.search = $$v
+                                    },
+                                    expression: "search"
+                                  }
+                                })
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c("v-data-table", {
+                              attrs: {
+                                headers: _vm.headers,
+                                items: _vm.campaigns,
+                                search: _vm.search
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      ]
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.page == "users"
+                    ? [
+                        _c(
+                          "v-card",
+                          [
+                            _c(
+                              "v-card-title",
+                              [
+                                _vm._v(
+                                  " \r\n                                Daftar Pengguna\r\n                                "
+                                ),
+                                _c("v-spacer"),
+                                _vm._v(" "),
+                                _c("v-text-field", {
+                                  attrs: {
+                                    "append-icon": "mdi-magnify",
+                                    label: "Search",
+                                    "single-line": "",
+                                    "hide-details": ""
+                                  },
+                                  model: {
+                                    value: _vm.search,
+                                    callback: function($$v) {
+                                      _vm.search = $$v
+                                    },
+                                    expression: "search"
+                                  }
+                                })
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c("v-data-table", {
+                              attrs: {
+                                headers: _vm.headers,
+                                items: _vm.campaigns,
+                                search: _vm.search
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      ]
+                    : _vm._e()
                 ],
-                1
+                2
               )
             ],
             1
           )
         ])
-      ]),
-      _vm._v(" "),
-      _c("footbar")
+      ])
     ],
     1
   )
@@ -43483,63 +43860,34 @@ var render = function() {
         "v-list",
         { attrs: { nav: "", dense: "" } },
         [
-          _c(
-            "v-list-item",
-            { attrs: { link: "" } },
-            [
-              _c("v-list-item-icon", [_c("v-icon", [_vm._v("mdi-apps")])], 1),
-              _vm._v(" "),
-              _c("v-list-item-title", [_vm._v("Feeds")])
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-list-item",
-            { attrs: { link: "" } },
-            [
+          _vm._l(_vm.pages, function(page, index) {
+            return [
               _c(
-                "v-list-item-icon",
-                [_c("v-icon", [_vm._v("mdi-charity")])],
+                "v-list-item",
+                {
+                  class: { primary: page.active },
+                  attrs: { dark: page.active },
+                  on: {
+                    click: function($event) {
+                      return _vm.changePage(page.name)
+                    }
+                  }
+                },
+                [
+                  _c(
+                    "v-list-item-icon",
+                    [_c("v-icon", [_vm._v(_vm._s(page.icon))])],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("v-list-item-title", [_vm._v(_vm._s(page.title))])
+                ],
                 1
-              ),
-              _vm._v(" "),
-              _c("v-list-item-title", [_vm._v("Daftar Penggalangan")])
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-list-item",
-            { attrs: { link: "" } },
-            [
-              _c(
-                "v-list-item-icon",
-                [_c("v-icon", [_vm._v("mdi-cash-multiple")])],
-                1
-              ),
-              _vm._v(" "),
-              _c("v-list-item-title", [_vm._v("Daftar Transfer")])
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-list-item",
-            { attrs: { link: "" } },
-            [
-              _c(
-                "v-list-item-icon",
-                [_c("v-icon", [_vm._v("mdi-account-group")])],
-                1
-              ),
-              _vm._v(" "),
-              _c("v-list-item-title", [_vm._v("Daftar Pengguna")])
-            ],
-            1
-          )
+              )
+            ]
+          })
         ],
-        1
+        2
       ),
       _vm._v(" "),
       _c("v-spacer"),
@@ -43550,7 +43898,14 @@ var render = function() {
         [
           _c(
             "v-list-item",
-            { attrs: { link: "" } },
+            {
+              attrs: { link: "" },
+              on: {
+                click: function($event) {
+                  return _vm.reroutes("/profile")
+                }
+              }
+            },
             [
               _c(
                 "v-list-item-icon",
@@ -43565,7 +43920,14 @@ var render = function() {
           _vm._v(" "),
           _c(
             "v-list-item",
-            { attrs: { link: "" } },
+            {
+              attrs: { link: "" },
+              on: {
+                click: function($event) {
+                  return _vm.reroutes("/")
+                }
+              }
+            },
             [
               _c(
                 "v-list-item-icon",
@@ -102021,11 +102383,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../node_modules/vuetify-loader/lib/runtime/installComponents.js */ "./node_modules/vuetify-loader/lib/runtime/installComponents.js");
 /* harmony import */ var _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var vuetify_lib_components_VApp__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuetify/lib/components/VApp */ "./node_modules/vuetify/lib/components/VApp/index.js");
-/* harmony import */ var vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuetify/lib/components/VCard */ "./node_modules/vuetify/lib/components/VCard/index.js");
-/* harmony import */ var vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuetify/lib/components/VGrid */ "./node_modules/vuetify/lib/components/VGrid/index.js");
-/* harmony import */ var vuetify_lib_components_VContent__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vuetify/lib/components/VContent */ "./node_modules/vuetify/lib/components/VContent/index.js");
-/* harmony import */ var vuetify_lib_components_VDataTable__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vuetify/lib/components/VDataTable */ "./node_modules/vuetify/lib/components/VDataTable/index.js");
-/* harmony import */ var vuetify_lib_components_VTextField__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vuetify/lib/components/VTextField */ "./node_modules/vuetify/lib/components/VTextField/index.js");
+/* harmony import */ var vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuetify/lib/components/VBtn */ "./node_modules/vuetify/lib/components/VBtn/index.js");
+/* harmony import */ var vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuetify/lib/components/VCard */ "./node_modules/vuetify/lib/components/VCard/index.js");
+/* harmony import */ var vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vuetify/lib/components/VGrid */ "./node_modules/vuetify/lib/components/VGrid/index.js");
+/* harmony import */ var vuetify_lib_components_VContent__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vuetify/lib/components/VContent */ "./node_modules/vuetify/lib/components/VContent/index.js");
+/* harmony import */ var vuetify_lib_components_VDataTable__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vuetify/lib/components/VDataTable */ "./node_modules/vuetify/lib/components/VDataTable/index.js");
+/* harmony import */ var vuetify_lib_components_VDivider__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! vuetify/lib/components/VDivider */ "./node_modules/vuetify/lib/components/VDivider/index.js");
+/* harmony import */ var vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! vuetify/lib/components/VIcon */ "./node_modules/vuetify/lib/components/VIcon/index.js");
+/* harmony import */ var vuetify_lib_components_VTextField__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! vuetify/lib/components/VTextField */ "./node_modules/vuetify/lib/components/VTextField/index.js");
 
 
 
@@ -102055,7 +102420,15 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 
 
-_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4___default()(component, {VApp: vuetify_lib_components_VApp__WEBPACK_IMPORTED_MODULE_5__["VApp"],VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCard"],VCardTitle: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCardTitle"],VContainer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VContainer"],VContent: vuetify_lib_components_VContent__WEBPACK_IMPORTED_MODULE_8__["VContent"],VDataTable: vuetify_lib_components_VDataTable__WEBPACK_IMPORTED_MODULE_9__["VDataTable"],VSpacer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VSpacer"],VTextField: vuetify_lib_components_VTextField__WEBPACK_IMPORTED_MODULE_10__["VTextField"]})
+
+
+
+
+
+
+
+
+_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4___default()(component, {VApp: vuetify_lib_components_VApp__WEBPACK_IMPORTED_MODULE_5__["VApp"],VBtn: vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_6__["VBtn"],VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__["VCard"],VCardActions: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__["VCardActions"],VCardSubtitle: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__["VCardSubtitle"],VCardText: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__["VCardText"],VCardTitle: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__["VCardTitle"],VCol: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_8__["VCol"],VContainer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_8__["VContainer"],VContent: vuetify_lib_components_VContent__WEBPACK_IMPORTED_MODULE_9__["VContent"],VDataTable: vuetify_lib_components_VDataTable__WEBPACK_IMPORTED_MODULE_10__["VDataTable"],VDivider: vuetify_lib_components_VDivider__WEBPACK_IMPORTED_MODULE_11__["VDivider"],VIcon: vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_12__["VIcon"],VRow: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_8__["VRow"],VSpacer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_8__["VSpacer"],VTextField: vuetify_lib_components_VTextField__WEBPACK_IMPORTED_MODULE_13__["VTextField"]})
 
 
 /* hot reload */

@@ -55,7 +55,7 @@
                 <v-list>
                     <v-list-item @click="reroutes('/profile')">
                         <v-list-item-title>
-                            <v-icon left>mdi-account-search</v-icon>Profil
+                            <v-icon left>mdi-account</v-icon>Profil
                         </v-list-item-title>
                     </v-list-item>
                     <v-list-item @click="loggedin = false">

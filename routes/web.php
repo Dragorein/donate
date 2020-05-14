@@ -32,4 +32,6 @@ Route::get('/welcome', function () {
 
 Route::get('/{vue_capture?}', function () {
     return view('landing');
-  })->where('vue_capture', '[\/\w\.-]*');
+})->where('vue_capture', '[\/\w\.-]*');
+
+Route::get('login', 'LoginController@index');

@@ -33,7 +33,7 @@
                                     <v-text-field solo flat label="Password" type="password" required></v-text-field>
                                 </v-col>
                                 <v-col cols="12">
-                                    <v-btn color="red darken-1" dark block large @click="logindialog = false, loggedin = true">Masuk Sekarang</v-btn>
+                                    <v-btn color="red darken-1" dark block large @click="reroutes('/test')">Masuk Sekarang</v-btn>
                                 </v-col>
                                 <v-col cols="12" class="text-center">
                                     <p>Belum punya akun Kindly? <a href="/register">Daftar</a></p>

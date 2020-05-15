@@ -1,11 +1,11 @@
 <template>
 <v-app>
-    <navbar></navbar>
+    <navbar/>
 
     <main class="h-100">
         <div class="fluid">
             <section class="top-space bg-section-1">
-                <v-container class="py-6">
+                <v-container class="pb-6">
                     <v-row>
                         <v-col cols="12">
                             <v-card>
@@ -13,9 +13,9 @@
 
                                 <v-card-text>
                                     <h2 style="display-1" v-text="title"></h2>
-                                    <span><strong class="orange--text title">{{raised}}</strong>{{' Terkumpul dari ' + total}}</span>
-                                    <v-progress-linear rounded height="8" v-model="progress" color="yellow accent-4" class="my-4"></v-progress-linear>
-                                    <span><strong class="orange--text title">{{daysleft}}</strong> hari lagi</span>
+                                    <span><strong class="deep-orange--text title">{{raised}}</strong>{{' Terkumpul dari ' + total}}</span>
+                                    <v-progress-linear rounded height="8" v-model="progress" color="deep-orange" class="my-4"></v-progress-linear>
+                                    <span><strong class="deep-orange--text title">{{daysleft}}</strong> hari lagi</span>
                                 </v-card-text>
 
                                 <v-card-text>
@@ -68,7 +68,7 @@
                     <v-row>
                         <v-col cols="12" md="8">
                             <v-card height="100%">
-                                <v-tabs v-model="tab" background-color="orange" centered dark icons-and-text>
+                                <v-tabs v-model="tab" background-color="error" centered dark icons-and-text>
                                     <v-tabs-slider></v-tabs-slider>
 
                                     <v-tab href="#tab-1">
@@ -121,7 +121,7 @@
         </div>
     </main>
 
-    <footbar></footbar>
+    <footbar/>
 </v-app>
 </template>
 

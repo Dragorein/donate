@@ -1,11 +1,11 @@
 <template>
 <v-app>
-    <navbar></navbar>
+    <navbar/>
 
     <main class="h-100">
         <div class="fluid">
             <section class="top-space bg-section-1">
-                <v-container class="py-12">
+                <v-container class="pb-12">
                     <v-card>
                         <v-row>
                             <v-col cols="12" md="6">
@@ -22,7 +22,7 @@
                                 </v-card-text>
                             </v-col>
                             <v-col cols="12" md="6">
-                                <v-card flat color="orange lighten-4" class="mx-4 ml-md-0">
+                                <v-card flat color="error" dark class="mx-4 ml-md-0">
                                     <v-card-text>
                                         <v-row>
                                             <v-col cols="12" md="auto">
@@ -45,7 +45,7 @@
             <section class="bg-section-2">
                 <v-container class="py-12">
                     <v-card>
-                        <v-tabs show-arrows vertical hide-slider background-color="orange" dark>
+                        <v-tabs show-arrows vertical hide-slider background-color="error">
                             <v-tab>
                                 <v-icon left>mdi-account</v-icon>Penggalangan Aktif
                             </v-tab>
@@ -101,7 +101,7 @@
                                             </v-list-item-content>
                                         </v-list-item>
                                     </template>
-                                    <v-pagination color="orange" v-model="page" :length="length" :page="page" :total-visible="totalVisible"></v-pagination>
+                                    <v-pagination color="error" v-model="page" :length="length" :page="page" :total-visible="totalVisible"></v-pagination>
                                 </v-list>
                             </v-tab-item>
                             <v-tab-item>
@@ -120,7 +120,7 @@
                                             </v-list-item-content>
                                         </v-list-item>
                                     </template>
-                                    <v-pagination color="orange" v-model="page" :length="length" :page="page" :total-visible="totalVisible"></v-pagination>
+                                    <v-pagination color="error" v-model="page" :length="length" :page="page" :total-visible="totalVisible"></v-pagination>
                                 </v-list>
                             </v-tab-item>
                             <v-tab-item>
@@ -142,7 +142,7 @@
                                         <v-text-field label="Email" name="email" prepend-inner-icon="mail" type="text" value="John@gmail.com" :rules="emailRules" required outlined clearable/>
                                         <v-text-field label="Nomor Handphone" name="noHandphone" prepend-inner-icon="phone" value="08955128756" type="text" :rules="noHandphoneRules" :counter="14" required outlined clearable/>
                                         <v-divider/>
-                                        <v-btn color="success" class="mr-2">Ganti</v-btn>
+                                        <v-btn color="error" class="mr-2">Ganti</v-btn>
                                         <v-btn text class="mr-2">Batal</v-btn>
                                     </v-container>
                                 </v-form>
@@ -156,7 +156,7 @@
                                             <v-text-field id="password" label="Password Baru" name="password" prepend-inner-icon="mdi-lock-open" type="password" :rules="passwordRules" required outlined clearable/>
                                             <v-text-field id="passwordconfirm" label="Ketik Ulang Password Baru" name="passwordconfirm" prepend-inner-icon="lock" type="password" :rules="passwordRules" required outlined clearable/>
                                         <v-divider/>
-                                        <v-btn color="success" class="mr-2">Ganti</v-btn>
+                                        <v-btn color="error" class="mr-2">Ganti</v-btn>
                                         <v-btn text class="mr-2">Batal</v-btn>
                                     </v-container>
                                 </v-form>
@@ -168,7 +168,7 @@
         </div>
     </main>
 
-    <footbar></footbar>
+    <footbar/>
 </v-app>
 </template>
 
@@ -213,14 +213,6 @@
 </script>
 
 <style>
-    .bg-section-1 {
-        background: #F2F2F2;
-    }
-
-    .bg-section-2 {
-        background: white;
-    }
-
     section .v-card {
         transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1) all;
     }
@@ -245,7 +237,7 @@
         justify-content: start;
     }
 
-    @media only screen and (max-width: 600px) {
+    @media only screen and (max-width: 768px) {
         .v-tabs--vertical {
             flex-direction: column;
         }

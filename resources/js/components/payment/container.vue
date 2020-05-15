@@ -1,6 +1,6 @@
 <template>
 <v-app>
-    <navbar></navbar>
+    <navbar/>
 
     <main class="h-100">
         <div class="fluid">
@@ -58,12 +58,12 @@
                             </v-col>
                             <v-col md="6">
                                 <form class="ma-6 ml-md-0">
-                                    <v-text-field label="Nama donatur" outlined clearable :rules="rulesNama" counter maxlength="30"></v-text-field>
-                                    <v-text-field label="Email donatur" outlined clearable :rules="rulesEmail"></v-text-field>
+                                    <v-text-field label="Nama donatur" filled clearable :rules="rulesNama" counter maxlength="30"></v-text-field>
+                                    <v-text-field label="Email donatur" filled clearable :rules="rulesEmail"></v-text-field>
 
                                     <v-list>
                                         <v-subheader>Pembayaran dengan</v-subheader>
-                                        <v-list-item-group v-model="item" color="success">
+                                        <v-list-item-group v-model="item" color="error">
                                             <v-list-item v-for="item in items" :key="item.title">
                                                 <v-list-item-avatar tile>
                                                     <v-img :src="item.avatar"></v-img>
@@ -75,11 +75,11 @@
                                         </v-list-item-group>
                                     </v-list>
 
-                                    <v-text-field label="Nominal donasi" prefix="Rp " outlined clearable :rules="rulesDonasi"></v-text-field>
+                                    <v-text-field label="Nominal donasi" prefix="Rp " filled clearable :rules="rulesDonasi"></v-text-field>
 
                                     <div class="d-flex justify-center pt-2">
-                                        <v-btn color="danger" class="mr-2 w-50" @click="goBack">Batal</v-btn>
-                                        <v-btn color="success" class="mr-2 w-50" @click="">Lanjut</v-btn>
+                                        <v-btn class="mr-2 w-50" @click="goBack">Batal</v-btn>
+                                        <v-btn color="error" class="mr-2 w-50" @click="reroutes('/payment/done')">Lanjut</v-btn>
                                     </div>
                                 </form>
                             </v-col>
@@ -90,7 +90,7 @@
         </div>
     </main>
 
-    <footbar></footbar>
+    <footbar/>
 </v-app>
 </template>
 

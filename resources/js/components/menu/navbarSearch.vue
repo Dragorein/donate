@@ -1,22 +1,13 @@
 <template>
 
-    <v-app-bar flat color="white" class="py-4 h-auto">
-        <v-row>
-            <v-col class="d-flex justify-start align-center" cols="3">
-                <v-toolbar-items class="h-100">
-                    <v-btn @click="goBack" text small>
-                        <v-icon left>mdi-chevron-double-left</v-icon>Kembali
-                    </v-btn>
-                </v-toolbar-items>
-            </v-col>
+    <v-app-bar flat color="white" class="py-2 h-auto">
+        <v-spacer/>
 
-            <v-col class="d-flex justify-space-around align-center">
-                <v-text-field ref="search" solo hide-details dense label="Cari penggalangan dana disini" append-icon="search"></v-text-field>
-            </v-col>
+        <v-btn class="mr-3" @click="goBack" icon><v-icon>mdi-chevron-double-left</v-icon></v-btn>
 
-            <v-col cols="3" class="d-flex justify-end">
-            </v-col>
-        </v-row>
+        <v-text-field ref="search" rounded filled hide-details dense placeholder="Cari galang dana" prepend-inner-icon="search"/>
+
+        <v-spacer/>
     </v-app-bar>
 
 </template>
@@ -38,6 +29,24 @@
 </script>
 
 <style>
+    .back-lg {
+        display: block;
+    }
+
+    .back-md {
+        display: none;
+    }
+
+    @media only screen and (max-width: 959px) {
+        .back-lg {
+            display: none;
+        }
+
+        .back-md {
+            display: block;
+        }
+    }
+
     .v-btn:focus {
         outline: 0;
     }

@@ -1,443 +1,183 @@
 <template>
 <v-app>
-    <navbar></navbar>
+    <navbar/>
 
     <main class="h-100">
         <div class="fluid">
             <section class="top-space bg-section-1">
-                <v-container class="py-12">
-                    <v-row justify="start">
-                        <v-col cols="1">
-                            <v-avatar size="150">
-                                <img
-                                    src="https://cdn.vuetifyjs.com/images/john.jpg"
-                                    alt="John"
-                                >
-                            </v-avatar>
-                         </v-col>
-
-                         <v-col cols="11" class>
-                             <v-card
-                                class="mx-auto"
-                                max-width="800"
-                                outlined
-                            >
-                                <v-list-item>
-                                <v-list-item-content>
-                                    <v-row>
-                                        <v-col>
-                                            <v-list-item-title class="headline mb-1">Rp100000</v-list-item-title>
-                                        </v-col>
-                                        <v-col>
-                                            <v-list-item-title class="headline mb-1">Bantu Ginjal Aku</v-list-item-title>
-                                        </v-col>
-                                    </v-row>
-
-                                    <v-list-item-subtitle class="mb-2">RAISED</v-list-item-subtitle>
-
-
-
-                                </v-list-item-content>
-
-                                <v-list-item-avatar
-                                    tile
-                                    size="80"
-                                    color="grey"
-                                >
-                                    <img
-                                    src="https://lh3.googleusercontent.com/proxy/qMRw-tdpKL3zO6nJstbVl_HzZIj0LHvLWTAnk0Q9WeG1osJfKK-g9uFuPCHIsepporukBeYL2Y-wT35xIzLMRn5pyaRERwz_-PlEz-CWV0hNffeQ-2FRbvAWcSg-5XsH_DMAqggsa7pofPIUahMGCNpH6zZTwHFDWrTVTA"
-                                    alt="Galangdana"
-                                     >
-                                </v-list-item-avatar>
-                                </v-list-item>
-
-                            </v-card>
-
-                         </v-col>
-
-                        <v-col cols="2">
-                            <p class="headline text-uppercase">Theodurus</p>
-                            <p class="headline text-uppercase">Dewa</p>
-                            <p class="headline text-uppercase">Sukietra</p>
-
-                            <v-dialog v-model="buat" persistent max-width="600px">
-                                <template v-slot:activator="{ on }">
-                                    <v-btn color="primary" dark v-on="on">Buka submisi</v-btn>
-                                </template>
-                                <v-card>
-                                    <v-card-title>
-                                    <span class="headline">Galangdana</span>
-                                    </v-card-title>
-                                    <v-card-text>
-                                    <v-container>
-                                        <v-row>
-                                        <v-col cols="12">
-                                            <v-text-field label="Judul*" required></v-text-field>
-                                        </v-col>
-                                        <v-col cols="12">
-                                            <v-text-field label="Nama Penerima*" type="text" required></v-text-field>
-                                        </v-col>
-                                        <v-col cols="12" sm="6">
-                                            <v-text-field
-                                                    v-model="date"
-                                                    label="Tenggat Waktu"
-                                                    prepend-icon="event"
-                                                    readonly
-                                                    v-on="on"
-                                                ></v-text-field>
-                                        </v-col>
-                                        <v-col cols="12" sm="6">
-                                            <v-autocomplete required
-                                            :items="['Skiing', 'Ice hockey', 'Soccer', 'Basketball', 'Hockey', 'Reading', 'Writing', 'Coding', 'Basejump']"
-                                            label="Kategori*"
-                                            multiple
-                                            ></v-autocomplete>
-                                        </v-col>
-                                        <v-col cols="12">
-                                            <v-text-field required
-                                                label="Target Dana*"
-                                                value="10.000.000"
-                                                prefix="Rp"
-                                                ></v-text-field>
-                                        </v-col>
-
-                                        </v-row>
-                                    </v-container>
-                                    <small>*wajib untuk di isi</small>
-                                    </v-card-text>
-                                    <v-card-actions>
-                                    <v-spacer></v-spacer>
-                                    <v-btn color="blue darken-1" text @click="buka = false">Close</v-btn>
-                                    <v-btn color="blue darken-1" text @click="buka = false">Save</v-btn>
-                                    </v-card-actions>
-                                </v-card>
-                                </v-dialog>
-                        </v-col>
-
-                        <v-col cols="12" sm="6 " md="auto">
-                             <v-card
-                                class="mx-auto"
-                                max-width="250"
-                            >
-                                <v-img
-                                class="white--text align-end"
-                                height="200px"
-                                src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
-                                >
-                                <v-card-title></v-card-title>
-                                </v-img>
-
-                                <v-card-subtitle class="pb-0">Hati Bocor</v-card-subtitle>
-
-                                <v-card-text class="text--primary">
-                                <div>Theodurs Dewa Sukietra</div>
-
-                                <div class="mt-2">
-                                    <v-progress-linear
-                                    v-model="valueDeterminate"
-                                    color="amber" height="16" rounded=""
-                                    ></v-progress-linear>
-                                </div>
-
-                                <div class="mt-1 title">Rp100000 Terkumpul</div>
-                                <div><v-icon>mdi-alarm</v-icon>30 Hari Lagi</div>
+                <v-container class="pb-12">
+                    <v-card>
+                        <v-row>
+                            <v-col cols="12" md="6">
+                                <v-card-text>
+                                    <div class="d-flex align-center mx-4 mr-md-0">
+                                        <v-avatar size="96" left>
+                                            <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John">
+                                        </v-avatar>
+                                        <div class="mx-3">
+                                            <v-card-title class="headline font-weight-bold pb-6">John<v-icon right color="green">mdi-check-circle mdi-18px</v-icon></v-card-title>
+                                            <v-card-subtitle>Identitas terverifikasi</v-card-subtitle>
+                                        </div>
+                                    </div>
                                 </v-card-text>
-
-                                <v-card-actions>
-                                 <v-dialog v-model="tutup" persistent max-width="290">
-                                    <template v-slot:activator="{ on }">
-                                        <v-btn color="orange" text dark v-on="on">Tutup</v-btn>
-                                    </template>
-                                    <v-card>
-                                        <v-card-title class="headline">Anda yakin ingin menutup penggalangan dana ini ?</v-card-title>
-                                        <v-card-text>Mohon di ingat aksi yang di lakukan tidak bisa di ulangi kembali.</v-card-text>
-                                        <v-card-actions>
-                                        <v-spacer></v-spacer>
-                                        <v-btn color="red" text @click="tutup = false">Kembali</v-btn>
-                                        <v-btn color="green" text @click="tutup = false">Baik Saya Mengerti</v-btn>
-                                        </v-card-actions>
-                                    </v-card>
-                                    </v-dialog>
-                                </v-btn>
-
-                                <v-dialog v-model="dialog" persistent max-width="600px">
-                                <template v-slot:activator="{ on }">
-                                    <v-btn color="orange" text dark v-on="on">Edit</v-btn>
-                                </template>
-                                <v-card>
-                                    <v-card-title>
-                                    <span class="headline">Ubah Data</span>
-                                    </v-card-title>
+                            </v-col>
+                            <v-col cols="12" md="6">
+                                <v-card flat color="error" dark class="mx-4 ml-md-0">
                                     <v-card-text>
-                                    <v-container>
                                         <v-row>
-                                        <v-col cols="12">
-                                            <v-text-field label="Nama Penggalangan*" required counter="30"></v-text-field>
-                                        </v-col>
-                                        <v-col cols="12">
-                                            <v-text-field label="Nominal*" required></v-text-field>
-                                        </v-col>
-                                        <v-col cols="12" sm="6">
-
-                                                <v-text-field
-                                                    v-model="date"
-                                                    label="Tenggat Waktu"
-                                                    prepend-icon="event"
-                                                    readonly
-                                                    v-on="on"
-                                                ></v-text-field>
-
-                                        </v-col>
-                                        <v-col cols="12" sm="6">
-                                            <v-autocomplete
-                                            :items="['Pendidikan', 'Kesehatan', 'Pendidikan', 'Other']"
-                                            label="Kategori"
-                                            multiple
-                                            ></v-autocomplete>
-                                        </v-col>
+                                            <v-col cols="12" md="auto">
+                                                <v-card-subtitle class="py-1">Pasien terdonasikan</v-card-subtitle>
+                                                <v-card-title class="headline font-weight-bold py-1">Rp 1.521.420</v-card-title>
+                                            </v-col>
+                                            <v-col cols="12" md="auto">
+                                                <v-card-subtitle class="py-1">Pasien terdonasikan</v-card-subtitle>
+                                                <v-card-title class="headline font-weight-bold py-1">10</v-card-title>
+                                            </v-col>
                                         </v-row>
-                                    </v-container>
-                                    <small>*wajib untuk di isi</small>
                                     </v-card-text>
-                                    <v-card-actions>
-                                    <v-spacer></v-spacer>
-                                    <v-btn color="blue darken-1" text @click="dialog = false">Close</v-btn>
-                                    <v-btn color="blue darken-1" text @click="dialog = false">Save</v-btn>
-                                    </v-card-actions>
                                 </v-card>
-                                </v-dialog>
-                                </v-btn>
-                                </v-card-actions>
-                            </v-card>
-                        </v-col>
-
-                         <v-col cols="12" sm="6 " md="auto">
-                             <v-card
-                                class="mx-auto"
-                                max-width="250"
-                            >
-                                <v-img
-                                class="white--text align-end"
-                                height="200px"
-                                src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
-                                >
-                                <v-card-title></v-card-title>
-                                </v-img>
-
-                                <v-card-subtitle class="pb-0">Hati Bocor</v-card-subtitle>
-
-                                <v-card-text class="text--primary">
-                                <div>Theodurs Dewa Sukietra</div>
-
-                                <div class="mt-2">
-                                    <v-progress-linear
-                                    v-model="valueDeterminate"
-                                    color="amber" height="16" rounded=""
-                                    ></v-progress-linear>
-                                </div>
-
-                                <div class="mt-1 title">Rp100000 Terkumpul</div>
-                                <div><v-icon>mdi-alarm</v-icon>30 Hari Lagi</div>
-                                </v-card-text>
-
-                                <v-card-actions>
-                                 <v-dialog v-model="tutup" persistent max-width="290">
-                                    <template v-slot:activator="{ on }">
-                                        <v-btn color="orange" text dark v-on="on">Tutup</v-btn>
-                                    </template>
-                                    <v-card>
-                                        <v-card-title class="headline">Anda yakin ingin menutup penggalangan dana ini ?</v-card-title>
-                                        <v-card-text>Mohon di ingat aksi yang di lakukan tidak bisa di ulangi kembali.</v-card-text>
-                                        <v-card-actions>
-                                        <v-spacer></v-spacer>
-                                        <v-btn color="red" text @click="tutup = false">Kembali</v-btn>
-                                        <v-btn color="green" text @click="tutup = false">Baik Saya Mengerti</v-btn>
-                                        </v-card-actions>
-                                    </v-card>
-                                    </v-dialog>
-                                </v-btn>
-
-                                <v-dialog v-model="dialog" persistent max-width="600px">
-                                <template v-slot:activator="{ on }">
-                                    <v-btn color="orange" text dark v-on="on">Edit</v-btn>
-                                </template>
-                                <v-card>
-                                    <v-card-title>
-                                    <span class="headline">Ubah Data</span>
-                                    </v-card-title>
-                                    <v-card-text>
-                                    <v-container>
-                                        <v-row>
-                                        <v-col cols="12">
-                                            <v-text-field label="Nama Penggalangan*" required counter="30"></v-text-field>
-                                        </v-col>
-                                        <v-col cols="12">
-                                            <v-text-field label="Nominal*" required></v-text-field>
-                                        </v-col>
-                                        <v-col cols="12" sm="6">
-
-                                                <v-text-field
-                                                    v-model="date"
-                                                    label="Tenggat Waktu"
-                                                    prepend-icon="event"
-                                                    readonly
-                                                    v-on="on"
-                                                ></v-text-field>
-
-                                        </v-col>
-                                        <v-col cols="12" sm="6">
-                                            <v-autocomplete
-                                            :items="['Pendidikan', 'Kesehatan', 'Pendidikan', 'Other']"
-                                            label="Kategori"
-                                            multiple
-                                            ></v-autocomplete>
-                                        </v-col>
-                                        </v-row>
-                                    </v-container>
-                                    <small>*wajib untuk di isi</small>
-                                    </v-card-text>
-                                    <v-card-actions>
-                                    <v-spacer></v-spacer>
-                                    <v-btn color="blue darken-1" text @click="dialog = false">Close</v-btn>
-                                    <v-btn color="blue darken-1" text @click="dialog = false">Save</v-btn>
-                                    </v-card-actions>
-                                </v-card>
-                                </v-dialog>
-                                </v-btn>
-                                </v-card-actions>
-                            </v-card>
-                        </v-col>
-
-                        <v-col cols="12" sm="6 " md="auto">
-                             <v-card
-                                class="mx-auto"
-                                max-width="250"
-                            >
-                                <v-img
-                                class="white--text align-end"
-                                height="200px"
-                                src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
-                                >
-                                <v-card-title></v-card-title>
-                                </v-img>
-
-                                <v-card-subtitle class="pb-0">Hati Bocor</v-card-subtitle>
-
-                                <v-card-text class="text--primary">
-                                <div>Theodurs Dewa Sukietra</div>
-
-                                <div class="mt-2">
-                                    <v-progress-linear
-                                    v-model="valueDeterminate"
-                                    color="amber" height="16" rounded=""
-                                    ></v-progress-linear>
-                                </div>
-
-                                <div class="mt-1 title">Rp100000 Terkumpul</div>
-                                <div><v-icon>mdi-alarm</v-icon>30 Hari Lagi</div>
-                                </v-card-text>
-
-                                <v-card-actions>
-                                 <v-dialog v-model="tutup" persistent max-width="290">
-                                    <template v-slot:activator="{ on }">
-                                        <v-btn color="orange" text dark v-on="on">Tutup</v-btn>
-                                    </template>
-                                    <v-card>
-                                        <v-card-title class="headline">Anda yakin ingin menutup penggalangan dana ini ?</v-card-title>
-                                        <v-card-text>Mohon di ingat aksi yang di lakukan tidak bisa di ulangi kembali.</v-card-text>
-                                        <v-card-actions>
-                                        <v-spacer></v-spacer>
-                                        <v-btn color="red" text @click="tutup = false">Kembali</v-btn>
-                                        <v-btn color="green" text @click="tutup = false">Baik Saya Mengerti</v-btn>
-                                        </v-card-actions>
-                                    </v-card>
-                                    </v-dialog>
-                                </v-btn>
-
-                                <v-dialog v-model="dialog" persistent max-width="600px">
-                                <template v-slot:activator="{ on }">
-                                    <v-btn color="orange" text dark v-on="on">Edit</v-btn>
-                                </template>
-                                <v-card>
-                                    <v-card-title>
-                                    <span class="headline">Ubah Data</span>
-                                    </v-card-title>
-                                    <v-card-text>
-                                    <v-container>
-                                        <v-row>
-                                        <v-col cols="12">
-                                            <v-text-field label="Nama Penggalangan*" required counter="30"></v-text-field>
-                                        </v-col>
-                                        <v-col cols="12">
-                                            <v-text-field label="Nominal*" required></v-text-field>
-                                        </v-col>
-                                        <v-col cols="12" sm="6">
-
-                                                <v-text-field
-                                                    v-model="date"
-                                                    label="Tenggat Waktu"
-                                                    prepend-icon="event"
-                                                    readonly
-                                                    v-on="on"
-                                                ></v-text-field>
-
-                                        </v-col>
-                                        <v-col cols="12" sm="6">
-                                            <v-autocomplete
-                                            :items="['Pendidikan', 'Kesehatan', 'Pendidikan', 'Other']"
-                                            label="Kategori"
-                                            multiple
-                                            ></v-autocomplete>
-                                        </v-col>
-                                        </v-row>
-                                    </v-container>
-                                    <small>*wajib untuk di isi</small>
-                                    </v-card-text>
-                                    <v-card-actions>
-                                    <v-spacer></v-spacer>
-                                    <v-btn color="blue darken-1" text @click="dialog = false">Close</v-btn>
-                                    <v-btn color="blue darken-1" text @click="dialog = false">Save</v-btn>
-                                    </v-card-actions>
-                                </v-card>
-                                </v-dialog>
-                                </v-btn>
-                                </v-card-actions>
-                            </v-card>
-                        </v-col>
-                    </v-row>
+                            </v-col>
+                        </v-row>
+                    </v-card>
                 </v-container>
+            </section>
 
+            <section class="bg-section-2">
+                <v-container class="py-12">
+                    <v-card>
+                        <v-tabs show-arrows vertical hide-slider background-color="error">
+                            <v-tab>
+                                <v-icon left>mdi-account</v-icon>Penggalangan Aktif
+                            </v-tab>
+                            <v-tab>
+                                <v-icon left>mdi-charity</v-icon>Riwayat Penggalangan
+                            </v-tab>
+                            <v-tab>
+                                <v-icon left>mdi-history</v-icon>Riwayat Donasi
+                            </v-tab>
+                            <v-tab>
+                                <v-icon left>mdi-account-edit</v-icon>Ubah Profil
+                            </v-tab>
+                            <v-tab>
+                                <v-icon left>mdi-textbox-password</v-icon>Ganti Password
+                            </v-tab>
 
+                            <v-tab-item>
+                                <v-card-title>Penggalangan Aktif</v-card-title>
+                                <v-card-subtitle>Menampilkan semua penggalangan dana-mu yang sedang aktif.</v-card-subtitle>
+                                <v-list two-line>
+                                    <template v-for="active in actives">
+                                        <v-list-item @click="reroutes('/campaign/detail')">
+                                            <v-list-item-avatar tile size="70" width="120">
+                                                <v-img :src="active.src"></v-img>
+                                            </v-list-item-avatar>
+                                            
+                                            <v-list-item-content>
+                                                <v-list-item-title v-html="active.title"></v-list-item-title>
+                                                <v-list-item-subtitle>Aktif</v-list-item-subtitle>
+                                                <v-list-item-subtitle v-html="active.daysleft + ' hari lagi'"></v-list-item-subtitle>
+                                            </v-list-item-content>
 
-
+                                            <v-list-item-content>
+                                                <v-btn color="error">Tutup</v-btn>
+                                            </v-list-item-content>
+                                        </v-list-item>
+                                    </template>
+                                </v-list>
+                            </v-tab-item>
+                            <v-tab-item>
+                                <v-card-title>Riwayat Penggalangan</v-card-title>
+                                <v-card-subtitle>Menampilkan semua riwayat penggalangan dana yang sudah kamu buka, mulai dari yang aktif sampai yang sudah tutup.</v-card-subtitle>
+                                <v-list two-line>
+                                    <template v-for="card in cards">
+                                        <v-list-item @click="reroutes('/campaign/detail')">
+                                            <v-list-item-avatar tile size="70" width="120">
+                                                <v-img :src="card.src"></v-img>
+                                            </v-list-item-avatar>
+                                            
+                                            <v-list-item-content>
+                                                <v-list-item-title v-html="card.title"></v-list-item-title>
+                                                <v-list-item-subtitle>Ditutup</v-list-item-subtitle>
+                                            </v-list-item-content>
+                                        </v-list-item>
+                                    </template>
+                                    <v-pagination color="error" v-model="page" :length="length" :page="page" :total-visible="totalVisible"></v-pagination>
+                                </v-list>
+                            </v-tab-item>
+                            <v-tab-item>
+                                <v-card-title>Riwayat Donasi</v-card-title>
+                                <v-card-subtitle>Menampilkan semua riwayat donasi yang telah kamu salurkan.</v-card-subtitle>
+                                <v-list two-line>
+                                    <template v-for="card in cards">
+                                        <v-list-item @click="reroutes('/campaign/detail')">
+                                            <v-list-item-avatar tile size="70" width="120">
+                                                <v-img :src="card.src"></v-img>
+                                            </v-list-item-avatar>
+                                            
+                                            <v-list-item-content>
+                                                <v-list-item-title v-html="card.title"></v-list-item-title>
+                                                <v-list-item-subtitle v-html="'Dibuka oleh ' + card.author + ' - ' + card.raised"></v-list-item-subtitle>
+                                            </v-list-item-content>
+                                        </v-list-item>
+                                    </template>
+                                    <v-pagination color="error" v-model="page" :length="length" :page="page" :total-visible="totalVisible"></v-pagination>
+                                </v-list>
+                            </v-tab-item>
+                            <v-tab-item>
+                                <v-card-title>Ubah Profil</v-card-title>
+                                <v-card-subtitle></v-card-subtitle>
+                                <v-form>
+                                    <v-container class="px-12 pb-12">
+                                    
+                                        <div class="d-flex align-center mb-4">
+                                            <v-avatar size="96" left>
+                                                <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John">
+                                            </v-avatar>
+                                            <v-card-subtitle>Maksimal ukuran foto 1MB. Disarankan beresolusi 180px x 180px.</v-card-subtitle>
+                                        </div>
+                                        <v-file-input label="Foto Profil" prepend-icon="" prepend-inner-icon="mdi-paperclip" outlined clearable/>
+                                        <v-divider/>
+                                        <v-text-field label="Nama Depan" name="firstname" prepend-inner-icon="person" type="text" value="John" :rules="firstnameRules" required outlined clearable/>
+                                        <v-text-field label="Nama Belakang" name="lastname" prepend-inner-icon="person" type="text" value="Tanaka" :rules="lastnameRules" required outlined clearable/>
+                                        <v-text-field label="Email" name="email" prepend-inner-icon="mail" type="text" value="John@gmail.com" :rules="emailRules" required outlined clearable/>
+                                        <v-text-field label="Nomor Handphone" name="noHandphone" prepend-inner-icon="phone" value="08955128756" type="text" :rules="noHandphoneRules" :counter="14" required outlined clearable/>
+                                        <v-divider/>
+                                        <v-btn color="error" class="mr-2">Ganti</v-btn>
+                                        <v-btn text class="mr-2">Batal</v-btn>
+                                    </v-container>
+                                </v-form>
+                            </v-tab-item>
+                            <v-tab-item>
+                                <v-card-title>Ganti Password</v-card-title>
+                                <v-card-subtitle></v-card-subtitle>
+                                <v-form>
+                                    <v-container class="px-12 pb-12">
+                                            <v-text-field id="password" label="Password Saat Ini" name="password" prepend-inner-icon="mdi-lock-question" type="password" :rules="passwordRules" required outlined clearable/>
+                                            <v-text-field id="password" label="Password Baru" name="password" prepend-inner-icon="mdi-lock-open" type="password" :rules="passwordRules" required outlined clearable/>
+                                            <v-text-field id="passwordconfirm" label="Ketik Ulang Password Baru" name="passwordconfirm" prepend-inner-icon="lock" type="password" :rules="passwordRules" required outlined clearable/>
+                                        <v-divider/>
+                                        <v-btn color="error" class="mr-2">Ganti</v-btn>
+                                        <v-btn text class="mr-2">Batal</v-btn>
+                                    </v-container>
+                                </v-form>
+                            </v-tab-item>
+                        </v-tabs>
+                    </v-card>
+                </v-container>
             </section>
         </div>
     </main>
 
-    <footbar></footbar>
+    <footbar/>
 </v-app>
 </template>
 
 <script>
     export default {
         data: () => ({
-            buka: false,
-            tutup: false,
-            dialog: false,
-
-            items: [
-                'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
-                'https://cdn.vuetifyjs.com/images/cards/house.jpg',
-                'https://cdn.vuetifyjs.com/images/cards/docks.jpg',
-                'https://cdn.vuetifyjs.com/images/cards/halcyon.png',
-                'https://cdn.vuetifyjs.com/images/cards/plane.jpg',
-            ],
-            slides: [
-                'Pertama',
-                'Kedua',
-                'Ketiga',
-                'Keempat',
-                'Kelima',
+            actives: [
+                {title:'Best airlines', src:'https://cdn.vuetifyjs.com/images/cards/plane.jpg', author:'Tommy', progress:60, raised:'Rp 16.251.026', daysleft:'23'},
+                {title:'Supermodel', src:'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg', author:'Louise', progress:50, raised:'Rp 3.003.132', daysleft:'30'},
             ],
             cards: [
                 {title:'Supermodel', src:'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg', author:'Louise', progress:50, raised:'Rp 3.003.132', daysleft:'30'},
@@ -447,6 +187,22 @@
                 {title:'Best airlines', src:'https://cdn.vuetifyjs.com/images/cards/plane.jpg', author:'Tommy', progress:60, raised:'Rp 16.251.026', daysleft:'23'},
                 {title:'Supermodel', src:'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg', author:'Louise', progress:50, raised:'Rp 3.003.132', daysleft:'30'},
             ],
+
+            length: 2,
+            nextIcon: 'navigate_next',
+            prevIcon: 'navigate_before',
+            page: 1,
+            totalVisible: 10,
+
+            valid: true,
+            firstnameRules: [v => !!v || "First Name is required"],
+            lastnameRules: [v => !!v || "Last Name is required"],
+            emailRules: [v => !!v || "E-mail is required"],
+            noHandphoneRules: [
+                v => !!v || "No.Handphone is required",
+                v => v && v.length <= 14
+            ],
+            passwordRules: [v => !!v || "Password is required"],
         }),
         methods: {
             reroutes: function (url) {
@@ -454,11 +210,37 @@
             }
         }
     }
-
-
 </script>
 
 <style>
+    section .v-card {
+        transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1) all;
+    }
 
+    section .card-transform:hover {
+        transform: translatey(-10px);
+    }
+
+    .top-space {
+        padding-top: 96px!important;
+    }
+
+    .v-btn:focus {
+        outline: 0;
+    }
+    
+    a.v-btn:hover, .v-chip:hover {
+        text-decoration: none;
+    }
+
+    .v-tabs--vertical .v-tab {
+        justify-content: start;
+    }
+
+    @media only screen and (max-width: 768px) {
+        .v-tabs--vertical {
+            flex-direction: column;
+        }
+    }
     /*@import './assets/styles/yourstyles.css';*/
 </style>

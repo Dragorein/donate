@@ -12,6 +12,7 @@ import Payment from "../components/payment/container"
 import PaymentDone from "../components/payment/doneContainer"
 import Profile from "../components/profile/container"
 import Dashboard from "../components/dashboard/container"
+import Start from "../components/start/container"
 
 const routes = [
     {
@@ -58,6 +59,11 @@ const routes = [
         component: Dashboard,
         name: "dashboard",
         path: "/dashboard"
+    },
+    {
+        component: Start,
+        name: "start",
+        path: "/start"
     }
 ];
 

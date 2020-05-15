@@ -2035,9 +2035,6 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     remove: function remove(item) {
       this.chips.splice(this.chips.indexOf(item), 1);
       this.chips = _toConsumableArray(this.chips);
-    },
-    getImgUrl: function getImgUrl(pic) {
-      return !(function webpackMissingModule() { var e = new Error("Cannot find module 'undefined'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
     }
   }
 });
@@ -3314,35 +3311,68 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      show1: false,
+      show2: false,
       e1: 1,
       valid: true,
       firstname: "",
       firstnameRules: [function (v) {
-        return !!v || "First Name is required";
+        return !!v || "Nama Depan tidak boleh kosong";
       }],
       lastname: "",
       lastnameRules: [function (v) {
-        return !!v || "Last Name is required";
+        return !!v || "Nama Belakang tidak boleh kosong";
       }],
       email: "",
       emailRules: [function (v) {
-        return !!v || "E-mail is required";
+        return !!v || "E-mail tidak boleh kosong";
+      }, function (v) {
+        return /.+@.+/.test(v) || "E-mail harus valid";
       }],
       noHandphone: "",
       noHandphoneRules: [function (v) {
-        return !!v || "No.Handphone is required";
+        return !!v || "No.Handphone tidak boleh kosong";
       }, function (v) {
         return v && v.length <= 14;
       }],
       password: "",
       passwordRules: [function (v) {
-        return !!v || "Password is required";
-      }]
+        return !!v || "Password tidak boleh kosong";
+      }, function (v) {
+        return /(?=.*[A-Z])/.test(v) || 'Must have one uppercase character';
+      }, function (v) {
+        return /(?=.*\d)/.test(v) || 'Must have one number';
+      }],
+      confirmPassword: ""
     };
+  },
+  computed: {
+    comparePasswords: function comparePasswords() {
+      return this.password !== this.confirmPassword ? "Password tidak sesuai" : true;
+    }
   },
   methods: {
     submit: function submit() {
-      this.$v.$touch();
+      var _this = this;
+
+      console.log(this.$data);
+      axios.post("http://127.0.0.1:8000/register", {
+        firstname: this.$data.firstname,
+        lastname: this.$data.lastname,
+        name: this.$data.firstname + this.$data.lastname,
+        email: this.$data.email,
+        noHandphone: this.$data.noHandphone,
+        password: this.$data.password
+      }).then(function (data) {
+        _this.$router.push({
+          path: "/"
+        });
+      })["catch"](function (e) {
+        console.error(e);
+      });
+    },
+    submitForm: function submitForm(e) {
+      e.preventDefault();
     },
     reroutes: function reroutes(url) {
       this.$router.push({
@@ -41798,7 +41828,7 @@ var render = function() {
                       return _c(
                         "v-col",
                         {
-                          key: submisi.submisi_judul,
+                          key: submisi.submisi_id,
                           attrs: { cols: "12", sm: "6", md: "4", xl: "3" }
                         },
                         [
@@ -41844,7 +41874,7 @@ var render = function() {
                                           _c("v-card-subtitle", {
                                             domProps: {
                                               textContent: _vm._s(
-                                                submisi.submisi_judul
+                                                submisi.user_name
                                               )
                                             }
                                           }),
@@ -41859,16 +41889,17 @@ var render = function() {
                                                   color: "deep-orange"
                                                 },
                                                 model: {
-                                                  value: submisi.submisi_id,
+                                                  value:
+                                                    submisi.kekurangan_donasi,
                                                   callback: function($$v) {
                                                     _vm.$set(
                                                       submisi,
-                                                      "submisi_id",
+                                                      "kekurangan_donasi",
                                                       $$v
                                                     )
                                                   },
                                                   expression:
-                                                    "submisi.submisi_id"
+                                                    "submisi.kekurangan_donasi"
                                                 }
                                               })
                                             ],
@@ -41892,7 +41923,7 @@ var render = function() {
                                                   [
                                                     _vm._v(
                                                       _vm._s(
-                                                        submisi.submisi_judul
+                                                        submisi.total_donasi
                                                       )
                                                     )
                                                   ]
@@ -41909,9 +41940,7 @@ var render = function() {
                                                   },
                                                   [
                                                     _vm._v(
-                                                      _vm._s(
-                                                        submisi.submisi_judul
-                                                      )
+                                                      _vm._s(submisi.day_left)
                                                     )
                                                   ]
                                                 ),
@@ -41990,6 +42019,7 @@ var render = function() {
                           page: _vm.page,
                           "total-visible": _vm.totalVisible
                         },
+                        on: { input: _vm.next },
                         model: {
                           value: _vm.page,
                           callback: function($$v) {
@@ -45350,6 +45380,13 @@ var render = function() {
                                           required: "",
                                           filled: "",
                                           clearable: ""
+                                        },
+                                        model: {
+                                          value: _vm.firstname,
+                                          callback: function($$v) {
+                                            _vm.firstname = $$v
+                                          },
+                                          expression: "firstname"
                                         }
                                       }),
                                       _vm._v(" "),
@@ -45363,6 +45400,13 @@ var render = function() {
                                           required: "",
                                           filled: "",
                                           clearable: ""
+                                        },
+                                        model: {
+                                          value: _vm.lastname,
+                                          callback: function($$v) {
+                                            _vm.lastname = $$v
+                                          },
+                                          expression: "lastname"
                                         }
                                       }),
                                       _vm._v(" "),
@@ -45376,6 +45420,13 @@ var render = function() {
                                           required: "",
                                           filled: "",
                                           clearable: ""
+                                        },
+                                        model: {
+                                          value: _vm.email,
+                                          callback: function($$v) {
+                                            _vm.email = $$v
+                                          },
+                                          expression: "email"
                                         }
                                       }),
                                       _vm._v(" "),
@@ -45390,6 +45441,13 @@ var render = function() {
                                           required: "",
                                           filled: "",
                                           clearable: ""
+                                        },
+                                        model: {
+                                          value: _vm.noHandphone,
+                                          callback: function($$v) {
+                                            _vm.noHandphone = $$v
+                                          },
+                                          expression: "noHandphone"
                                         }
                                       }),
                                       _vm._v(" "),
@@ -45454,11 +45512,26 @@ var render = function() {
                                           label: "Password",
                                           name: "password",
                                           "prepend-inner-icon": "mdi-lock-open",
-                                          type: "password",
+                                          "append-icon": _vm.show1
+                                            ? "mdi-eye"
+                                            : "mdi-eye-off",
+                                          type: _vm.show1 ? "text" : "password",
                                           rules: _vm.passwordRules,
                                           required: "",
                                           filled: "",
                                           clearable: ""
+                                        },
+                                        on: {
+                                          "click:append": function($event) {
+                                            _vm.show1 = !_vm.show1
+                                          }
+                                        },
+                                        model: {
+                                          value: _vm.password,
+                                          callback: function($$v) {
+                                            _vm.password = $$v
+                                          },
+                                          expression: "password"
                                         }
                                       }),
                                       _vm._v(" "),
@@ -45468,11 +45541,26 @@ var render = function() {
                                           label: "Ketik Ulang Password",
                                           name: "passwordconfirm",
                                           "prepend-inner-icon": "lock",
-                                          type: "password",
-                                          rules: _vm.passwordRules,
+                                          "append-icon": _vm.show2
+                                            ? "mdi-eye"
+                                            : "mdi-eye-off",
+                                          type: _vm.show2 ? "text" : "password",
+                                          rules: [_vm.comparePasswords],
                                           required: "",
                                           filled: "",
                                           clearable: ""
+                                        },
+                                        on: {
+                                          "click:append": function($event) {
+                                            _vm.show2 = !_vm.show2
+                                          }
+                                        },
+                                        model: {
+                                          value: _vm.confirmPassword,
+                                          callback: function($$v) {
+                                            _vm.confirmPassword = $$v
+                                          },
+                                          expression: "confirmPassword"
                                         }
                                       }),
                                       _vm._v(" "),
@@ -45483,7 +45571,7 @@ var render = function() {
                                           attrs: { color: "error" },
                                           on: {
                                             click: function($event) {
-                                              return _vm.reroutes("/")
+                                              return _vm.submit()
                                             }
                                           }
                                         },
@@ -102868,8 +102956,8 @@ var opts = {};
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\donate\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\donate\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\Donate\donate\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\Donate\donate\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

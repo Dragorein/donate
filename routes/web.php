@@ -26,6 +26,8 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 
+Route::post('/register', 'RegisterController@store');
+
 // Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');

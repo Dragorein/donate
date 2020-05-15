@@ -2402,6 +2402,10 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+var _data$data$methods;
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -2514,64 +2518,116 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = (_data$data$methods = {
   data: function data() {
     return {
-      items: ['https://cdn.vuetifyjs.com/images/cards/sunshine.jpg', 'https://cdn.vuetifyjs.com/images/cards/house.jpg', 'https://cdn.vuetifyjs.com/images/cards/docks.jpg', 'https://cdn.vuetifyjs.com/images/cards/halcyon.png', 'https://cdn.vuetifyjs.com/images/cards/plane.jpg'],
-      slides: ['Pertama', 'Kedua', 'Ketiga', 'Keempat', 'Kelima'],
-      cards: [{
-        title: 'Supermodel',
-        src: 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
-        author: 'Louise',
-        progress: 50,
-        raised: 'Rp 3.003.132',
-        daysleft: '30'
-      }, {
-        title: 'Halcyon Days',
-        src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg',
-        author: 'Danny',
-        progress: 80,
-        raised: 'Rp 5.012.500',
-        daysleft: '3'
-      }, {
-        title: 'Top western road trips',
-        src: 'https://cdn.vuetifyjs.com/images/cards/docks.jpg',
-        author: 'Rachel',
-        progress: 5,
-        raised: 'Rp 176.320',
-        daysleft: '56'
-      }, {
-        title: 'Unlimited music now',
-        src: 'https://cdn.vuetifyjs.com/images/cards/halcyon.png',
-        author: 'Ellie',
-        progress: 100,
-        raised: 'Rp 152.901.000',
-        daysleft: '1'
-      }, {
-        title: 'Best airlines',
-        src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg',
-        author: 'Tommy',
-        progress: 60,
-        raised: 'Rp 16.251.026',
-        daysleft: '23'
-      }, {
-        title: 'Supermodel',
-        src: 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
-        author: 'Louise',
-        progress: 50,
-        raised: 'Rp 3.003.132',
-        daysleft: '30'
-      }]
+      dialog: false
     };
-  },
-  methods: {
-    reroutes: function reroutes(url) {
-      this.$router.push({
-        path: url
-      });
-    }
   }
-});
+}, _defineProperty(_data$data$methods, "data", function data() {
+  return {
+    items: ['https://cdn.vuetifyjs.com/images/cards/sunshine.jpg', 'https://cdn.vuetifyjs.com/images/cards/house.jpg', 'https://cdn.vuetifyjs.com/images/cards/docks.jpg', 'https://cdn.vuetifyjs.com/images/cards/halcyon.png', 'https://cdn.vuetifyjs.com/images/cards/plane.jpg'],
+    slides: ['Pertama', 'Kedua', 'Ketiga', 'Keempat', 'Kelima'],
+    cards: [{
+      title: 'Supermodel',
+      src: 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
+      author: 'Louise',
+      progress: 50,
+      raised: 'Rp 3.003.132',
+      daysleft: '30'
+    }, {
+      title: 'Halcyon Days',
+      src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg',
+      author: 'Danny',
+      progress: 80,
+      raised: 'Rp 5.012.500',
+      daysleft: '3'
+    }, {
+      title: 'Top western road trips',
+      src: 'https://cdn.vuetifyjs.com/images/cards/docks.jpg',
+      author: 'Rachel',
+      progress: 5,
+      raised: 'Rp 176.320',
+      daysleft: '56'
+    }, {
+      title: 'Unlimited music now',
+      src: 'https://cdn.vuetifyjs.com/images/cards/halcyon.png',
+      author: 'Ellie',
+      progress: 100,
+      raised: 'Rp 152.901.000',
+      daysleft: '1'
+    }, {
+      title: 'Best airlines',
+      src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg',
+      author: 'Tommy',
+      progress: 60,
+      raised: 'Rp 16.251.026',
+      daysleft: '23'
+    }, {
+      title: 'Supermodel',
+      src: 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
+      author: 'Louise',
+      progress: 50,
+      raised: 'Rp 3.003.132',
+      daysleft: '30'
+    }]
+  };
+}), _defineProperty(_data$data$methods, "methods", {
+  reroutes: function reroutes(url) {
+    this.$router.push({
+      path: url
+    });
+  }
+}), _data$data$methods);
 
 /***/ }),
 
@@ -3520,6 +3576,209 @@ __webpack_require__.r(__webpack_exports__);
       this.$router.push({
         path: url
       });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vuetify-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/start/container.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vuetify-loader/lib/loader.js??ref--11-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/start/container.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      date: new Date().toISOString().substr(0, 10),
+      menu: false,
+      e1: 1,
+      valid: true,
+      nama: "",
+      namaRules: [function (v) {
+        return !!v || "Wajib untuk di isi";
+      }],
+      medsos: "",
+      medsosRules: [function (v) {
+        return !!v || "Wajib untuk di isi";
+      }],
+      email: "",
+      emailRules: [function (v) {
+        return !!v || "Wajib untuk di isi";
+      }],
+      alamat: "",
+      alamatRules: [function (v) {
+        return !!v || "Wajib untuk di isi";
+      }],
+      judul: "",
+      judulRules: [function (a) {
+        return !!a || "Wajib untuk di isi";
+      }, function (a) {
+        return a && a.length <= 50;
+      }],
+      target: "",
+      targetRules: [function (v) {
+        return !!v || "Wajib untuk di isi";
+      }],
+      penerima: "",
+      penerimaRules: [function (v) {
+        return !!v || "Wajib untuk di isi";
+      }],
+      ceritaRules: [function (v) {
+        return !!v || "Rician penggunaan dana terlalu pendek (Minimal 30 karakter)";
+      }, function (v) {
+        return v && v.length >= 30;
+      }],
+      noHandphone: "",
+      noHandphoneRules: [function (v) {
+        return !!v || "No.Handphone is required";
+      }, function (v) {
+        return v && v.length <= 14;
+      }],
+      password: "",
+      passwordRules: [function (v) {
+        return !!v || "Password is required";
+      }],
+      items: ['Pendidikan', 'Bencana Alaman', 'Kemanusiaan', 'Lingkungan', 'Kegiata Sosial', 'Saran dan Infrastruktur']
+    };
+  },
+  methods: {
+    submit: function submit() {
+      this.$v.$touch();
+    },
+    reroutes: function reroutes(url) {
+      this.$router.push({
+        path: url
+      });
+    },
+    goBack: function goBack() {
+      this.$router.go(-1);
     }
   }
 });
@@ -42781,16 +43040,241 @@ var render = function() {
                                   "v-row",
                                   { attrs: { justify: "center" } },
                                   [
-                                    _c(
-                                      "v-btn",
-                                      {
-                                        staticClass: "mt-6",
-                                        attrs: { large: "", color: "error" }
-                                      },
-                                      [_vm._v("Bantu sekarang")]
-                                    )
+                                    [
+                                      _c(
+                                        "div",
+                                        { staticClass: "text-center" },
+                                        [
+                                          _c(
+                                            "v-dialog",
+                                            {
+                                              attrs: { width: "500" },
+                                              scopedSlots: _vm._u(
+                                                [
+                                                  {
+                                                    key: "activator",
+                                                    fn: function(ref) {
+                                                      var on = ref.on
+                                                      return [
+                                                        _c(
+                                                          "v-btn",
+                                                          _vm._g(
+                                                            {
+                                                              staticClass:
+                                                                "mt-6",
+                                                              attrs: {
+                                                                large: "",
+                                                                color: "error"
+                                                              }
+                                                            },
+                                                            on
+                                                          ),
+                                                          [
+                                                            _vm._v(
+                                                              "Bantu sekarang"
+                                                            )
+                                                          ]
+                                                        )
+                                                      ]
+                                                    }
+                                                  }
+                                                ],
+                                                null,
+                                                true
+                                              ),
+                                              model: {
+                                                value: _vm.dialog,
+                                                callback: function($$v) {
+                                                  _vm.dialog = $$v
+                                                },
+                                                expression: "dialog"
+                                              }
+                                            },
+                                            [
+                                              _vm._v(" "),
+                                              _c(
+                                                "v-card",
+                                                {
+                                                  attrs: { "max-width": "500" }
+                                                },
+                                                [
+                                                  _c(
+                                                    "v-img",
+                                                    {
+                                                      staticClass:
+                                                        "white--text align-end",
+                                                      attrs: {
+                                                        height: "200px",
+                                                        src:
+                                                          "https://www.voyagerit.com/wp-content/uploads/2019/03/GettyImages-968545728.jpg"
+                                                      }
+                                                    },
+                                                    [_c("v-card-title")],
+                                                    1
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "v-card-subtitle",
+                                                    {
+                                                      staticClass: "pb-0 mt-2"
+                                                    },
+                                                    [
+                                                      _vm._v(
+                                                        "Kindly tidak memfasilitasi penggalangan dana untuk : "
+                                                      )
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "v-chip",
+                                                    {
+                                                      staticClass: "ma-2 ml-6",
+                                                      attrs: {
+                                                        color: "red lighten-3",
+                                                        label: "1"
+                                                      }
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "v-avatar",
+                                                        { attrs: { left: "" } },
+                                                        [
+                                                          _c(
+                                                            "v-icon",
+                                                            {
+                                                              attrs: {
+                                                                color:
+                                                                  "red darken-1"
+                                                              }
+                                                            },
+                                                            [
+                                                              _vm._v(
+                                                                "mdi-cancel"
+                                                              )
+                                                            ]
+                                                          )
+                                                        ],
+                                                        1
+                                                      ),
+                                                      _vm._v(
+                                                        "\n                                                            Galang dana untuk diri sendiri\n                                                            "
+                                                      )
+                                                    ],
+                                                    1
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "v-chip",
+                                                    {
+                                                      staticClass: "ma-2 ml-6",
+                                                      attrs: {
+                                                        color: "red lighten-3",
+                                                        label: "1"
+                                                      }
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "v-avatar",
+                                                        { attrs: { left: "" } },
+                                                        [
+                                                          _c(
+                                                            "v-icon",
+                                                            {
+                                                              attrs: {
+                                                                color:
+                                                                  "red darken-1"
+                                                              }
+                                                            },
+                                                            [
+                                                              _vm._v(
+                                                                "mdi-cancel"
+                                                              )
+                                                            ]
+                                                          )
+                                                        ],
+                                                        1
+                                                      ),
+                                                      _vm._v(
+                                                        "\n                                                            Penggalangan dana fiktif\n                                                            "
+                                                      )
+                                                    ],
+                                                    1
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "v-chip",
+                                                    {
+                                                      staticClass: "ma-2 ml-6",
+                                                      attrs: {
+                                                        color: "red lighten-3",
+                                                        label: "1"
+                                                      }
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "v-avatar",
+                                                        { attrs: { left: "" } },
+                                                        [
+                                                          _c(
+                                                            "v-icon",
+                                                            {
+                                                              attrs: {
+                                                                color:
+                                                                  "red darken-1"
+                                                              }
+                                                            },
+                                                            [
+                                                              _vm._v(
+                                                                "mdi-cancel"
+                                                              )
+                                                            ]
+                                                          )
+                                                        ],
+                                                        1
+                                                      ),
+                                                      _vm._v(
+                                                        "\n                                                            Galang dana untuk kegiatan radikalisme & terorisme\n                                                            "
+                                                      )
+                                                    ],
+                                                    1
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "v-card-actions",
+                                                    [
+                                                      _c(
+                                                        "v-btn",
+                                                        {
+                                                          staticClass: "my-3",
+                                                          attrs: {
+                                                            href: "/start",
+                                                            block: "",
+                                                            color: "success",
+                                                            large: "",
+                                                            dark: ""
+                                                          }
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            "\n                                                                Ya,saya mengerti\n                                                            "
+                                                          )
+                                                        ]
+                                                      )
+                                                    ],
+                                                    1
+                                                  )
+                                                ],
+                                                1
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ]
                                   ],
-                                  1
+                                  2
                                 )
                               ],
                               1
@@ -42966,7 +43450,7 @@ var render = function() {
                                                         [_vm._v("mdi-charity")]
                                                       ),
                                                       _vm._v(
-                                                        "Galang\r\n                                    "
+                                                        "Galang\n                                    "
                                                       )
                                                     ],
                                                     1
@@ -42982,7 +43466,7 @@ var render = function() {
                                                         [_vm._v("mdi-cash-usd")]
                                                       ),
                                                       _vm._v(
-                                                        "Dana\r\n                                    "
+                                                        "Dana\n                                    "
                                                       )
                                                     ],
                                                     1
@@ -43199,7 +43683,7 @@ var render = function() {
                                                         [_vm._v("mdi-charity")]
                                                       ),
                                                       _vm._v(
-                                                        "Galang\r\n                                    "
+                                                        "Galang\n                                    "
                                                       )
                                                     ],
                                                     1
@@ -43215,7 +43699,7 @@ var render = function() {
                                                         [_vm._v("mdi-cash-usd")]
                                                       ),
                                                       _vm._v(
-                                                        "Dana\r\n                                    "
+                                                        "Dana\n                                    "
                                                       )
                                                     ],
                                                     1
@@ -45700,6 +46184,638 @@ var render = function() {
           )
         ])
       ])
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vuetify-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/start/container.vue?vue&type=template&id=fbd044ce&":
+/*!*************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vuetify-loader/lib/loader.js??ref--11-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/start/container.vue?vue&type=template&id=fbd044ce& ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-app",
+    [
+      _c("navbar"),
+      _vm._v(" "),
+      _c("main", { staticClass: "h-100" }, [
+        _c("div", { staticClass: "fluid" }, [
+          _c(
+            "section",
+            { staticClass: "top-space bg-section-1" },
+            [
+              _c(
+                "v-container",
+                { staticClass: "pb-12" },
+                [
+                  _c(
+                    "v-card",
+                    [
+                      _c("v-card-title", [_vm._v("Daftar Akun Baru")]),
+                      _vm._v(" "),
+                      _c(
+                        "v-stepper",
+                        {
+                          attrs: { vertical: "" },
+                          model: {
+                            value: _vm.e1,
+                            callback: function($$v) {
+                              _vm.e1 = $$v
+                            },
+                            expression: "e1"
+                          }
+                        },
+                        [
+                          _c(
+                            "v-stepper-step",
+                            {
+                              attrs: {
+                                complete: _vm.e1 > 1,
+                                step: "1",
+                                color: "error"
+                              }
+                            },
+                            [_vm._v("Data Diri")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-stepper-content",
+                            { attrs: { step: "1" } },
+                            [
+                              _c(
+                                "v-card-text",
+                                [
+                                  _c(
+                                    "v-form",
+                                    [
+                                      _c("v-text-field", {
+                                        attrs: {
+                                          label: "Nama Kamu",
+                                          name: "nama",
+                                          "prepend-inner-icon": "person",
+                                          type: "text",
+                                          rules: _vm.namaRules,
+                                          required: "",
+                                          filled: "",
+                                          clearable: ""
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _c("v-text-field", {
+                                        attrs: {
+                                          label:
+                                            "Linkedin atau sosial media kamu",
+                                          name: "mediasosial",
+                                          "prepend-inner-icon":
+                                            "mdi-account-group-outline",
+                                          type: "text",
+                                          rules: _vm.medsosRules,
+                                          required: "",
+                                          filled: "",
+                                          clearable: ""
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _c("v-text-field", {
+                                        attrs: {
+                                          label: "Email",
+                                          name: "email",
+                                          "prepend-inner-icon": "mail",
+                                          type: "text",
+                                          rules: _vm.emailRules,
+                                          required: "",
+                                          filled: "",
+                                          clearable: ""
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _c("v-text-field", {
+                                        attrs: {
+                                          label: "Nomor Handphone",
+                                          name: "noHandphone",
+                                          "prepend-inner-icon": "phone",
+                                          type: "text",
+                                          rules: _vm.noHandphoneRules,
+                                          counter: 14,
+                                          required: "",
+                                          filled: "",
+                                          clearable: ""
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _c("v-text-field", {
+                                        attrs: {
+                                          label: "Alamat",
+                                          name: "Alamat",
+                                          "prepend-inner-icon":
+                                            "mdi-folder-home",
+                                          type: "text",
+                                          rules: _vm.alamatRules,
+                                          required: "",
+                                          filled: "",
+                                          clearable: ""
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-btn",
+                                        {
+                                          staticClass: "mr-2",
+                                          attrs: { color: "error" },
+                                          on: {
+                                            click: function($event) {
+                                              _vm.e1 = 2
+                                            }
+                                          }
+                                        },
+                                        [_vm._v("Lanjut")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-btn",
+                                        {
+                                          staticClass: "mr-2",
+                                          attrs: { text: "" },
+                                          on: { click: _vm.goBack }
+                                        },
+                                        [_vm._v("Batal")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-stepper-step",
+                            {
+                              attrs: {
+                                complete: _vm.e1 > 2,
+                                step: "2",
+                                color: "error"
+                              }
+                            },
+                            [_vm._v("Detail")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-stepper-content",
+                            { attrs: { step: "2" } },
+                            [
+                              _c(
+                                "v-card-text",
+                                [
+                                  _c(
+                                    "v-form",
+                                    [
+                                      _c("v-select", {
+                                        attrs: {
+                                          "prepend-inner-icon":
+                                            "mdi-file-document-box-check",
+                                          items: _vm.items,
+                                          filled: "",
+                                          label: "Pilih Kategori Yang Sesuai",
+                                          dense: ""
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _c("v-text-field", {
+                                        attrs: {
+                                          label: "Judul Penggalangan Dana",
+                                          name: "judul",
+                                          "prepend-inner-icon":
+                                            "mdi-mastodon-variant",
+                                          type: "text",
+                                          counter: 50,
+                                          rules: _vm.judulRules,
+                                          required: "",
+                                          filled: "",
+                                          clearable: ""
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _c("v-text-field", {
+                                        attrs: {
+                                          label: "Target Donasi",
+                                          name: "target",
+                                          "prepend-inner-icon": "mdi-database",
+                                          prefix: "Rp.",
+                                          type: "curency",
+                                          rules: _vm.targetRules,
+                                          required: "",
+                                          filled: "",
+                                          clearable: ""
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _c("v-text-field", {
+                                        attrs: {
+                                          label: "Penerima Manfaat",
+                                          name: "penerima",
+                                          "prepend-inner-icon":
+                                            "mdi-account-heart",
+                                          type: "text",
+                                          rules: _vm.penerimaRules,
+                                          required: "",
+                                          filled: "",
+                                          clearable: ""
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _c("v-text-field", {
+                                        attrs: {
+                                          label: "Cerita",
+                                          name: "cerita",
+                                          "prepend-inner-icon":
+                                            "mdi-chat-processing",
+                                          type: "text",
+                                          rules: _vm.ceritaRules,
+                                          required: "",
+                                          filled: "",
+                                          clearable: ""
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-menu",
+                                        {
+                                          ref: "menu",
+                                          attrs: {
+                                            "close-on-content-click": false,
+                                            "return-value": _vm.date,
+                                            transition: "scale-transition",
+                                            "offset-y": "",
+                                            "min-width": "290px"
+                                          },
+                                          on: {
+                                            "update:returnValue": function(
+                                              $event
+                                            ) {
+                                              _vm.date = $event
+                                            },
+                                            "update:return-value": function(
+                                              $event
+                                            ) {
+                                              _vm.date = $event
+                                            }
+                                          },
+                                          scopedSlots: _vm._u([
+                                            {
+                                              key: "activator",
+                                              fn: function(ref) {
+                                                var on = ref.on
+                                                return [
+                                                  _c(
+                                                    "v-text-field",
+                                                    _vm._g(
+                                                      {
+                                                        attrs: {
+                                                          label:
+                                                            "Batas Waktu Penggalangan Dana",
+                                                          "prepend-inner-icon":
+                                                            "event",
+                                                          readonly: "",
+                                                          rules: _vm.waktuRules,
+                                                          required: "",
+                                                          filled: "",
+                                                          name: "Waktu"
+                                                        },
+                                                        model: {
+                                                          value: _vm.date,
+                                                          callback: function(
+                                                            $$v
+                                                          ) {
+                                                            _vm.date = $$v
+                                                          },
+                                                          expression: "date"
+                                                        }
+                                                      },
+                                                      on
+                                                    )
+                                                  )
+                                                ]
+                                              }
+                                            }
+                                          ]),
+                                          model: {
+                                            value: _vm.menu,
+                                            callback: function($$v) {
+                                              _vm.menu = $$v
+                                            },
+                                            expression: "menu"
+                                          }
+                                        },
+                                        [
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-date-picker",
+                                            {
+                                              attrs: {
+                                                "no-title": "",
+                                                scrollable: ""
+                                              },
+                                              model: {
+                                                value: _vm.date,
+                                                callback: function($$v) {
+                                                  _vm.date = $$v
+                                                },
+                                                expression: "date"
+                                              }
+                                            },
+                                            [
+                                              _c("v-spacer"),
+                                              _vm._v(" "),
+                                              _c(
+                                                "v-btn",
+                                                {
+                                                  attrs: {
+                                                    text: "",
+                                                    color: "red"
+                                                  },
+                                                  on: {
+                                                    click: function($event) {
+                                                      _vm.menu = false
+                                                    }
+                                                  }
+                                                },
+                                                [_vm._v("Cancel")]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "v-btn",
+                                                {
+                                                  attrs: {
+                                                    text: "",
+                                                    color: "primary"
+                                                  },
+                                                  on: {
+                                                    click: function($event) {
+                                                      return _vm.$refs.menu.save(
+                                                        _vm.date
+                                                      )
+                                                    }
+                                                  }
+                                                },
+                                                [_vm._v("OK")]
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        ],
+                                        1
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-btn",
+                                        {
+                                          staticClass: "mr-2",
+                                          attrs: { color: "error" },
+                                          on: {
+                                            click: function($event) {
+                                              _vm.e1 = 3
+                                            }
+                                          }
+                                        },
+                                        [_vm._v("Lanjut")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-btn",
+                                        {
+                                          staticClass: "mr-2",
+                                          attrs: { text: "" },
+                                          on: { click: _vm.goBack }
+                                        },
+                                        [_vm._v("Batal")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-stepper-step",
+                            {
+                              attrs: {
+                                complete: _vm.e1 > 3,
+                                step: "3",
+                                color: "error"
+                              }
+                            },
+                            [_vm._v("Foto")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-stepper-content",
+                            { attrs: { step: "3" } },
+                            [
+                              _c(
+                                "v-card-text",
+                                [
+                                  _c(
+                                    "v-form",
+                                    [
+                                      _c("v-file-input", {
+                                        attrs: {
+                                          label:
+                                            "Pilih salah satu foto utama untuk penggalangan danamu",
+                                          filled: "",
+                                          "prepend-inner-icon": "mdi-camera"
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-btn",
+                                        {
+                                          staticClass: "mr-2",
+                                          attrs: { color: "error" },
+                                          on: {
+                                            click: function($event) {
+                                              _vm.e1 = 4
+                                            }
+                                          }
+                                        },
+                                        [_vm._v("Lanjut")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-btn",
+                                        {
+                                          staticClass: "mr-2",
+                                          attrs: { text: "" },
+                                          on: { click: _vm.goBack }
+                                        },
+                                        [_vm._v("Batal")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-stepper-step",
+                            {
+                              attrs: {
+                                complete: _vm.e1 > 4,
+                                step: "4",
+                                color: "error"
+                              }
+                            },
+                            [_vm._v("Konfirmasi")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-stepper-content",
+                            { attrs: { step: "4" } },
+                            [
+                              _c(
+                                "v-card-text",
+                                [
+                                  _c(
+                                    "v-form",
+                                    [
+                                      _c(
+                                        "v-card",
+                                        {
+                                          attrs: {
+                                            "max-width": "644",
+                                            outlined: ""
+                                          }
+                                        },
+                                        [
+                                          _c(
+                                            "v-list-item",
+                                            { attrs: { "three-line": "" } },
+                                            [
+                                              _c(
+                                                "v-list-item-content",
+                                                [
+                                                  _c("v-list-item-subtitle", [
+                                                    _vm._v(
+                                                      "Saya setuju dengan Syarat & Ketentuan Donasi di kindly, termasuk biaya administrasi platform sebesar 5% dari total donasi online yang terkumpul."
+                                                    )
+                                                  ])
+                                                ],
+                                                1
+                                              )
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-card-actions",
+                                            [
+                                              _c("v-checkbox", {
+                                                attrs: {
+                                                  rules: [
+                                                    function(v) {
+                                                      return (
+                                                        !!v ||
+                                                        "You must agree to continue!"
+                                                      )
+                                                    }
+                                                  ],
+                                                  label: "Apakah Anda Setuju?",
+                                                  required: ""
+                                                },
+                                                model: {
+                                                  value: _vm.checkbox,
+                                                  callback: function($$v) {
+                                                    _vm.checkbox = $$v
+                                                  },
+                                                  expression: "checkbox"
+                                                }
+                                              })
+                                            ],
+                                            1
+                                          )
+                                        ],
+                                        1
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-btn",
+                                        {
+                                          staticClass: "mr-2 mt-5",
+                                          attrs: { color: "error" },
+                                          on: {
+                                            click: function($event) {
+                                              return _vm.reroutes("/")
+                                            }
+                                          }
+                                        },
+                                        [_vm._v("Daftar")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-btn",
+                                        {
+                                          staticClass: "mr-2 mt-5",
+                                          attrs: { text: "" },
+                                          on: {
+                                            click: function($event) {
+                                              _vm.e1 = 1
+                                            }
+                                          }
+                                        },
+                                        [_vm._v("Kembali")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("footbar")
     ],
     1
   )
@@ -101797,16 +102913,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../node_modules/vuetify-loader/lib/runtime/installComponents.js */ "./node_modules/vuetify-loader/lib/runtime/installComponents.js");
 /* harmony import */ var _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var vuetify_lib_components_VApp__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuetify/lib/components/VApp */ "./node_modules/vuetify/lib/components/VApp/index.js");
-/* harmony import */ var vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuetify/lib/components/VBtn */ "./node_modules/vuetify/lib/components/VBtn/index.js");
-/* harmony import */ var vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuetify/lib/components/VCard */ "./node_modules/vuetify/lib/components/VCard/index.js");
-/* harmony import */ var vuetify_lib_components_VCarousel__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vuetify/lib/components/VCarousel */ "./node_modules/vuetify/lib/components/VCarousel/index.js");
-/* harmony import */ var vuetify_lib_components_VChip__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vuetify/lib/components/VChip */ "./node_modules/vuetify/lib/components/VChip/index.js");
-/* harmony import */ var vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vuetify/lib/components/VGrid */ "./node_modules/vuetify/lib/components/VGrid/index.js");
-/* harmony import */ var vuetify_lib_components_VDivider__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! vuetify/lib/components/VDivider */ "./node_modules/vuetify/lib/components/VDivider/index.js");
-/* harmony import */ var vuetify_lib_components_VHover__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! vuetify/lib/components/VHover */ "./node_modules/vuetify/lib/components/VHover/index.js");
-/* harmony import */ var vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! vuetify/lib/components/VIcon */ "./node_modules/vuetify/lib/components/VIcon/index.js");
-/* harmony import */ var vuetify_lib_components_VImg__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! vuetify/lib/components/VImg */ "./node_modules/vuetify/lib/components/VImg/index.js");
-/* harmony import */ var vuetify_lib_components_VProgressLinear__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! vuetify/lib/components/VProgressLinear */ "./node_modules/vuetify/lib/components/VProgressLinear/index.js");
+/* harmony import */ var vuetify_lib_components_VAvatar__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuetify/lib/components/VAvatar */ "./node_modules/vuetify/lib/components/VAvatar/index.js");
+/* harmony import */ var vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuetify/lib/components/VBtn */ "./node_modules/vuetify/lib/components/VBtn/index.js");
+/* harmony import */ var vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vuetify/lib/components/VCard */ "./node_modules/vuetify/lib/components/VCard/index.js");
+/* harmony import */ var vuetify_lib_components_VCarousel__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vuetify/lib/components/VCarousel */ "./node_modules/vuetify/lib/components/VCarousel/index.js");
+/* harmony import */ var vuetify_lib_components_VChip__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vuetify/lib/components/VChip */ "./node_modules/vuetify/lib/components/VChip/index.js");
+/* harmony import */ var vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! vuetify/lib/components/VGrid */ "./node_modules/vuetify/lib/components/VGrid/index.js");
+/* harmony import */ var vuetify_lib_components_VDialog__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! vuetify/lib/components/VDialog */ "./node_modules/vuetify/lib/components/VDialog/index.js");
+/* harmony import */ var vuetify_lib_components_VDivider__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! vuetify/lib/components/VDivider */ "./node_modules/vuetify/lib/components/VDivider/index.js");
+/* harmony import */ var vuetify_lib_components_VHover__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! vuetify/lib/components/VHover */ "./node_modules/vuetify/lib/components/VHover/index.js");
+/* harmony import */ var vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! vuetify/lib/components/VIcon */ "./node_modules/vuetify/lib/components/VIcon/index.js");
+/* harmony import */ var vuetify_lib_components_VImg__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! vuetify/lib/components/VImg */ "./node_modules/vuetify/lib/components/VImg/index.js");
+/* harmony import */ var vuetify_lib_components_VProgressLinear__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! vuetify/lib/components/VProgressLinear */ "./node_modules/vuetify/lib/components/VProgressLinear/index.js");
 
 
 
@@ -101845,7 +102963,10 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 
 
-_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4___default()(component, {VApp: vuetify_lib_components_VApp__WEBPACK_IMPORTED_MODULE_5__["VApp"],VBtn: vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_6__["VBtn"],VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__["VCard"],VCardSubtitle: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__["VCardSubtitle"],VCardText: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__["VCardText"],VCardTitle: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__["VCardTitle"],VCarousel: vuetify_lib_components_VCarousel__WEBPACK_IMPORTED_MODULE_8__["VCarousel"],VCarouselItem: vuetify_lib_components_VCarousel__WEBPACK_IMPORTED_MODULE_8__["VCarouselItem"],VChip: vuetify_lib_components_VChip__WEBPACK_IMPORTED_MODULE_9__["VChip"],VCol: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_10__["VCol"],VContainer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_10__["VContainer"],VDivider: vuetify_lib_components_VDivider__WEBPACK_IMPORTED_MODULE_11__["VDivider"],VHover: vuetify_lib_components_VHover__WEBPACK_IMPORTED_MODULE_12__["VHover"],VIcon: vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_13__["VIcon"],VImg: vuetify_lib_components_VImg__WEBPACK_IMPORTED_MODULE_14__["VImg"],VProgressLinear: vuetify_lib_components_VProgressLinear__WEBPACK_IMPORTED_MODULE_15__["VProgressLinear"],VRow: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_10__["VRow"]})
+
+
+
+_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4___default()(component, {VApp: vuetify_lib_components_VApp__WEBPACK_IMPORTED_MODULE_5__["VApp"],VAvatar: vuetify_lib_components_VAvatar__WEBPACK_IMPORTED_MODULE_6__["VAvatar"],VBtn: vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_7__["VBtn"],VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_8__["VCard"],VCardActions: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_8__["VCardActions"],VCardSubtitle: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_8__["VCardSubtitle"],VCardText: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_8__["VCardText"],VCardTitle: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_8__["VCardTitle"],VCarousel: vuetify_lib_components_VCarousel__WEBPACK_IMPORTED_MODULE_9__["VCarousel"],VCarouselItem: vuetify_lib_components_VCarousel__WEBPACK_IMPORTED_MODULE_9__["VCarouselItem"],VChip: vuetify_lib_components_VChip__WEBPACK_IMPORTED_MODULE_10__["VChip"],VCol: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_11__["VCol"],VContainer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_11__["VContainer"],VDialog: vuetify_lib_components_VDialog__WEBPACK_IMPORTED_MODULE_12__["VDialog"],VDivider: vuetify_lib_components_VDivider__WEBPACK_IMPORTED_MODULE_13__["VDivider"],VHover: vuetify_lib_components_VHover__WEBPACK_IMPORTED_MODULE_14__["VHover"],VIcon: vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_15__["VIcon"],VImg: vuetify_lib_components_VImg__WEBPACK_IMPORTED_MODULE_16__["VImg"],VProgressLinear: vuetify_lib_components_VProgressLinear__WEBPACK_IMPORTED_MODULE_17__["VProgressLinear"],VRow: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_11__["VRow"]})
 
 
 /* hot reload */
@@ -102782,6 +103903,116 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/start/container.vue":
+/*!*****************************************************!*\
+  !*** ./resources/js/components/start/container.vue ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _container_vue_vue_type_template_id_fbd044ce___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./container.vue?vue&type=template&id=fbd044ce& */ "./resources/js/components/start/container.vue?vue&type=template&id=fbd044ce&");
+/* harmony import */ var _container_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./container.vue?vue&type=script&lang=js& */ "./resources/js/components/start/container.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vuetify-loader/lib/runtime/installComponents.js */ "./node_modules/vuetify-loader/lib/runtime/installComponents.js");
+/* harmony import */ var _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var vuetify_lib_components_VApp__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuetify/lib/components/VApp */ "./node_modules/vuetify/lib/components/VApp/index.js");
+/* harmony import */ var vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuetify/lib/components/VBtn */ "./node_modules/vuetify/lib/components/VBtn/index.js");
+/* harmony import */ var vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuetify/lib/components/VCard */ "./node_modules/vuetify/lib/components/VCard/index.js");
+/* harmony import */ var vuetify_lib_components_VCheckbox__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuetify/lib/components/VCheckbox */ "./node_modules/vuetify/lib/components/VCheckbox/index.js");
+/* harmony import */ var vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vuetify/lib/components/VGrid */ "./node_modules/vuetify/lib/components/VGrid/index.js");
+/* harmony import */ var vuetify_lib_components_VDatePicker__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vuetify/lib/components/VDatePicker */ "./node_modules/vuetify/lib/components/VDatePicker/index.js");
+/* harmony import */ var vuetify_lib_components_VFileInput__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vuetify/lib/components/VFileInput */ "./node_modules/vuetify/lib/components/VFileInput/index.js");
+/* harmony import */ var vuetify_lib_components_VForm__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! vuetify/lib/components/VForm */ "./node_modules/vuetify/lib/components/VForm/index.js");
+/* harmony import */ var vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! vuetify/lib/components/VList */ "./node_modules/vuetify/lib/components/VList/index.js");
+/* harmony import */ var vuetify_lib_components_VMenu__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! vuetify/lib/components/VMenu */ "./node_modules/vuetify/lib/components/VMenu/index.js");
+/* harmony import */ var vuetify_lib_components_VSelect__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! vuetify/lib/components/VSelect */ "./node_modules/vuetify/lib/components/VSelect/index.js");
+/* harmony import */ var vuetify_lib_components_VStepper__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! vuetify/lib/components/VStepper */ "./node_modules/vuetify/lib/components/VStepper/index.js");
+/* harmony import */ var vuetify_lib_components_VTextField__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! vuetify/lib/components/VTextField */ "./node_modules/vuetify/lib/components/VTextField/index.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _container_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _container_vue_vue_type_template_id_fbd044ce___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _container_vue_vue_type_template_id_fbd044ce___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* vuetify-loader */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3___default()(component, {VApp: vuetify_lib_components_VApp__WEBPACK_IMPORTED_MODULE_4__["VApp"],VBtn: vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_5__["VBtn"],VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCard"],VCardActions: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCardActions"],VCardText: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCardText"],VCardTitle: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCardTitle"],VCheckbox: vuetify_lib_components_VCheckbox__WEBPACK_IMPORTED_MODULE_7__["VCheckbox"],VContainer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_8__["VContainer"],VDatePicker: vuetify_lib_components_VDatePicker__WEBPACK_IMPORTED_MODULE_9__["VDatePicker"],VFileInput: vuetify_lib_components_VFileInput__WEBPACK_IMPORTED_MODULE_10__["VFileInput"],VForm: vuetify_lib_components_VForm__WEBPACK_IMPORTED_MODULE_11__["VForm"],VListItem: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_12__["VListItem"],VListItemContent: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_12__["VListItemContent"],VListItemSubtitle: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_12__["VListItemSubtitle"],VMenu: vuetify_lib_components_VMenu__WEBPACK_IMPORTED_MODULE_13__["VMenu"],VSelect: vuetify_lib_components_VSelect__WEBPACK_IMPORTED_MODULE_14__["VSelect"],VSpacer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_8__["VSpacer"],VStepper: vuetify_lib_components_VStepper__WEBPACK_IMPORTED_MODULE_15__["VStepper"],VStepperContent: vuetify_lib_components_VStepper__WEBPACK_IMPORTED_MODULE_15__["VStepperContent"],VStepperStep: vuetify_lib_components_VStepper__WEBPACK_IMPORTED_MODULE_15__["VStepperStep"],VTextField: vuetify_lib_components_VTextField__WEBPACK_IMPORTED_MODULE_16__["VTextField"]})
+
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/start/container.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/start/container.vue?vue&type=script&lang=js&":
+/*!******************************************************************************!*\
+  !*** ./resources/js/components/start/container.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vuetify_loader_lib_loader_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_container_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vuetify-loader/lib/loader.js??ref--11-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./container.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vuetify-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/start/container.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vuetify_loader_lib_loader_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_container_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/start/container.vue?vue&type=template&id=fbd044ce&":
+/*!************************************************************************************!*\
+  !*** ./resources/js/components/start/container.vue?vue&type=template&id=fbd044ce& ***!
+  \************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_container_vue_vue_type_template_id_fbd044ce___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vuetify-loader/lib/loader.js??ref--11-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./container.vue?vue&type=template&id=fbd044ce& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vuetify-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/start/container.vue?vue&type=template&id=fbd044ce&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_container_vue_vue_type_template_id_fbd044ce___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_container_vue_vue_type_template_id_fbd044ce___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/router/index.js":
 /*!**************************************!*\
   !*** ./resources/js/router/index.js ***!
@@ -102803,9 +104034,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_payment_doneContainer__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../components/payment/doneContainer */ "./resources/js/components/payment/doneContainer.vue");
 /* harmony import */ var _components_profile_container__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../components/profile/container */ "./resources/js/components/profile/container.vue");
 /* harmony import */ var _components_dashboard_container__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../components/dashboard/container */ "./resources/js/components/dashboard/container.vue");
+/* harmony import */ var _components_start_container__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../components/start/container */ "./resources/js/components/start/container.vue");
 
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
+
 
 
 
@@ -102851,6 +104084,10 @@ var routes = [{
   component: _components_dashboard_container__WEBPACK_IMPORTED_MODULE_10__["default"],
   name: "dashboard",
   path: "/dashboard"
+}, {
+  component: _components_start_container__WEBPACK_IMPORTED_MODULE_11__["default"],
+  name: "start",
+  path: "/start"
 }];
 /* harmony default export */ __webpack_exports__["default"] = (new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   mode: 'history',
@@ -102903,8 +104140,8 @@ var opts = {};
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\xampp\htdocs\donate\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\xampp\htdocs\donate\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\Kampus\Semester 4\Backup\donate\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\Kampus\Semester 4\Backup\donate\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

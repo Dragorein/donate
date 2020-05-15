@@ -15,7 +15,7 @@
 <script>
     export default {
         data: () => ({
-
+            
         }),
         methods: {
             goBack: function () {
@@ -50,7 +50,7 @@
     .v-btn:focus {
         outline: 0;
     }
-
+    
     a.v-btn:hover, .v-chip:hover {
         text-decoration: none;
     }

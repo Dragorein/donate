@@ -19,11 +19,6 @@
         },
         methods:{
             awal(){
-                this.req.get('auth/init').then(response => {
-                    this.user = response.data.user;
-                    // this.initiated = true;
-                    
-                })
                 console.log('halo');
             }
         }

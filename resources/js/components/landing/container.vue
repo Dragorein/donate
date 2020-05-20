@@ -14,7 +14,56 @@
                                             <div class="display-3">Salindia {{ slide }}</div>
                                         </v-row>
                                         <v-row justify="center">
-                                            <v-btn large color="error" class="mt-6">Bantu sekarang</v-btn>
+                                            <template>
+                                            <div class="text-center">
+                                                <v-dialog
+                                                v-model="dialog"
+                                                width="500"
+                                                >
+                                                <template v-slot:activator="{ on }">
+                                                    <v-btn large color="error" v-on="on" class="mt-6" >Bantu sekarang</v-btn>
+                                                </template>
+                                                    <v-card max-width="500">
+                                                        <v-img
+                                                        class="white--text align-end"
+                                                        height="200px"
+                                                        src="https://www.voyagerit.com/wp-content/uploads/2019/03/GettyImages-968545728.jpg"
+                                                        >
+                                                        <v-card-title></v-card-title>
+                                                        </v-img>
+
+                                                        <v-card-subtitle class="pb-0 mt-2">Kindly tidak memfasilitasi penggalangan dana untuk : </v-card-subtitle>
+                                                         <v-chip class="ma-2 ml-6" color="red lighten-3" label="1">
+                                                            <v-avatar left>
+                                                                <v-icon color="red darken-1">mdi-cancel</v-icon>
+                                                            </v-avatar>
+                                                            Galang dana untuk diri sendiri
+                                                            </v-chip>
+                                                            <v-chip class="ma-2 ml-6" color="red lighten-3" label="1">
+                                                            <v-avatar left>
+                                                                <v-icon color="red darken-1">mdi-cancel</v-icon>
+                                                            </v-avatar>
+                                                            Penggalangan dana fiktif
+                                                            </v-chip>
+                                                            <v-chip class="ma-2 ml-6" color="red lighten-3" label="1">
+                                                            <v-avatar left>
+                                                                <v-icon color="red darken-1">mdi-cancel</v-icon>
+                                                            </v-avatar>
+                                                            Galang dana untuk kegiatan radikalisme & terorisme
+                                                            </v-chip>
+
+
+
+
+                                                        <v-card-actions>
+                                                            <v-btn href="/start" block color="success" class="my-3" large dark>
+                                                                Ya,saya mengerti
+                                                            </v-btn>
+                                                        </v-card-actions>
+                                                    </v-card>
+                                                </v-dialog>
+                                            </div>
+                                            </template>
                                         </v-row>
                                     </v-col>
                                 </v-row>
@@ -112,7 +161,13 @@
 
 <script>
     export default {
+        data () {
+        return {
+        dialog: false,
+         }
+    },
         data: () => ({
+
             items: [
                 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
                 'https://cdn.vuetifyjs.com/images/cards/house.jpg',
@@ -136,6 +191,7 @@
                 {title:'Supermodel', src:'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg', author:'Louise', progress:50, raised:'Rp 3.003.132', daysleft:'30'},
             ],
         }),
+
         methods: {
             reroutes: function (url) {
                 this.$router.push({ path: url });
@@ -172,7 +228,7 @@
     .v-btn:focus {
         outline: 0;
     }
-    
+
     a.v-btn:hover, .v-chip:hover {
         text-decoration: none;
     }

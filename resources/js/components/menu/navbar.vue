@@ -102,7 +102,7 @@
 
             //     }).catch
 
-            this.init();
+            // this.init();
             },
             reroutes: function (url) {
                 this.$router.push({ path: url });

@@ -9,7 +9,7 @@ class Register extends Model
     protected $table = 'm_user';
 
     protected $fillable = [
-        'user_name','user_mail','user_phone','user_password'
+        'user_name','user_mail','user_token','user_phone','user_password'
     ];
 
     protected $hidden = [

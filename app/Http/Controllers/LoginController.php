@@ -15,13 +15,22 @@ class LoginController extends Controller
      */
     public function index(Request $request)
     {
-        $login = new User;
-        $login = $request->validate([
+        $userLoggingIn = new User;
+        $userLoggingIn = $request->validate([
             'email' => 'required|string',
             'password' => 'required|string'
         ]);
 
-        return Auth::attempt(['user_mail' => $login->email, 'user_password' => $login->password]);
+        if(!Auth::attempt(['user_mail' => $userLoggingIn['email'], 'password' => $userLoggingIn['password']])) {
+            return response(['message' => 'invalid login credentials.']);
+        }
+
+        return response(['user' => Auth::user()]);
+    }
+
+    public function currentUser() //nanti pindahin ke controller user
+    {
+        return Auth::user();
     }
 
     /**
@@ -42,15 +51,7 @@ class LoginController extends Controller
      */
     public function store(Request $request)
     {
-        $m_user = new Register();
-        $m_user -> user_name = $request ->name;
-        $m_user -> user_mail = $request ->email;
-        $m_user -> user_phone = $request ->noHandphone;
-        $m_user -> user_password = bcrypt($request->password);
-
-        $m_user -> save();
-
-        return $m_user;
+        //
     }
 
     /**

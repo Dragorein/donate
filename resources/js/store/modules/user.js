@@ -1,10 +1,18 @@
+import axios from 'axios';
+
 const state = {
-    user: {
-        name: "franz"
-    }
+    user: {},
+    loggedin: false
 };
 const getters = {};
 const actions = {
+    // getUser({commit}) {
+    //     axios
+    //     .get("/user/current")
+    //     .then(response => {
+    //         commit('setUser', response.data);
+    //     });
+    // },
     login({}, user) {
         axios
         .post("/user/login", {
@@ -12,14 +20,20 @@ const actions = {
             password: user.password
         })
         .then((response) => {
-            console.log(response);
+            state.loggedin = true;
+            state.user = response.data.user;
+            console.log('ok');
         })
         .catch(e => {
             console.error(e);
         });
     },
 };
-const mutations = {};
+const mutations = {
+    // setUser(state, data) {
+    //     state.user = data;
+    // }
+};
 
 export default {
     namespaced: true,

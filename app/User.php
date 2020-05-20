@@ -9,33 +9,29 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User extends Authenticatable implements JWTSubject
 {
+    use Notifiable;
+
     protected $table = 'm_user';
 
     protected $fillable = [
         'user_name','user_mail','user_phone','user_password'
     ];
     
-    use Notifiable;
+    protected $hidden = [
+        'user_password'
+    ];
 
-    // Rest omitted for brevity
-
-    /**
-     * Get the identifier that will be stored in the subject claim of the JWT.
-     *
-     * @return mixed
-     */
     public function getJWTIdentifier()
     {
         return $this->getKey();
     }
-
-    /**
-     * Return a key value array, containing any custom claims to be added to the JWT.
-     *
-     * @return array
-     */
+    
     public function getJWTCustomClaims()
     {
         return [];
     }
+
+    public function getAuthPassword() {
+        return $this->user_password;
+     }
 }

@@ -28,6 +28,7 @@ Route::get('/welcome', function () {
 
 Route::post('/register', 'RegisterController@store');
 Route::post('/user/login', 'LoginController@index');
+Route::post('/user/current', 'LoginController@currentUser');
 
 // Auth::routes();
 

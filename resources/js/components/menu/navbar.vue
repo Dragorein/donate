@@ -13,7 +13,7 @@
         <v-btn class="mr-2 search-md" @mousedown="reroutes('/search')" icon><v-icon>mdi-magnify</v-icon></v-btn>
         <v-btn large text class="mr-3">Donasi</v-btn>
 
-        <template v-if="user.loggedin == false">
+        <template v-if="loggedin == false">
             <v-dialog v-model="logindialog" max-width="600px">
                 <template v-slot:activator="{ on }">
                     <v-btn href="register" large color="error" class="mr-3">Daftar</v-btn>
@@ -53,7 +53,7 @@
             <v-menu offset-y open-on-hover transition="slide-y-transition" bottom>
                 <template v-slot:activator="{ on }">
                     <v-btn large text v-on="on">
-                        <v-icon left>mdi-account-circle mdi-24px</v-icon><template v-if="user.loggedin == true">{{user.name}}</template>
+                        <v-icon left>mdi-account-circle mdi-24px</v-icon><template v-if="loggedin == true">{{currentUser.user_name}}</template>
                     </v-btn>
                 </template>
                 <v-list>
@@ -62,7 +62,7 @@
                             <v-icon left>mdi-account</v-icon>Profil
                         </v-list-item-title>
                     </v-list-item>
-                    <v-list-item @click="user.loggedin = false">
+                    <v-list-item @click="loggedin = false">
                         <v-list-item-title>
                             <v-icon left>mdi-logout-variant</v-icon>Keluar
                         </v-list-item-title>
@@ -84,10 +84,6 @@
             navbar: '#navbar',
             logindialog: false,
 
-            user: {
-                name: '',
-                loggedin: false,
-            },
             login: {
                 email: '',
                 password: '',
@@ -96,8 +92,26 @@
                 v => !!v || 'E-mail is required',
                 v => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid'
             ],
+            passwordRules: [
+                v => !!v || 'Password is required'
+            ],
             errors:[],
         }),
+        computed: {
+            loggedin: {
+                get() {
+                    return this.$store.state.user.loggedin;
+                }
+            },
+            currentUser: {
+                get() {
+                    return this.$store.state.user.user;
+                }
+            },
+        },
+        // created() {
+        //     this.$store.dispatch('user/getUser');
+        // },
         methods: {
             reroutes(url) {
                 this.$router.push({ path: url });
@@ -113,7 +127,7 @@
                 this.$store.dispatch("user/login", this.$data.login);
             }
         },
-        mounted(){
+        mounted() {
             this.handleScroll();
             window.addEventListener('scroll', this.handleScroll);
         }

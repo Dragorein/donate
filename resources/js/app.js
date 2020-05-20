@@ -45,3 +45,16 @@ const app = new Vue({
     router,
     el: '#app',
 });
+
+// import detail from './components/campaign/detailContainer.vue';
+
+// const routes = [
+//     {
+//         name: 'detail',
+//         path: '/campaign/detail/:id',
+//         component: detail
+//     }
+// ]
+
+// const routerr = new VueRouter({ mode: 'history', routes: routes });
+// //new Vue(Vue.util.extend({ routerr }, app)).$mount("#app");

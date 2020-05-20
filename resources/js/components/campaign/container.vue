@@ -20,8 +20,8 @@
                     <v-row>
                         <v-col v-for="submisi in submisis" :key="submisi.submisi_id" cols="12" sm="6" md="4" xl="3">
                         <v-hover v-slot:default="{ hover }">
-                            <v-card @click="reroutes('/campaign/detail'+submisi.submisi_id)" :elevation="hover ? 24 : 6" class="my-4 card-transform">
-                                <v-img :src="'/picture/' + submisi.submisi_foto" height="200px"></v-img>
+                             <v-card   :elevation="hover ? 24 : 6" class="my-4 card-transform">
+                                <router-link :to="'/campaign/detail/'+submisi.submisi_id"><v-img :src="'/picture/' + submisi.submisi_foto" height="200px"></v-img></router-link>
 
                                 <v-card-title v-text="submisi.submisi_judul"></v-card-title>
 

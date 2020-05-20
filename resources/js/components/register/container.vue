@@ -13,7 +13,7 @@
 
                 <v-stepper-content step="1">
                   <v-card-text>
-                    <v-form>
+                    <v-form :value="csrf">
                       <v-text-field label="Name Depan" name="firstname" prepend-inner-icon="person" type="text" v-model="firstname" :rules="firstnameRules" required filled clearable />
                       <v-text-field label="Nama Belakang" name="lastname" prepend-inner-icon="person" type="text" v-model="lastname" :rules="lastnameRules" required filled clearable />
                       <v-text-field label="Email" name="email" prepend-inner-icon="mail" type="text" v-model="email" :rules="emailRules" required filled clearable />
@@ -50,6 +50,7 @@
 <script>
 export default {
   data: () => ({
+    csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
     show1: false,
     show2: false,
     e1: 1,
@@ -61,7 +62,7 @@ export default {
     email: "",
     emailRules: [
       v => !!v || "E-mail tidak boleh kosong",
-      v => /.+@.+/.test(v) || "E-mail harus valid"
+      v => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || "E-mail harus valid"
     ],
     noHandphone: "",
     noHandphoneRules: [
@@ -86,11 +87,12 @@ export default {
     submit() {
       console.log(this.$data);
       axios
-        .post("http://127.0.0.1:8000/register", {
+        .post("user/register", {
           firstname: this.$data.firstname,
           lastname: this.$data.lastname,
           name: this.$data.firstname + this.$data.lastname,
           email: this.$data.email,
+          token:this.$data.csrf,
           noHandphone: this.$data.noHandphone,
           password: this.$data.password
         })

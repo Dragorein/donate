@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\User;
 
 class LoginController extends Controller
 {
@@ -13,7 +15,13 @@ class LoginController extends Controller
      */
     public function index(Request $request)
     {
-        return $request;
+        $login = new User;
+        $login = $request->validate([
+            'email' => 'required|string',
+            'password' => 'required|string'
+        ]);
+
+        return Auth::attempt(['user_mail' => $login->email, 'user_password' => $login->password]);
     }
 
     /**

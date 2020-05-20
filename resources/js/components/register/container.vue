@@ -89,7 +89,7 @@ export default {
         .post("http://127.0.0.1:8000/register", {
           firstname: this.$data.firstname,
           lastname: this.$data.lastname,
-          name: this.$data.firstname + this.$data.lastname,
+          name: this.$data.firstname + " " + this.$data.lastname,
           email: this.$data.email,
           noHandphone: this.$data.noHandphone,
           password: this.$data.password

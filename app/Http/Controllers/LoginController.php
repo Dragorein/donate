@@ -3,27 +3,90 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use App\user;
-
 
 class LoginController extends Controller
 {
-    public function init(){
-        $user = Auth::user();
-
-        return response()->json(['user' => $user], 200);
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index(Request $request)
+    {
+        return $request;
     }
 
-    public function login(Request $request){
-        if(Auth::attempt(['email' => $request->email, 'password' => $request->password], true)){ //true remember password
-            return response()->json(Auth::user(), 200,);
-        } else{
-            return response()->json(['error' => 'Maaf anda tidak bisa login.'], 401);
-        }
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
     }
 
-    public function logout(){
-        Auth::logout();
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $m_user = new Register();
+        $m_user -> user_name = $request ->name;
+        $m_user -> user_mail = $request ->email;
+        $m_user -> user_phone = $request ->noHandphone;
+        $m_user -> user_password = bcrypt($request->password);
+
+        $m_user -> save();
+
+        return $m_user;
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Register  $register
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Register $register)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Register  $register
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Register $register)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Register  $register
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Register $register)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Register  $register
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Register $register)
+    {
+        //
     }
 }

@@ -6,8 +6,27 @@
 
 <script>
     export default {
-        data: () => ({
-        }),
+        name: "app",
+        data() {
+            return {
+                user: null,
+                // initiated: false,
+            }
+        },
+        created() {
+            this.awal();
+            
+        },
+        methods:{
+            awal(){
+                this.req.get('auth/init').then(response => {
+                    this.user = response.data.user;
+                    // this.initiated = true;
+                    
+                })
+                console.log('halo');
+            }
+        }
     }
 </script>
 

@@ -12,6 +12,7 @@ import Payment from "../components/payment/container"
 import PaymentDone from "../components/payment/doneContainer"
 import Profile from "../components/profile/container"
 import Dashboard from "../components/dashboard/container"
+import Test from "../components/test/container"
 
 const routes = [
     {
@@ -58,7 +59,12 @@ const routes = [
         component: Dashboard,
         name: "dashboard",
         path: "/dashboard"
-    }
+    },
+    {
+        component: Test,
+        name: "test",
+        path: "/test"
+    },
 ];
 
 export default new VueRouter({

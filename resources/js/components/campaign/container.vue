@@ -79,9 +79,9 @@
         },
         methods: {
             loadData() {
-                axios.get("http://localhost:8000/api/").then(response => {
-                    this.submisis = response.data;
-                });
+            axios.get("http://localhost:8000/api/").then(response => {
+                this.submisis = response.data;
+            });
             },
             reroutes: function (url) {
                 this.$router.push({ path: url });

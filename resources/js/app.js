@@ -26,6 +26,7 @@ Vue.use(VueAxios,Axios);
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
+Vue.component('drawer-admin', require('./components/menu/drawerAdmin.vue').default);
 Vue.component('navbar', require('./components/menu/navbar.vue').default);
 Vue.component('navbar-search', require('./components/menu/navbarSearch.vue').default);
 Vue.component('footbar', require('./components/menu/footer.vue').default);
@@ -44,3 +45,16 @@ const app = new Vue({
     router,
     el: '#app',
 });
+
+// import detail from './components/campaign/detailContainer.vue';
+
+// const routes = [
+//     {
+//         name: 'detail',
+//         path: '/campaign/detail/:id',
+//         component: detail
+//     }
+// ]
+
+// const routerr = new VueRouter({ mode: 'history', routes: routes });
+// //new Vue(Vue.util.extend({ routerr }, app)).$mount("#app");

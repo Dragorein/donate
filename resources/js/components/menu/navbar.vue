@@ -14,6 +14,7 @@
         <v-btn large text class="mr-3">Donasi</v-btn>
 
         <template v-if="loggedin == false">
+            <!-- <template v-if="!app.user"> -->
             <v-dialog v-model="logindialog" max-width="600px">
                 <template v-slot:activator="{ on }">
                     <v-btn href="register" large color="error" class="mr-3">Daftar</v-btn>
@@ -25,16 +26,21 @@
                     </v-card-title>
                     <v-card-text>
                         <v-container>
+                            <v-form @submit.prevent="onSubmit">
                             <v-row>
                                 <v-col cols="12" class="py-0">
-                                    <v-text-field solo flat label="Email" required></v-text-field>
+                                    <v-text-field solo flat label="Email" required v-model="email" :rules="emailRules"></v-text-field>
                                 </v-col>
                                 <v-col cols="12" class="py-0">
-                                    <v-text-field solo flat label="Password" type="password" required></v-text-field>
+                                    <v-text-field solo flat label="Password" type="password" required v-model="password"></v-text-field>
                                 </v-col>
                                 <v-col cols="12">
-                                    <v-btn color="red darken-1" dark block large @click="logindialog = false, loggedin = true">Masuk Sekarang</v-btn>
+                                    <v-btn color="red darken-1" dark block large @click="loggedin = true">Masuk Sekarang</v-btn>
+                                    <!-- <v-btn color="red darken-1" dark block large>Masuk Sekarang</v-btn> -->
                                 </v-col>
+                            </v-row>
+                            </v-form>
+                            <v-row>
                                 <v-col cols="12" class="text-center">
                                     <p>Belum punya akun Kindly? <a href="/register">Daftar</a></p>
                                 </v-col>
@@ -49,13 +55,13 @@
             <v-menu offset-y open-on-hover transition="slide-y-transition" bottom>
                 <template v-slot:activator="{ on }">
                     <v-btn large text v-on="on">
-                        <v-icon left>mdi-account-circle mdi-24px</v-icon>John
+                        <v-icon left>mdi-account-circle mdi-24px</v-icon>{{user ? user.name : 'Account'}}
                     </v-btn>
                 </template>
                 <v-list>
                     <v-list-item @click="reroutes('/profile')">
                         <v-list-item-title>
-                            <v-icon left>mdi-account-search</v-icon>Profil
+                            <v-icon left>mdi-account</v-icon>Profil
                         </v-list-item-title>
                     </v-list-item>
                     <v-list-item @click="loggedin = false">
@@ -74,14 +80,30 @@
 
 <script>
     export default {
+        name: "navbar",
+        props: ["app"],
         data: () => ({
             brand: 'Kindly', 
             logo: '/img/brand.png',
             loggedin: false,
             logindialog: false,
             navbar: '#navbar',
+            email: '',
+            emailRules: [
+                v => !!v || 'E-mail is required',
+                v => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid'
+            ],
+            password: '',
+            errors:[],
         }),
         methods: {
+            onSubmit(){
+            //     this.app.req.post('auth/login', data).then(response => {
+
+            //     }).catch
+
+            this.init();
+            },
             reroutes: function (url) {
                 this.$router.push({ path: url });
             },
@@ -91,11 +113,18 @@
                 } else {
                     navbar.classList.remove("nav-bg");
                 }
+            },
+            logout(){
+                this.req.post('auth/logout').then(()=> {
+                    this.user = null;
+                    this.$router.push('/');
+                });
             }
         },
         mounted(){
             this.handleScroll();
             window.addEventListener('scroll', this.handleScroll);
+            // this.init();
         }
     }
 </script>

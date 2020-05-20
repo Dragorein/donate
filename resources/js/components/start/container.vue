@@ -16,10 +16,10 @@
                                         <!-- step 1 -->
                                         <v-form>
                                             <v-text-field label="Nama Kamu" name="nama" prepend-inner-icon="person" type="text" :rules="namaRules" v-model="nama" required filled clearable/>
-                                            <v-text-field label="Linkedin atau sosial media kamu" name="mediasosial" prepend-inner-icon="mdi-account-group-outline" type="text" :rules="medsosRules" v-model="medsos" required filled clearable/>
+                                            <v-text-field label="Linkedin atau sosial media kamu" name="mediasosial" prepend-inner-icon="mdi-account-group-outline" type="text" :rules="mediasosialRules" v-model="mediasosial" required filled clearable/>
                                             <v-text-field label="Email" name="email" prepend-inner-icon="mail" type="text" :rules="emailRules" v-model="email" required filled clearable/>
                                             <v-text-field label="Nomor Handphone" name="noHandphone" prepend-inner-icon="phone" type="text" :rules="noHandphoneRules" v-model="noHandphone" :counter="14" required filled clearable/>
-                                            <v-text-field label="Alamat" name="Alamat" prepend-inner-icon="mdi-folder-home" type="text" :rules="alamatRules" v-model="alamat" required filled clearable/>
+                                            <v-text-field label="Alamat" name="alamat" prepend-inner-icon="mdi-folder-home" type="text" :rules="alamatRules" v-model="alamat" required filled clearable/>
                                             <v-btn color="error" @click="e1 = 2" class="mr-2">Lanjut</v-btn>
                                             <v-btn text class="mr-2" @click="goBack">Batal</v-btn>
                                         </v-form>
@@ -131,17 +131,20 @@
 <script>
 export default {
     data: () => ({
-        date: new Date().toISOString().substr(0, 10),
+        // date: new Date().toISOString().substr(0, 10),
         menu: false,
         e1: 1,
         valid: true,
         // step 1
         nama: "",
         namaRules: [v => !!v || "Wajib untuk di isi"],
-        medsos: "",
-        medsosRules: [v => !!v || "Wajib untuk di isi"],
+        mediasosial: "",
+        mediasosialRules: [v => !!v || "Wajib untuk di isi"],
         email: "",
-        emailRules: [v => !!v || "Wajib untuk di isi"],
+        emailRules: [
+            v => !!v || "E-mail tidak boleh kosong",
+            v => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || "E-mail harus valid"
+        ],
         noHandphone: "",
         noHandphoneRules: [
             v => !!v || "No.Handphone is required",
@@ -167,6 +170,7 @@ export default {
             v => !!v || "Rician penggunaan dana terlalu pendek (Minimal 30 karakter)",
             v => v && v.length >= 30
         ],
+        date: "",
         // password: "",
         // passwordRules: [v => !!v || "Password is required"],
         
@@ -180,9 +184,11 @@ export default {
                     judul: this.$data.judul,
                     cerita: this.$data.cerita,
                     noHandphone: this.$data.noHandphone,
-                    // tipe: this.$data.tipe,
+                    tipe: this.$data.tipe,
+                    medsos: this.$data.mediasosial,
                     total: this.$data.target,
-                    tujuan: this.$data.penerima
+                    tujuan: this.$data.penerima,
+                    dedline: this.$data.date
                 })
                 .then(data => {
                     this.$router.push({ path: '/' });

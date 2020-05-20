@@ -9,6 +9,6 @@ class Start extends Model
     protected $table = 't_submisi';
 
     protected $fillable = [
-        'submisi_judul', 'submisi_cerita', 'submisi_phone', 'submisi_total', 'submisi_tujuan'
+        'submisi_judul', 'submisi_cerita', 'submisi_phone','submisi_tipe','submisi_hub_relasi', 'submisi_total', 'submisi_tujuan','submisi_expired_at'
     ];
 }

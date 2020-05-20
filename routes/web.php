@@ -27,6 +27,7 @@ Route::get('/welcome', function () {
 });
 
 Route::post('/user/register', 'RegisterController@store');
+Route::post('/user/start', 'StartController@store');
 
 // Auth::routes();
 

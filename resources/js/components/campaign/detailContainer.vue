@@ -9,8 +9,7 @@
                     <v-row>
                         <v-col cols="12">
                             <v-card>
-                                <v-img :src="src" height="450px"></v-img>
-
+                                <v-img :src="tes" height="450px"></v-img>
                                 <v-card-text>
                                     <h2 style="display-1" v-text="title"></h2>
                                     <span><strong class="deep-orange--text title">{{raised}}</strong>{{' Terkumpul dari ' + total}}</span>
@@ -128,8 +127,8 @@
 <script>
     export default {
         data: () => ({
-            title:'Supermodel',
-            src:'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
+            title:[],
+            tes:"",
             author:'Louise',
             target:'Josh',
             progress:50,
@@ -168,6 +167,17 @@
             ],
         }),
         methods: {
+            loadData() {
+            // load data berdasarkan id
+            axios
+                .get("http://localhost:8000/api/DataSubmision/" + this.$route.params.submisi_id)
+                .then(response => {
+                    // post value yang dari response ke form
+                    this.title = response.data;
+                    // console.log(response.data.submisi_foto);
+                    // this.form.lastName = response.data.last_name;
+                 });
+            },
             reroutes: function (url) {
                 this.$router.push({ path: url });
             }

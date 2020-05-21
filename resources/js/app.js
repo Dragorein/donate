@@ -8,8 +8,12 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+// import dependecies tambahan
+import VueAxios from 'vue-axios';
+import Axios from 'axios';
 import Vuetify from "../plugins/vuetify"
 import router from "./router"
+Vue.use(VueAxios,Axios);
 
 /**
  * The following block of code may be used to automatically register your
@@ -41,3 +45,16 @@ const app = new Vue({
     router,
     el: '#app',
 });
+
+// import detail from './components/campaign/detailContainer.vue';
+
+// const routes = [
+//     {
+//         name: 'detail',
+//         path: '/campaign/detail/:id',
+//         component: detail
+//     }
+// ]
+
+// const routerr = new VueRouter({ mode: 'history', routes: routes });
+// //new Vue(Vue.util.extend({ routerr }, app)).$mount("#app");

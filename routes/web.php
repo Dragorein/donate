@@ -26,10 +26,19 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 
+Route::post('/register', 'RegisterController@store');
+
 // Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/{vue_capture?}', function () {
     return view('landing');
-  })->where('vue_capture', '[\/\w\.-]*');
+})->where('vue_capture', '[\/\w\.-]*');
+
+Route::prefix('auth')->group(function(){
+    Route::get('init', 'LoginController@init');
+
+    Route::post('login', 'LoginController@login');
+    Route::post('logout', 'LoginController@logout');
+    });

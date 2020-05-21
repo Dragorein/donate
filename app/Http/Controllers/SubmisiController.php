@@ -28,6 +28,7 @@ class SubmisiController extends Controller
                 ->join('t_submisi', 't_submisi.submisi_id', '=', 't_donatur.submisi_id')
                 ->join('m_user', 't_submisi.user_id', '=', 'm_user.user_id')
                 ->select($sql)
+                ->distinct()
                 ->get();
         return $data;
     }

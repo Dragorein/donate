@@ -97,9 +97,9 @@
                             <v-card class="mx-auto">
                                 <v-list two-line dense>
                                     <template v-for="item in items">
-                                        <v-subheader class="title" :key="item.donatur_id" v-text="teks"></v-subheader>
+                                        <v-subheader class="title" v-if="item.header" :key="item.header" v-text="item.header + ' (' + (items.length - 1) + ')'"></v-subheader>
 
-                                        <v-list-item :key="item.donor">
+                                        <v-list-item  v-else :key="item.donatur_id" >
                                         <v-list-item-avatar>
                                             <v-img :src="item.avatar"></v-img>
                                         </v-list-item-avatar>
@@ -137,8 +137,9 @@
             daysleft:"",
             tab: null,
             text: "",
-            teks:"Donate from",
-            items: [],
+            items: [
+                { header : 'Donatur'},
+            ],
         }),
         created() {
             // load data saat pertama kali halaman dibuka

@@ -5,31 +5,40 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Model;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
 
-    // Rest omitted for brevity
+    protected $table = 'm_user';
 
-    /**
-     * Get the identifier that will be stored in the subject claim of the JWT.
-     *
-     * @return mixed
-     */
+    protected $fillable = [
+        'user_name','user_mail','user_token','user_phone','user_password'
+    ];
+    
+    protected $hidden = [
+        'user_password'
+    ];
+
     public function getJWTIdentifier()
     {
         return $this->getKey();
     }
-
-    /**
-     * Return a key value array, containing any custom claims to be added to the JWT.
-     *
-     * @return array
-     */
+    
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+    public function getAuthPassword()
+    {
+        return $this->user_password;
+    }
+     
+    public function setPasswordAttribute($password)
+    {
+        $this->attributes['user_password'] = bcrypt($password);
     }
 }

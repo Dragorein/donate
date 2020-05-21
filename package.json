@@ -31,6 +31,7 @@
         "vue-axios": "^2.1.5",
         "vue-router": "^3.2.0",
         "vuetify": "^2.2.17",
-        "vuetify-loader": "^1.4.3"
+        "vuetify-loader": "^1.4.3",
+        "vuex": "^3.4.0"
     }
 }

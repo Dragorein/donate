@@ -62,7 +62,7 @@
                             <v-icon left>mdi-account</v-icon>Profil
                         </v-list-item-title>
                     </v-list-item>
-                    <v-list-item @click="loggedin = false">
+                    <v-list-item @click="callLogout">
                         <v-list-item-title>
                             <v-icon left>mdi-logout-variant</v-icon>Keluar
                         </v-list-item-title>
@@ -109,9 +109,9 @@
                 }
             },
         },
-        // created() {
-        //     this.$store.dispatch('user/getUser');
-        // },
+        created() {
+            this.$store.dispatch('user/getUser');
+        },
         methods: {
             reroutes(url) {
                 this.$router.push({ path: url });
@@ -125,6 +125,13 @@
             },
             callLogin() {
                 this.$store.dispatch("user/login", this.$data.login);
+            },
+            callLogout() {
+                this.$store.dispatch("user/logout")
+                .then(() => {
+                    this.$data.logindialog = false;
+                    this.$router.go();
+                });
             }
         },
         mounted() {

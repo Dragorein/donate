@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use App\User;
 
 class LoginController extends Controller
@@ -25,12 +26,23 @@ class LoginController extends Controller
             return response(['message' => 'invalid login credentials.']);
         }
 
-        return response(['user' => Auth::user()]);
+        Session::put('user', Auth::user());
+        Session::put('loggedin', true);
+        return response(['user' => Session::get('user'), 'loggedin' => Session::get('loggedin')]);
     }
 
     public function currentUser() //nanti pindahin ke controller user
     {
-        return Auth::user();
+        if (!Session::has('loggedin')) {
+            return response(['user' => '', 'loggedin' => false]);
+        }
+
+        return response(['user' => Session::get('user'), 'loggedin' => Session::get('loggedin')]);
+    }
+
+    public function logout()
+    {
+        Session::flush();
     }
 
     /**

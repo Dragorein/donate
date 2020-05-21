@@ -18,14 +18,16 @@ class CreateTSubmisi extends Migration
             $table->unsignedInteger('user_id');
             $table->foreign('submisi_id')->references('user_id')->on('m_user');
             $table->string('submisi_judul', 255);
+            $table->text('submisi_penerima');
             $table->text('submisi_cerita');
             $table->string('submisi_phone', 255);
             $table->string('submisi_tipe', 255);
             $table->string('submisi_hub_relasi', 255);
-            $table->string('submisi_link', 255);
-            $table->string('submisi_total', 255);
+            $table->integer('submisi_total');
+            $table->integer('submisi_terkumpul');
             $table->text('submisi_tujuan');
             $table->string('submisi_foto', 255);
+            $table->boolean('submisi_is_active');
             $table->date('submisi_expired_at');
             $table->timestamps();
         });

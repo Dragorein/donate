@@ -43,12 +43,12 @@ const routes = [
     {
         component: Payment,
         name: "payment",
-        path: "/payment"
+        path: "/payment/:id"
     },
     {
         component: PaymentDone,
         name: "payment",
-        path: "/payment/done"
+        path: "/payment/done/:id"
     },
     {
         component: Profile,

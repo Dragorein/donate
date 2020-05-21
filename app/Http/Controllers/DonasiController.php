@@ -1,0 +1,18 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
+class DonasiController extends Controller
+{
+    public function Donasi (Request $request){
+        $data = DB::table('t_donatur')->insert([
+            'donatur_name' => $request->name,
+            'submisi_id' => $request->submisi,
+			'donatur_mail' => $request->email,
+        ]);
+		return $data;
+    }
+}

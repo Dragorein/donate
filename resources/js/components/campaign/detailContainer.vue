@@ -9,16 +9,16 @@
                     <v-row>
                         <v-col cols="12">
                             <v-card>
-                                <v-img :src="tes" height="450px"></v-img>
+                                <v-img :src="'/picture/'+foto" height="450px"></v-img>
                                 <v-card-text>
-                                    <h2 style="display-1" v-text="title"></h2>
-                                    <span><strong class="deep-orange--text title">{{raised}}</strong>{{' Terkumpul dari ' + total}}</span>
+                                    <h2 style="display-1" >{{ title }}</h2>
+                                    <span><strong class="deep-orange--text title">{{ raised }}</strong>{{' Terkumpul dari ' + total}}</span>
                                     <v-progress-linear rounded height="8" v-model="progress" color="deep-orange" class="my-4"></v-progress-linear>
                                     <span><strong class="deep-orange--text title">{{daysleft}}</strong> hari lagi</span>
                                 </v-card-text>
 
                                 <v-card-text>
-                                    <v-btn @click="reroutes('/payment')" rounded block depressed large color="error">Donasi Sekarang</v-btn>
+                                    <router-link :to="'/payment/'+this.$route.params.id"><v-btn rounded block depressed large color="error">Donasi Sekarang</v-btn></router-link>
                                 </v-card-text>
                             </v-card>
                         </v-col>
@@ -96,17 +96,17 @@
                         <v-col cols="12" md="4">
                             <v-card class="mx-auto">
                                 <v-list two-line dense>
-                                    <template v-for="(item, index) in items">
+                                    <template v-for="item in items">
                                         <v-subheader class="title" v-if="item.header" :key="item.header" v-text="item.header + ' (' + (items.length - 1) + ')'"></v-subheader>
 
-                                        <v-list-item v-else :key="item.donor" @click="">
+                                        <v-list-item  v-else :key="item.donatur_id" >
                                         <v-list-item-avatar>
                                             <v-img :src="item.avatar"></v-img>
                                         </v-list-item-avatar>
 
                                         <v-list-item-content>
-                                            <v-list-item-title v-html="item.donor"></v-list-item-title>
-                                            <v-list-item-subtitle v-html="item.comments"></v-list-item-subtitle>
+                                            <v-list-item-title v-html="item.donatur_mail"></v-list-item-title>
+                                            <v-list-item-subtitle>Donasi Sebesar Rp. {{item.donatur_nominal}}</v-list-item-subtitle>
                                         </v-list-item-content>
                                         </v-list-item>
                                     </template>
@@ -127,56 +127,42 @@
 <script>
     export default {
         data: () => ({
-            title:[],
-            tes:"",
-            author:'Louise',
-            target:'Josh',
-            progress:50,
-            raised:'Rp 3.003.132',
-            total:'Rp 10.000.000',
-            daysleft:'30',
+            title:"",
+            foto:"",
+            author:'',
+            target:"",
+            progress:"",
+            raised:"",
+            total:"",
+            daysleft:"",
             tab: null,
-            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            text: "",
             items: [
                 { header : 'Donatur'},
-                {
-                avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg',
-                donor: 'Ali Connors',
-                comments: "I'll be in your neighborhood doing errands this weekend. Do you want to hang out?",
-                },
-                {
-                avatar: 'https://cdn.vuetifyjs.com/images/lists/2.jpg',
-                donor: 'Alex Scott',
-                comments: "Wish I could come, but I'm out of town this weekend.",
-                },
-                {
-                avatar: 'https://cdn.vuetifyjs.com/images/lists/3.jpg',
-                donor: 'Sandra Adams',
-                comments: "Do you have Paris recommendations? Have you ever been?",
-                },
-                {
-                avatar: 'https://cdn.vuetifyjs.com/images/lists/4.jpg',
-                donor: 'Rachel',
-                comments: "Have any ideas about what we should get Heidi for her birthday?",
-                },
-                {
-                avatar: 'https://cdn.vuetifyjs.com/images/lists/5.jpg',
-                donor: 'Britta Holt',
-                comments: "We should eat this: Grate, Squash, Corn, and tomatillo Tacos.",
-                },
             ],
         }),
+        created() {
+            // load data saat pertama kali halaman dibuka
+            this.loadDataSubmisi();
+        },
         methods: {
-            loadData() {
-            // load data berdasarkan id
-            axios
-                .get("http://localhost:8000/api/DataSubmision/" + this.$route.params.submisi_id)
-                .then(response => {
-                    // post value yang dari response ke form
-                    this.title = response.data;
-                    // console.log(response.data.submisi_foto);
-                    // this.form.lastName = response.data.last_name;
-                 });
+            loadDataSubmisi() {
+            axios.all([
+                axios.get("http://localhost:8000//api/DataSubmision/"+this.$route.params.id),
+                axios.get("http://localhost:8000//api/DataDonatur/"+this.$route.params.id)
+            ])
+            .then(axios.spread((DataSubmision,DataDonatur)=> {
+                    this.title = DataSubmision.data[0].submisi_judul;
+                    this.items = DataDonatur.data;
+                    this.foto = DataSubmision.data[0].submisi_foto;
+                    this.raised = DataSubmision.data[0].jumlah_donatur;
+                    this.total = DataSubmision.data[0].total_donasi;
+                    this.text = DataSubmision.data[0].submisi_cerita;
+                    this.target = DataSubmision.data[0].submisi_penerima;
+                    this.author = DataSubmision.data[0].user_name;
+                    this.progress = DataSubmision.data[0].kekurangan_donasi;
+                    this.daysleft = DataSubmision.data[0].day_left;
+                }))
             },
             reroutes: function (url) {
                 this.$router.push({ path: url });

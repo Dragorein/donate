@@ -8,7 +8,7 @@ const getters = {};
 const actions = {
     getUser({commit}) {
         axios
-        .get("/user/current")
+        .get("/auth/current")
         .then(response => {
             if(response.data != null) {
                 commit('setUser', response.data);

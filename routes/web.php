@@ -26,10 +26,10 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 
-Route::post('/auth/register', 'RegisterController@store');
-Route::post('/auth/login', 'LoginController@index');
-Route::get('/user/current', 'LoginController@currentUser');
-Route::post('/auth/logout', 'LoginController@logout');
+Route::post('/auth/register', 'UserController@register');
+Route::post('/auth/login', 'UserController@login');
+Route::post('/auth/logout', 'UserController@logout');
+Route::get('/auth/current', 'UserController@currentUser');
 
 // Auth::routes();
 

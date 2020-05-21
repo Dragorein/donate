@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Model;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User extends Authenticatable implements JWTSubject
@@ -14,7 +15,7 @@ class User extends Authenticatable implements JWTSubject
     protected $table = 'm_user';
 
     protected $fillable = [
-        'user_name','user_mail','user_phone','user_password'
+        'user_name','user_mail','user_token','user_phone','user_password'
     ];
     
     protected $hidden = [
@@ -31,7 +32,13 @@ class User extends Authenticatable implements JWTSubject
         return [];
     }
 
-    public function getAuthPassword() {
+    public function getAuthPassword()
+    {
         return $this->user_password;
-     }
+    }
+     
+    public function setPasswordAttribute($password)
+    {
+        $this->attributes['user_password'] = bcrypt($password);
+    }
 }

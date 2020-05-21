@@ -17,6 +17,7 @@ class CreateTDonatur extends Migration
             $table->increments('donatur_id');
             $table->unsignedInteger('submisi_id');
             $table->foreign('submisi_id')->references('submisi_id')->on('t_submisi');
+            $table->string('donatur_name', 255);
             $table->string('donatur_mail', 255);
             $table->string('donatur_phone', 255);
             $table->string('donatur_nominal', 255);

@@ -18,7 +18,7 @@
                                 </v-card-text>
 
                                 <v-card-text>
-                                    <v-btn @click="reroutes('/payment')" rounded block depressed large color="error">Donasi Sekarang</v-btn>
+                                    <router-link :to="'/payment/'+this.$route.params.id"><v-btn rounded block depressed large color="error">Donasi Sekarang</v-btn></router-link>
                                 </v-card-text>
                             </v-card>
                         </v-col>

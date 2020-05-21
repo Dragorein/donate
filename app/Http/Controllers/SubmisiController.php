@@ -19,7 +19,7 @@ class SubmisiController extends Controller
             DB::raw('t_submisi.submisi_foto'),
             DB::raw('t_submisi.submisi_judul'),
             DB::raw('m_user.user_name'),
-            DB::raw('(select SUM(t_donatur.donatur_nominal) from t_donatur) as total_donasi'),
+            DB::raw('(select t_submisi.submisi_terkumpul from t_submisi) as total_donasi'),
             DB::raw('(select ((submisi_total - SUM(t_donatur.donatur_nominal))/1000) from t_donatur INNER JOIN t_submisi ON t_submisi.submisi_id = t_donatur.submisi_id GROUP BY t_donatur.submisi_id) as kekurangan_donasi'),
             DB::raw('(SELECT DATEDIFF(submisi_expired_at, now()) from t_submisi) as day_left')
         );

@@ -76,7 +76,7 @@
                                         </v-list-item-group>
                                     </v-list>
 
-                                    <v-text-field label="Nominal donasi" prefix="Rp " filled clearable :rules="rulesDonasi"></v-text-field>
+                                    <v-text-field label="Nominal donasi" prefix="Rp " name="donasi" type="text" v-model="donasi" filled clearable :rules="rulesDonasi"></v-text-field>
 
                                     <div class="d-flex justify-center pt-2">
                                         <v-btn class="mr-2 w-50" @click="goBack">Batal</v-btn>
@@ -132,26 +132,25 @@
         text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         title: 'Supermodel',
         progress:50,
-        donasi: 'Rp 3.003.132',
+        donasi: '',
         durasi: '30',
         }),
         methods: {
             submit() {
-                console.log(this.selectedItem);
-            // axios
-            //     .post("http://localhost:8000/api/donation", {
-            //         name: this.$data.name,
-            //         email: this.$data.email,
-            //         submisi: this.$route.params.id,
-            //         noHandphone : this.$data.noHandphone,
-            //         donasi: this.$data.donasi
-            //     })
-            //     .then(data => {
-            //         this.$router.push({ path: `/payment/done/`+this.$route.params.id});
-            //     })
-            //     .catch(e => {
-            //         console.error(e);
-            //     });
+            axios
+                .post("http://localhost:8000/api/donation", {
+                    name: this.$data.name,
+                    email: this.$data.email,
+                    submisi: this.$route.params.id,
+                    // noHandphone : this.$data.noHandphone,
+                    donasi: this.$data.donasi
+                })
+                .then(data => {
+                    this.$router.push({ path: `/payment/done/`+this.$route.params.id});
+                })
+                .catch(e => {
+                    console.error(e);
+                });
             },
             submitForm(e) {
                 e.preventDefault();

@@ -16,7 +16,7 @@ class CreateTSubmisi extends Migration
         Schema::create('t_submisi', function (Blueprint $table) {
             $table->increments('submisi_id');
             $table->unsignedInteger('user_id');
-            $table->foreign('submisi_id')->references('user_id')->on('m_user');
+            $table->foreign('user_id')->references('user_id')->on('m_user');
             $table->string('submisi_judul', 255);
             $table->text('submisi_penerima');
             $table->text('submisi_cerita');

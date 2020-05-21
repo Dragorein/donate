@@ -6,7 +6,18 @@
 
 <script>
     export default {
-        name: "app",
+        data() {
+            return {
+                user: null,
+                // initiated: false,
+            }
+        },
+        created() {
+            this.awal();
+            
+        },
+        methods:{
+        }
     }
 </script>
 

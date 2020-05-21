@@ -27,7 +27,8 @@ class CreateTSubmisi extends Migration
             $table->text('submisi_tujuan');
             $table->string('submisi_foto', 255);
             $table->date('submisi_expired_at');
-            $table->timestamps();
+            $table->date('created_at')->useCurrent();
+            $table->date('updated_at')->useCurrent();
         });
     }
 

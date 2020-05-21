@@ -31,6 +31,8 @@ Route::post('/auth/login', 'UserController@login');
 Route::post('/auth/logout', 'UserController@logout');
 Route::get('/auth/current', 'UserController@currentUser');
 
+Route::get('/dashboard/all', 'DashboardController@index');
+
 // Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');

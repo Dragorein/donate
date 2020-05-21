@@ -19,7 +19,8 @@ class CreateTSubmisiVerifikasi extends Migration
             $table->foreign('submisi_id')->references('submisi_id')->on('t_submisi');
             $table->string('submisi_foto_verifikasi', 255);
             $table->boolean('submisi_is_verifikasi');
-            $table->timestamps();
+            $table->date('created_at')->useCurrent();
+            $table->date('updated_at')->useCurrent();
         });
     }
 

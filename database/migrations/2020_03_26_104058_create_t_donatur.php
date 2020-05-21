@@ -21,7 +21,8 @@ class CreateTDonatur extends Migration
             $table->string('donatur_phone', 255);
             $table->string('donatur_nominal', 255);
             $table->boolean('donatur_is_anonymous');
-            $table->timestamps();
+            $table->date('created_at')->useCurrent();
+            $table->date('updated_at')->useCurrent();
         });
     }
 

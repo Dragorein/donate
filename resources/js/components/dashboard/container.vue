@@ -92,7 +92,7 @@
                                 <v-spacer></v-spacer>
                                 <v-text-field v-model="search" append-icon="mdi-magnify" label="Search" single-line hide-details></v-text-field>
                             </v-card-title>
-                            <v-data-table :headers="headers" :items="campaigns" :search="search"></v-data-table>
+                            <v-data-table :headers="usersHeaders" :items="users" :search="search"></v-data-table>
                         </v-card>
                     </template>
                 </v-container>
@@ -115,11 +115,35 @@
             { text: 'Sisa Hari', value: 'daysleft' },
             { text: 'Status', value: 'status' },
             ],
+
+            usersHeaders: [
+                { text: 'Id', align: 'start', sortable: false, value: 'user_id' },
+                { text: 'Nama', value: 'user_name' },
+                { text: 'Email', value: 'user_mail' },
+                { text: 'No. Telepon', value: 'user_phone' },
+                { text: 'Akses', value: 'user_is_admin' },
+                { text: 'Status', value: 'user_is_active' },
+                { text: 'Terdaftar', value: 'user_created_at' },
+                { text: 'Terbarui', value: 'user_updated_at' },
+            ],
+
+            users: [],
+
             campaigns: [
             { id: '001', title: 'Top western road trips', author: 'Rachel', raised: 'Rp 176.320', daysleft: '56', status: 'open' },
             
             ],
         }),
+        created() {
+            axios
+            .get("/dashboard/all")
+            .then(response => {
+                console.log(response.data);
+                if(response.data != null) {
+                    this.$data.users = response.data.users;
+                }
+            });
+        },
         methods: {
             reroutes: function (url) {
                 this.$router.push({ path: url });

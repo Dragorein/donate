@@ -22,7 +22,8 @@ class CreateMUser extends Migration
             $table->string('user_password', 255);
             $table->boolean('user_is_admin');
             $table->boolean('user_is_active');
-            $table->timestamps();
+            $table->date('created_at')->useCurrent();
+            $table->date('updated_at')->useCurrent();
         });
     }
 

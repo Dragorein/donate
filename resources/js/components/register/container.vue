@@ -87,7 +87,7 @@ export default {
     submit() {
       console.log(this.$data);
       axios
-        .post("user/register", {
+        .post("/auth/register", {
           firstname: this.$data.firstname,
           lastname: this.$data.lastname,
           name: this.$data.firstname + " " + this.$data.lastname,

@@ -15,7 +15,7 @@ const actions = {
     // },
     login({}, user) {
         axios
-        .post("/user/login", {
+        .post("/auth/login", {
             email: user.email,
             password: user.password
         })

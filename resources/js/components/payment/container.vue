@@ -70,7 +70,7 @@
                                                     <v-img :src="item.avatar"></v-img>
                                                 </v-list-item-avatar>
                                                 <v-list-item-content>
-                                                    <v-list-item-title v-text="item.title"></v-list-item-title>
+                                                    <v-list-item-title v-text="item.title" name="tes" v-model="item.value"></v-list-item-title>
                                                 </v-list-item-content>
                                             </v-list-item>
                                         </v-list-item-group>
@@ -123,18 +123,21 @@
             v => v && v.length <= 14
         ],
         items: [
-            { title: 'BCA Virtual Account', avatar: '/icon/BCA.png' },
-            { title: 'BNI', avatar: '/icon/BNI.png' },
-            { title: 'Permata', avatar: '/icon/Permata.png' },
+            { title: 'BCA Virtual Account', avatar: '/icon/BCA.png', value:"BCA" },
+            { title: 'BNI', avatar: '/icon/BNI.png',value:"BNI" },
+            { title: 'Permata', avatar: '/icon/Permata.png', value:"Permata" },
         ],
-        author: 'Louise',
-        target:'Josh',
-        text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-        title: 'Supermodel',
+        author: '',
+        target:'',
+        text: '',
+        title: '',
         progress:50,
         donasi: '',
         durasi: '30',
         }),
+        created() {
+            this.loadData();
+        },
         methods: {
             submit() {
             axios
@@ -142,7 +145,7 @@
                     name: this.$data.name,
                     email: this.$data.email,
                     submisi: this.$route.params.id,
-                    // noHandphone : this.$data.noHandphone,
+                    noHandphone : this.$data.noHandphone,
                     donasi: this.$data.donasi
                 })
                 .then(data => {
@@ -154,6 +157,14 @@
             },
             submitForm(e) {
                 e.preventDefault();
+            },
+            loadData() {
+                axios.get("http://localhost:8000//api/DataSubmision/"+this.$route.params.id).then(response => {
+                    this.title = response.data[0].submisi_judul;
+                    this.author = response.data[0].user_name;
+                    this.text = response.data[0].submisi_cerita;
+                    this.target = response.data[0].submisi_penerima;
+                });
             },
             reroutes: function (url) {
                 this.$router.push({ path: url });

@@ -22,3 +22,4 @@ Route::get('/','SubmisiController@all');
 Route::get('/DataSubmision/{id}','SubmisiController@show_campaign_detail');
 Route::get('/DataDonatur/{id}','SubmisiController@show_campaign_detail_donatur');
 Route::post('/donation', 'DonasiController@donasi');
+Route::get('/informationpayment', 'DonasiController@information_donation');

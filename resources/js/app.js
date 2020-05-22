@@ -13,6 +13,7 @@ import VueAxios from 'vue-axios';
 import Axios from 'axios';
 import Vuetify from "../plugins/vuetify"
 import router from "./router"
+import store from "./store"
 Vue.use(VueAxios,Axios);
 
 /**
@@ -43,6 +44,7 @@ Vue.component('search-page', require('./components/search/container.vue').defaul
 const app = new Vue({
     vuetify: Vuetify,
     router,
+    store,
     el: '#app',
 });
 

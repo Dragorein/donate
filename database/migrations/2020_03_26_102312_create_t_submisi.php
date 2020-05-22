@@ -29,7 +29,8 @@ class CreateTSubmisi extends Migration
             $table->string('submisi_foto', 255);
             $table->boolean('submisi_is_active');
             $table->date('submisi_expired_at');
-            $table->timestamps();
+            $table->date('created_at')->useCurrent();
+            $table->date('updated_at')->useCurrent();
         });
     }
 

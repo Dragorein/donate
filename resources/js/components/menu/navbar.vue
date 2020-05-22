@@ -14,7 +14,6 @@
         <v-btn large text class="mr-3">Donasi</v-btn>
 
         <template v-if="loggedin == false">
-            <!-- <template v-if="!app.user"> -->
             <v-dialog v-model="logindialog" max-width="600px">
                 <template v-slot:activator="{ on }">
                     <v-btn href="register" large color="error" class="mr-3">Daftar</v-btn>
@@ -26,19 +25,18 @@
                     </v-card-title>
                     <v-card-text>
                         <v-container>
-                            <v-form @submit.prevent="onSubmit">
-                            <v-row>
-                                <v-col cols="12" class="py-0">
-                                    <v-text-field solo flat label="Email" required v-model="email" :rules="emailRules"></v-text-field>
-                                </v-col>
-                                <v-col cols="12" class="py-0">
-                                    <v-text-field solo flat label="Password" type="password" required v-model="password"></v-text-field>
-                                </v-col>
-                                <v-col cols="12">
-                                    <v-btn color="red darken-1" dark block large @click="loggedin = true">Masuk Sekarang</v-btn>
-                                    <!-- <v-btn color="red darken-1" dark block large>Masuk Sekarang</v-btn> -->
-                                </v-col>
-                            </v-row>
+                            <v-form @submit.prevent="callLogin" id="form-login">
+                                <v-row>
+                                    <v-col cols="12" class="py-0">
+                                        <v-text-field solo flat label="Email" required v-model="login.email" :rules="emailRules"></v-text-field>
+                                    </v-col>
+                                    <v-col cols="12" class="py-0">
+                                        <v-text-field solo flat label="Password" type="password" required v-model="login.password"></v-text-field>
+                                    </v-col>
+                                    <v-col cols="12">
+                                        <v-btn type="submit" form="form-login" color="red darken-1" dark block large>Masuk Sekarang</v-btn>
+                                    </v-col>
+                                </v-row>
                             </v-form>
                             <v-row>
                                 <v-col cols="12" class="text-center">
@@ -55,16 +53,21 @@
             <v-menu offset-y open-on-hover transition="slide-y-transition" bottom>
                 <template v-slot:activator="{ on }">
                     <v-btn large text v-on="on">
-                        <v-icon left>mdi-account-circle mdi-24px</v-icon>{{user ? user.name : 'Account'}}
+                        <v-icon left>mdi-account-circle mdi-24px</v-icon><template v-if="loggedin == true">{{currentUser.user_name}}</template>
                     </v-btn>
                 </template>
                 <v-list>
+                    <v-list-item @click="reroutes('/dashboard')" v-if="currentUser.user_is_admin == 1">
+                        <v-list-item-title>
+                            <v-icon left>mdi-apps</v-icon>Dashboard
+                        </v-list-item-title>
+                    </v-list-item>
                     <v-list-item @click="reroutes('/profile')">
                         <v-list-item-title>
                             <v-icon left>mdi-account</v-icon>Profil
                         </v-list-item-title>
                     </v-list-item>
-                    <v-list-item @click="loggedin = false">
+                    <v-list-item @click="callLogout">
                         <v-list-item-title>
                             <v-icon left>mdi-logout-variant</v-icon>Keluar
                         </v-list-item-title>
@@ -80,51 +83,65 @@
 
 <script>
     export default {
-        name: "navbar",
-        props: ["app"],
         data: () => ({
             brand: 'Kindly', 
             logo: '/img/brand.png',
-            loggedin: false,
-            logindialog: false,
             navbar: '#navbar',
-            email: '',
+            logindialog: false,
+
+            login: {
+                email: '',
+                password: '',
+            },
             emailRules: [
                 v => !!v || 'E-mail is required',
                 v => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid'
             ],
-            password: '',
+            passwordRules: [
+                v => !!v || 'Password is required'
+            ],
             errors:[],
         }),
-        methods: {
-            onSubmit(){
-            //     this.app.req.post('auth/login', data).then(response => {
-
-            //     }).catch
-
-            this.init();
+        computed: {
+            loggedin: {
+                get() {
+                    return this.$store.state.user.loggedin;
+                }
             },
-            reroutes: function (url) {
+            currentUser: {
+                get() {
+                    return this.$store.state.user.user;
+                }
+            },
+        },
+        created() {
+            this.$store.dispatch('user/getUser');
+        },
+        methods: {
+            reroutes(url) {
                 this.$router.push({ path: url });
             },
-            handleScroll: function() {
+            handleScroll() {
                 if(window.scrollY > 0) {
                     navbar.classList.add("nav-bg");
                 } else {
                     navbar.classList.remove("nav-bg");
                 }
             },
-            logout(){
-                this.req.post('auth/logout').then(()=> {
-                    this.user = null;
-                    this.$router.push('/');
+            callLogin() {
+                this.$store.dispatch("user/login", this.$data.login);
+            },
+            callLogout() {
+                this.$store.dispatch("user/logout")
+                .then(() => {
+                    this.$data.logindialog = false;
+                    this.$router.go();
                 });
             }
         },
-        mounted(){
+        mounted() {
             this.handleScroll();
             window.addEventListener('scroll', this.handleScroll);
-            // this.init();
         }
     }
 </script>

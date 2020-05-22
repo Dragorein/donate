@@ -6,7 +6,6 @@
 
 <script>
     export default {
-        name: "app",
         data() {
             return {
                 user: null,
@@ -18,9 +17,6 @@
             
         },
         methods:{
-            awal(){
-                console.log('halo');
-            }
         }
     }
 </script>

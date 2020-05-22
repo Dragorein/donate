@@ -26,7 +26,13 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 
-Route::post('/register', 'RegisterController@store');
+Route::post('/auth/register', 'UserController@register');
+Route::post('/auth/login', 'UserController@login');
+Route::post('/auth/logout', 'UserController@logout');
+Route::get('/auth/current', 'UserController@currentUser');
+
+Route::get('/dashboard/all', 'DashboardController@index');
+Route::post('/user/start', 'StartController@store');
 
 // Auth::routes();
 
@@ -36,9 +42,9 @@ Route::get('/{vue_capture?}', function () {
     return view('landing');
 })->where('vue_capture', '[\/\w\.-]*');
 
-Route::prefix('auth')->group(function(){
-    Route::get('init', 'LoginController@init');
+// Route::prefix('auth')->group(function(){
+//     Route::get('init', 'LoginController@init');
 
-    Route::post('login', 'LoginController@login');
-    Route::post('logout', 'LoginController@logout');
-    });
+//     Route::post('login', 'LoginController@login');
+//     Route::post('logout', 'LoginController@logout');
+//     });

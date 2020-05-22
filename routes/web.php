@@ -32,6 +32,7 @@ Route::post('/auth/logout', 'UserController@logout');
 Route::get('/auth/current', 'UserController@currentUser');
 
 Route::get('/dashboard/all', 'DashboardController@index');
+Route::post('/user/start', 'StartController@store');
 
 // Auth::routes();
 

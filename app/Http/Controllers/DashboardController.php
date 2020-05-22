@@ -18,20 +18,38 @@ class DashboardController extends Controller
         $users = User::all();
         foreach($users as $key => $value)
         {
+            if($users[$key]['user_is_admin'] == 1)
+                $users[$key]['user_is_admin'] = 'admin';
+            else
+                $users[$key]['user_is_admin'] = 'user';
+
+            if($users[$key]['user_is_active'] == 1)
+                $users[$key]['user_is_admin'] = 'aktif';
+            else
+                $users[$key]['user_is_active'] = 'tidak aktif';
+
             $users[$key]['user_created_at'] = $users[$key]['created_at']->format('d-m-Y');
             $users[$key]['user_updated_at'] = $users[$key]['updated_at']->format('d-m-Y');
-            $isadmin = $users[$key]['user_is_admin'];
-            $isactive = $users[$key]['user_is_active'];
-            $users[$key]['user_is_admin'] = 'user';
-            $users[$key]['user_is_active'] = 'tidak aktif';
-            if($isadmin == 1)
-                $users[$key]['user_is_admin'] = 'admin';
-            if($isactive == 1)
-                $users[$key]['user_is_admin'] = 'aktif';
+                
         }
 
         $campaigns = Start::all();
-        return response(['users' => $users, 'campaigns' => $campaigns]);
+        $total_campaigns = null;
+
+        foreach($campaigns as $key => $value) {
+            $total_campaigns += $campaigns[$key]['submisi_total'];
+
+            $campaigns[$key]['submisi_target'] = 'Rp '.number_format($campaigns[$key]['submisi_total'],0,'.',',');
+            $campaigns[$key]['submisi_total'] = 'Rp '.number_format($campaigns[$key]['submisi_total'],0,'.',',');
+            $campaigns[$key]['sisa_hari'] = $campaigns[$key]['created_at']->diff($campaigns[$key]['submisi_expired_at'])->days.' hari';
+            
+            $campaigns[$key]['submisi_created_at'] = $campaigns[$key]['created_at']->format('d-m-Y');
+            $campaigns[$key]['submisi_updated_at'] = $campaigns[$key]['updated_at']->format('d-m-Y');
+        }
+
+        $total_campaigns = 'Rp '.number_format($total_campaigns,0,'.',',');
+
+        return response(['users' => $users, 'campaigns' => $campaigns, 'totalCampaigns' => $total_campaigns]);
     }
 
     /**

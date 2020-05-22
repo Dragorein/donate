@@ -20,7 +20,7 @@ class CreateTDonatur extends Migration
             $table->string('donatur_name', 255);
             $table->string('donatur_mail', 255);
             $table->string('donatur_phone', 255);
-            $table->string('donatur_nominal', 255);
+            $table->integer('donatur_nominal', 255);
             $table->boolean('donatur_is_anonymous');
             $table->timestamps();
         });

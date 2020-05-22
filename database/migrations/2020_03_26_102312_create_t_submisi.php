@@ -23,7 +23,7 @@ class CreateTSubmisi extends Migration
             $table->string('submisi_phone', 255);
             $table->string('submisi_tipe', 255);
             $table->string('submisi_hub_relasi', 255);
-            $table->integer('submisi_total');
+            $table->integer('submisi_target');
             $table->integer('submisi_terkumpul');
             $table->text('submisi_tujuan');
             $table->string('submisi_foto', 255);

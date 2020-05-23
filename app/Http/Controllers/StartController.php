@@ -36,13 +36,15 @@ class StartController extends Controller
     public function store(Request $request)
     {
         $t_submisi = new Start();
+        $t_submisi -> user_id = 1;
         $t_submisi -> submisi_judul = $request -> judul;
         $t_submisi -> submisi_cerita = $request -> cerita;
         $t_submisi -> submisi_phone = $request -> noHandphone;
         $t_submisi -> submisi_tipe = $request -> tipe;
         $t_submisi -> submisi_hub_relasi = $request -> medsos;
-        $t_submisi -> submisi_total = $request -> total;
+        $t_submisi -> submisi_target = $request -> total;
         $t_submisi -> submisi_tujuan = $request -> tujuan;
+        $t_submisi -> submisi_is_active = 1;
         $t_submisi -> submisi_expired_at = $request -> dedline;
 
         $t_submisi -> save();

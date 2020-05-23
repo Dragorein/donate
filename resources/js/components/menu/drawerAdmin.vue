@@ -16,6 +16,13 @@
         <v-divider/>
 
         <v-list nav dense>
+            <v-list-item link @click="reroutes('/')">
+                <v-list-item-icon><v-icon>mdi-home</v-icon></v-list-item-icon>
+                <v-list-item-title>Halaman Utama</v-list-item-title>
+            </v-list-item>
+        </v-list>
+
+        <v-list nav dense>
             <template v-for="(page, index) in pages" :value="index">
                 <v-list-item @click="changePage(page.name)" :dark=page.active :class="{primary: page.active}">
                     <v-list-item-icon><v-icon>{{page.icon}}</v-icon></v-list-item-icon>
@@ -27,11 +34,6 @@
         <v-spacer/>
 
         <v-list nav dense>
-            <v-list-item link @click="reroutes('/')">
-                <v-list-item-icon><v-icon>mdi-home</v-icon></v-list-item-icon>
-                <v-list-item-title>Halaman Utama</v-list-item-title>
-            </v-list-item>
-
             <v-list-item link @click="reroutes('/profile')">
                 <v-list-item-icon><v-icon>mdi-account</v-icon></v-list-item-icon>
                 <v-list-item-title>Profil</v-list-item-title>

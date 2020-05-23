@@ -39,10 +39,15 @@ class DashboardController extends Controller
         foreach($campaigns as $key => $value) {
             $total_campaigns += $campaigns[$key]['submisi_total'];
 
-            $campaigns[$key]['submisi_target'] = 'Rp '.number_format($campaigns[$key]['submisi_total'],0,'.',',');
-            $campaigns[$key]['submisi_total'] = 'Rp '.number_format($campaigns[$key]['submisi_total'],0,'.',',');
+            $campaigns[$key]['submisi_target'] = 'Rp '.number_format($campaigns[$key]['submisi_target'],0,'.',',');
+            $campaigns[$key]['submisi_terkumpul'] = 'Rp '.number_format($campaigns[$key]['submisi_terkumpul'],0,'.',',');
             $campaigns[$key]['sisa_hari'] = $campaigns[$key]['created_at']->diff($campaigns[$key]['submisi_expired_at'])->days.' hari';
             
+            if($campaigns[$key]['submisi_is_active'] == 1)
+                $campaigns[$key]['submisi_is_active'] = 'aktif';
+            else
+                $campaigns[$key]['submisi_is_active'] = 'tidak aktif';
+
             $campaigns[$key]['submisi_created_at'] = $campaigns[$key]['created_at']->format('d-m-Y');
             $campaigns[$key]['submisi_updated_at'] = $campaigns[$key]['updated_at']->format('d-m-Y');
         }

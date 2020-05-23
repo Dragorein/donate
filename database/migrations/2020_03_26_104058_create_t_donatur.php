@@ -16,6 +16,7 @@ class CreateTDonatur extends Migration
         Schema::create('t_donatur', function (Blueprint $table) {
             $table->increments('donatur_id');
             $table->unsignedInteger('submisi_id');
+            $table->unsignedInteger('user_id');
             $table->foreign('submisi_id')->references('submisi_id')->on('t_submisi');
             $table->string('donatur_name', 255);
             $table->string('donatur_mail', 255);

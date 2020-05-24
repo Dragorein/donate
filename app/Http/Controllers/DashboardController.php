@@ -41,7 +41,7 @@ class DashboardController extends Controller
 
         $total_campaigns = $this->currency($total_campaigns);
 
-        $donations = Donation::all();
+        $donations = Donation::with('submission')->get();
         foreach($donations as $key => $value)
         {
             $donations[$key]['donatur_nominal'] = $this->currency($donations[$key]['donatur_nominal']);

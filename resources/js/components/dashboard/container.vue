@@ -72,7 +72,7 @@
                             </v-card-title>
                             <v-data-table :headers="campaignHeaders" :items="campaigns" :search="search">
                                 <template v-slot:item.actions="{ item }">
-                                    <v-icon small color="orange mr-2" @click="editItem(item)">mdi-pencil</v-icon>
+                                    <v-icon small color="blue mr-2" @click="editItem(item)">mdi-information</v-icon>
                                     <v-icon small color="red mr-2" @click="deleteItem(item)">mdi-delete</v-icon>
                                 </template>
                             </v-data-table>
@@ -88,7 +88,7 @@
                             </v-card-title>
                             <v-data-table :headers="donationsHeaders" :items="donations" :search="search">
                                 <template v-slot:item.actions="{ item }">
-                                    <v-icon small color="orange mr-2" @click="editItem(item)">mdi-pencil</v-icon>
+                                    <v-icon small color="blue mr-2" @click="editItem(item)">mdi-information</v-icon>
                                     <v-icon small color="red mr-2" @click="deleteItem(item)">mdi-delete</v-icon>
                                 </template>
                             </v-data-table>
@@ -104,7 +104,7 @@
                             </v-card-title>
                             <v-data-table :headers="usersHeaders" :items="users" :search="search">
                                 <template v-slot:item.actions="{ item }">
-                                    <v-icon small color="orange mr-2" @click="editItem(item)">mdi-pencil</v-icon>
+                                    <v-icon small color="blue mr-2" @click="editItem(item)">mdi-information</v-icon>
                                     <v-icon small color="red mr-2" @click="deleteItem(item)">mdi-delete</v-icon>
                                 </template>
                             </v-data-table>

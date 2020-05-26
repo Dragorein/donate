@@ -20,7 +20,7 @@
                     <v-row>
                         <v-col v-for="submisi in submisis" :key="submisi.submisi_id" cols="12" sm="6" md="4" xl="3">
                         <v-hover v-slot:default="{ hover }">
-                             <v-card   :elevation="hover ? 24 : 6" class="my-4 card-transform">
+                            <v-card   :elevation="hover ? 24 : 6" class="my-4 card-transform">
                                 <router-link :to="'/campaign/detail/'+submisi.submisi_id"><v-img :src="'/picture/' + submisi.submisi_foto" height="200px"></v-img></router-link>
 
                                 <v-card-title v-text="submisi.submisi_judul"></v-card-title>
@@ -51,7 +51,8 @@
                         </v-col>
                     </v-row>
                     <v-row justify="center">
-                         <v-pagination color="deep-orange" v-model="page" :length="length" :page="page" :total-visible="totalVisible" @input="next"></v-pagination>
+                        <v-pagination color="deep-orange" v-model="page" :length="length" :page="page" :total-visible="totalVisible" @input="next"></v-pagination>
+                        <!-- <infinite-loading @distance="1" @infinite="infiniteHandler"></infinite-loading> -->
                     </v-row>
                 </v-container>
             </section>
@@ -73,10 +74,14 @@
             prevIcon: 'navigate_before',
             page: 1,
             totalVisible: 10,
+            // list: [],
         }),
         created() {
             this.loadData();
         },
+        // mounted() {
+        //     console.log('component mounted.')
+        // },
         methods: {
             loadData() {
             axios.get("http://localhost:8000/api/").then(response => {
@@ -90,6 +95,20 @@
                 this.chips.splice(this.chips.indexOf(item), 1)
                 this.chips = [...this.chips]
             },
+            // infiniteHandler($state) {
+            //     let vm = this;
+
+            //     this.$http.get('campaign?page='+this.page)
+            //         .then(response => {
+            //             return response.json();
+            //         }).then(data => {
+            //             $.each(data.data, function(key, value) {
+            //                 vm.list.push(value);
+            //             });
+            //             $state.loaded();
+            //         });
+            //         this.page = this.page + 1;
+            // },
         },
     }
 </script>

@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\DB;
 
 class SubmissionController extends Controller
 {
+    // public function index(){
+    //     $data = Submission::orderBy('id')->paginate(10);
+    //     return response()->json($data);
+    // }
     // mengambil semua data
     public function all()
     {

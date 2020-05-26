@@ -34,6 +34,8 @@ Vue.component('footbar', require('./components/menu/footer.vue').default);
 Vue.component('app-container', require('./components/appContainer.vue').default);
 Vue.component('landing-page', require('./components/landing/container.vue').default);
 Vue.component('search-page', require('./components/search/container.vue').default);
+// Vue.component('example-component', require('./components/ExampleComponent.vue'));
+// Vue.component('InfiniteLoading', require('vue-infinite-loading'));
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

@@ -13,7 +13,7 @@ class CreateTSubmisiVerifikasi extends Migration
      */
     public function up()
     {
-        Schema::create('t_submisi_verifikasi', function (Blueprint $table) {
+        Schema::create('t_submissions_verif', function (Blueprint $table) {
             $table->increments('submisi_verif_id');
             $table->unsignedInteger('submisi_id');
             $table->foreign('submisi_id')->references('submisi_id')->on('t_submisi');

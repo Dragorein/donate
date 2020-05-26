@@ -13,7 +13,7 @@ class CreateTSubmisi extends Migration
      */
     public function up()
     {
-        Schema::create('t_submisi', function (Blueprint $table) {
+        Schema::create('t_submisions', function (Blueprint $table) {
             $table->increments('submisi_id');
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('user_id')->on('m_user');

@@ -2,7 +2,9 @@ import axios from 'axios';
 
 const state = {
     user: {},
-    loggedin: false
+    loggedin: false,
+    errors: {},
+    message: ""
 };
 const getters = {};
 const actions = {
@@ -25,10 +27,14 @@ const actions = {
         .then((response) => {
             state.user = response.data.user;
             state.loggedin = response.data.loggedin;
+            state.message = response.data.message;
             console.log('logged in');
         })
         .catch(e => {
-            console.error(e);
+            if (e.response.status == 422){
+                state.errors = e.response.data.errors;
+                state.message = "";
+            }
         });
     },
     logout() {

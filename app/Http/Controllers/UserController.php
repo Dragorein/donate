@@ -27,12 +27,12 @@ class UserController extends Controller
     {
         $userLoggingIn = new User;
         $userLoggingIn = $request->validate([
-            'email' => 'required|string',
+            'email' => 'required|email',
             'password' => 'required|string'
         ]);
 
         if(!Auth::attempt(['user_mail' => $userLoggingIn['email'], 'password' => $userLoggingIn['password']])) {
-            return response(['user' => '', 'loggedin' => false, 'message' => 'invalid login credentials.']);
+            return response(['user' => '', 'loggedin' => false, 'message' => 'Invalid login credentials.']);
         }
 
         Session::put('user', Auth::user());

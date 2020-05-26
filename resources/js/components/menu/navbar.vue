@@ -28,10 +28,11 @@
                             <v-form @submit.prevent="callLogin" id="form-login">
                                 <v-row>
                                     <v-col cols="12" class="py-0">
-                                        <v-text-field solo flat label="Email" required v-model="login.email" :rules="emailRules"></v-text-field>
+                                        <v-alert type="error" text dense transition="slide-y-transition" v-if="message">{{message}}</v-alert>
+                                        <v-text-field solo flat label="Email" required v-model="login.email" :error-messages="errors.email"></v-text-field>
                                     </v-col>
                                     <v-col cols="12" class="py-0">
-                                        <v-text-field solo flat label="Password" type="password" required v-model="login.password"></v-text-field>
+                                        <v-text-field solo flat label="Password" type="password" required v-model="login.password" :error-messages="errors.password"></v-text-field>
                                     </v-col>
                                     <v-col cols="12">
                                         <v-btn type="submit" form="form-login" color="red darken-1" dark block large>Masuk Sekarang</v-btn>
@@ -93,14 +94,6 @@
                 email: '',
                 password: '',
             },
-            emailRules: [
-                v => !!v || 'E-mail is required',
-                v => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid'
-            ],
-            passwordRules: [
-                v => !!v || 'Password is required'
-            ],
-            errors:[],
         }),
         computed: {
             loggedin: {
@@ -113,6 +106,16 @@
                     return this.$store.state.user.user;
                 }
             },
+            errors: {
+                get() {
+                    return this.$store.state.user.errors;
+                }
+            },
+            message: {
+                get() {
+                    return this.$store.state.user.message;
+                }
+            }
         },
         created() {
             this.$store.dispatch('user/getUser');

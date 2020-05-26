@@ -69,7 +69,7 @@
                                                     </v-date-picker>
                                                 </v-menu>
                                                 <v-btn color="error" @click="e1 = 3" class="mr-2">Lanjut</v-btn>
-                                                <v-btn text class="mr-2" @click="goBack">Batal</v-btn>
+                                                <v-btn text class="mr-2" @click="e1 = 1">Batal</v-btn>
 
                                         </v-form>
 
@@ -83,7 +83,7 @@
                                         <v-form>
                                             <v-file-input label="Pilih salah satu foto utama untuk penggalangan danamu" filled prepend-inner-icon="mdi-camera"></v-file-input>
                                             <v-btn color="error" @click="e1 = 4 " class="mr-2">Lanjut</v-btn>
-                                            <v-btn text class="mr-2" @click="goBack">Batal</v-btn>
+                                            <v-btn text class="mr-2" @click="e1 = 2">Batal</v-btn>
                                         </v-form>
                                     </v-card-text>
                                 </v-stepper-content>
@@ -112,7 +112,7 @@
                                                 </v-card-actions>
                                             </v-card>
                                             <v-btn color="error" @click="submit()" class="mr-2 mt-5">Daftar</v-btn>
-                                            <v-btn text @click="e1 = 1" class="mr-2 mt-5">Kembali</v-btn>
+                                            <v-btn text @click="e1 = 3" class="mr-2 mt-5">Kembali</v-btn>
                                         </v-form>
                                     </v-card-text>
                                 </v-stepper-content>
@@ -187,7 +187,7 @@ export default {
                     tipe: this.$data.tipe,
                     medsos: this.$data.mediasosial,
                     total: this.$data.target,
-                    tujuan: this.$data.penerima,
+                    penerima: this.$data.penerima,
                     dedline: this.$data.date
                 })
                 .then(data => {

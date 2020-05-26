@@ -80,14 +80,35 @@
 <script>
 export default {
     data: () => ({
-        author: 'Louise',
-        target:'Josh',
-        title: 'Supermodel',
-        donasi: '10.000',
-        bank: 'BCA',
+        author: '',
+        target:'',
+        title: '',
+        donasi: '',
+        bank: '',
         icon: '/icon/BCA.png',
     }),
+    created() {
+        this.loadData();
+    },
     methods: {
+        loadData() {
+        axios.get("http://localhost:8000/api/informationpayment").then(response => {
+            this.title = response.data[0].submisi_judul;
+            this.author = response.data[0].user_name;
+            this.target = response.data[0].submisi_penerima;
+            this.donasi = response.data[0].donation_nominal;
+            this.bank = response.data[0].payment_type;
+
+            if(response.data[0].payment_type == "BCA"){
+                this.icon =  '/icon/BCA.png';
+            }else if (response[0].data.payment_type == "BNI"){
+                this.icon = '/icon/BNI.png';
+            }else{
+                this.icon = '/icon/Permata.png';
+            }
+
+        });
+        },
         reroutes: function (url) {
             this.$router.push({ path: url });
         },

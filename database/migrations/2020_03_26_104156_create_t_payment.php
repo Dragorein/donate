@@ -15,8 +15,8 @@ class CreateTPayment extends Migration
     {
         Schema::create('t_payment', function (Blueprint $table) {
             $table->increments('payment_id');
-            $table->unsignedInteger('donatur_id');
-            $table->foreign('donatur_id')->references('donatur_id')->on('t_donatur');
+            $table->unsignedInteger('donations_id');
+            $table->foreign('donations_id')->references('donations_id')->on('t_donations');
             $table->string('payment_type', 255);
             $table->string('payment_va_number', 255);
             $table->boolean('payment_is_lunas');

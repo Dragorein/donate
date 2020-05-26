@@ -25,7 +25,6 @@ class CreateTSubmissions extends Migration
             $table->string('submisi_hub_relasi', 255);
             $table->integer('submisi_target');
             $table->integer('submisi_terkumpul');
-            $table->text('submisi_tujuan');
             $table->string('submisi_foto', 255);
             $table->boolean('submisi_is_active');
             $table->date('submisi_expired_at');

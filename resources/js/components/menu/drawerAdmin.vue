@@ -56,7 +56,7 @@
             pages: [
                 {name:'feeds', icon:'mdi-apps', title:'Feeds', active:false},
                 {name:'campaigns', icon:'mdi-charity', title:'Daftar Penggalangan', active:false},
-                {name:'transactions', icon:'mdi-cash-multiple', title:'Daftar Transfer', active:false},
+                {name:'donations', icon:'mdi-cash-multiple', title:'Daftar Donasi', active:false},
                 {name:'users', icon:'mdi-account-group', title:'Daftar Pengguna', active:false},
             ]
         }),

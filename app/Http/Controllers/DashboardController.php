@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
 use App\Start;
+use App\Donation;
+use App\User;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -15,6 +16,51 @@ class DashboardController extends Controller
      */
     public function index()
     {
+        $campaigns = Start::with('user')->get();
+
+        $total_campaigns = null;
+
+        foreach($campaigns as $key => $value) {
+            $total_campaigns += $campaigns[$key]['submisi_terkumpul'];
+
+            $campaigns[$key]['submisi_target'] = $this->currency($campaigns[$key]['submisi_target']);
+            $campaigns[$key]['submisi_terkumpul'] = $this->currency($campaigns[$key]['submisi_terkumpul']);
+
+            $campaign_expire = new \DateTime($campaigns[$key]['submisi_expired_at']);
+            $today = new \DateTime();
+            $campaigns[$key]['sisa_hari'] = $today->diff($campaign_expire)->days.' hari';
+            
+            if($campaigns[$key]['submisi_is_active'] == 1)
+                $campaigns[$key]['submisi_is_active'] = 'aktif';
+            else
+                $campaigns[$key]['submisi_is_active'] = 'tidak aktif';
+
+            $campaigns[$key]['submisi_created_at'] = $campaigns[$key]['created_at']->format('d-m-Y');
+            $campaigns[$key]['submisi_updated_at'] = $campaigns[$key]['updated_at']->format('d-m-Y');
+        }
+
+        $total_campaigns = $this->currency($total_campaigns);
+
+        $donations = Donation::with('submission')->get();
+        foreach($donations as $key => $value)
+        {
+            $donations[$key]['donatur_nominal'] = $this->currency($donations[$key]['donatur_nominal']);
+
+            if($donations[$key]['donatur_is_anonymous'] == 1)
+                $donations[$key]['donatur_is_anonymous'] = 'ya';
+            else
+                $donations[$key]['donatur_is_anonymous'] = 'tidak';
+
+            if($donations[$key]['user_id'] == 0)
+                $donations[$key]['user_id'] = 'tidak terdaftar';
+            else
+                $donations[$key]['user_id'] = 'terdaftar';
+
+            $donations[$key]['donatur_created_at'] = $donations[$key]['created_at']->format('d-m-Y');
+            $donations[$key]['donatur_updated_at'] = $donations[$key]['updated_at']->format('d-m-Y');
+                
+        }
+
         $users = User::all();
         foreach($users as $key => $value)
         {
@@ -33,28 +79,12 @@ class DashboardController extends Controller
                 
         }
 
-        $campaigns = Start::all();
-        $total_campaigns = null;
+        return response(['campaigns' => $campaigns, 'totalCampaigns' => $total_campaigns, 'donations' => $donations, 'users' => $users]);
+    }
 
-        foreach($campaigns as $key => $value) {
-            $total_campaigns += $campaigns[$key]['submisi_total'];
-
-            $campaigns[$key]['submisi_target'] = 'Rp '.number_format($campaigns[$key]['submisi_target'],0,'.',',');
-            $campaigns[$key]['submisi_terkumpul'] = 'Rp '.number_format($campaigns[$key]['submisi_terkumpul'],0,'.',',');
-            $campaigns[$key]['sisa_hari'] = $campaigns[$key]['created_at']->diff($campaigns[$key]['submisi_expired_at'])->days.' hari';
-            
-            if($campaigns[$key]['submisi_is_active'] == 1)
-                $campaigns[$key]['submisi_is_active'] = 'aktif';
-            else
-                $campaigns[$key]['submisi_is_active'] = 'tidak aktif';
-
-            $campaigns[$key]['submisi_created_at'] = $campaigns[$key]['created_at']->format('d-m-Y');
-            $campaigns[$key]['submisi_updated_at'] = $campaigns[$key]['updated_at']->format('d-m-Y');
-        }
-
-        $total_campaigns = 'Rp '.number_format($total_campaigns,0,'.',',');
-
-        return response(['users' => $users, 'campaigns' => $campaigns, 'totalCampaigns' => $total_campaigns]);
+    public function currency($data)
+    {
+        return 'Rp '.number_format($data,0,'.',',');
     }
 
     /**

@@ -72,23 +72,23 @@
                             </v-card-title>
                             <v-data-table :headers="campaignHeaders" :items="campaigns" :search="search">
                                 <template v-slot:item.actions="{ item }">
-                                    <v-icon small color="orange mr-2" @click="editItem(item)">mdi-pencil</v-icon>
+                                    <v-icon small color="blue mr-2" @click="editItem(item)">mdi-information</v-icon>
                                     <v-icon small color="red mr-2" @click="deleteItem(item)">mdi-delete</v-icon>
                                 </template>
                             </v-data-table>
                         </v-card>
                     </template>
 
-                    <template v-if="page == 'transactions'">
+                    <template v-if="page == 'donations'">
                         <v-card>
                             <v-card-title> 
                                 Daftar Transfer
                                 <v-spacer></v-spacer>
                                 <v-text-field v-model="search" append-icon="mdi-magnify" label="Search" single-line hide-details></v-text-field>
                             </v-card-title>
-                            <v-data-table :headers="transactionHeaders" :items="transactions" :search="search">
+                            <v-data-table :headers="donationsHeaders" :items="donations" :search="search">
                                 <template v-slot:item.actions="{ item }">
-                                    <v-icon small color="orange mr-2" @click="editItem(item)">mdi-pencil</v-icon>
+                                    <v-icon small color="blue mr-2" @click="editItem(item)">mdi-information</v-icon>
                                     <v-icon small color="red mr-2" @click="deleteItem(item)">mdi-delete</v-icon>
                                 </template>
                             </v-data-table>
@@ -104,7 +104,7 @@
                             </v-card-title>
                             <v-data-table :headers="usersHeaders" :items="users" :search="search">
                                 <template v-slot:item.actions="{ item }">
-                                    <v-icon small color="orange mr-2" @click="editItem(item)">mdi-pencil</v-icon>
+                                    <v-icon small color="blue mr-2" @click="editItem(item)">mdi-information</v-icon>
                                     <v-icon small color="red mr-2" @click="deleteItem(item)">mdi-delete</v-icon>
                                 </template>
                             </v-data-table>
@@ -128,7 +128,7 @@
             campaignHeaders: [
                 { text: 'Id', align: 'start', sortable: false, value: 'submisi_id' },
                 { text: 'Judul', value: 'submisi_judul' },
-                { text: 'Penggalang', value: 'user_id' },
+                { text: 'Penggalang', value: 'user.user_name' },
                 { text: 'Terkumpul', value: 'submisi_terkumpul' },
                 { text: 'Target', value: 'submisi_target' },
                 { text: 'Sisa Hari', value: 'sisa_hari' },
@@ -138,16 +138,18 @@
                 { text: 'Aksi', value: 'actions', sortable: false },
             ],
 
-            transactions: [],
-            transactionHeaders: [
-                { text: 'Id', align: 'start', sortable: false, value: 'id' },
-                { text: 'Judul', value: 'title' },
-                { text: 'Penggalang', value: 'author' },
-                { text: 'Terkumpul', value: 'raised' },
-                { text: 'Sisa Hari', value: 'daysleft' },
-                { text: 'Status', value: 'status' },
-                { text: 'Dibuat', value: '' },
-                { text: 'Diperbarui', value: '' },  
+            donations: [],
+            donationsHeaders: [
+                { text: 'Id', align: 'start', sortable: false, value: 'donatur_id' },
+                { text: 'Submisi', value: 'submission.submisi_judul' },
+                { text: 'Nominal', value: 'donatur_nominal' },
+                { text: 'Nama', value: 'donatur_name' },
+                { text: 'Email', value: 'donatur_mail' },
+                { text: 'No. Telepon', value: 'donatur_phone' },
+                { text: 'Akun', value: 'user_id' },
+                { text: 'Anonim', value: 'donatur_is_anonymous' },  
+                { text: 'Dibuat', value: 'donatur_created_at' },  
+                { text: 'Diperbarui', value: 'donatur_updated_at' },
                 { text: 'Aksi', value: 'actions', sortable: false },
             ],
 
@@ -183,8 +185,9 @@
             console.log(response.data);
                 if(response.data != null) {
                     this.$data.campaigns = response.data.campaigns;
-                    this.$data.users = response.data.users;
                     this.$data.totalCampaigns = response.data.totalCampaigns;
+                    this.$data.donations = response.data.donations;
+                    this.$data.users = response.data.users;
                 }
             });
 

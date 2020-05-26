@@ -81,7 +81,7 @@ class SubmissionController extends Controller
         $t_submissions -> submisi_tipe = $request -> tipe;
         $t_submissions -> submisi_hub_relasi = $request -> medsos;
         $t_submissions -> submisi_target = $request -> total;
-        $t_submissions -> submisi_tujuan = $request -> tujuan;
+        $t_submissions -> submisi_penerima = $request -> penerima;
         $t_submissions -> submisi_is_active = 1;
         $t_submissions -> submisi_expired_at = $request -> dedline;
 

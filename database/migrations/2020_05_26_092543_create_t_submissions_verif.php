@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTdonations extends Migration
+class CreateTSubmissionsVerif extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,12 @@ class CreateTdonations extends Migration
      */
     public function up()
     {
-        Schema::create('t_donations', function (Blueprint $table) {
-            $table->increments('donation_id');
+        Schema::create('t_submissions_verif', function (Blueprint $table) {
+            $table->increments('submisi_verif_id');
             $table->unsignedInteger('submisi_id');
-            $table->unsignedInteger('user_id');
             $table->foreign('submisi_id')->references('submisi_id')->on('t_submissions');
-            $table->string('donation_name', 255);
-            $table->string('donation_mail', 255);
-            $table->string('donation_phone', 255);
-            $table->integer('donation_nominal');
-            $table->boolean('donation_is_anonymous');
+            $table->string('submisi_foto_verifikasi', 255);
+            $table->boolean('submisi_is_verifikasi');
             $table->date('created_at')->useCurrent();
             $table->date('updated_at')->useCurrent();
         });
@@ -35,6 +31,6 @@ class CreateTdonations extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('t_donations');
+        Schema::dropIfExists('t_submissions_verif');
     }
 }

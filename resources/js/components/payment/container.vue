@@ -115,7 +115,7 @@
         donasi:"",
         rulesDonasi: [
             value => !!value || 'Required.',
-            value => (value || '').length >= 6 || 'Minimal Donasi Rp 10.000',
+            value => !isNaN(parseFloat(value)) && value > 9000  || 'Minimal Donasi Rp 10.000',
         ],
         noHandphone: "",
         noHandphoneRules: [

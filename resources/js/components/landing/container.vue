@@ -78,10 +78,10 @@
                     <v-row>
                         <v-col v-for="submision in submisions" v-if="submision.kekurangan_donasi < 2" :key="submision.submision_id" cols="12" sm="6" md="4">
                         <v-hover v-slot:default="{ hover }">
-                            <v-card @click="reroutes('/campaign/detail')" :elevation="hover ? 24 : 6" class="my-4 card-transform">
-                                <v-img :src="'/picture/' + submision.submisi_foto" height="200px"></v-img>
+                            <v-card :elevation="hover ? 24 : 6" class="my-4 card-transform">
+                                <router-link :to="'/campaign/detail/'+submision.submisi_id"><v-img :src="'/picture/' + submision.submisi_foto" height="200px"></v-img></router-link>
 
-                                <v-card-title v-text="submision.judul"></v-card-title>
+                                <v-card-title v-text="submision.submisi_judul"></v-card-title>
 
                                 <v-card-subtitle v-text="submision.user_name"></v-card-subtitle>
 
@@ -120,10 +120,10 @@
                     <v-row>
                         <v-col v-for="submision in submisions" v-if="submision.kekurangan_donasi > 2" :key="submision.submision_id" cols="12" sm="6" md="4">
                         <v-hover v-slot:default="{ hover }">
-                            <v-card @click="reroutes('/campaign/detail')" :elevation="hover ? 24 : 6" class="my-4 card-transform">
-                                <v-img :src="'/picture/' + submision.submisi_foto" height="200px"></v-img>
+                            <v-card :elevation="hover ? 24 : 6" class="my-4 card-transform">
+                                <router-link :to="'/campaign/detail/'+submision.submisi_id"><v-img :src="'/picture/' + submision.submisi_foto" height="200px"></v-img></router-link>
 
-                                <v-card-title v-text="submision.judul"></v-card-title>
+                                <v-card-title v-text="submision.submisi_judul"></v-card-title>
 
                                 <v-card-subtitle v-text="submision.user_name"></v-card-subtitle>
 

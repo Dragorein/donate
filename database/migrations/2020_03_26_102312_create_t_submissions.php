@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTSubmisi extends Migration
+class CreateTSubmissions extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateTSubmisi extends Migration
      */
     public function up()
     {
-        Schema::create('t_submisi', function (Blueprint $table) {
+        Schema::create('t_submissions', function (Blueprint $table) {
             $table->increments('submisi_id');
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('user_id')->on('m_user');

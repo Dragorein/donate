@@ -44,20 +44,20 @@ class DashboardController extends Controller
         $donations = Donation::with('submission')->get();
         foreach($donations as $key => $value)
         {
-            $donations[$key]['donatur_nominal'] = $this->currency($donations[$key]['donatur_nominal']);
+            $donations[$key]['donation_nominal'] = $this->currency($donations[$key]['donation_nominal']);
 
-            if($donations[$key]['donatur_is_anonymous'] == 1)
-                $donations[$key]['donatur_is_anonymous'] = 'ya';
+            if($donations[$key]['donation_is_anonymous'] == 1)
+                $donations[$key]['donation_is_anonymous'] = 'ya';
             else
-                $donations[$key]['donatur_is_anonymous'] = 'tidak';
+                $donations[$key]['donation_is_anonymous'] = 'tidak';
 
             if($donations[$key]['user_id'] == 0)
                 $donations[$key]['user_id'] = 'tidak terdaftar';
             else
                 $donations[$key]['user_id'] = 'terdaftar';
 
-            $donations[$key]['donatur_created_at'] = $donations[$key]['created_at']->format('d-m-Y');
-            $donations[$key]['donatur_updated_at'] = $donations[$key]['updated_at']->format('d-m-Y');
+            $donations[$key]['donation_created_at'] = $donations[$key]['created_at']->format('d-m-Y');
+            $donations[$key]['donation_updated_at'] = $donations[$key]['updated_at']->format('d-m-Y');
                 
         }
 

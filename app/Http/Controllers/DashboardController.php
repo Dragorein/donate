@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Start;
+use App\Submission;
 use App\Donation;
 use App\User;
 use Illuminate\Http\Request;
@@ -16,7 +16,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $campaigns = Start::with('user')->get();
+        $campaigns = Submission::with('user')->get();
 
         $total_campaigns = null;
 

@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class DonasiController extends Controller
+class DonationController extends Controller
 {
-    public function Donasi (Request $request){
+    public function Donations (Request $request){
         DB::beginTransaction();
 
         $data = DB::table('t_donatur')->insert([

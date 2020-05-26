@@ -41,6 +41,6 @@ class CreateTSubmissions extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('t_submisi');
+        Schema::dropIfExists('t_submissions');
     }
 }

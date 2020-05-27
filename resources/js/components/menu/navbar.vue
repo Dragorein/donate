@@ -57,6 +57,11 @@
                     </v-btn>
                 </template>
                 <v-list>
+                    <v-list-item @click="reroutes('/dashboard')" v-if="currentUser.user_is_admin == 1">
+                        <v-list-item-title>
+                            <v-icon left>mdi-apps</v-icon>Dashboard
+                        </v-list-item-title>
+                    </v-list-item>
                     <v-list-item @click="reroutes('/profile')">
                         <v-list-item-title>
                             <v-icon left>mdi-account</v-icon>Profil

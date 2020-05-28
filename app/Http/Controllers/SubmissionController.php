@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Submission;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\UploadedFile;
 
 
 class SubmissionController extends Controller
@@ -73,6 +74,7 @@ class SubmissionController extends Controller
 
     public function store(Request $request)
     {
+        // var_dump($request->file('image'));
         $t_submissions = new Submission();
         $t_submissions -> user_id = 1;
         $t_submissions -> submisi_judul = $request -> judul;
@@ -82,10 +84,13 @@ class SubmissionController extends Controller
         $t_submissions -> submisi_hub_relasi = $request -> medsos;
         $t_submissions -> submisi_target = $request -> total;
         $t_submissions -> submisi_penerima = $request -> penerima;
+        $t_submissions -> submisi_foto = $request->file('image')->getClientOriginalName();
         $t_submissions -> submisi_is_active = 1;
         $t_submissions -> submisi_expired_at = $request -> dedline;
 
         $t_submissions -> save();
+
+        $request->file('image')->storeAs('images', $request->file('image')->getClientOriginalName());
 
         return $t_submissions;
     }

@@ -50,9 +50,8 @@
                         </v-hover>
                         </v-col>
                     </v-row>
-                    <v-row justify="center">
-                        <v-pagination color="deep-orange" v-model="page" :length="length" :page="page" :total-visible="totalVisible" @input="next"></v-pagination>
-                        <!-- <infinite-loading @distance="1" @infinite="infiniteHandler"></infinite-loading> -->
+                    <v-row justify="center" >
+                        <v-pagination color="deep-orange" v-model="page" :length="length" :page="page" :total-visible="submisis.last_page" @input="getDataPage(page)"></v-pagination>
                     </v-row>
                 </v-container>
             </section>
@@ -69,12 +68,11 @@
             chips: [],
             submisis: [],
             filter: ['Galang', 'Dana'],
-            length: 10,
+            length: 0,
             nextIcon: 'navigate_next',
             prevIcon: 'navigate_before',
             page: 1,
-            totalVisible: 10,
-            // list: [],
+            totalVisible:10,
         }),
         created() {
             this.loadData();
@@ -85,7 +83,16 @@
         methods: {
             loadData() {
             axios.get("http://localhost:8000/api/").then(response => {
-                this.submisis = response.data;
+                this.submisis = response.data.data;
+                this.length = response.data.last_page;
+                this.list = response.data;
+            });
+            },
+            getDataPage(id) {
+            axios.get("http://localhost:8000/api?page="+id).then(response => {
+                this.list = response.data;
+                this.submisis = response.data.data;
+                this.length = response.data.last_page;
             });
             },
             reroutes: function (url) {

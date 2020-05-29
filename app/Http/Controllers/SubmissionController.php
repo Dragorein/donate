@@ -9,10 +9,6 @@ use Illuminate\Support\Facades\DB;
 
 class SubmissionController extends Controller
 {
-    // public function index(){
-    //     $data = Submission::orderBy('id')->paginate(10);
-    //     return response()->json($data);
-    // }
     // mengambil semua data
     public function all()
     {
@@ -25,13 +21,12 @@ class SubmissionController extends Controller
             DB::raw('t_submissions.submisi_judul'),
             DB::raw('m_user.user_name'),
         );
-        $data = DB::table('t_donations')
-                ->join('t_payment', 't_payment.donation_id', '=', 't_donations.donation_id')
-                ->join('t_submissions', 't_submissions.submisi_id', '=', 't_donations.submisi_id')
+        $data = DB::table('t_submissions')
                 ->join('m_user', 't_submissions.user_id', '=', 'm_user.user_id')
                 ->select($sql)
                 ->distinct()
-                ->get();
+                ->paginate(1);
+                // ->get();
         return $data;
     }
 

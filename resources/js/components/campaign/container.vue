@@ -18,8 +18,10 @@
                     </v-combobox>
 
                     <v-row>
-                        <v-col v-for="submisi in submisis" :key="submisi.submisi_id" cols="12" sm="6" md="4" xl="3">
+                        
+                        <v-col v-for="submisi in submisis" :key="submisi.submisi_id" cols="12" sm="6" md="4" xl="4" class="px-2">
                         <v-hover v-slot:default="{ hover }">
+                            
                             <v-card   :elevation="hover ? 24 : 6" class="my-4 card-transform">
                                 <router-link :to="'/campaign/detail/'+submisi.submisi_id"><v-img :src="'/picture/' + submisi.submisi_foto" height="200px"></v-img></router-link>
 
@@ -72,14 +74,11 @@
             nextIcon: 'navigate_next',
             prevIcon: 'navigate_before',
             page: 1,
-            totalVisible:10,
+            
         }),
         created() {
             this.loadData();
         },
-        // mounted() {
-        //     console.log('component mounted.')
-        // },
         methods: {
             loadData() {
             axios.get("http://localhost:8000/api/").then(response => {
@@ -102,20 +101,6 @@
                 this.chips.splice(this.chips.indexOf(item), 1)
                 this.chips = [...this.chips]
             },
-            // infiniteHandler($state) {
-            //     let vm = this;
-
-            //     this.$http.get('campaign?page='+this.page)
-            //         .then(response => {
-            //             return response.json();
-            //         }).then(data => {
-            //             $.each(data.data, function(key, value) {
-            //                 vm.list.push(value);
-            //             });
-            //             $state.loaded();
-            //         });
-            //         this.page = this.page + 1;
-            // },
         },
     }
 </script>

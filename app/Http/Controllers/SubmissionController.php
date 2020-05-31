@@ -25,8 +25,13 @@ class SubmissionController extends Controller
                 ->join('m_user', 't_submissions.user_id', '=', 'm_user.user_id')
                 ->select($sql)
                 ->distinct()
-                ->paginate(1);
-                // ->get();
+
+                //kalo mau 6 card
+                ->paginate(6);
+                
+                //kalo mau 12 card
+                // ->paginate(12); 
+                
         return $data;
     }
 

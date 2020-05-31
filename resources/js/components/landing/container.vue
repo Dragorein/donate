@@ -189,7 +189,7 @@
         },
         methods: {
             loadData() {
-            axios.get("http://localhost:8000/api/").then(response => {
+            axios.get("/api/").then(response => {
                 this.submissions = response.data;
             });
             },

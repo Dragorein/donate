@@ -23,57 +23,46 @@ class SubmissionController extends Controller
             DB::raw('m_user.user_name'),
         );
         $data = DB::table('t_submissions')
-                ->join('m_user', 't_submissions.user_id', '=', 'm_user.user_id')
-                ->select($sql)
-                ->distinct()
-
-                //kalo mau 6 card
-                ->paginate(6);
-                
-                //kalo mau 12 card
-                // ->paginate(12); 
-                
+            ->join('m_user', 't_submissions.user_id', '=', 'm_user.user_id')
+            ->select($sql)
+            ->distinct()
+            ->paginate(6);
+            
         return $data;
     }
 
     public function show_campaign_detail($id)
-    {
-        $sql = array(
+    {        
+        $sql_submission = array(
             DB::raw('t_submissions.submisi_id'),
             DB::raw('t_submissions.submisi_foto'),
             DB::raw('t_submissions.submisi_judul'),
             DB::raw('t_submissions.submisi_cerita'),
             DB::raw('t_submissions.submisi_penerima'),
             DB::raw('m_user.user_name'),
-            DB::raw('t_submissions.submisi_terkumpul as jumlah_donations'),
-            DB::raw('t_submissions.submisi_terkumpul as total_donasi'),
+            DB::raw('t_submissions.submisi_terkumpul'),
+            DB::raw('t_submissions.submisi_target'),
             DB::raw('submisi_terkumpul/submisi_target*100 as kekurangan_donasi'),
-            DB::raw('(DATEDIFF(submisi_expired_at, now())) as day_left'),
+            DB::raw('(DATEDIFF(submisi_expired_at, now())) as sisa_hari'),
         );
-        $data = DB::table('t_donations')
-                ->join('t_payment', 't_payment.donation_id', '=', 't_donations.donation_id')
-                ->join('t_submissions', 't_submissions.submisi_id', '=', 't_donations.submisi_id')
-                ->join('m_user', 't_submissions.user_id', '=', 'm_user.user_id')
-                ->select($sql)
-                ->where('t_submissions.submisi_id',$id)
-                ->get();
-        return $data;
-    }
+        $submission = DB::table('t_submissions')
+            ->join('m_user', 't_submissions.user_id', '=', 'm_user.user_id')
+            ->select($sql_submission)
+            ->where('t_submissions.submisi_id',$id)
+            ->get()->first();
 
-    public function show_campaign_detail_donations($id)
-    {
-        $sql = array(
-            DB::raw('t_donations.donation_id'),
-            DB::raw('t_donations.donation_mail'),
-            DB::raw('t_donations.donation_nominal')
+        $sql_donations = array(
+            DB::raw('donation_id'),
+            DB::raw('donation_name'),
+            DB::raw('donation_nominal'),
+            DB::raw('donation_is_anonymous'),
         );
-        $data = DB::table('t_donations')
-                ->join('t_payment', 't_payment.donation_id', '=', 't_donations.donation_id')
-                ->join('t_submissions', 't_submissions.submisi_id', '=', 't_donations.submisi_id')
-                ->select($sql)
-                ->where('t_submissions.submisi_id',$id)
-                ->get();
-        return $data;
+        $donations = DB::table('t_donations')
+            ->select($sql_donations)
+            ->where('t_donations.submisi_id',$id)
+            ->get();
+
+        return response(['submission' => $submission, 'donations' => $donations]);
     }
 
     public function store(Request $request)

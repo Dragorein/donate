@@ -11,12 +11,14 @@ class UserController extends Controller
 {
     public function register(Request $request)
     {
+        // dd ($request);
         if($request->step == 1) {
             $request->validate([
                 'firstName' => 'required|string',
                 'lastName' => 'required|string',
                 'phoneNumber' => 'required|numeric',
-                'email' => 'required|email|unique:App\User,user_mail'
+                'email' => 'required|email|unique:App\User,user_mail',
+                'image' => 'required',
             ]);
 
             return response(['response' => 'continue']);;
@@ -28,6 +30,7 @@ class UserController extends Controller
                 'lastName' => 'required|string',
                 'phoneNumber' => 'required|numeric|min:10',
                 'email' => 'required|email',
+                'image' => 'required',
                 'password' => 'required|min:4|required_with:confirmPassword|same:confirmPassword',
                 'confirmPassword' => 'min:4',
             ]);
@@ -37,10 +40,14 @@ class UserController extends Controller
             $userRegister->user_mail = $request->email;
             $userRegister->user_token = $request->token;
             $userRegister->user_phone = $request->phoneNumber;
+            $userRegister->user_foto = $request->file('image')->getClientOriginalName();
             $userRegister->user_password = bcrypt($request->password);
             $userRegister->user_is_active = 1;
 
             $userRegister -> save();
+
+            $request->file('image')->storeAs('profile', $request->file('image')->getClientOriginalName());
+
             return response(['response' => 'success', 'message' => 'Registrasi akun berhasil!']);
         }
     }

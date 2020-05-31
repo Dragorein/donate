@@ -18,6 +18,7 @@
                       <v-text-field label="Nama Belakang" name="lastName" prepend-inner-icon="person" type="text" v-model="register.lastName" :error-messages="errors.lastName" required filled clearable />
                       <v-text-field label="Email" name="email" prepend-inner-icon="mail" type="text" v-model="register.email" :error-messages="errors.email" required filled clearable />
                       <v-text-field label="Nomor Handphone" name="phoneNumber" prepend-inner-icon="phone" type="text" v-model="register.phoneNumber" :error-messages="errors.phoneNumber" :counter="14" required filled clearable />
+                      <v-file-input label="Foto Profil" filled prepend-inner-icon="mdi-camera" accept="image/png, image/jpeg, image/bmp" v-model="register.image" :error-messages="errors.image" type="file"></v-file-input>
                       <v-btn color="error" @click="callSubmit()" class="mr-2">Lanjut</v-btn>
                       <v-btn text class="mr-2" @click="goBack">Batal</v-btn>
                     </v-form>
@@ -58,6 +59,7 @@ export default {
       lastName: "",
       email: "",
       phoneNumber: "",
+      image: {},
       password: "",
       confirmPassword: "",
       csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
@@ -82,7 +84,22 @@ export default {
   },
   methods: {
     callSubmit() {
-      this.$store.dispatch("user/register", this.$data.register)
+      let temp = this.$data.register
+
+      let formData = new FormData()
+      formData.append('firstName', temp.firstName)
+      formData.append('lastName', temp.lastName)
+      formData.append('email', temp.email)
+      formData.append('phoneNumber', temp.phoneNumber)
+      formData.append('image', temp.image)
+      formData.append('password', temp.password)
+      formData.append('confirmPassword', temp.confirmPassword)
+      formData.append('token', temp.csrf)
+      formData.append('step', this.$store.state.user.registerStep)
+
+      console.log(formData)
+
+      this.$store.dispatch("user/register", formData)
     },
     changeStep(step) {
       this.$store.commit("user/setRegisterStep", step);

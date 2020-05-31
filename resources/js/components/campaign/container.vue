@@ -23,7 +23,7 @@
                         <v-hover v-slot:default="{ hover }">
                             
                             <v-card   :elevation="hover ? 24 : 6" class="my-4 card-transform">
-                                <router-link :to="'/campaign/detail/'+submisi.submisi_id"><v-img :src="'/picture/' + submisi.submisi_foto" height="200px"></v-img></router-link>
+                                <router-link :to="'/campaign/'+submisi.submisi_id"><v-img :src="'/picture/' + submisi.submisi_foto" height="200px"></v-img></router-link>
 
                                 <v-card-title v-text="submisi.submisi_judul"></v-card-title>
 
@@ -81,14 +81,14 @@
         },
         methods: {
             loadData() {
-            axios.get("http://localhost:8000/api/").then(response => {
+            axios.get("/api/").then(response => {
                 this.submisis = response.data.data;
                 this.length = response.data.last_page;
                 this.list = response.data;
             });
             },
             getDataPage(id) {
-            axios.get("http://localhost:8000/api?page="+id).then(response => {
+            axios.get("/api?page="+id).then(response => {
                 this.list = response.data;
                 this.submisis = response.data.data;
                 this.length = response.data.last_page;
@@ -119,6 +119,10 @@
     }
 
     .v-btn:focus {
+        outline: 0;
+    }
+
+    .v-pagination__item:focus, .v-pagination__navigation:focus {
         outline: 0;
     }
     

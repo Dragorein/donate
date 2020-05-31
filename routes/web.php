@@ -41,10 +41,3 @@ Route::post('/user/start', 'SubmissionController@store');
 Route::get('/{vue_capture?}', function () {
     return view('landing');
 })->where('vue_capture', '[\/\w\.-]*');
-
-// Route::prefix('auth')->group(function(){
-//     Route::get('init', 'LoginController@init');
-
-//     Route::post('login', 'LoginController@login');
-//     Route::post('logout', 'LoginController@logout');
-//     });

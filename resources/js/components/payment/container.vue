@@ -115,7 +115,7 @@
         donasi:"",
         rulesDonasi: [
             value => !!value || 'Required.',
-            value => (value || '').length >= 6 || 'Minimal Donasi Rp 10.000',
+            value => !isNaN(parseFloat(value)) && value > 9000  || 'Minimal Donasi Rp 10.000',
         ],
         noHandphone: "",
         noHandphoneRules: [
@@ -124,8 +124,8 @@
         ],
         items: [
             { title: 'BCA Virtual Account', avatar: '/icon/BCA.png', value:"BCA" },
-            { title: 'BNI', avatar: '/icon/BNI.png',value:"BNI" },
-            { title: 'Permata', avatar: '/icon/Permata.png', value:"Permata" },
+            // { title: 'BNI', avatar: '/icon/BNI.png',value:"BNI" },
+            // { title: 'Permata', avatar: '/icon/Permata.png', value:"Permata" },
         ],
         author: '',
         target:'',

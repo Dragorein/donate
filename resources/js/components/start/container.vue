@@ -81,7 +81,7 @@
                                 <v-stepper-content step="3">
                                     <v-card-text>
                                         <v-form>
-                                            <v-file-input label="Pilih salah satu foto utama untuk penggalangan danamu" filled prepend-inner-icon="mdi-camera"></v-file-input>
+                                            <v-file-input label="Pilih salah satu foto utama untuk penggalangan danamu" filled prepend-icon="mdi-camera" accept="image/png, image/jpeg, image/bmp" :rules="imageRules" v-model="image" @change="onImageChange" type="file"></v-file-input>
                                             <v-btn color="error" @click="e1 = 4 " class="mr-2">Lanjut</v-btn>
                                             <v-btn text class="mr-2" @click="e1 = 2">Batal</v-btn>
                                         </v-form>
@@ -147,7 +147,7 @@ export default {
         ],
         noHandphone: "",
         noHandphoneRules: [
-            v => !!v || "No.Handphone is required",
+            v => !!v || "No.Handphone tidak boleh kosong",
             v => v && v.length <= 14
         ],
         alamat: "",
@@ -170,6 +170,8 @@ export default {
             v => !!v || "Rician penggunaan dana terlalu pendek (Minimal 30 karakter)",
             v => v && v.length >= 30
         ],
+        image: {},
+        imageRules:[v => !!v || v.size < 10000000 || 'Foto tidak boleh lebih dari 10MB! '],
         date: "",
         // password: "",
         // passwordRules: [v => !!v || "Password is required"],
@@ -177,18 +179,32 @@ export default {
 
     }),
     methods: {
+        onImageChange(event) {
+                console.log(event);
+                this.image = this.$refs.file.files[0]
+                this.imagename = this.$refs.file.files[0].name;
+        },
         submit() {
             console.log(this.$data);
+                let temp = this.$data
+
+                let formData = new FormData();
+                formData.append('image', this.image);
+                formData.append('judul', temp.judul);
+                formData.append('cerita', temp.cerita);
+                formData.append('noHandphone', temp.noHandphone);
+                formData.append('tipe', temp.tipe);
+                formData.append('medsos', temp.mediasosial);
+                formData.append('total', temp.target);
+                formData.append('penerima', temp.penerima);
+                formData.append('dedline', temp.date);
             axios
-                .post("/user/start", {
-                    judul: this.$data.judul,
-                    cerita: this.$data.cerita,
-                    noHandphone: this.$data.noHandphone,
-                    tipe: this.$data.tipe,
-                    medsos: this.$data.mediasosial,
-                    total: this.$data.target,
-                    penerima: this.$data.penerima,
-                    dedline: this.$data.date
+                .post("/user/start", formData, {
+                    headers: {
+                        'accept': 'application/json',
+                        'Accept-Language': 'en-US,en;q=0.8',
+                        'Content-Type': `multipart/form-data`,
+                    }
                 })
                 .then(data => {
                     this.$router.push({ path: '/' });
@@ -205,7 +221,7 @@ export default {
         },
         goBack: function () {
             this.$router.go(-1);
-        }
+        },
     }
 };
 </script>

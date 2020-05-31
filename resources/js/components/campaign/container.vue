@@ -23,7 +23,7 @@
                         <v-hover v-slot:default="{ hover }">
                             
                             <v-card   :elevation="hover ? 24 : 6" class="my-4 card-transform">
-                                <router-link :to="'/campaign/detail/'+submisi.submisi_id"><v-img :src="'/picture/' + submisi.submisi_foto" height="200px"></v-img></router-link>
+                                <router-link :to="'/campaign/'+submisi.submisi_id"><v-img :src="'/picture/' + submisi.submisi_foto" height="200px"></v-img></router-link>
 
                                 <v-card-title v-text="submisi.submisi_judul"></v-card-title>
 

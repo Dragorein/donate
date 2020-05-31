@@ -79,7 +79,7 @@
                         <v-col v-for="submission in submissions.data" v-if="submission.kekurangan_donasi < 2" :key="submission.submission_id" cols="12" sm="6" md="4">
                         <v-hover v-slot:default="{ hover }">
                             <v-card :elevation="hover ? 24 : 6" class="my-4 card-transform">
-                                <router-link :to="'/campaign/detail/'+submission.submisi_id"><v-img :src="'/picture/' + submission.submisi_foto" height="200px"></v-img></router-link>
+                                <router-link :to="'/campaign/'+submission.submisi_id"><v-img :src="'/picture/' + submission.submisi_foto" height="200px"></v-img></router-link>
 
                                 <v-card-title v-text="submission.submisi_judul"></v-card-title>
 
@@ -121,7 +121,7 @@
                         <v-col v-for="submission in submissions.data" v-if="submission.kekurangan_donasi > 2" :key="submission.submission_id" cols="12" sm="6" md="4">
                         <v-hover v-slot:default="{ hover }">
                             <v-card :elevation="hover ? 24 : 6" class="my-4 card-transform">
-                                <router-link :to="'/campaign/detail/'+submission.submisi_id"><v-img :src="'/picture/' + submission.submisi_foto" height="200px"></v-img></router-link>
+                                <router-link :to="'/campaign/'+submission.submisi_id"><v-img :src="'/picture/' + submission.submisi_foto" height="200px"></v-img></router-link>
 
                                 <v-card-title v-text="submission.submisi_judul"></v-card-title>
 

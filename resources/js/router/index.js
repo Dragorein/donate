@@ -38,7 +38,7 @@ const routes = [
     {
         component: CampaignDetail,
         name: "campaignDetail",
-        path: "/campaign/detail/:id"
+        path: "/campaign/:id"
     },
     {
         component: Payment,

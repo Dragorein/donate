@@ -76,22 +76,22 @@
                 <v-container class="py-12 px-lg-12">
                     <h1 class="display-1 font-weight-bold text-center">Bantu siapa hari ini ?</h1>
                     <v-row>
-                        <v-col v-for="submision in submisions" v-if="submision.kekurangan_donasi < 2" :key="submision.submision_id" cols="12" sm="6" md="4">
+                        <v-col v-for="submission in submissions.data" v-if="submission.kekurangan_donasi < 2" :key="submission.submission_id" cols="12" sm="6" md="4">
                         <v-hover v-slot:default="{ hover }">
                             <v-card :elevation="hover ? 24 : 6" class="my-4 card-transform">
-                                <router-link :to="'/campaign/detail/'+submision.submisi_id"><v-img :src="'/picture/' + submision.submisi_foto" height="200px"></v-img></router-link>
+                                <router-link :to="'/campaign/detail/'+submission.submisi_id"><v-img :src="'/picture/' + submission.submisi_foto" height="200px"></v-img></router-link>
 
-                                <v-card-title v-text="submision.submisi_judul"></v-card-title>
+                                <v-card-title v-text="submission.submisi_judul"></v-card-title>
 
-                                <v-card-subtitle v-text="submision.user_name"></v-card-subtitle>
+                                <v-card-subtitle v-text="submission.user_name"></v-card-subtitle>
 
                                 <v-card-text>
-                                    <v-progress-linear rounded height="8" v-model="submision.kekurangan_donasi" color="deep-orange"></v-progress-linear>
+                                    <v-progress-linear rounded height="8" v-model="submission.kekurangan_donasi" color="deep-orange"></v-progress-linear>
                                 </v-card-text>
 
                                 <v-card-text class="d-flex justify-space-between">
-                                    <span><strong class="deep-orange--text title">{{submision.total_donasi}}</strong> Terkumpul</span>
-                                    <span><strong class="deep-orange--text title">{{submision.day_left}}</strong> hari lagi</span>
+                                    <span><strong class="deep-orange--text title">{{submission.total_donasi}}</strong> Terkumpul</span>
+                                    <span><strong class="deep-orange--text title">{{submission.day_left}}</strong> hari lagi</span>
                                 </v-card-text>
 
                                 <v-divider class="my-0 mx-4"></v-divider>
@@ -118,22 +118,22 @@
                 <v-container class="py-12 px-lg-12">
                     <h1 class="display-1 font-weight-bold text-center">Pilihan kami</h1>
                     <v-row>
-                        <v-col v-for="submision in submisions" v-if="submision.kekurangan_donasi > 2" :key="submision.submision_id" cols="12" sm="6" md="4">
+                        <v-col v-for="submission in submissions.data" v-if="submission.kekurangan_donasi > 2" :key="submission.submission_id" cols="12" sm="6" md="4">
                         <v-hover v-slot:default="{ hover }">
                             <v-card :elevation="hover ? 24 : 6" class="my-4 card-transform">
-                                <router-link :to="'/campaign/detail/'+submision.submisi_id"><v-img :src="'/picture/' + submision.submisi_foto" height="200px"></v-img></router-link>
+                                <router-link :to="'/campaign/detail/'+submission.submisi_id"><v-img :src="'/picture/' + submission.submisi_foto" height="200px"></v-img></router-link>
 
-                                <v-card-title v-text="submision.submisi_judul"></v-card-title>
+                                <v-card-title v-text="submission.submisi_judul"></v-card-title>
 
-                                <v-card-subtitle v-text="submision.user_name"></v-card-subtitle>
+                                <v-card-subtitle v-text="submission.user_name"></v-card-subtitle>
 
                                 <v-card-text>
-                                    <v-progress-linear rounded height="8" v-model="submision.kekurangan_donasi" color="deep-orange"></v-progress-linear>
+                                    <v-progress-linear rounded height="8" v-model="submission.kekurangan_donasi" color="deep-orange"></v-progress-linear>
                                 </v-card-text>
 
                                 <v-card-text class="d-flex justify-space-between">
-                                    <span><strong class="deep-orange--text title">{{submision.total_donasi}}</strong> Terkumpul</span>
-                                    <span><strong class="deep-orange--text title">{{submision.day_left}}</strong> hari lagi</span>
+                                    <span><strong class="deep-orange--text title">{{submission.total_donasi}}</strong> Terkumpul</span>
+                                    <span><strong class="deep-orange--text title">{{submission.day_left}}</strong> hari lagi</span>
                                 </v-card-text>
 
                                 <v-divider class="my-0 mx-4"></v-divider>
@@ -182,7 +182,7 @@
                 'Keempat',
                 'Kelima',
             ],
-            submisions: []
+            submissions: []
         }),
         created() {
             this.loadData();
@@ -190,7 +190,7 @@
         methods: {
             loadData() {
             axios.get("http://localhost:8000/api/").then(response => {
-                this.submisions = response.data;
+                this.submissions = response.data;
             });
             },
             reroutes: function (url) {

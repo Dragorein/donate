@@ -12,10 +12,10 @@
                 // initiated: false,
             }
         },
-        created() {
-            this.awal();
+        // created() {
+        //     this.awal();
             
-        },
+        // },
         methods:{
         }
     }

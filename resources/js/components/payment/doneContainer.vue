@@ -96,7 +96,7 @@ export default {
             this.title = response.data[0].submisi_judul;
             this.author = response.data[0].user_name;
             this.target = response.data[0].submisi_penerima;
-            this.donasi = response.data[0].donatur_nominal;
+            this.donasi = response.data[0].donation_nominal;
             this.bank = response.data[0].payment_type;
 
             if(response.data[0].payment_type == "BCA"){

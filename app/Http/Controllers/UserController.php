@@ -11,31 +11,56 @@ class UserController extends Controller
 {
     public function register(Request $request)
     {
-        $m_user = new User;
-        $m_user -> user_name = $request ->name;
-        $m_user -> user_mail = $request ->email;
-        $m_user -> user_token = $request ->token;
-        $m_user -> user_phone = $request ->noHandphone;
-        $m_user -> user_password = bcrypt($request->password);
+        if($request->step == 1) {
+            $request->validate([
+                'firstName' => 'required|string',
+                'lastName' => 'required|string',
+                'phoneNumber' => 'required|numeric',
+                'email' => 'required|email|unique:App\User,user_mail'
+            ]);
 
-        $m_user -> save();
+            return response(['response' => 'continue']);;
+        }
 
-        return $m_user;
+        if($request->step == 2) {
+            $request->validate([
+                'firstName' => 'required|string',
+                'lastName' => 'required|string',
+                'phoneNumber' => 'required|numeric|min:10',
+                'email' => 'required|email',
+                'password' => 'required|min:4|required_with:confirmPassword|same:confirmPassword',
+                'confirmPassword' => 'min:4',
+            ]);
+
+            $userRegister = new User;
+            $userRegister->user_name = $request->firstName.' '.$request->lastName;
+            $userRegister->user_mail = $request->email;
+            $userRegister->user_token = $request->token;
+            $userRegister->user_phone = $request->phoneNumber;
+            $userRegister->user_password = bcrypt($request->password);
+            $userRegister->user_is_active = 1;
+
+            $userRegister -> save();
+            return response(['response' => 'success', 'message' => 'Registrasi akun berhasil!']);
+        }
     }
     
     public function login(Request $request)
     {
         $userLoggingIn = new User;
         $userLoggingIn = $request->validate([
-            'email' => 'required|string',
-            'password' => 'required|string'
+            'email' => 'required|email',
+            'password' => 'required|string',
+            'token' => 'required'
         ]);
 
         if(!Auth::attempt(['user_mail' => $userLoggingIn['email'], 'password' => $userLoggingIn['password']])) {
-            return response(['user' => '', 'loggedin' => false, 'message' => 'invalid login credentials.']);
+            return response(['user' => '', 'loggedin' => false, 'message' => 'Invalid login credentials.']);
         }
 
-        Session::put('user', Auth::user());
+        $userId = Auth::user()->user_id;
+        User::find($userId)->update(['user_token' => $userLoggingIn['token']]);
+        Session::put('user', User::find($userId));
         Session::put('loggedin', true);
         return response(['user' => Session::get('user'), 'loggedin' => Session::get('loggedin')]);
     }

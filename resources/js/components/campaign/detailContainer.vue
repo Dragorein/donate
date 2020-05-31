@@ -99,14 +99,14 @@
                                     <template v-for="item in items">
                                         <v-subheader class="title" v-if="item.header" :key="item.header" v-text="item.header + ' (' + (items.length - 1) + ')'"></v-subheader>
 
-                                        <v-list-item  v-else :key="item.donatur_id" >
+                                        <v-list-item  v-else :key="item.donation_id" >
                                         <v-list-item-avatar>
                                             <v-img :src="item.avatar"></v-img>
                                         </v-list-item-avatar>
 
                                         <v-list-item-content>
-                                            <v-list-item-title v-html="item.donatur_mail"></v-list-item-title>
-                                            <v-list-item-subtitle>Donasi Sebesar Rp. {{item.donatur_nominal}}</v-list-item-subtitle>
+                                            <v-list-item-title v-html="item.donation_mail"></v-list-item-title>
+                                            <v-list-item-subtitle>Donasi Sebesar Rp. {{item.donation_nominal}}</v-list-item-subtitle>
                                         </v-list-item-content>
                                         </v-list-item>
                                     </template>
@@ -155,7 +155,7 @@
                     this.title = DataSubmision.data[0].submisi_judul;
                     this.items = DataDonatur.data;
                     this.foto = DataSubmision.data[0].submisi_foto;
-                    this.raised = DataSubmision.data[0].jumlah_donatur;
+                    this.raised = DataSubmision.data[0].jumlah_donations;
                     this.total = DataSubmision.data[0].total_donasi;
                     this.text = DataSubmision.data[0].submisi_cerita;
                     this.target = DataSubmision.data[0].submisi_penerima;

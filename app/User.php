@@ -14,6 +14,8 @@ class User extends Authenticatable implements JWTSubject
 
     protected $table = 'm_user';
 
+    protected $primaryKey = 'user_id';
+
     protected $fillable = [
         'user_name','user_mail','user_token','user_phone','user_password'
     ];
@@ -36,7 +38,7 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->user_password;
     }
-     
+    
     public function setPasswordAttribute($password)
     {
         $this->attributes['user_password'] = bcrypt($password);

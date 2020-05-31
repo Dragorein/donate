@@ -1,18 +1,40 @@
-import axios from 'axios';
+import axios from 'axios'
+import router from '../../router/index.js'
 
 const state = {
     user: {},
-    loggedin: false
+    loggedin: false,
+    registerStep: 1,
+    errors: {},
+    message: ""
 };
 const getters = {};
 const actions = {
-    getUser({commit}) {
+    register({}, user) {
         axios
-        .get("/auth/current")
+        .post("/auth/register", {
+            firstName: user.firstName,
+            lastName: user.lastName,
+            email: user.email,
+            phoneNumber: user.phoneNumber,
+            password: user.password,
+            confirmPassword: user.confirmPassword,
+            token: user.csrf,
+            step: state.registerStep
+        })
         .then(response => {
-            if(response.data != null) {
-                commit('setUser', response.data);
-                commit('setUserStatus', response.data);
+            if(response.data.response == 'continue' && state.registerStep == 1){
+                state.registerStep = 2;
+            }
+            else if(response.data.response == 'success'){
+                state.message = response.data.message;
+                router.push({ path: '/' });
+            }
+        })
+        .catch(e => {
+            if (e.response.status == 422){
+                state.errors = e.response.data.errors;
+                state.message = "";
             }
         });
     },
@@ -20,15 +42,20 @@ const actions = {
         axios
         .post("/auth/login", {
             email: user.email,
-            password: user.password
+            password: user.password,
+            token: user.csrf
         })
         .then((response) => {
             state.user = response.data.user;
             state.loggedin = response.data.loggedin;
+            state.message = response.data.message;
             console.log('logged in');
         })
         .catch(e => {
-            console.error(e);
+            if (e.response.status == 422){
+                state.errors = e.response.data.errors;
+                state.message = "";
+            }
         });
     },
     logout() {
@@ -41,6 +68,16 @@ const actions = {
             console.error(e);
         });
     },
+    getUser({commit}) {
+        axios
+        .get("/auth/current")
+        .then(response => {
+            if(response.data != null) {
+                commit('setUser', response.data);
+                commit('setUserStatus', response.data);
+            }
+        });
+    }
 };
 const mutations = {
     setUser(state, data) {
@@ -48,6 +85,9 @@ const mutations = {
     },
     setUserStatus(state, data) {
         state.loggedin = data.loggedin;
+    },
+    setRegisterStep(state, data) {
+        state.registerStep = data;
     }
 };
 

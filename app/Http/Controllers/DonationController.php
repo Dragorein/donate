@@ -21,9 +21,9 @@ class DonationController extends Controller
 
         if($data)
         {
-            $data_submisi = DB::table('t_submission')->where('submisi_id',$request->submisi)->get();
+            $data_submisi = DB::table('t_submissions')->where('submisi_id',$request->submisi)->get();
             $data_baru = $data_submisi[0]->submisi_terkumpul + $request->donasi;
-            $update = DB::table('t_submission')->where('submisi_id',$request->submisi)->update([
+            $update = DB::table('t_submissions')->where('submisi_id',$request->submisi)->update([
                 'submisi_terkumpul' => $data_baru
             ]);
             if($update){
@@ -59,16 +59,16 @@ class DonationController extends Controller
         $sql = array(
             DB::raw('t_donations.donation_id'),
             DB::raw('t_donations.donation_mail'),
-            DB::raw('t_submission.submisi_judul'),
-            DB::raw('t_submission.submisi_penerima'),
+            DB::raw('t_submissions.submisi_judul'),
+            DB::raw('t_submissions.submisi_penerima'),
             DB::raw('t_donations.donation_nominal'),
             DB::raw('t_payment.payment_type'),
             DB::raw('m_user.user_name'),
         );
         $data = DB::table('t_donations')
                 ->join('t_payment', 't_payment.donation_id', '=', 't_donations.donation_id')
-                ->join('t_submission', 't_submission.submisi_id', '=', 't_donations.submisi_id')
-                ->join('m_user', 't_submission.user_id', '=', 'm_user.user_id')
+                ->join('t_submissions', 't_submissions.submisi_id', '=', 't_donations.submisi_id')
+                ->join('m_user', 't_submissions.user_id', '=', 'm_user.user_id')
                 ->select($sql)
                 ->orderByDesc('donation_id')
                 ->limit(1)

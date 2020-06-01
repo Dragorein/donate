@@ -60,6 +60,7 @@ class SubmissionController extends Controller
         $donations = DB::table('t_donations')
             ->select($sql_donations)
             ->where('t_donations.submisi_id',$id)
+            ->orderByDesc('donation_id')
             ->get();
 
         return response(['submission' => $submission, 'donations' => $donations]);

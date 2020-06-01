@@ -10,7 +10,7 @@
                         <v-row>
                             <v-col md="6">
                                 <v-card class="ma-6 mr-md-0">
-                                    <v-card-title>Donasi Untuk: {{title}}</v-card-title>
+                                    <v-card-title>Donasi Untuk: {{submission.submisi_judul}}</v-card-title>
                                     
                                     <v-list rounded dense three-line>
                                         <v-list-item>
@@ -21,7 +21,7 @@
                                                         <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John">
                                                     </v-avatar>
                                                     <div class="mx-3">
-                                                        <span class="green--text">{{author}}<v-icon right color="green">mdi-check-circle mdi-18px</v-icon></span>
+                                                        <span class="green--text">{{submission.user_name}}<v-icon right color="green">mdi-check-circle mdi-18px</v-icon></span>
                                                         <div class="caption">Identitas terverifikasi</div>
                                                     </div>
                                                 </div>
@@ -38,7 +38,7 @@
                                                             <v-icon>mdi-account-circle mdi-48px</v-icon>
                                                         </v-avatar>
                                                         <div class="mx-3">
-                                                            <span>{{target}}</span>
+                                                            <span>{{submission.submisi_penerima}}</span>
                                                             <div class="caption">Sesuai dokumen medis<v-icon color="green">mdi-check-circle-outline mdi-18px</v-icon></div>
                                                         </div>
                                                     </div>
@@ -50,35 +50,45 @@
                                         <v-list-item>
                                             <v-list-item-content class="d-flex px-2">
                                                 <v-list-item-title>Cerita</v-list-item-title>
-                                                <v-list-item-subtitle v-text="text"></v-list-item-subtitle>
+                                                <v-list-item-subtitle v-text="submission.submisi_cerita"></v-list-item-subtitle>
                                             </v-list-item-content>
                                         </v-list-item>
                                     </v-list>
                                 </v-card>
                             </v-col>
                             <v-col md="6">
-                                <form class="ma-6 ml-md-0" method="post">
-                                    <v-text-field label="Nama donatur" filled clearable name="name" type="text" v-model="name" :rules="rulesNama" counter maxlength="30"></v-text-field>
-                                    <v-text-field label="Email donatur" filled clearable name="email" type="text" v-model="email" :rules="rulesEmail"></v-text-field>
-                                     <v-text-field label="Nomor Telepon" filled clearable name="telephone" type="text" v-model="noHandphone" :rules="noHandphoneRules"></v-text-field>
+                                <form class="ma-6 mt-sm-1 ml-md-0" method="post">
+                                    <template v-if="currentUser">
+                                        <v-text-field v-show="false" name="name" type="text" v-model="payment.name = currentUser.user_name"></v-text-field>
+                                        <v-text-field v-show="false" name="email" type="text" v-model="payment.email = currentUser.user_mail"></v-text-field>
+                                        <v-text-field v-show="false" name="phoneNumber" type="text" v-model="payment.phoneNumber = currentUser.user_phone"></v-text-field>
+                                        <v-text-field v-show="false" name="userId" type="text" v-model="payment.userId = currentUser.user_id"></v-text-field>
+                                    </template>
+                                    <template v-else>
+                                        <v-card-title>Informasi Donatur</v-card-title>
+                                        <v-text-field label="Nama donatur" filled clearable name="name" type="text" v-model="payment.name" :error-messages="errors.payment.name"></v-text-field>
+                                        <v-text-field label="Email donatur" filled clearable name="email" type="text" v-model="payment.email" :error-messages="errors.payment.email"></v-text-field>
+                                        <v-text-field label="Nomor Telepon" filled clearable name="phoneNumber" type="text" v-model="payment.phoneNumber" :error-messages="errors.payment.phoneNumber"></v-text-field>
+                                    </template>
 
-                                    <v-list>
-                                        <v-subheader>Pembayaran dengan</v-subheader>
-                                        <v-list-item-group v-model="item" color="error">
-                                            <v-list-item v-for="item in items" :key="item.title">
+                                    <v-card-title class="pt-sm-0 pt-md-4">Pembayaran</v-card-title>
+                                    <v-text-field label="Nominal donasi" prefix="Rp " name="amount" type="text" v-model="payment.amount" :error-messages="errors.payment.amount" filled clearable></v-text-field>
+
+                                    <v-list class="mb-3">
+                                        <v-subheader>Metode pembayaran</v-subheader>
+                                        <v-list-item-group v-model="method" color="error">
+                                            <v-list-item v-for="method in payment.methods" :key="method.title">
                                                 <v-list-item-avatar tile>
-                                                    <v-img :src="item.avatar"></v-img>
+                                                    <v-img :src="method.avatar"></v-img>
                                                 </v-list-item-avatar>
                                                 <v-list-item-content>
-                                                    <v-list-item-title v-text="item.title" name="tes" v-model="item.value"></v-list-item-title>
+                                                    <v-list-item-title v-text="method.title" name="tes" v-model="method.value"></v-list-item-title>
                                                 </v-list-item-content>
                                             </v-list-item>
                                         </v-list-item-group>
                                     </v-list>
 
-                                    <v-text-field label="Nominal donasi" prefix="Rp " name="donasi" type="text" v-model="donasi" filled clearable :rules="rulesDonasi"></v-text-field>
-
-                                    <div class="d-flex justify-center pt-2">
+                                    <div class="d-flex justify-center pt-3">
                                         <v-btn class="mr-2 w-50" @click="goBack">Batal</v-btn>
                                         <v-btn color="error" class="mr-2 w-50" @click="submit()">Lanjut</v-btn>
                                     </div>
@@ -98,72 +108,64 @@
 <script>
     export default {
         data: () => ({
-        name:"",
-        rulesNama: [
-            value => !!value || 'Required.',
-            value => (value || '').length <= 30 || 'Maksimal 30 characters',
-        ],
-        email:"",
-        rulesEmail: [
-            value => !!value || 'Required.',
-            value => (value || '').length <= 255 || 'Max 20 characters',
-            value => {
-            const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-            return pattern.test(value) || 'Invalid e-mail.'
+            submission: {},
+            payment: {
+                userId: 0,
+                name: "",
+                email: "",
+                phoneNumber: "",
+                amount: "",
+                methods: [
+                    { title: 'BCA Virtual Account', avatar: '/icon/BCA.png', value:"BCA" },
+                    // { title: 'BNI', avatar: '/icon/BNI.png',value:"BNI" },
+                    // { title: 'Permata', avatar: '/icon/Permata.png', value:"Permata" },
+                ],
             },
-        ],
-        donasi:"",
-        rulesDonasi: [
-            value => !!value || 'Required.',
-            value => !isNaN(parseFloat(value)) && value > 9000  || 'Minimal Donasi Rp 10.000',
-        ],
-        noHandphone: "",
-        noHandphoneRules: [
-            v => !!v || "No.Handphone tidak boleh kosong",
-            v => v && v.length <= 14
-        ],
-        items: [
-            { title: 'BCA Virtual Account', avatar: '/icon/BCA.png', value:"BCA" },
-            // { title: 'BNI', avatar: '/icon/BNI.png',value:"BNI" },
-            // { title: 'Permata', avatar: '/icon/Permata.png', value:"Permata" },
-        ],
-        author: '',
-        target:'',
-        text: '',
-        title: '',
-        progress:50,
-        donasi: '',
-        durasi: '30',
+            errors: {
+                payment:{},
+            },
+            message: {},
         }),
+        computed: {
+            currentUser: {
+                get() {
+                    return this.$store.state.user.user;
+                }
+            },
+        },
         created() {
             this.loadData();
         },
         methods: {
             submit() {
-            axios
-                .post("http://localhost:8000/api/donation", {
-                    name: this.$data.name,
-                    email: this.$data.email,
+                axios
+                .post("/api/donation", {
                     submisi: this.$route.params.id,
-                    noHandphone : this.$data.noHandphone,
-                    donasi: this.$data.donasi
+                    amount: this.$data.payment.amount,
+                    user_id: this.$data.payment.userId,
+                    name: this.$data.payment.name,
+                    email: this.$data.payment.email,
+                    phoneNumber : this.$data.payment.phoneNumber,
                 })
-                .then(data => {
-                    this.$router.push({ path: `/payment/done/`+this.$route.params.id});
+                .then(response => {
+                    if(response.data == "OK")
+                        this.$router.push({ path: '/payment/done/'+this.$route.params.id});
                 })
                 .catch(e => {
-                    console.error(e);
+                    if (e.response.status == 422){
+                        this.$data.errors.payment = e.response.data.errors;
+                        this.$data.message = "";
+                    }
                 });
             },
             submitForm(e) {
                 e.preventDefault();
             },
             loadData() {
-                axios.get("http://localhost:8000//api/DataSubmision/"+this.$route.params.id).then(response => {
-                    this.title = response.data[0].submisi_judul;
-                    this.author = response.data[0].user_name;
-                    this.text = response.data[0].submisi_cerita;
-                    this.target = response.data[0].submisi_penerima;
+                axios
+                .get("/api/DataSubmision/"+this.$route.params.id)
+                .then(response => {
+                    this.$data.submission = response.data.submission;
                 });
             },
             reroutes: function (url) {

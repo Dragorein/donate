@@ -45,9 +45,7 @@
             submissions: [],
             search: '',
             showsearh: false,
-
             query: null,
-            result: []
         }),
         watch: {
             query(after, before){
@@ -58,11 +56,6 @@
             reroutes: function (url) {
                 this.$router.push({ path: url });
             },
-            getDataPage(id) {
-            axios.get("http://localhost:8000/api/search?q="+id).then(response => {
-                // return console.log(id);
-            });
-            },
             goBack: function () {
                 this.$router.go(-1);
             },
@@ -70,7 +63,6 @@
                 axios.get('http://localhost:8000/api/cari?q='+this.query)
                 .then(response => {
                     this.submissions = response.data;
-                    console.log(response.data);
                 })
                 .catch(error => {
                      console.log(error);

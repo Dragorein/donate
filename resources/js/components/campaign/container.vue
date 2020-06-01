@@ -53,7 +53,7 @@
                         </v-col>
                     </v-row>
                     <v-row justify="center" >
-                        <v-pagination color="deep-orange" v-model="page" :length="length" :page="page" :total-visible="submisis.last_page" @input="getDataPage(page)"></v-pagination>
+                        <v-pagination color="deep-orange" v-model="page" :length="length" :page="page" :total-visible="7" @input="getDataPage(page)"></v-pagination>
                     </v-row>
                 </v-container>
             </section>
@@ -70,7 +70,7 @@
             chips: [],
             submisis: [],
             filter: ['Galang', 'Dana'],
-            length: 0,
+            // length: 0,
             nextIcon: 'navigate_next',
             prevIcon: 'navigate_before',
             page: 1,

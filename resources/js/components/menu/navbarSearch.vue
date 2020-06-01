@@ -5,7 +5,7 @@
 
         <v-btn class="mr-3" @click="goBack" icon><v-icon>mdi-chevron-double-left</v-icon></v-btn>
 
-        <v-text-field ref="search" rounded filled hide-details dense placeholder="Cari galang dana" prepend-inner-icon="search"/>
+        <v-text-field ref="search" rounded filled hide-details dense placeholder="Cari galang dana" prepend-inner-icon="search" v-model="query"/>
 
         <v-spacer/>
     </v-app-bar>
@@ -14,12 +14,24 @@
 
 <script>
     export default {
-        data: () => ({
-
-        }),
+        data () {
+            return {
+                query: null,
+            };
+        },
+        watch: {
+            query(after, before){
+                this.searchSubmission();
+            }
+        },
         methods: {
             goBack: function () {
                 this.$router.go(-1);
+            },
+            searchSubmission() {
+                axios.get('/search', { params : { query: this.query } })
+                .then(response => this.result = response.data)
+                .catch(error => {});
             }
         },
         mounted(){

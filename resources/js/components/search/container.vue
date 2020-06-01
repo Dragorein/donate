@@ -17,15 +17,15 @@
                             <v-list two-line>
                                 <v-subheader>Results</v-subheader>
 
-                                <template v-for="card in cards">
-                                    <v-list-item @click="reroutes('/campaign/detail')">
+                                <template v-for="submission in submissions">
+                                    <v-list-item @click="reroutes('/campaign/'+submission.submisi_id)">
                                         <v-list-item-avatar tile size="70" width="120">
-                                            <v-img :src="card.src"></v-img>
+                                            <v-img :src="'/picture/'+submission.src"></v-img>
                                         </v-list-item-avatar>
                                         
                                         <v-list-item-content>
-                                            <v-list-item-title v-html="card.title"></v-list-item-title>
-                                            <v-list-item-subtitle v-html="card.author + ' ' + card.raised"></v-list-item-subtitle>
+                                            <v-list-item-title v-html="submission.submisi_judul"></v-list-item-title>
+                                            <v-list-item-subtitle v-html="submission.author + ' ' + submission.raised"></v-list-item-subtitle>
                                         </v-list-item-content>
                                     </v-list-item>
                                 </template>
@@ -42,8 +42,7 @@
 <script>
     export default {
         data: () => ({
-            cards: [
-            ],
+            submissions: [],
             search: '',
             showsearh: false,
 
@@ -60,7 +59,7 @@
                 this.$router.push({ path: url });
             },
             getDataPage(id) {
-            axios.get("http://localhost:8000/api/search?query="+id).then(response => {
+            axios.get("http://localhost:8000/api/search?q="+id).then(response => {
                 // return console.log(id);
             });
             },
@@ -68,11 +67,14 @@
                 this.$router.go(-1);
             },
             searchSubmission() {
-                axios.get('http://localhost:8000/api/search/'+this.query)
+                axios.get('http://localhost:8000/api/cari?q='+this.query)
                 .then(response => {
+                    this.submissions = response.data;
                     console.log(response.data);
                 })
-                .catch(error => {});
+                .catch(error => {
+                     console.log(error);
+                });
             }
         }
     }

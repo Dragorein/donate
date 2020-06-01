@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 class DonationController extends Controller
 {
     public function Donations (Request $request){
+
         $request->validate([
             'submisi' => 'required',
             'name' => 'required|string',
@@ -20,6 +21,7 @@ class DonationController extends Controller
 
         $data = DB::table('t_donations')->insert([
             'submisi_id' => $request->submisi,
+            'user_id' => $request->user_id,
             'donation_name' => $request->name,
             'donation_mail' => $request->email,
             'donation_phone' => $request->phoneNumber,
@@ -53,7 +55,7 @@ class DonationController extends Controller
                     ]);
                     if($data_payment && $data && $update && $data_donations){
                         DB::commit();
-                        return true;
+                        return 'OK';
                     }else{
                         DB::rollBack();
                     }

@@ -5,7 +5,10 @@ const state = {
     user: {},
     loggedin: false,
     registerStep: 1,
-    errors: {},
+    errors: {
+        login: {},
+        register: {}
+    },
     message: ""
 };
 const getters = {};
@@ -31,7 +34,7 @@ const actions = {
             })
             .catch(e => {
                 if (e.response.status == 422) {
-                    state.errors = e.response.data.errors;
+                    state.errors.register = e.response.data.errors;
                     state.message = "";
                 }
             });
@@ -52,7 +55,7 @@ const actions = {
             })
             .catch(e => {
                 if (e.response.status == 422) {
-                    state.errors = e.response.data.errors;
+                    state.errors.login = e.response.data.errors;
                     state.message = "";
                 }
             });

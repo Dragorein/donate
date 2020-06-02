@@ -26,6 +26,7 @@ class SubmissionController extends Controller
             ->join('m_user', 't_submissions.user_id', '=', 'm_user.user_id')
             ->select($sql)
             ->distinct()
+            ->whereRaw('DATEDIFF(submisi_expired_at, now()) > 0')
             ->paginate(6);
             
         return $data;
@@ -60,6 +61,7 @@ class SubmissionController extends Controller
         $donations = DB::table('t_donations')
             ->select($sql_donations)
             ->where('t_donations.submisi_id',$id)
+            ->orderByDesc('donation_id')
             ->get();
 
         return response(['submission' => $submission, 'donations' => $donations]);
@@ -83,7 +85,7 @@ class SubmissionController extends Controller
 
         $t_submissions -> save();
 
-        $request->file('image')->storeAs('images', $request->file('image')->getClientOriginalName());
+        $request->file('image')->storeAs('donasi', $request->file('image')->getClientOriginalName());
 
         return $t_submissions;
     }

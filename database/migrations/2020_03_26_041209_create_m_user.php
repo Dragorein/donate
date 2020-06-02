@@ -19,11 +19,11 @@ class CreateMUser extends Migration
             $table->string('user_mail', 255);
             $table->string('user_token', 255);
             $table->string('user_phone', 255);
+            $table->string('user_foto', 255);
             $table->string('user_password', 255);
             $table->boolean('user_is_admin');
             $table->boolean('user_is_active');
-            $table->date('created_at')->useCurrent();
-            $table->date('updated_at')->useCurrent();
+            $table->timestamps();
         });
     }
 

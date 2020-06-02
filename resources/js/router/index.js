@@ -47,7 +47,7 @@ const routes = [
     },
     {
         component: PaymentDone,
-        name: "payment",
+        name: "paymentDone",
         path: "/payment/done/:id"
     },
     {

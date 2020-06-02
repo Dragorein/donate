@@ -1,6 +1,12 @@
 <template>
 <v-app>
-    <navbar-search/>
+    <!-- <navbar-search/> -->
+    <v-app-bar flat color="white" class="py-2 h-auto">
+        <v-spacer/>
+            <v-btn class="mr-3" @click="goBack" icon><v-icon>mdi-chevron-double-left</v-icon></v-btn>
+            <v-text-field ref="search" rounded filled hide-details dense placeholder="Cari galang dana" prepend-inner-icon="search" v-model="query"/>
+        <v-spacer/>
+    </v-app-bar>
 
     <main class="h-100">
         <div class="fluid">
@@ -11,15 +17,15 @@
                             <v-list two-line>
                                 <v-subheader>Results</v-subheader>
 
-                                <template v-for="card in cards">
-                                    <v-list-item @click="reroutes('/campaign/detail')">
+                                <template v-for="submission in submissions">
+                                    <v-list-item @click="reroutes('/campaign/'+submission.submisi_id)">
                                         <v-list-item-avatar tile size="70" width="120">
-                                            <v-img :src="card.src"></v-img>
+                                            <v-img :src="'/picture/'+submission.src"></v-img>
                                         </v-list-item-avatar>
                                         
                                         <v-list-item-content>
-                                            <v-list-item-title v-html="card.title"></v-list-item-title>
-                                            <v-list-item-subtitle v-html="card.author + ' ' + card.raised"></v-list-item-subtitle>
+                                            <v-list-item-title v-html="submission.submisi_judul"></v-list-item-title>
+                                            <v-list-item-subtitle v-html="submission.author + ' ' + submission.raised"></v-list-item-subtitle>
                                         </v-list-item-content>
                                     </v-list-item>
                                 </template>
@@ -36,31 +42,31 @@
 <script>
     export default {
         data: () => ({
-            colors: [
-                'orange',
-                'indigo',
-                'pink darken-2',
-                'red lighten-1',
-                'deep-purple accent-4',
-            ],
-            slides: [
-                'Pertama',
-                'Kedua',
-                'Ketiga',
-                'Keempat',
-                'Kelima',
-            ],
-            cards: [
-                {title:'Supermodel', src:'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg', author:'Louise', progress:50, raised:'Rp 3.003.132', daysleft:'30'},
-                {title:'Halcyon Days', src:'https://cdn.vuetifyjs.com/images/cards/house.jpg', author:'Danny', progress:80, raised:'Rp 5.012.500', daysleft:'3'},
-                {title:'Top western road trips', src:'https://cdn.vuetifyjs.com/images/cards/docks.jpg', author:'Rachel', progress:5, raised:'Rp 176.320', daysleft:'56'},
-                {title:'Unlimited music now', src:'https://cdn.vuetifyjs.com/images/cards/halcyon.png', author:'Ellie', progress:100, raised:'Rp 152.901.000', daysleft:'1'},
-                {title:'Best airlines', src:'https://cdn.vuetifyjs.com/images/cards/plane.jpg', author:'Tommy', progress:60, raised:'Rp 16.251.026', daysleft:'23'},
-            ],
+            submissions: [],
+            search: '',
+            showsearh: false,
+            query: null,
         }),
+        watch: {
+            query(after, before){
+                this.searchSubmission();
+            }
+        },
         methods: {
             reroutes: function (url) {
                 this.$router.push({ path: url });
+            },
+            goBack: function () {
+                this.$router.go(-1);
+            },
+            searchSubmission() {
+                axios.get('http://localhost:8000/api/cari?q='+this.query)
+                .then(response => {
+                    this.submissions = response.data;
+                })
+                .catch(error => {
+                     console.log(error);
+                });
             }
         }
     }

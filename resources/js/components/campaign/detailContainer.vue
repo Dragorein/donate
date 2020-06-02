@@ -18,7 +18,7 @@
                                 </v-card-text>
 
                                 <v-card-text>
-                                    <router-link :to="'/payment/'+this.$route.params.id"><v-btn rounded block depressed large color="error">Donasi Sekarang</v-btn></router-link>
+                                    <v-btn @click="reroutes('/payment/'+$route.params.id)" rounded block depressed large color="error">Donasi Sekarang</v-btn>
                                 </v-card-text>
                             </v-card>
                         </v-col>
@@ -97,7 +97,7 @@
                             <v-card class="mx-auto">
                                 <v-list two-line dense>
                                     <v-subheader class="title" v-text="donations.length >= 1 ? 'Donatur (' + donations.length + ')' : 'Donatur (0)'"></v-subheader>
-                                    <template v-for="donation in donations">
+                                    <template v-for="(donation, index) in donations" v-if="index < 5">
                                         <v-list-item :key="donation.donation_id" >
                                         <v-list-item-avatar>
                                             <v-icon>mdi-account-circle</v-icon>
@@ -110,7 +110,7 @@
                                         </v-list-item>
                                     </template>
                                 </v-list>
-                                <template v-if="donations.length >= 1">
+                                <template v-if="donations.length > 5">
                                     <v-btn block text large>Lihat lebih<v-icon right>mdi-dots-horizontal</v-icon></v-btn>
                                 </template>
                             </v-card>

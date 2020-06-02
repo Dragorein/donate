@@ -26,6 +26,7 @@ class SubmissionController extends Controller
             ->join('m_user', 't_submissions.user_id', '=', 'm_user.user_id')
             ->select($sql)
             ->distinct()
+            ->whereRaw('DATEDIFF(submisi_expired_at, now()) > 0')
             ->paginate(6);
             
         return $data;

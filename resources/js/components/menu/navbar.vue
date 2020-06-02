@@ -16,7 +16,7 @@
         <template v-if="loggedin == false">
             <v-dialog v-model="logindialog" max-width="600px">
                 <template v-slot:activator="{ on }">
-                    <v-btn href="register" large color="error" class="mr-3">Daftar</v-btn>
+                    <v-btn href="/register" large color="error" class="mr-3">Daftar</v-btn>
                     <v-btn large text color="error" class="mr-3" v-on="on">Masuk</v-btn>
                 </template>
                 <v-card tile color="#F1F1F1">
@@ -29,10 +29,10 @@
                                 <v-row>
                                     <v-col cols="12" class="py-0">
                                         <v-alert type="error" text dense transition="slide-y-transition" v-if="message">{{message}}</v-alert>
-                                        <v-text-field solo flat label="Email" required v-model="login.email" :error-messages="errors.email"></v-text-field>
+                                        <v-text-field solo flat label="Email" required v-model="login.email" :error-messages="errors.login.email"></v-text-field>
                                     </v-col>
                                     <v-col cols="12" class="py-0">
-                                        <v-text-field solo flat label="Password" type="password" required v-model="login.password" :error-messages="errors.password"></v-text-field>
+                                        <v-text-field solo flat label="Password" type="password" required v-model="login.password" :error-messages="errors.login.password"></v-text-field>
                                     </v-col>
                                     <v-col cols="12">
                                         <v-btn type="submit" form="form-login" color="red darken-1" dark block large>Masuk Sekarang</v-btn>

@@ -72,8 +72,24 @@
                             </v-card-title>
                             <v-data-table :headers="campaignHeaders" :items="campaigns" :search="search">
                                 <template v-slot:item.actions="{ item }">
-                                    <v-icon small color="blue mr-2" @click="editItem(item)">mdi-information</v-icon>
-                                    <v-icon small color="red mr-2" @click="deleteItem(item)">mdi-delete</v-icon>
+                                    <v-tooltip top>
+                                        <template v-slot:activator="{ on }">
+                                            <v-icon small color="green mr-2" v-on="on" @click="editItem(item)">mdi-information</v-icon>
+                                        </template>
+                                        <span>Lihat penggalangan</span>
+                                    </v-tooltip>
+                                    <v-tooltip top>
+                                        <template v-slot:activator="{ on }">
+                                            <v-icon small color="orange mr-2" v-on="on" @click="deleteItem(item)">mdi-close-box</v-icon>
+                                        </template>
+                                        <span>Tutup penggalangan</span>
+                                    </v-tooltip>
+                                    <v-tooltip top>
+                                        <template v-slot:activator="{ on }">
+                                            <v-icon small color="red mr-2" v-on="on" @click="deleteItem(item)">mdi-delete</v-icon>
+                                        </template>
+                                        <span>Hapus penggalangan</span>
+                                    </v-tooltip>
                                 </template>
                             </v-data-table>
                         </v-card>
@@ -87,10 +103,6 @@
                                 <v-text-field v-model="search" append-icon="mdi-magnify" label="Search" single-line hide-details></v-text-field>
                             </v-card-title>
                             <v-data-table :headers="donationsHeaders" :items="donations" :search="search">
-                                <template v-slot:item.actions="{ item }">
-                                    <v-icon small color="blue mr-2" @click="editItem(item)">mdi-information</v-icon>
-                                    <v-icon small color="red mr-2" @click="deleteItem(item)">mdi-delete</v-icon>
-                                </template>
                             </v-data-table>
                         </v-card>
                     </template>
@@ -104,8 +116,18 @@
                             </v-card-title>
                             <v-data-table :headers="usersHeaders" :items="users" :search="search">
                                 <template v-slot:item.actions="{ item }">
-                                    <v-icon small color="blue mr-2" @click="editItem(item)">mdi-information</v-icon>
-                                    <v-icon small color="red mr-2" @click="deleteItem(item)">mdi-delete</v-icon>
+                                    <v-tooltip top>
+                                        <template v-slot:activator="{ on }">
+                                            <v-icon small color="green mr-2" v-on="on" @click="editItem(item)">mdi-information</v-icon>
+                                        </template>
+                                        <span>Lihat pengguna</span>
+                                    </v-tooltip>
+                                    <v-tooltip top>
+                                        <template v-slot:activator="{ on }">
+                                            <v-icon small color="red mr-2" v-on="on" @click="deleteItem(item)">mdi-delete</v-icon>
+                                        </template>
+                                        <span>Hapus pengguna</span>
+                                    </v-tooltip>
                                 </template>
                             </v-data-table>
                         </v-card>
@@ -150,7 +172,6 @@
                 { text: 'Anonim', value: 'donation_is_anonymous' },  
                 { text: 'Dibuat', value: 'donation_created_at' },  
                 { text: 'Diperbarui', value: 'donation_updated_at' },
-                { text: 'Aksi', value: 'actions', sortable: false },
             ],
 
             users: [],

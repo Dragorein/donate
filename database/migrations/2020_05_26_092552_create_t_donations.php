@@ -23,8 +23,7 @@ class CreateTDonations extends Migration
             $table->string('donation_phone', 255);
             $table->integer('donation_nominal');
             $table->boolean('donation_is_anonymous');
-            $table->date('created_at')->useCurrent();
-            $table->date('updated_at')->useCurrent();
+            $table->timestamps();
         });
     }
 

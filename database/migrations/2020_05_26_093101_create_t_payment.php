@@ -20,8 +20,7 @@ class CreateTPayment extends Migration
             $table->string('payment_type', 255);
             $table->string('payment_va_number', 255);
             $table->boolean('payment_is_lunas');
-            $table->date('created_at')->useCurrent();
-            $table->date('updated_at')->useCurrent();
+            $table->timestamps();
         });
     }
 

@@ -4,6 +4,7 @@ import router from '../../router/index.js'
 const state = {
     user: {},
     loggedin: false,
+    admin: false,
     registerStep: 1,
     errors: {
         login: {},
@@ -49,6 +50,7 @@ const actions = {
             .then((response) => {
                 state.user = response.data.user;
                 state.loggedin = response.data.loggedin;
+                state.admin = response.data.isadmin;
                 state.messageDialog = response.data.message;
             })
             .catch(e => {
@@ -67,15 +69,14 @@ const actions = {
                 console.error(e);
             });
     },
-    getUser({
-        commit
-    }) {
+    getUser({commit}) {
         axios
             .get("/auth/current")
             .then(response => {
                 if (response.data != null) {
                     commit('setUser', response.data);
                     commit('setUserStatus', response.data);
+                    commit('setUserAdmin', response.data);
                 }
             });
     }
@@ -86,6 +87,9 @@ const mutations = {
     },
     setUserStatus(state, data) {
         state.loggedin = data.loggedin;
+    },
+    setUserAdmin(state, data) {
+        state.admin = data.isadmin;
     },
     setRegisterStep(state, data) {
         state.registerStep = data;

@@ -75,10 +75,14 @@ class UserController extends Controller
         }
 
         $userId = Auth::user()->user_id;
-        User::find($userId)->update(['user_token' => $userLoggingIn['token']]);
-        Session::put('user', User::find($userId));
+        $userData = User::find($userId);
+        $userData->update(['user_token' => $userLoggingIn['token']]);
+        Session::put('user', $userData);
         Session::put('loggedin', true);
-        return response(['user' => Session::get('user'), 'loggedin' => Session::get('loggedin')]);
+        if($userData->user_is_admin == 1) {
+            Session::put('isadmin', true);
+        }
+        return response(['user' => Session::get('user'), 'loggedin' => Session::get('loggedin'), 'isadmin' => Session::has('isadmin')]);
     }
 
     public function logout()
@@ -91,7 +95,6 @@ class UserController extends Controller
         if (!Session::has('loggedin')) {
             return response(['user' => '', 'loggedin' => false]);
         }
-
-        return response(['user' => Session::get('user'), 'loggedin' => Session::get('loggedin')]);
+        return response(['user' => Session::get('user'), 'loggedin' => Session::get('loggedin'), 'isadmin' => Session::has('isadmin')]);
     }
 }

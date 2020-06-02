@@ -34,6 +34,8 @@ Route::get('/auth/current', 'UserController@currentUser');
 Route::get('/dashboard/all', 'DashboardController@index');
 Route::post('/user/start', 'SubmissionController@store');
 
+// Route::get('/Search', 'SearchController@index');
+
 // Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');

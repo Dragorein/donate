@@ -57,13 +57,25 @@
                                 </v-card>
                             </v-col>
                             <v-col md="6">
-                                <form class="ma-6 ml-md-0" method="post">
-                                    <v-text-field label="Nama donatur" filled clearable name="name" type="text" v-model="payment.name" :error-messages="errors.payment.name" counter maxlength="30"></v-text-field>
-                                    <v-text-field label="Email donatur" filled clearable name="email" type="text" v-model="payment.email" :error-messages="errors.payment.email"></v-text-field>
-                                     <v-text-field label="Nomor Telepon" filled clearable name="phoneNumber" type="text" v-model="payment.phoneNumber" :error-messages="errors.payment.phoneNumber"></v-text-field>
+                                <form class="ma-6 mt-sm-1 ml-md-0" method="post">
+                                    <template v-if="currentUser">
+                                        <v-text-field v-show="false" name="name" type="text" v-model="payment.name = currentUser.user_name"></v-text-field>
+                                        <v-text-field v-show="false" name="email" type="text" v-model="payment.email = currentUser.user_mail"></v-text-field>
+                                        <v-text-field v-show="false" name="phoneNumber" type="text" v-model="payment.phoneNumber = currentUser.user_phone"></v-text-field>
+                                        <v-text-field v-show="false" name="userId" type="text" v-model="payment.userId = currentUser.user_id"></v-text-field>
+                                    </template>
+                                    <template v-else>
+                                        <v-card-title>Informasi Donatur</v-card-title>
+                                        <v-text-field label="Nama donatur" filled clearable name="name" type="text" v-model="payment.name" :error-messages="errors.payment.name"></v-text-field>
+                                        <v-text-field label="Email donatur" filled clearable name="email" type="text" v-model="payment.email" :error-messages="errors.payment.email"></v-text-field>
+                                        <v-text-field label="Nomor Telepon" filled clearable name="phoneNumber" type="text" v-model="payment.phoneNumber" :error-messages="errors.payment.phoneNumber"></v-text-field>
+                                    </template>
 
-                                    <v-list>
-                                        <v-subheader>Pembayaran dengan</v-subheader>
+                                    <v-card-title class="pt-sm-0 pt-md-4">Pembayaran</v-card-title>
+                                    <v-text-field label="Nominal donasi" prefix="Rp " name="amount" type="text" v-model="payment.amount" :error-messages="errors.payment.amount" filled clearable></v-text-field>
+
+                                    <v-list class="mb-3">
+                                        <v-subheader>Metode pembayaran</v-subheader>
                                         <v-list-item-group v-model="method" color="error">
                                             <v-list-item v-for="method in payment.methods" :key="method.title">
                                                 <v-list-item-avatar tile>
@@ -76,9 +88,7 @@
                                         </v-list-item-group>
                                     </v-list>
 
-                                    <v-text-field label="Nominal donasi" prefix="Rp " name="amount" type="text" v-model="payment.amount" :error-messages="errors.payment.amount" filled clearable></v-text-field>
-
-                                    <div class="d-flex justify-center pt-2">
+                                    <div class="d-flex justify-center pt-3">
                                         <v-btn class="mr-2 w-50" @click="goBack">Batal</v-btn>
                                         <v-btn color="error" class="mr-2 w-50" @click="submit()">Lanjut</v-btn>
                                     </div>
@@ -100,10 +110,11 @@
         data: () => ({
             submission: {},
             payment: {
-                name:"",
-                email:"",
-                amount:"",
+                userId: 0,
+                name: "",
+                email: "",
                 phoneNumber: "",
+                amount: "",
                 methods: [
                     { title: 'BCA Virtual Account', avatar: '/icon/BCA.png', value:"BCA" },
                     // { title: 'BNI', avatar: '/icon/BNI.png',value:"BNI" },
@@ -115,6 +126,13 @@
             },
             message: {},
         }),
+        computed: {
+            currentUser: {
+                get() {
+                    return this.$store.state.user.user;
+                }
+            },
+        },
         created() {
             this.loadData();
         },
@@ -123,13 +141,15 @@
                 axios
                 .post("/api/donation", {
                     submisi: this.$route.params.id,
+                    amount: this.$data.payment.amount,
+                    user_id: this.$data.payment.userId,
                     name: this.$data.payment.name,
                     email: this.$data.payment.email,
                     phoneNumber : this.$data.payment.phoneNumber,
-                    amount: this.$data.payment.amount,
                 })
-                .then(data => {
-                    this.$router.push({ path: '/payment/done/'+this.$route.params.id});
+                .then(response => {
+                    if(response.data == "OK")
+                        this.$router.push({ path: '/payment/done/'+this.$route.params.id});
                 })
                 .catch(e => {
                     if (e.response.status == 422){

@@ -69,6 +69,10 @@ class SubmissionController extends Controller
     public function store(Request $request)
     {
         // var_dump($request->file('image'));
+        $ext = $request->file('image')->getClientOriginalExtension();
+        $current_timestamp = now()->timestamp;
+        $imageFile = $current_timestamp.'.'.$ext;
+
         $t_submissions = new Submission();
         $t_submissions -> user_id = 1;
         $t_submissions -> submisi_judul = $request -> judul;
@@ -78,13 +82,13 @@ class SubmissionController extends Controller
         $t_submissions -> submisi_hub_relasi = $request -> medsos;
         $t_submissions -> submisi_target = $request -> total;
         $t_submissions -> submisi_penerima = $request -> penerima;
-        $t_submissions -> submisi_foto = $request->file('image')->getClientOriginalName();
+        $t_submissions -> submisi_foto = $imageFile;
         $t_submissions -> submisi_is_active = 1;
         $t_submissions -> submisi_expired_at = $request -> dedline;
 
         $t_submissions -> save();
 
-        $request->file('image')->storeAs('donasi', $request->file('image')->getClientOriginalName());
+        $request->file('image')->storeAs('submission', $current_timestamp.'.'.$ext);
 
         return $t_submissions;
     }

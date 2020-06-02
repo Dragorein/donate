@@ -34,19 +34,29 @@ class UserController extends Controller
                 'password' => 'required|min:4|required_with:confirmPassword|same:confirmPassword',
                 'confirmPassword' => 'min:4',
             ]);
-
+            
+            
             $userRegister = new User;
             $userRegister->user_name = $request->firstName.' '.$request->lastName;
             $userRegister->user_mail = $request->email;
             $userRegister->user_token = $request->token;
             $userRegister->user_phone = $request->phoneNumber;
-            $userRegister->user_foto = $request->file('image')->getClientOriginalName();
             $userRegister->user_password = bcrypt($request->password);
             $userRegister->user_is_active = 1;
+            
+            $file = $request -> file('image');
+
+            if ($file == null) {
+                $userRegister ->user_foto = 'default.png';
+            }else {
+                $ext = $request->file('image')->getClientOriginalExtension();
+                $current_timestamp = now()->timestamp;
+                $imageFile = $current_timestamp.'.'.$ext;
+                $userRegister->user_foto = $imageFile;
+                $request->file('image')->storeAs('profile', $current_timestamp.'.'.$ext);
+            }
 
             $userRegister -> save();
-
-            $request->file('image')->storeAs('profile', $request->file('image')->getClientOriginalName());
 
             return response(['response' => 'success', 'message' => 'Registrasi akun berhasil!']);
         }

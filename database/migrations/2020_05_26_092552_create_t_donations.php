@@ -23,6 +23,7 @@ class CreateTDonations extends Migration
             $table->string('donation_phone', 255);
             $table->integer('donation_nominal');
             $table->boolean('donation_is_anonymous');
+            $table->string('payment_type', 255);
             $table->timestamps();
         });
     }

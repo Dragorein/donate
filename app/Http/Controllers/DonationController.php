@@ -8,21 +8,31 @@ use Illuminate\Support\Facades\DB;
 class DonationController extends Controller
 {
     public function Donations (Request $request){
+
+        $request->validate([
+            'submisi' => 'required',
+            'name' => 'required|string',
+            'email' => 'required|email',
+            'phoneNumber' => 'required|numeric',
+            'amount' => 'required|numeric|min:10000',
+        ]);
+
         DB::beginTransaction();
 
         $data = DB::table('t_donations')->insert([
-            'donation_name' => $request->name,
             'submisi_id' => $request->submisi,
+            'user_id' => $request->user_id,
+            'donation_name' => $request->name,
             'donation_mail' => $request->email,
-            'donation_phone' => $request->noHandphone ,
-            'donation_nominal' => $request->donasi,
+            'donation_phone' => $request->phoneNumber,
+            'donation_nominal' => $request->amount,
             'donation_is_anonymous' => "1",
         ]);
 
         if($data)
         {
             $data_submisi = DB::table('t_submissions')->where('submisi_id',$request->submisi)->get();
-            $data_baru = $data_submisi[0]->submisi_terkumpul + $request->donasi;
+            $data_baru = $data_submisi[0]->submisi_terkumpul + $request->amount;
             $update = DB::table('t_submissions')->where('submisi_id',$request->submisi)->update([
                 'submisi_terkumpul' => $data_baru
             ]);
@@ -45,7 +55,7 @@ class DonationController extends Controller
                     ]);
                     if($data_payment && $data && $update && $data_donations){
                         DB::commit();
-                        return true;
+                        return 'OK';
                     }else{
                         DB::rollBack();
                     }

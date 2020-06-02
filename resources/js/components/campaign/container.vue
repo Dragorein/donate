@@ -22,8 +22,8 @@
                         <v-col v-for="submisi in submisis" :key="submisi.submisi_id" cols="12" sm="6" md="4" xl="4" class="px-2">
                         <v-hover v-slot:default="{ hover }">
                             
-                            <v-card   :elevation="hover ? 24 : 6" class="my-4 card-transform">
-                                <router-link :to="'/campaign/detail/'+submisi.submisi_id"><v-img :src="'/picture/' + submisi.submisi_foto" height="200px"></v-img></router-link>
+                            <v-card @click="reroutes('/campaign/'+submisi.submisi_id)" :elevation="hover ? 24 : 6" class="my-4 card-transform">
+                                <v-img :src="'/picture/' + submisi.submisi_foto" height="200px"></v-img>
 
                                 <v-card-title v-text="submisi.submisi_judul"></v-card-title>
 
@@ -53,7 +53,7 @@
                         </v-col>
                     </v-row>
                     <v-row justify="center" >
-                        <v-pagination color="deep-orange" v-model="page" :length="length" :page="page" :total-visible="submisis.last_page" @input="getDataPage(page)"></v-pagination>
+                        <v-pagination color="deep-orange" v-model="page" :length="length" :page="page" :total-visible="7" @input="getDataPage(page)"></v-pagination>
                     </v-row>
                 </v-container>
             </section>
@@ -70,7 +70,7 @@
             chips: [],
             submisis: [],
             filter: ['Galang', 'Dana'],
-            length: 0,
+            // length: 0,
             nextIcon: 'navigate_next',
             prevIcon: 'navigate_before',
             page: 1,
@@ -81,14 +81,14 @@
         },
         methods: {
             loadData() {
-            axios.get("http://localhost:8000/api/").then(response => {
+            axios.get("/api/").then(response => {
                 this.submisis = response.data.data;
                 this.length = response.data.last_page;
                 this.list = response.data;
             });
             },
             getDataPage(id) {
-            axios.get("http://localhost:8000/api?page="+id).then(response => {
+            axios.get("/api?page="+id).then(response => {
                 this.list = response.data;
                 this.submisis = response.data.data;
                 this.length = response.data.last_page;
@@ -119,6 +119,10 @@
     }
 
     .v-btn:focus {
+        outline: 0;
+    }
+
+    .v-pagination__item:focus, .v-pagination__navigation:focus {
         outline: 0;
     }
     

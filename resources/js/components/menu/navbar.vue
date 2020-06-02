@@ -9,9 +9,10 @@
 
         <v-spacer/>
 
-        <v-text-field class="mr-2 search-lg" @mousedown="reroutes('/search')" rounded filled hide-details dense placeholder="Cari galang dana" prepend-inner-icon="search"/> 
-        <v-btn class="mr-2 search-md" @mousedown="reroutes('/search')" icon><v-icon>mdi-magnify</v-icon></v-btn>
-        <v-btn large text class="mr-3">Donasi</v-btn>
+        <v-text-field class="mr-2 only-lg" @mousedown="reroutes('/search')" rounded filled hide-details dense placeholder="Cari galang dana" prepend-inner-icon="search"/> 
+        <v-btn class="mr-2 only-md" @mousedown="reroutes('/search')" icon><v-icon>mdi-magnify</v-icon></v-btn>
+        <v-btn @click="reroutes('/campaign')" large text class="mr-3 only-lg">Donasi</v-btn>
+        <v-btn @click="reroutes('/start')" large text class="mr-3 only-lg">Galang Dana</v-btn>
 
         <template v-if="loggedin == false">
             <v-dialog v-model="logindialog" max-width="600px">
@@ -61,6 +62,16 @@
                     <v-list-item @click="reroutes('/dashboard')" v-if="currentUser.user_is_admin == 1">
                         <v-list-item-title>
                             <v-icon left>mdi-apps</v-icon>Dashboard
+                        </v-list-item-title>
+                    </v-list-item>
+                    <v-list-item @click="reroutes('/campaign')">
+                        <v-list-item-title>
+                            <v-icon left>mdi-charity</v-icon>Donasi
+                        </v-list-item-title>
+                    </v-list-item>
+                    <v-list-item @click="reroutes('/start')">
+                        <v-list-item-title>
+                            <v-icon left>mdi-flag-plus</v-icon>Galang Dana
                         </v-list-item-title>
                     </v-list-item>
                     <v-list-item @click="reroutes('/profile')">
@@ -114,7 +125,7 @@
             },
             message: {
                 get() {
-                    return this.$store.state.user.message;
+                    return this.$store.state.user.messageDialog;
                 }
             }
         },
@@ -155,21 +166,21 @@
         background: transparent;
     }
 
-    #navbar .search-lg {
+    #navbar .only-lg {
         display: flex;
         align-items: center;
     }
 
-    #navbar .search-md {
+    #navbar .only-md {
         display: none;
     }
 
     @media only screen and (max-width: 959px) {
-        #navbar .search-lg {
+        #navbar .only-lg {
             display: none;
         }
 
-        #navbar .search-md {
+        #navbar .only-md {
             display: block;
         }
     }

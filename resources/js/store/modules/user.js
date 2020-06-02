@@ -9,7 +9,8 @@ const state = {
         login: {},
         register: {}
     },
-    message: ""
+    message: "",
+    messageDialog: ""
 };
 const getters = {};
 const actions = {
@@ -27,9 +28,7 @@ const actions = {
                     state.registerStep = 2;
                 } else if (response.data.response == 'success') {
                     state.message = response.data.message;
-                    router.push({
-                        path: '/'
-                    });
+                    router.push({path: '/'});
                 }
             })
             .catch(e => {
@@ -50,8 +49,7 @@ const actions = {
             .then((response) => {
                 state.user = response.data.user;
                 state.loggedin = response.data.loggedin;
-                state.message = response.data.message;
-                console.log('logged in');
+                state.messageDialog = response.data.message;
             })
             .catch(e => {
                 if (e.response.status == 422) {
@@ -64,7 +62,6 @@ const actions = {
         axios
             .post("/auth/logout")
             .then((response) => {
-                console.log('logged out');
             })
             .catch(e => {
                 console.error(e);

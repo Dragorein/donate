@@ -17,7 +17,7 @@
                       <v-text-field label="Nama Depan*" name="firstName" prepend-inner-icon="person" type="text" v-model="register.firstName" :error-messages="errors.register.firstName" required filled clearable />
                       <v-text-field label="Nama Belakang*" name="lastName" prepend-inner-icon="person" type="text" v-model="register.lastName" :error-messages="errors.register.lastName" required filled clearable />
                       <v-text-field label="Email*" name="email" prepend-inner-icon="mail" type="text" v-model="register.email" :error-messages="errors.register.email" required filled clearable />
-                      <v-text-field label="Nomor Handphone*" name="phoneNumber" prepend-inner-icon="phone" type="text" v-model="register.phoneNumber" :error-messages="errors.register.phoneNumber" :counter="14" required filled clearable />
+                      <v-text-field label="Nomor Handphone*" name="phoneNumber" prepend-inner-icon="phone" type="text" v-model="register.phoneNumber" :error-messages="errors.register.phoneNumber" required filled clearable />
                       <v-file-input label="Foto Profil" prepend-icon="" prepend-inner-icon="mdi-camera" accept="image/png, image/jpeg, image/bmp" v-model="register.image" :error-messages="errors.register.image" type="file" filled></v-file-input>
                       <v-btn color="error" @click="callSubmit()" class="mr-2">Lanjut</v-btn>
                       <v-btn text class="mr-2" @click="goBack">Batal</v-btn>

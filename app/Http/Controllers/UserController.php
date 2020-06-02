@@ -11,14 +11,13 @@ class UserController extends Controller
 {
     public function register(Request $request)
     {
-        // dd ($request);
         if($request->step == 1) {
             $request->validate([
                 'firstName' => 'required|string',
                 'lastName' => 'required|string',
-                'phoneNumber' => 'required|numeric',
+                'phoneNumber' => 'required|numeric|min:10',
                 'email' => 'required|email|unique:App\User,user_mail',
-                'image' => 'required',
+                'image' => '',
             ]);
 
             return response(['response' => 'continue']);;
@@ -29,15 +28,15 @@ class UserController extends Controller
                 'firstName' => 'required|string',
                 'lastName' => 'required|string',
                 'phoneNumber' => 'required|numeric|min:10',
-                'email' => 'required|email',
-                'image' => 'required',
+                'email' => 'required|email|unique:App\User,user_mail',
+                'image' => '',
                 'password' => 'required|min:4|required_with:confirmPassword|same:confirmPassword',
                 'confirmPassword' => 'min:4',
             ]);
             
             
             $userRegister = new User;
-            $userRegister->user_name = $request->firstName.' '.$request->lastName;
+            $userRegister->user_name = ucfirst($request->firstName).' '.ucfirst($request->lastName);
             $userRegister->user_mail = $request->email;
             $userRegister->user_token = $request->token;
             $userRegister->user_phone = $request->phoneNumber;

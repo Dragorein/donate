@@ -14,11 +14,11 @@
                 <v-stepper-content step="1">
                   <v-card-text>
                     <v-form :value="csrf">
-                      <v-text-field label="Nama Depan" name="firstName" prepend-inner-icon="person" type="text" v-model="register.firstName" :error-messages="errors.firstName" required filled clearable />
-                      <v-text-field label="Nama Belakang" name="lastName" prepend-inner-icon="person" type="text" v-model="register.lastName" :error-messages="errors.lastName" required filled clearable />
-                      <v-text-field label="Email" name="email" prepend-inner-icon="mail" type="text" v-model="register.email" :error-messages="errors.email" required filled clearable />
-                      <v-text-field label="Nomor Handphone" name="phoneNumber" prepend-inner-icon="phone" type="text" v-model="register.phoneNumber" :error-messages="errors.phoneNumber" :counter="14" required filled clearable />
-                      <v-file-input label="Foto Profil" filled prepend-inner-icon="mdi-camera" accept="image/png, image/jpeg, image/bmp" v-model="register.image" :error-messages="errors.image" type="file"></v-file-input>
+                      <v-text-field label="Nama Depan*" name="firstName" prepend-inner-icon="person" type="text" v-model="register.firstName" :error-messages="errors.register.firstName" required filled clearable />
+                      <v-text-field label="Nama Belakang*" name="lastName" prepend-inner-icon="person" type="text" v-model="register.lastName" :error-messages="errors.register.lastName" required filled clearable />
+                      <v-text-field label="Email*" name="email" prepend-inner-icon="mail" type="text" v-model="register.email" :error-messages="errors.register.email" required filled clearable />
+                      <v-text-field label="Nomor Handphone*" name="phoneNumber" prepend-inner-icon="phone" type="text" v-model="register.phoneNumber" :error-messages="errors.register.phoneNumber" required filled clearable />
+                      <v-file-input label="Foto Profil" prepend-icon="" prepend-inner-icon="mdi-camera" accept="image/png, image/jpeg, image/bmp" v-model="register.image" :error-messages="errors.register.image" type="file" filled></v-file-input>
                       <v-btn color="error" @click="callSubmit()" class="mr-2">Lanjut</v-btn>
                       <v-btn text class="mr-2" @click="goBack">Batal</v-btn>
                     </v-form>
@@ -30,8 +30,8 @@
                 <v-stepper-content step="2">
                   <v-card-text>
                     <v-form>
-                      <v-text-field id="password" label="Password" name="password" prepend-inner-icon="mdi-lock-open" v-model="register.password" :error-messages="errors.password" :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'" @click:append="show1 = !show1" :type="show1 ? 'text' : 'password'" required filled clearable />
-                      <v-text-field id="passwordconfirm" label="Ketik Ulang Password" name="passwordconfirm" prepend-inner-icon="lock" v-model="register.confirmPassword" :error-messages="errors.confirmPassword" :append-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'" @click:append="show2 = !show2" :type="show2 ? 'text' : 'password'" required filled clearable />
+                      <v-text-field id="password" label="Password" name="password" prepend-inner-icon="mdi-lock-open" v-model="register.password" :error-messages="errors.register.password" :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'" @click:append="show1 = !show1" :type="show1 ? 'text' : 'password'" required filled clearable />
+                      <v-text-field id="passwordconfirm" label="Ketik Ulang Password" name="passwordconfirm" prepend-inner-icon="lock" v-model="register.confirmPassword" :error-messages="errors.register.confirmPassword" :append-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'" @click:append="show2 = !show2" :type="show2 ? 'text' : 'password'" required filled clearable />
                       <v-btn color="error" @click="callSubmit()" class="mr-2">Daftar</v-btn>
                       <v-btn text @click="changeStep(1)" class="mr-2">Kembali</v-btn>
                     </v-form>
@@ -59,7 +59,7 @@ export default {
       lastName: "",
       email: "",
       phoneNumber: "",
-      image: {},
+      image: undefined,
       password: "",
       confirmPassword: "",
       csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')

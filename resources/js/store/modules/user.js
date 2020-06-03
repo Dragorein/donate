@@ -4,9 +4,14 @@ import router from '../../router/index.js'
 const state = {
     user: {},
     loggedin: false,
+    admin: false,
     registerStep: 1,
-    errors: {},
-    message: ""
+    errors: {
+        login: {},
+        register: {}
+    },
+    message: "",
+    messageDialog: ""
 };
 const getters = {};
 const actions = {
@@ -24,14 +29,12 @@ const actions = {
                     state.registerStep = 2;
                 } else if (response.data.response == 'success') {
                     state.message = response.data.message;
-                    router.push({
-                        path: '/'
-                    });
+                    router.push({path: '/'});
                 }
             })
             .catch(e => {
                 if (e.response.status == 422) {
-                    state.errors = e.response.data.errors;
+                    state.errors.register = e.response.data.errors;
                     state.message = "";
                 }
             });
@@ -47,12 +50,12 @@ const actions = {
             .then((response) => {
                 state.user = response.data.user;
                 state.loggedin = response.data.loggedin;
-                state.message = response.data.message;
-                console.log('logged in');
+                state.admin = response.data.isadmin;
+                state.messageDialog = response.data.message;
             })
             .catch(e => {
                 if (e.response.status == 422) {
-                    state.errors = e.response.data.errors;
+                    state.errors.login = e.response.data.errors;
                     state.message = "";
                 }
             });
@@ -61,21 +64,19 @@ const actions = {
         axios
             .post("/auth/logout")
             .then((response) => {
-                console.log('logged out');
             })
             .catch(e => {
                 console.error(e);
             });
     },
-    getUser({
-        commit
-    }) {
+    getUser({commit}) {
         axios
             .get("/auth/current")
             .then(response => {
                 if (response.data != null) {
                     commit('setUser', response.data);
                     commit('setUserStatus', response.data);
+                    commit('setUserAdmin', response.data);
                 }
             });
     }
@@ -86,6 +87,9 @@ const mutations = {
     },
     setUserStatus(state, data) {
         state.loggedin = data.loggedin;
+    },
+    setUserAdmin(state, data) {
+        state.admin = data.isadmin;
     },
     setRegisterStep(state, data) {
         state.registerStep = data;

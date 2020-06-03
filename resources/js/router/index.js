@@ -28,7 +28,18 @@ const routes = [
     {
         component: Register,
         name: "register",
-        path: "/register"
+        path: "/register",
+        beforeEnter(to, from, next) {
+            axios
+            .get("/auth/current")
+            .then(response => {
+                if (!response.data.loggedin) {
+                    next();
+                } else {
+                    next('/');
+                }
+            });
+        }
     },
     {
         component: Campaign,
@@ -53,17 +64,48 @@ const routes = [
     {
         component: Profile,
         name: "profile",
-        path: "/profile"
+        path: "/profile",
+        beforeEnter(to, from, next) {
+            axios
+            .get("/auth/current")
+            .then(response => {
+                if (response.data.loggedin) {
+                    next();
+                } else {
+                    next('/');
+                }
+            });
+        }
     },
     {
         component: Dashboard,
         name: "dashboard",
-        path: "/dashboard"
+        path: "/dashboard",
+        beforeEnter(to, from, next) {
+            axios
+            .get("/auth/current")
+            .then(response => {
+                if (response.data.isadmin) {
+                    next();
+                }
+            });
+        }
     },
     {
         component: Start,
         name: "start",
-        path: "/start"
+        path: "/start",
+        beforeEnter(to, from, next) {
+            axios
+            .get("/auth/current")
+            .then(response => {
+                if (response.data.loggedin) {
+                    next();
+                } else {
+                    next('/');
+                }
+            });
+        }
     }
 ];
 
@@ -72,5 +114,5 @@ export default new VueRouter({
     scrollBehavior (to, from, savedPosition) {
         return { x: 0, y: 0 }
     },
-    routes
+    routes,
 });

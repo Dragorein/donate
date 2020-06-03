@@ -1,6 +1,7 @@
 <template>
 <v-app>
     <navbar/>
+    <alert :message="message" color="green lighten-5" colorIcon="success" colorText="success--text" v-if="message"/>
 
     <main class="h-100">
         <div class="fluid">
@@ -161,13 +162,8 @@
 
 <script>
     export default {
-        data () {
-        return {
-        dialog: false,
-         }
-    },
         data: () => ({
-
+            dialog: false,
             items: [
                 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
                 'https://cdn.vuetifyjs.com/images/cards/house.jpg',
@@ -184,6 +180,13 @@
             ],
             submissions: []
         }),
+        computed: {
+            message: {
+                get() {
+                    return this.$store.state.user.message;
+                }
+            }
+        },
         created() {
             this.loadData();
         },

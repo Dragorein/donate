@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class DonationController extends Controller
 {
@@ -27,6 +28,9 @@ class DonationController extends Controller
             'donation_phone' => $request->phoneNumber,
             'donation_nominal' => $request->amount,
             'donation_is_anonymous' => "1",
+            'payment_type' => "BCA",
+            'created_at' => Carbon::now()->DateTimeZone('Asia/Jakarta'),
+            'updated_at' => Carbon::now()->DateTimeZone('Asia/Jakarta'),
         ]);
 
         if($data)
@@ -37,28 +41,11 @@ class DonationController extends Controller
                 'submisi_terkumpul' => $data_baru
             ]);
             if($update){
-                $sql = array(
-                    DB::raw('t_donations.donation_id')
-                );
-                $data_donations = DB::table('t_donations')
-                        ->select($sql)
-                        ->orderByDesc('donation_id')
-                        ->limit(1)
-                        ->get();
-                if($data_donations)
-                {
-                    $data_payment = DB::table('t_payment')->insert([
-                        'donation_id' => $data_donations[0]->donation_id,
-                        'payment_type' => "BCA",
-                        'payment_va_number' => "0000000000000",
-                        'payment_is_lunas' => "1" ,
-                    ]);
-                    if($data_payment && $data && $update && $data_donations){
-                        DB::commit();
-                        return 'OK';
-                    }else{
-                        DB::rollBack();
-                    }
+                if($data && $update){
+                    DB::commit();
+                    return 'OK';
+                }else{
+                    DB::rollBack();
                 }
             }
         }
@@ -72,11 +59,10 @@ class DonationController extends Controller
             DB::raw('t_submissions.submisi_judul'),
             DB::raw('t_submissions.submisi_penerima'),
             DB::raw('t_donations.donation_nominal'),
-            DB::raw('t_payment.payment_type'),
+            DB::raw('t_donations.payment_type'),
             DB::raw('m_user.user_name'),
         );
         $data = DB::table('t_donations')
-                ->join('t_payment', 't_payment.donation_id', '=', 't_donations.donation_id')
                 ->join('t_submissions', 't_submissions.submisi_id', '=', 't_donations.submisi_id')
                 ->join('m_user', 't_submissions.user_id', '=', 'm_user.user_id')
                 ->select($sql)

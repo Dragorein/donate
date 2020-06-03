@@ -11,14 +11,13 @@ class UserController extends Controller
 {
     public function register(Request $request)
     {
-        // dd ($request);
         if($request->step == 1) {
             $request->validate([
                 'firstName' => 'required|string',
                 'lastName' => 'required|string',
-                'phoneNumber' => 'required|numeric',
+                'phoneNumber' => 'required|numeric|min:10',
                 'email' => 'required|email|unique:App\User,user_mail',
-                'image' => 'required',
+                'image' => '',
             ]);
 
             return response(['response' => 'continue']);;
@@ -29,24 +28,34 @@ class UserController extends Controller
                 'firstName' => 'required|string',
                 'lastName' => 'required|string',
                 'phoneNumber' => 'required|numeric|min:10',
-                'email' => 'required|email',
-                'image' => 'required',
+                'email' => 'required|email|unique:App\User,user_mail',
+                'image' => '',
                 'password' => 'required|min:4|required_with:confirmPassword|same:confirmPassword',
                 'confirmPassword' => 'min:4',
             ]);
-
+            
+            
             $userRegister = new User;
-            $userRegister->user_name = $request->firstName.' '.$request->lastName;
+            $userRegister->user_name = ucfirst($request->firstName).' '.ucfirst($request->lastName);
             $userRegister->user_mail = $request->email;
             $userRegister->user_token = $request->token;
             $userRegister->user_phone = $request->phoneNumber;
-            $userRegister->user_foto = $request->file('image')->getClientOriginalName();
             $userRegister->user_password = bcrypt($request->password);
             $userRegister->user_is_active = 1;
+            
+            $file = $request -> file('image');
+
+            if ($file == null) {
+                $userRegister ->user_foto = 'default.png';
+            }else {
+                $ext = $request->file('image')->getClientOriginalExtension();
+                $current_timestamp = now()->timestamp;
+                $imageFile = $current_timestamp.'.'.$ext;
+                $userRegister->user_foto = $imageFile;
+                $request->file('image')->storeAs('profile', $current_timestamp.'.'.$ext);
+            }
 
             $userRegister -> save();
-
-            $request->file('image')->storeAs('profile', $request->file('image')->getClientOriginalName());
 
             return response(['response' => 'success', 'message' => 'Registrasi akun berhasil!']);
         }
@@ -66,10 +75,14 @@ class UserController extends Controller
         }
 
         $userId = Auth::user()->user_id;
-        User::find($userId)->update(['user_token' => $userLoggingIn['token']]);
-        Session::put('user', User::find($userId));
+        $userData = User::find($userId);
+        $userData->update(['user_token' => $userLoggingIn['token']]);
+        Session::put('user', $userData);
         Session::put('loggedin', true);
-        return response(['user' => Session::get('user'), 'loggedin' => Session::get('loggedin')]);
+        if($userData->user_is_admin == 1) {
+            Session::put('isadmin', true);
+        }
+        return response(['user' => Session::get('user'), 'loggedin' => Session::get('loggedin'), 'isadmin' => Session::has('isadmin')]);
     }
 
     public function logout()
@@ -82,7 +95,6 @@ class UserController extends Controller
         if (!Session::has('loggedin')) {
             return response(['user' => '', 'loggedin' => false]);
         }
-
-        return response(['user' => Session::get('user'), 'loggedin' => Session::get('loggedin')]);
+        return response(['user' => Session::get('user'), 'loggedin' => Session::get('loggedin'), 'isadmin' => Session::has('isadmin')]);
     }
 }

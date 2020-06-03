@@ -22,7 +22,6 @@ class CreateTSubmissions extends Migration
             $table->text('submisi_cerita');
             $table->string('submisi_phone', 255);
             $table->string('submisi_tipe', 255);
-            $table->string('submisi_hub_relasi', 255);
             $table->integer('submisi_target');
             $table->integer('submisi_terkumpul');
             $table->string('submisi_foto', 255);

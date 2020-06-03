@@ -84,22 +84,20 @@ export default {
   },
   methods: {
     callSubmit() {
-      let temp = this.$data.register
+      let temp = this.$data.register;
 
-      let formData = new FormData()
-      formData.append('firstName', temp.firstName)
-      formData.append('lastName', temp.lastName)
-      formData.append('email', temp.email)
-      formData.append('phoneNumber', temp.phoneNumber)
-      formData.append('image', temp.image)
-      formData.append('password', temp.password)
-      formData.append('confirmPassword', temp.confirmPassword)
-      formData.append('token', temp.csrf)
-      formData.append('step', this.$store.state.user.registerStep)
+      let formData = new FormData();
+      formData.append('firstName', temp.firstName);
+      formData.append('lastName', temp.lastName);
+      formData.append('email', temp.email);
+      formData.append('phoneNumber', temp.phoneNumber);
+      formData.append('image', temp.image);
+      formData.append('password', temp.password);
+      formData.append('confirmPassword', temp.confirmPassword);
+      formData.append('token', temp.csrf);
+      formData.append('step', this.$store.state.user.registerStep);
 
-      console.log(formData)
-
-      this.$store.dispatch("user/register", formData)
+      this.$store.dispatch("user/register", formData);
     },
     changeStep(step) {
       this.$store.commit("user/setRegisterStep", step);

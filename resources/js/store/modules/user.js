@@ -30,6 +30,10 @@ const actions = {
                 } else if (response.data.response == 'success') {
                     state.message = response.data.message;
                     router.push({path: '/'});
+                    setTimeout(() => {
+                        state.message = "";
+                        state.messageDialog = "";
+                    }, 4050);
                 }
             })
             .catch(e => {

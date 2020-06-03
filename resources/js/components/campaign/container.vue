@@ -23,7 +23,7 @@
                         <v-hover v-slot:default="{ hover }">
                             
                             <v-card @click="reroutes('/campaign/'+submisi.submisi_id)" :elevation="hover ? 24 : 6" class="my-4 card-transform">
-                                <v-img :src="'/picture/' + submisi.submisi_foto" height="200px"></v-img>
+                                <v-img :src="'/storage/submission/'+submisi.submisi_foto" height="200px"></v-img>
 
                                 <v-card-title v-text="submisi.submisi_judul"></v-card-title>
 
@@ -81,18 +81,18 @@
         },
         methods: {
             loadData() {
-            axios.get("/api/").then(response => {
-                this.submisis = response.data.data;
-                this.length = response.data.last_page;
-                this.list = response.data;
-            });
+                axios.get("/api/").then(response => {
+                    this.submisis = response.data.data;
+                    this.length = response.data.last_page;
+                    this.list = response.data;
+                });
             },
             getDataPage(id) {
-            axios.get("/api?page="+id).then(response => {
-                this.list = response.data;
-                this.submisis = response.data.data;
-                this.length = response.data.last_page;
-            });
+                axios.get("/api?page="+id).then(response => {
+                    this.list = response.data;
+                    this.submisis = response.data.data;
+                    this.length = response.data.last_page;
+                });
             },
             reroutes: function (url) {
                 this.$router.push({ path: url });

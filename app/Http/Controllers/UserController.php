@@ -52,7 +52,7 @@ class UserController extends Controller
                 $current_timestamp = now()->timestamp;
                 $imageFile = $current_timestamp.'.'.$ext;
                 $userRegister->user_foto = $imageFile;
-                $request->file('image')->storeAs('profile', $current_timestamp.'.'.$ext);
+                $request->file('image')->storeAs('public/profile', $current_timestamp.'.'.$ext);
             }
 
             $userRegister -> save();

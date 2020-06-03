@@ -130,7 +130,7 @@ class SubmissionController extends Controller
     
             $t_submissions -> save();
 
-            $request->file('image')->storeAs('submission', $current_timestamp.'.'.$ext);
+            $request->file('image')->storeAs('public/submission', $current_timestamp.'.'.$ext);
     
             return response(['response' => 'success', 'message' => 'Pembuatan galang dana berhasil!']);
         }

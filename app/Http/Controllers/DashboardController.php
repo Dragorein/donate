@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Submission;
 use App\Donation;
+use App\Withdraw;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -35,8 +36,8 @@ class DashboardController extends Controller
             else
                 $campaigns[$key]['submisi_is_active'] = 'tidak aktif';
 
-            $campaigns[$key]['submisi_created_at'] = $campaigns[$key]['created_at']->format('d-m-Y');
-            $campaigns[$key]['submisi_updated_at'] = $campaigns[$key]['updated_at']->format('d-m-Y');
+            $campaigns[$key]['submisi_created_at'] = $campaigns[$key]['created_at']->format('d-m-Y H:i:s');
+            $campaigns[$key]['submisi_updated_at'] = $campaigns[$key]['updated_at']->format('d-m-Y H:i:s');
         }
 
         $total_campaigns = $this->currency($total_campaigns);
@@ -56,12 +57,34 @@ class DashboardController extends Controller
             else
                 $donations[$key]['user_id'] = 'terdaftar';
 
-            $donations[$key]['donation_created_at'] = $donations[$key]['created_at']->format('d-m-Y');
-            $donations[$key]['donation_updated_at'] = $donations[$key]['updated_at']->format('d-m-Y');
+            $donations[$key]['donation_created_at'] = $donations[$key]['created_at']->format('d-m-Y H:i:s');
+            $donations[$key]['donation_updated_at'] = $donations[$key]['updated_at']->format('d-m-Y H:i:s');
                 
         }
 
-        $users = User::all();
+        $withdraws = Withdraw::with('submission')->with('user')->orderBy('withdraw_is_approved', 'asc')->get();
+
+        $total_unapproved_withdraws = 0;
+
+        foreach($withdraws as $key => $value)
+        {
+            $withdraws[$key]['withdraw_nominal'] = $this->currency($withdraws[$key]['withdraw_nominal']);
+
+            if($withdraws[$key]['withdraw_is_approved'] == 1)
+                $withdraws[$key]['withdraw_is_approved'] = 'Disetujui';
+            else if($withdraws[$key]['withdraw_is_approved'] == 2)
+                $withdraws[$key]['withdraw_is_approved'] = 'Ditolak';
+            else {
+                $total_unapproved_withdraws += 1;
+                $withdraws[$key]['withdraw_is_approved'] = 'Menunggu Persetujuan';
+            }
+
+            $withdraws[$key]['withdraw_created_at'] = $withdraws[$key]['created_at']->format('d-m-Y H:i:s');
+            $withdraws[$key]['withdraw_updated_at'] = $withdraws[$key]['updated_at']->format('d-m-Y H:i:s');
+                
+        }
+
+        $users = User::orderBy('user_is_admin', 'desc')->get();
         foreach($users as $key => $value)
         {
             if($users[$key]['user_is_admin'] == 1)
@@ -70,21 +93,16 @@ class DashboardController extends Controller
                 $users[$key]['user_is_admin'] = 'user';
 
             if($users[$key]['user_is_active'] == 1)
-                $users[$key]['user_is_admin'] = 'aktif';
+                $users[$key]['user_is_active'] = 'aktif';
             else
                 $users[$key]['user_is_active'] = 'tidak aktif';
 
-            $users[$key]['user_created_at'] = $users[$key]['created_at']->format('d-m-Y');
-            $users[$key]['user_updated_at'] = $users[$key]['updated_at']->format('d-m-Y');
+            $users[$key]['user_created_at'] = $users[$key]['created_at']->format('d-m-Y H:i:s');
+            $users[$key]['user_updated_at'] = $users[$key]['updated_at']->format('d-m-Y H:i:s');
                 
         }
 
-        return response(['campaigns' => $campaigns, 'totalCampaigns' => $total_campaigns, 'donations' => $donations, 'users' => $users]);
-    }
-
-    public function currency($data)
-    {
-        return 'Rp '.number_format($data,0,'.',',');
+        return response(['campaigns' => $campaigns, 'totalCampaigns' => $total_campaigns, 'donations' => $donations, 'withdraws' => $withdraws, 'needApprove' => $total_unapproved_withdraws, 'users' => $users]);
     }
 
     /**

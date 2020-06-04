@@ -105,7 +105,7 @@
 
                                         <v-list-item-content>
                                             <v-list-item-title>{{donation.donation_name}}</v-list-item-title>
-                                            <v-list-item-subtitle>{{'Donasi Rp' +donation.donation_nominal}}</v-list-item-subtitle>
+                                            <v-list-item-subtitle>{{'Donasi ' +donation.donation_nominal}}</v-list-item-subtitle>
                                         </v-list-item-content>
                                         </v-list-item>
                                     </template>

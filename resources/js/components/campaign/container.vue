@@ -34,7 +34,7 @@
                                 </v-card-text>
 
                                 <v-card-text class="d-flex justify-space-between">
-                                    <span><strong class="deep-orange--text title">{{submisi.total_donasi}}</strong> Terkumpul</span>
+                                    <span><strong class="deep-orange--text title">{{submisi.total_donasi}}</strong> Terkumpul <br/> {{'dari ' + submisi.target_donasi}}</span>
                                     <span><strong class="deep-orange--text title">{{submisi.day_left}}</strong> hari lagi</span>
                                 </v-card-text>
 

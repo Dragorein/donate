@@ -32,7 +32,7 @@
                 <v-container class="py-12 px-lg-12">
                     <h1 class="display-1 font-weight-bold text-center">Bantu siapa hari ini ?</h1>
                     <v-row>
-                        <v-col v-for="submission in submissions.data" v-if="submission.kekurangan_donasi < 2" :key="submission.submission_id" cols="12" sm="6" md="4">
+                        <v-col v-for="submission in submissions.data" :key="submission.submission_id" cols="12" sm="6" md="4">
                         <v-hover v-slot:default="{ hover }">
                             <v-card @click="reroutes('/campaign/'+submission.submisi_id)" :elevation="hover ? 24 : 6" class="my-4 card-transform">
                                 <v-img :src="'/storage/submission/' + submission.submisi_foto" height="200px"></v-img>
@@ -46,7 +46,7 @@
                                 </v-card-text>
 
                                 <v-card-text class="d-flex justify-space-between">
-                                    <span><strong class="deep-orange--text title">{{submission.total_donasi}}</strong> Terkumpul</span>
+                                    <span><strong class="deep-orange--text title">{{submission.total_donasi}}</strong> Terkumpul <br/> {{'dari ' + submission.target_donasi}}</span>
                                     <span><strong class="deep-orange--text title">{{submission.day_left}}</strong> hari lagi</span>
                                 </v-card-text>
 
@@ -88,7 +88,7 @@
                                 </v-card-text>
 
                                 <v-card-text class="d-flex justify-space-between">
-                                    <span><strong class="deep-orange--text title">{{submission.total_donasi}}</strong> Terkumpul</span>
+                                    <span><strong class="deep-orange--text title">{{submission.total_donasi}}</strong> Terkumpul <br/> {{'dari ' + submission.target_donasi}}</span>
                                     <span><strong class="deep-orange--text title">{{submission.day_left}}</strong> hari lagi</span>
                                 </v-card-text>
 

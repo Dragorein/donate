@@ -37,8 +37,8 @@
 
                             <v-col cols="12" md="6" lg="3">
                                 <v-alert border="left" icon="mdi-chat-alert" prominent colored-border color="yellow lighten-1" class="py-0">
-                                    <v-card-title class="subtitle-1">Notifikasi</v-card-title>
-                                    <v-card-subtitle class="headline font-weight-bold">12</v-card-subtitle>
+                                    <v-card-title class="subtitle-1">Butuh Persetujuan</v-card-title>
+                                    <v-card-subtitle class="headline font-weight-bold">{{needApprove}}</v-card-subtitle>
                                 </v-alert>
                             </v-col>
                         </v-row>
@@ -107,6 +107,20 @@
                                 <v-text-field v-model="search" append-icon="mdi-magnify" label="Search" single-line hide-details></v-text-field>
                             </v-card-title>
                             <v-data-table :headers="withdrawsHeaders" :items="withdraws" :search="search">
+                                <template v-slot:item.actions="{ item }">
+                                    <v-tooltip top>
+                                        <template v-slot:activator="{ on }">
+                                            <v-icon small color="green mr-2" v-on="on" @click="editItem(item)">mdi-checkbox-marked</v-icon>
+                                        </template>
+                                        <span>Setujui pencairan</span>
+                                    </v-tooltip>
+                                    <v-tooltip top>
+                                        <template v-slot:activator="{ on }">
+                                            <v-icon small color="red mr-2" v-on="on" @click="deleteItem(item)">mdi-close-box</v-icon>
+                                        </template>
+                                        <span>Tolak pencairan</span>
+                                    </v-tooltip>
+                                </template>
                             </v-data-table>
                         </v-card>
                     </template>
@@ -149,6 +163,7 @@
             page: 'feeds',
             search: '',
             totalCampaigns: 'Rp 0',
+            needApprove: 0,
 
             campaigns: [],
             campaignHeaders: [
@@ -180,14 +195,13 @@
 
             withdraws: [],
             withdrawsHeaders: [
-                { text: 'Id', align: 'start', sortable: false, value: 'user_id' },
-                { text: 'Nama', value: 'user_name' },
-                { text: 'Email', value: 'user_mail' },
-                { text: 'No. Telepon', value: 'user_phone' },
-                { text: 'Akses', value: 'user_is_admin' },
-                { text: 'Status', value: 'user_is_active' },
-                { text: 'Dibuat', value: 'user_created_at' },
-                { text: 'Diperbarui', value: 'user_updated_at' },  
+                { text: 'Id', align: 'start', sortable: false, value: 'withdraw_id' },
+                { text: 'Submisi', value: 'submission.submisi_judul' },
+                { text: 'Nama', value: 'user.user_name' },
+                { text: 'Nominal', value: 'withdraw_nominal' },
+                { text: 'Status', value: 'withdraw_is_approved' },
+                { text: 'Dibuat', value: 'withdraw_created_at' },
+                { text: 'Diperbarui', value: 'withdraw_updated_at' },  
                 { text: 'Aksi', value: 'actions', sortable: false },
             ],
 
@@ -225,6 +239,8 @@
                     this.$data.campaigns = response.data.campaigns;
                     this.$data.totalCampaigns = response.data.totalCampaigns;
                     this.$data.donations = response.data.donations;
+                    this.$data.withdraws = response.data.withdraws;
+                    this.$data.needApprove = response.data.needApprove;
                     this.$data.users = response.data.users;
                 }
             });

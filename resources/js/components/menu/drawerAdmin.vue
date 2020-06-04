@@ -52,6 +52,7 @@
     export default {
         props: ['start'],
         data: () => ({
+            nama: '',
             currentPage: '',
             pages: [
                 {name:'feeds', icon:'mdi-apps', title:'Feeds', active:false},

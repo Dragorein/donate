@@ -71,7 +71,7 @@
                                         <span>Lihat penggalangan</span>
                                     </v-tooltip>
                                     <v-tooltip top>
-                                        <template v-slot:activator="{ on }">
+                                        <template v-slot:activator="{ on }" v-if="item.submisi_is_active == 'aktif'">
                                             <v-icon small color="orange mr-2" v-on="on" @click="deleteItem(item)">mdi-close-box</v-icon>
                                         </template>
                                         <span>Tutup penggalangan</span>
@@ -108,13 +108,13 @@
                             </v-card-title>
                             <v-data-table :headers="withdrawsHeaders" :items="withdraws" :search="search">
                                 <template v-slot:item.actions="{ item }">
-                                    <v-tooltip top>
+                                    <v-tooltip top v-if="item.withdraw_is_approved == 'menunggu persetujuan'">
                                         <template v-slot:activator="{ on }">
                                             <v-icon small color="green mr-2" v-on="on" @click="editItem(item)">mdi-checkbox-marked</v-icon>
                                         </template>
                                         <span>Setujui pencairan</span>
                                     </v-tooltip>
-                                    <v-tooltip top>
+                                    <v-tooltip top v-if="item.withdraw_is_approved == 'menunggu persetujuan'">
                                         <template v-slot:activator="{ on }">
                                             <v-icon small color="red mr-2" v-on="on" @click="deleteItem(item)">mdi-close-box</v-icon>
                                         </template>

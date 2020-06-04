@@ -4,7 +4,7 @@
         <v-list>
             <v-list-item link two-line dense class="px-2" @click="reroutes('/profile')">
                 <v-list-item-avatar>
-                    <v-img src="https://randomuser.me/api/portraits/women/85.jpg"></v-img>
+                    <v-img :src="'/storage/profile/'+currentUser.user_foto"></v-img>
                 </v-list-item-avatar>
                 <v-list-item-content>
                     <v-list-item-title class="title">{{currentUser.user_name}}</v-list-item-title>

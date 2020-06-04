@@ -71,12 +71,12 @@ class DashboardController extends Controller
             $withdraws[$key]['withdraw_nominal'] = $this->currency($withdraws[$key]['withdraw_nominal']);
 
             if($withdraws[$key]['withdraw_is_approved'] == 1)
-                $withdraws[$key]['withdraw_is_approved'] = 'Disetujui';
+                $withdraws[$key]['withdraw_is_approved'] = 'disetujui';
             else if($withdraws[$key]['withdraw_is_approved'] == 2)
-                $withdraws[$key]['withdraw_is_approved'] = 'Ditolak';
+                $withdraws[$key]['withdraw_is_approved'] = 'ditolak';
             else {
                 $total_unapproved_withdraws += 1;
-                $withdraws[$key]['withdraw_is_approved'] = 'Menunggu Persetujuan';
+                $withdraws[$key]['withdraw_is_approved'] = 'menunggu persetujuan';
             }
 
             $withdraws[$key]['withdraw_created_at'] = $withdraws[$key]['created_at']->format('d-m-Y H:i:s');

@@ -19,6 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/','SubmissionController@all');
+Route::get('/getProfileInformation/{id}','ProfileController@get_history_submision_donation');
 Route::get('/DataSubmision/{id}','SubmissionController@show_campaign_detail');
 Route::post('/donation', 'DonationController@Donations');
 Route::get('/informationpayment', 'DonationController@information_donation');

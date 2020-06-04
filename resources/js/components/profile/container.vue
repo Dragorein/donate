@@ -12,10 +12,10 @@
                                 <v-card-text>
                                     <div class="d-flex align-center mx-4 mr-md-0">
                                         <v-avatar size="96" left>
-                                            <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John">
+                                            <img :src="currentUser.user_photo">
                                         </v-avatar>
                                         <div class="mx-3">
-                                            <v-card-title class="headline font-weight-bold pb-6">John<v-icon right color="green">mdi-check-circle mdi-18px</v-icon></v-card-title>
+                                            <v-card-title class="headline font-weight-bold pb-6">{{currentUser.user_name}}<v-icon right color="green">mdi-check-circle mdi-18px</v-icon></v-card-title>
                                             <v-card-subtitle>Identitas terverifikasi</v-card-subtitle>
                                         </div>
                                     </div>
@@ -66,16 +66,16 @@
                                 <v-card-title>Penggalangan Aktif</v-card-title>
                                 <v-card-subtitle>Menampilkan semua penggalangan dana-mu yang sedang aktif.</v-card-subtitle>
                                 <v-list two-line>
-                                    <template v-for="active in actives">
-                                        <v-list-item @click="reroutes('/campaign/detail')">
+                                    <template v-for="active in submisisactive">
+                                        <v-list-item @click="reroutes('/campaign/'+active.submisi_id)">
                                             <v-list-item-avatar tile size="70" width="120">
-                                                <v-img :src="active.src"></v-img>
+                                                <v-img :src="'/picture/'+active.submisi_foto"></v-img>
                                             </v-list-item-avatar>
                                             
                                             <v-list-item-content>
-                                                <v-list-item-title v-html="active.title"></v-list-item-title>
+                                                <v-list-item-title v-html="active.submisi_judul"></v-list-item-title>
                                                 <v-list-item-subtitle>Aktif</v-list-item-subtitle>
-                                                <v-list-item-subtitle v-html="active.daysleft + ' hari lagi'"></v-list-item-subtitle>
+                                                <v-list-item-subtitle v-html="active.sisa_hari + ' hari lagi'"></v-list-item-subtitle>
                                             </v-list-item-content>
 
                                             <v-list-item-content>
@@ -89,14 +89,14 @@
                                 <v-card-title>Riwayat Penggalangan</v-card-title>
                                 <v-card-subtitle>Menampilkan semua riwayat penggalangan dana yang sudah kamu buka, mulai dari yang aktif sampai yang sudah tutup.</v-card-subtitle>
                                 <v-list two-line>
-                                    <template v-for="card in cards">
-                                        <v-list-item @click="reroutes('/campaign/detail')">
+                                    <template v-for="history in submisishistory">
+                                        <v-list-item @click="reroutes('/campaign/'+history.submisi_id)">
                                             <v-list-item-avatar tile size="70" width="120">
-                                                <v-img :src="card.src"></v-img>
+                                                <v-img :src="'/picture/'+history.submisi_foto"></v-img>
                                             </v-list-item-avatar>
                                             
                                             <v-list-item-content>
-                                                <v-list-item-title v-html="card.title"></v-list-item-title>
+                                                <v-list-item-title v-html="history.submisi_judul"></v-list-item-title>
                                                 <v-list-item-subtitle>Ditutup</v-list-item-subtitle>
                                             </v-list-item-content>
                                         </v-list-item>
@@ -108,15 +108,15 @@
                                 <v-card-title>Riwayat Donasi</v-card-title>
                                 <v-card-subtitle>Menampilkan semua riwayat donasi yang telah kamu salurkan.</v-card-subtitle>
                                 <v-list two-line>
-                                    <template v-for="card in cards">
-                                        <v-list-item @click="reroutes('/campaign/detail')">
+                                    <template v-for="donation in donations">
+                                        <v-list-item @click="reroutes('/campaign/'+donation.submisi_id)">
                                             <v-list-item-avatar tile size="70" width="120">
-                                                <v-img :src="card.src"></v-img>
+                                                <v-img :src="'/picture/' +donation.submisi_foto"></v-img>
                                             </v-list-item-avatar>
                                             
                                             <v-list-item-content>
-                                                <v-list-item-title v-html="card.title"></v-list-item-title>
-                                                <v-list-item-subtitle v-html="'Dibuka oleh ' + card.author + ' - ' + card.raised"></v-list-item-subtitle>
+                                                <v-list-item-title v-html="donation.submisi_judul"></v-list-item-title>
+                                                <v-list-item-subtitle v-html="'Dibuka oleh ' + donation.user_name + ' - ' + donation.sisa_hari+' hari lagi'"></v-list-item-subtitle>
                                             </v-list-item-content>
                                         </v-list-item>
                                     </template>
@@ -137,12 +137,12 @@
                                         </div>
                                         <v-file-input label="Foto Profil" prepend-icon="" prepend-inner-icon="mdi-paperclip" outlined clearable/>
                                         <v-divider/>
-                                        <v-text-field label="Nama Depan" name="firstname" prepend-inner-icon="person" type="text" value="John" :rules="firstnameRules" required outlined clearable/>
-                                        <v-text-field label="Nama Belakang" name="lastname" prepend-inner-icon="person" type="text" value="Tanaka" :rules="lastnameRules" required outlined clearable/>
-                                        <v-text-field label="Email" name="email" prepend-inner-icon="mail" type="text" value="John@gmail.com" :rules="emailRules" required outlined clearable/>
-                                        <v-text-field label="Nomor Handphone" name="noHandphone" prepend-inner-icon="phone" value="08955128756" type="text" :rules="noHandphoneRules" :counter="14" required outlined clearable/>
+                                        <v-text-field label="Nama Depan" name="firstname" prepend-inner-icon="person" type="text" v-model="update.firstName"  required outlined clearable/>
+                                        <v-text-field label="Nama Belakang" name="lastname" prepend-inner-icon="person" type="text" v-model="update.lastName"  required outlined clearable/>
+                                        <v-text-field label="Email" name="email" prepend-inner-icon="mail" type="text" v-model="update.email"  required outlined clearable/>
+                                        <v-text-field label="Nomor Handphone" name="noHandphone" prepend-inner-icon="phone" v-model="update.phoneNumber" type="text" :counter="14" required outlined clearable/>
                                         <v-divider/>
-                                        <v-btn color="error" class="mr-2">Ganti</v-btn>
+                                        <v-btn color="error" class="mr-2"  @click="callSubmitUpdateProfile()">Ganti</v-btn>
                                         <v-btn text class="mr-2">Batal</v-btn>
                                     </v-container>
                                 </v-form>
@@ -152,11 +152,11 @@
                                 <v-card-subtitle></v-card-subtitle>
                                 <v-form>
                                     <v-container class="px-12 pb-12">
-                                            <v-text-field id="password" label="Password Saat Ini" name="password" prepend-inner-icon="mdi-lock-question" type="password" :rules="passwordRules" required outlined clearable/>
-                                            <v-text-field id="password" label="Password Baru" name="password" prepend-inner-icon="mdi-lock-open" type="password" :rules="passwordRules" required outlined clearable/>
-                                            <v-text-field id="passwordconfirm" label="Ketik Ulang Password Baru" name="passwordconfirm" prepend-inner-icon="lock" type="password" :rules="passwordRules" required outlined clearable/>
+                                            <v-text-field id="oldpassword" label="Password Saat Ini" name="oldpassword" prepend-inner-icon="mdi-lock-question" v-model="updatePassword.oldpassword" type="password" required outlined clearable/>
+                                            <v-text-field id="newpassword" label="Password Baru" name="newpassword" prepend-inner-icon="mdi-lock-open" type="password" v-model="updatePassword.newpassword" required outlined clearable/>
+                                            <v-text-field id="passwordconfirm" label="Ketik Ulang Password Baru" name="passwordconfirm" prepend-inner-icon="lock" type="password" v-model="updatePassword.confirmpassword" required outlined clearable/>
                                         <v-divider/>
-                                        <v-btn color="error" class="mr-2">Ganti</v-btn>
+                                        <v-btn color="error" @click=" callSubmitUpdatePassword()" class="mr-2">Ganti</v-btn>
                                         <v-btn text class="mr-2">Batal</v-btn>
                                     </v-container>
                                 </v-form>
@@ -175,36 +175,127 @@
 <script>
     export default {
         data: () => ({
-            actives: [
-                {title:'Best airlines', src:'https://cdn.vuetifyjs.com/images/cards/plane.jpg', author:'Tommy', progress:60, raised:'Rp 16.251.026', daysleft:'23'},
-                {title:'Supermodel', src:'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg', author:'Louise', progress:50, raised:'Rp 3.003.132', daysleft:'30'},
-            ],
-            cards: [
-                {title:'Supermodel', src:'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg', author:'Louise', progress:50, raised:'Rp 3.003.132', daysleft:'30'},
-                {title:'Halcyon Days', src:'https://cdn.vuetifyjs.com/images/cards/house.jpg', author:'Danny', progress:80, raised:'Rp 5.012.500', daysleft:'3'},
-                {title:'Top western road trips', src:'https://cdn.vuetifyjs.com/images/cards/docks.jpg', author:'Rachel', progress:5, raised:'Rp 176.320', daysleft:'56'},
-                {title:'Unlimited music now', src:'https://cdn.vuetifyjs.com/images/cards/halcyon.png', author:'Ellie', progress:100, raised:'Rp 152.901.000', daysleft:'1'},
-                {title:'Best airlines', src:'https://cdn.vuetifyjs.com/images/cards/plane.jpg', author:'Tommy', progress:60, raised:'Rp 16.251.026', daysleft:'23'},
-                {title:'Supermodel', src:'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg', author:'Louise', progress:50, raised:'Rp 3.003.132', daysleft:'30'},
-            ],
-
+            actives: [],
+            submisishistory: [],
+            submisisactive: [],
+            donations:[],
+            update: {
+                id:0,
+                firstName: "",
+                lastName: "",
+                email: "",
+                phoneNumber: "",
+                image: undefined,
+                csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+            },
+            updatePassword: {
+                id:0,
+                oldpassword: "",
+                newpassword: "",
+                confirmpassword: "",
+                csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+            },
             length: 2,
             nextIcon: 'navigate_next',
             prevIcon: 'navigate_before',
             page: 1,
             totalVisible: 10,
-
             valid: true,
-            firstnameRules: [v => !!v || "First Name is required"],
-            lastnameRules: [v => !!v || "Last Name is required"],
-            emailRules: [v => !!v || "E-mail is required"],
-            noHandphoneRules: [
-                v => !!v || "No.Handphone is required",
-                v => v && v.length <= 14
-            ],
-            passwordRules: [v => !!v || "Password is required"],
         }),
+         computed: {
+            loggedin: {
+                get() {
+                    return this.$store.state.user.loggedin;
+                }
+            },
+            currentUser: {
+                get() {
+                    return this.$store.state.user.user;
+                    this.loadData();
+                }
+            },
+            errors: {
+                get() {
+                    return this.$store.state.user.errors;
+                }
+            },
+            message: {
+                get() {
+                    return this.$store.state.user.messageDialog;
+                }
+            }
+        },
+        watch: {
+            currentUser:function (value) {
+                this.$data.update.firstName = this.currentUser.user_name.split(" ")[0];
+                this.$data.update.lastName = this.currentUser.user_name.split(" ")[1];
+                this.$data.update.phoneNumber = this.currentUser.user_phone;
+                this.$data.update.email = this.currentUser.user_mail;
+                this.$data.update.id = this.currentUser.user_id;
+                this.$data.updatePassword.id = this.currentUser.user_id;
+                this.loadData(this.currentUser.user_id);
+            }
+        },
         methods: {
+            callSubmitUpdateProfile() {
+                let temp = this.$data.update
+                let formData = new FormData()
+                formData.append('id', temp.id)
+                formData.append('firstName', temp.firstName)
+                formData.append('lastName', temp.lastName)
+                formData.append('email', temp.email)
+                formData.append('phoneNumber', temp.phoneNumber)
+                formData.append('image', temp.image)
+                formData.append('token', temp.csrf)
+                console.log(temp.firstName)
+                axios
+                .post("/auth/updateProfile", formData, {
+                    headers: {
+                        'accept': 'application/json',
+                        'Accept-Language': 'en-US,en;q=0.8',
+                        'Content-Type': `multipart/form-data`,
+                    }
+                })
+                .then(data => {
+                    console.log(data);
+                })
+                .catch(e => {
+                    console.error(e);
+                })
+            },
+            callSubmitUpdatePassword() {
+                let temp = this.$data.updatePassword
+                let formData = new FormData()
+                formData.append('id', temp.id)
+                formData.append('oldpassword', temp.oldpassword)
+                formData.append('newpassword', temp.newpassword)
+                formData.append('confirmpassword', temp.confirmpassword)
+                formData.append('email', this.currentUser.user_mail)
+                formData.append('token', temp.csrf)
+                console.log(formData)
+                axios
+                .post("/auth/ChangePassword", formData, {
+                    headers: {
+                        'accept': 'application/json',
+                        'Accept-Language': 'en-US,en;q=0.8',
+                        'Content-Type': `multipart/form-data`,
+                    }
+                })
+                .then(data => {
+                    // this.$router.push({ path: '/profile' });
+                    console.log(data);
+                })
+                .catch(e => {
+                    console.error(e);
+                })
+            },
+            loadData(id) {
+                axios.get("/api/getProfileInformation/"+id).then(response => {
+                    this.donations = response.data.donations;
+                    this.submisishistory = response.data.submissionhistory;
+                    this.submisisactive = response.data.submissionactive;
+                });
+            },
             reroutes: function (url) {
                 this.$router.push({ path: url });
             }

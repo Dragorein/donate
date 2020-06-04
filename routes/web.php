@@ -33,6 +33,8 @@ Route::get('/auth/current', 'UserController@currentUser');
 
 Route::get('/dashboard/all', 'DashboardController@index');
 Route::post('/user/start', 'SubmissionController@store');
+Route::post('/auth/updateProfile', 'ProfileController@update_profile');
+Route::post('/auth/ChangePassword', 'ProfileController@update_password');
 
 // Route::get('/Search', 'SearchController@index');
 

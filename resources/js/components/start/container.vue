@@ -16,9 +16,11 @@
                                         <v-form>
                                             <v-select prepend-inner-icon="mdi-file-document-box-check" :items="items" filled label="Pilih Kategori Yang Sesuai" v-model="submission.type" :error-messages="errors.submission.type" dense></v-select>
                                             <v-text-field label="Judul Penggalangan Dana" name="title" prepend-inner-icon="mdi-mastodon-variant" type="text" :counter="50" v-model="submission.title" :error-messages="errors.submission.title" required filled clearable/>
-                                            <v-text-field label="Target Donasi" name="target" prepend-inner-icon="mdi-cash" prefix="Rp." type="text" v-model="submission.target" :error-messages="errors.submission.target" required filled clearable/>
+                                            <hr/>
                                             <v-text-field label="Penerima Manfaat" name="recipient" prepend-inner-icon="mdi-account-heart" type="text" v-model="submission.recipient" :error-messages="errors.submission.recipient" required filled clearable/>
-                                            <v-text-field label="Cerita" name="story" prepend-inner-icon="mdi-chat-processing" type="text" :counter="255" v-model="submission.story" :error-messages="errors.submission.story" required filled clearable/>
+                                            <v-textarea label="Cerita" name="story" prepend-inner-icon="mdi-chat-processing" type="text" :counter="255" v-model="submission.story" :error-messages="errors.submission.story" required filled auto-grow clearable no-rezise></v-textarea>
+                                            <hr/>
+                                            <v-text-field label="Target Donasi" name="target" prepend-inner-icon="mdi-cash" prefix="Rp." type="text" v-model="submission.target" :error-messages="errors.submission.target" required filled clearable/>
                                             <v-menu ref="menu" v-model="menu" :close-on-content-click="false" :return-value.sync="submission.date" transition="scale-transition" offset-y min-width="290px">
                                                 <template v-slot:activator="{ on }">
                                                 <v-text-field v-model="date" label="Batas Waktu Penggalangan Dana" name="Waktu" prepend-inner-icon="event" readonly v-on="on" :error-messages="errors.submission.date" required filled></v-text-field>

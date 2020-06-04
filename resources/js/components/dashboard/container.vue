@@ -1,6 +1,7 @@
 <template>
 <v-app>
-    <drawer-admin :start="page" @pageChanged="page = $event"/>
+    <drawer-admin :start="page" @pageChanged="changePage($event)"/>
+    <alert :message="message" color="green lighten-5" colorIcon="success" colorText="success--text" v-if="message"/>
     
     <v-content class="bg-section-1">
         <div class="fluid">
@@ -66,19 +67,19 @@
                                 <template v-slot:item.actions="{ item }">
                                     <v-tooltip top>
                                         <template v-slot:activator="{ on }">
-                                            <v-icon small color="green mr-2" v-on="on" @click="editItem(item)">mdi-information</v-icon>
+                                            <v-icon small color="green mr-2" v-on="on" @click="reroutes('/campaign/'+item.submisi_id)">mdi-information</v-icon>
                                         </template>
                                         <span>Lihat penggalangan</span>
                                     </v-tooltip>
                                     <v-tooltip top>
                                         <template v-slot:activator="{ on }" v-if="item.submisi_is_active == 'aktif'">
-                                            <v-icon small color="orange mr-2" v-on="on" @click="deleteItem(item)">mdi-close-box</v-icon>
+                                            <v-icon small color="orange mr-2" v-on="on" @click="closeCampaign(item)">mdi-close-box</v-icon>
                                         </template>
                                         <span>Tutup penggalangan</span>
                                     </v-tooltip>
                                     <v-tooltip top>
                                         <template v-slot:activator="{ on }">
-                                            <v-icon small color="red mr-2" v-on="on" @click="deleteItem(item)">mdi-delete</v-icon>
+                                            <v-icon small color="red mr-2" v-on="on" @click="deleteCampaign(item)">mdi-delete</v-icon>
                                         </template>
                                         <span>Hapus penggalangan</span>
                                     </v-tooltip>
@@ -110,13 +111,13 @@
                                 <template v-slot:item.actions="{ item }">
                                     <v-tooltip top v-if="item.withdraw_is_approved == 'menunggu persetujuan'">
                                         <template v-slot:activator="{ on }">
-                                            <v-icon small color="green mr-2" v-on="on" @click="editItem(item)">mdi-checkbox-marked</v-icon>
+                                            <v-icon small color="green mr-2" v-on="on" @click="acceptWithdraw(item)">mdi-checkbox-marked</v-icon>
                                         </template>
                                         <span>Setujui pencairan</span>
                                     </v-tooltip>
                                     <v-tooltip top v-if="item.withdraw_is_approved == 'menunggu persetujuan'">
                                         <template v-slot:activator="{ on }">
-                                            <v-icon small color="red mr-2" v-on="on" @click="deleteItem(item)">mdi-close-box</v-icon>
+                                            <v-icon small color="red mr-2" v-on="on" @click="cancelWithdraw(item)">mdi-close-box</v-icon>
                                         </template>
                                         <span>Tolak pencairan</span>
                                     </v-tooltip>
@@ -136,13 +137,13 @@
                                 <template v-slot:item.actions="{ item }">
                                     <v-tooltip top>
                                         <template v-slot:activator="{ on }">
-                                            <v-icon small color="green mr-2" v-on="on" @click="editItem(item)">mdi-information</v-icon>
+                                            <v-icon small color="green mr-2" v-on="on" @click="">mdi-information</v-icon>
                                         </template>
                                         <span>Lihat pengguna</span>
                                     </v-tooltip>
                                     <v-tooltip top>
                                         <template v-slot:activator="{ on }">
-                                            <v-icon small color="red mr-2" v-on="on" @click="deleteItem(item)">mdi-delete</v-icon>
+                                            <v-icon small color="red mr-2" v-on="on" @click="deleteUser(item)">mdi-delete</v-icon>
                                         </template>
                                         <span>Hapus pengguna</span>
                                     </v-tooltip>
@@ -160,10 +161,11 @@
 <script>
     export default {
         data: () => ({
-            page: 'feeds',
             search: '',
             totalCampaigns: 'Rp 0',
             needApprove: 0,
+            message: '',
+            errors: {},
 
             campaigns: [],
             campaignHeaders: [
@@ -219,6 +221,11 @@
             ],
         }),
         computed: {
+            page: {
+                get() {
+                    return this.$store.state.user.dashPage;
+                }
+            },
             loggedin: {
                 get() {
                     return this.$store.state.user.loggedin;
@@ -231,27 +238,155 @@
             },
         },
         created() {
-            axios
-            .get("/dashboard/all")
-            .then(response => {
-            console.log(response.data);
-                if(response.data != null) {
-                    this.$data.campaigns = response.data.campaigns;
-                    this.$data.totalCampaigns = response.data.totalCampaigns;
-                    this.$data.donations = response.data.donations;
-                    this.$data.withdraws = response.data.withdraws;
-                    this.$data.needApprove = response.data.needApprove;
-                    this.$data.users = response.data.users;
-                }
-            });
-
+            this.loadData();
             this.$store.dispatch('user/getUser');
 
         },
         methods: {
             reroutes: function (url) {
                 this.$router.push({ path: url });
-            }
+            },
+            changePage(page) {
+                this.$store.commit('user/setDashboardPage', page)
+            },
+            loadData() {
+            axios
+                .get("/dashboard/all")
+                .then(response => {
+                    if(response.data != null) {
+                        this.$data.campaigns = response.data.campaigns;
+                        this.$data.totalCampaigns = response.data.totalCampaigns;
+                        this.$data.donations = response.data.donations;
+                        this.$data.withdraws = response.data.withdraws;
+                        this.$data.needApprove = response.data.needApprove;
+                        this.$data.users = response.data.users;
+                    }
+                });
+            },
+            closeCampaign(item) {
+                if(confirm('Apakah kamu yakin menutup galang dana ini?')) {
+                    axios
+                        .put("/dashboard/submission/close", {
+                            id: item.submisi_id
+                        })
+                        .then(response => {
+                            if (response.data.response == 'success') {
+                                var editedItem = item;
+                                editedItem.submisi_is_active = 'ditutup';
+                                Object.assign(this.campaigns[this.campaigns.indexOf(item)], this.editedItem);
+
+                                this.message = response.data.message;
+                                setTimeout(() => {
+                                    this.message = "";
+                                }, 4050);
+                            }
+                        })
+                        .catch(e => {
+                            if (e.response.status == 422) {
+                                this.errors = e.response.data.errors;
+                                this.message = "";
+                            }
+                        });
+                };
+            },
+            deleteCampaign(item) {
+                if(confirm('Apakah kamu yakin menghapus galang dana ini?')) {
+                    axios
+                        .delete("/dashboard/submission/destroy", {
+                            data: {id: item.submisi_id}
+                        })
+                        .then(response => {
+                            if (response.data.response == 'success') {
+                                const index = this.campaigns.indexOf(item);
+                                this.campaigns.splice(index, 1);
+                                this.loadData();
+                                this.message = response.data.message;
+                                setTimeout(() => {
+                                    this.message = "";
+                                }, 4050);
+                            }
+                        })
+                        .catch(e => {
+                            if (e.response.status == 422) {
+                                this.errors = e.response.data.errors;
+                                this.message = "";
+                            }
+                        });
+                };
+            },
+            deleteUser(item) {
+                if(confirm('Apakah kamu yakin menghapus pengguna ini?')) {
+                    axios
+                        .delete("/dashboard/user/destroy", {
+                            data: {id: item.user_id}
+                        })
+                        .then(response => {
+                            if (response.data.response == 'success') {
+                                const index = this.users.indexOf(item);
+                                this.users.splice(index, 1);
+                                this.loadData();
+                                this.message = response.data.message;
+                                setTimeout(() => {
+                                    this.message = "";
+                                }, 4050);
+                            }
+                        })
+                        .catch(e => {
+                            if (e.response.status == 422) {
+                                this.errors = e.response.data.errors;
+                                this.message = "";
+                            }
+                        });
+                };
+            },
+            acceptWithdraw(item) {
+                axios
+                    .put("/dashboard/withdraw/accept", {
+                        id: item.withdraw_id
+                    })
+                    .then(response => {
+                        if (response.data.response == 'success') {
+                            var editedItem = item;
+                            editedItem.withdraw_is_approved = 'disetujui';
+                            Object.assign(this.withdraws[this.withdraws.indexOf(item)], this.editedItem);
+
+                            this.message = response.data.message;
+                            setTimeout(() => {
+                                this.message = "";
+                            }, 4050);
+                        }
+                    })
+                    .catch(e => {
+                        if (e.response.status == 422) {
+                            this.errors = e.response.data.errors;
+                            this.message = "";
+                        }
+                    });
+            },
+            cancelWithdraw(item) {
+                axios
+                    .put("/dashboard/withdraw/decline", {
+                        id: item.withdraw_id
+                    })
+                    .then(response => {
+                        if (response.data.response == 'success') {
+                            var editedItem = item;
+                            editedItem.withdraw_is_approved = 'ditolak';
+                            Object.assign(this.withdraws[this.withdraws.indexOf(item)], this.editedItem);
+
+                            this.message = response.data.message;
+                            setTimeout(() => {
+                                this.message = "";
+                            }, 4050);
+                        }
+                    })
+                    .catch(e => {
+                        if (e.response.status == 422) {
+                            this.errors = e.response.data.errors;
+                            this.message = "";
+                        }
+                    });
+            },
         }
     }
 </script>

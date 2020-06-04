@@ -8,6 +8,8 @@ class Withdraw extends Model
 {
     protected $table = 't_withdraw';
 
+    protected $primaryKey = 'withdraw_id';
+
     protected $fillable = [
         'withdraw_id','submisi_id','user_id','withdraw_nominal','withdraw_bank_number','withdraw_is_approved','created_at','updated_at'
     ];

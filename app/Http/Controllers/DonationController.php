@@ -68,6 +68,9 @@ class DonationController extends Controller
                 ->orderByDesc('donation_id')
                 ->limit(1)
                 ->get();
+
+        $data[0]->donation_nominal = $this->currency($data[0]->donation_nominal);
+        
         return $data;
     }
 }

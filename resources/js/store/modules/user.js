@@ -5,6 +5,7 @@ const state = {
     user: {},
     loggedin: false,
     admin: false,
+    dashPage: 'feeds',
     registerStep: 1,
     submissionStep: 1,
     errors: {
@@ -130,6 +131,9 @@ const mutations = {
     },
     setUserAdmin(state, data) {
         state.admin = data.isadmin;
+    },
+    setDashboardPage(state, data) {
+        state.dashPage = data;
     },
     setRegisterStep(state, data) {
         state.registerStep = data;

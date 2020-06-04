@@ -14,7 +14,7 @@
                                     <v-list-item>
                                         <v-list-item-content>
                                             <v-list-item-title>Anda mendonasikan</v-list-item-title>
-                                            <v-list-item-subtitle>Rp {{donasi}}</v-list-item-subtitle>
+                                            <v-list-item-subtitle>{{donasi}}</v-list-item-subtitle>
                                         </v-list-item-content>
                                     </v-list-item>
                                     

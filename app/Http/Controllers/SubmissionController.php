@@ -87,10 +87,10 @@ class SubmissionController extends Controller
         if($request->step == 1) {
             $request->validate([
                 'type' => 'required|string',
-                'title' => 'required|string',
+                'title' => 'required|string|max:50',
                 'target' => 'required|numeric|min:1000000',
                 'recipient' => 'required|string',
-                'story' => 'required|string',
+                'story' => 'required|string|max:255',
                 'date' => 'required|date|after:now',
                 'image' => '',
                 'confirm' => '',
@@ -102,10 +102,10 @@ class SubmissionController extends Controller
         if($request->step == 2) {
             $request->validate([
                 'type' => 'required|string',
-                'title' => 'required|string',
+                'title' => 'required|string|max:50',
                 'target' => 'required|numeric|min:1000000',
                 'recipient' => 'required|string',
-                'story' => 'required|string',
+                'story' => 'required|string|max:255',
                 'date' => 'required|date|after:now',
                 'image' => 'required|mimes:jpg,jpeg,png',
                 'confirm' => '',
@@ -117,10 +117,10 @@ class SubmissionController extends Controller
         if($request->step == 3) {
             $request->validate([
                 'type' => 'required|string',
-                'title' => 'required|string',
+                'title' => 'required|string|max:50',
                 'target' => 'required|numeric|min:1000000',
                 'recipient' => 'required|string',
-                'story' => 'required|string',
+                'story' => 'required|string|max:255',
                 'date' => 'required|date|after:now',
                 'image' => 'required|mimes:jpg,jpeg,png',
                 'confirm' => 'required',

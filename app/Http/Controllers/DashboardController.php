@@ -10,11 +10,6 @@ use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $campaigns = Submission::with('user')->get();
@@ -34,7 +29,7 @@ class DashboardController extends Controller
             if($campaigns[$key]['submisi_is_active'] == 1)
                 $campaigns[$key]['submisi_is_active'] = 'aktif';
             else
-                $campaigns[$key]['submisi_is_active'] = 'tidak aktif';
+                $campaigns[$key]['submisi_is_active'] = 'ditutup';
 
             $campaigns[$key]['submisi_created_at'] = $campaigns[$key]['created_at']->format('d-m-Y H:i:s');
             $campaigns[$key]['submisi_updated_at'] = $campaigns[$key]['updated_at']->format('d-m-Y H:i:s');
@@ -105,69 +100,59 @@ class DashboardController extends Controller
         return response(['campaigns' => $campaigns, 'totalCampaigns' => $total_campaigns, 'donations' => $donations, 'withdraws' => $withdraws, 'needApprove' => $total_unapproved_withdraws, 'users' => $users]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function close_submission(Request $request)
     {
-        //
+        $submission_id = $request->id;
+        $submission = Submission::findOrFail($submission_id);
+        $submission->update(['submisi_is_active' => 0]);
+
+        return response(['response' => 'success', 'message' => 'Penutupan galang dana berhasil!']);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function destroy_submission(Request $request)
     {
-        //
+        $submission_id = $request->id;
+
+        $donations = Donation::where('submisi_id', $submission_id)->delete();
+
+        $withdraw = Withdraw::where('submisi_id', $submission_id)->delete();
+
+        $submission = Submission::findOrFail($submission_id)->delete();
+
+
+        return response(['response' => 'success', 'message' => 'Penghapusan galang dana berhasil!']);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Admin  $admin
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Admin $admin)
+    public function destroy_user(Request $request)
     {
-        //
+        $user_id = $request->id;
+
+        $donations = Donation::where('user_id', $user_id)->delete();
+
+        $withdraw = Withdraw::where('user_id', $user_id)->delete();
+
+        $submissions = Submission::where('user_id', $user_id)->delete();
+        
+        $user = User::findOrFail($user_id)->delete();
+
+        return response(['response' => 'success', 'message' => 'Penghapusan pengguna berhasil!']);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Admin  $admin
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Admin $admin)
+    public function accept_withdraw (Request $request)
     {
-        //
+        $withdraw_id = $request->id;
+        $withdraw = Withdraw::findOrFail($withdraw_id);
+        $withdraw->update(['withdraw_is_approved' => 1]);
+
+        return response(['response' => 'success', 'message' => 'Pencairan dana telah disetujui!']);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Admin  $admin
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Admin $admin)
+    public function decline_withdraw (Request $request)
     {
-        //
-    }
+        $withdraw_id = $request->id;
+        $withdraw = Withdraw::findOrFail($withdraw_id);
+        $withdraw->update(['withdraw_is_approved' => 2]);
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Admin  $admin
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Admin $admin)
-    {
-        //
+        return response(['response' => 'success', 'message' => 'Pencairan dana telah ditolak!']);
     }
 }

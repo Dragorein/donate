@@ -15,39 +15,31 @@
                     <template v-if="page == 'feeds'">
                         <v-row>
                             <v-col cols="12" md="6" lg="3">
-                                <v-card color="blue lighten-1" class="pl-2">
-                                    <v-card flat>
-                                        <v-card-title class="title">Total Galang Dana<v-icon right>mdi-charity</v-icon></v-card-title>
-                                        <v-card-subtitle class="headline font-weight-bold">{{campaigns.length}}</v-card-subtitle>
-                                    </v-card>
-                                </v-card>
+                                <v-alert border="left" icon="mdi-charity" prominent colored-border color="blue lighten-1" class="py-0">
+                                    <v-card-title class="subtitle-1">Total Galang Dana</v-card-title>
+                                    <v-card-subtitle class="headline font-weight-bold">{{campaigns.length}}</v-card-subtitle>
+                                </v-alert>
                             </v-col>
 
                             <v-col cols="12" md="6" lg="3">
-                                <v-card color="green lighten-1" class="pl-2">
-                                    <v-card flat>
-                                        <v-card-title class="title">Total Pengguna<v-icon right>mdi-account-group</v-icon></v-card-title>
-                                        <v-card-subtitle class="headline font-weight-bold">{{users.length}}</v-card-subtitle>
-                                    </v-card>
-                                </v-card>
+                                <v-alert border="left" icon="mdi-account-group" prominent colored-border color="green lighten-1" class="py-0">
+                                    <v-card-title class="subtitle-1">Total Pengguna</v-card-title>
+                                    <v-card-subtitle class="headline font-weight-bold">{{users.length}}</v-card-subtitle>
+                                </v-alert>
                             </v-col>
 
                             <v-col cols="12" md="6" lg="3">
-                                <v-card color="cyan lighten-1" class="pl-2">
-                                    <v-card flat>
-                                        <v-card-title class="title">Total Bantuan<v-icon right>mdi-cash-multiple</v-icon></v-card-title>
-                                        <v-card-subtitle class="headline font-weight-bold">{{totalCampaigns}}</v-card-subtitle>
-                                    </v-card>
-                                </v-card>
+                                <v-alert border="left" icon="mdi-cash-multiple" prominent colored-border color="cyan lighten-1" class="py-0">
+                                    <v-card-title class="subtitle-1">Total Bantuan</v-card-title>
+                                    <v-card-subtitle class="headline font-weight-bold">{{totalCampaigns}}</v-card-subtitle>
+                                </v-alert>
                             </v-col>
 
                             <v-col cols="12" md="6" lg="3">
-                                <v-card color="yellow lighten-1" class="pl-2">
-                                    <v-card flat>
-                                        <v-card-title class="title">Notifikasi<v-icon right>mdi-chat-alert</v-icon></v-card-title>
-                                        <v-card-subtitle class="headline font-weight-bold">12</v-card-subtitle>
-                                    </v-card>
-                                </v-card>
+                                <v-alert border="left" icon="mdi-chat-alert" prominent colored-border color="yellow lighten-1" class="py-0">
+                                    <v-card-title class="subtitle-1">Notifikasi</v-card-title>
+                                    <v-card-subtitle class="headline font-weight-bold">12</v-card-subtitle>
+                                </v-alert>
                             </v-col>
                         </v-row>
 
@@ -103,6 +95,18 @@
                                 <v-text-field v-model="search" append-icon="mdi-magnify" label="Search" single-line hide-details></v-text-field>
                             </v-card-title>
                             <v-data-table :headers="donationsHeaders" :items="donations" :search="search">
+                            </v-data-table>
+                        </v-card>
+                    </template>
+
+                    <template v-if="page == 'withdraws'">
+                        <v-card>
+                            <v-card-title> 
+                                Daftar Pencairan
+                                <v-spacer></v-spacer>
+                                <v-text-field v-model="search" append-icon="mdi-magnify" label="Search" single-line hide-details></v-text-field>
+                            </v-card-title>
+                            <v-data-table :headers="withdrawsHeaders" :items="withdraws" :search="search">
                             </v-data-table>
                         </v-card>
                     </template>
@@ -172,6 +176,19 @@
                 { text: 'Anonim', value: 'donation_is_anonymous' },  
                 { text: 'Dibuat', value: 'donation_created_at' },  
                 { text: 'Diperbarui', value: 'donation_updated_at' },
+            ],
+
+            withdraws: [],
+            withdrawsHeaders: [
+                { text: 'Id', align: 'start', sortable: false, value: 'user_id' },
+                { text: 'Nama', value: 'user_name' },
+                { text: 'Email', value: 'user_mail' },
+                { text: 'No. Telepon', value: 'user_phone' },
+                { text: 'Akses', value: 'user_is_admin' },
+                { text: 'Status', value: 'user_is_active' },
+                { text: 'Dibuat', value: 'user_created_at' },
+                { text: 'Diperbarui', value: 'user_updated_at' },  
+                { text: 'Aksi', value: 'actions', sortable: false },
             ],
 
             users: [],

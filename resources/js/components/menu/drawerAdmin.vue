@@ -58,6 +58,7 @@
                 {name:'campaigns', icon:'mdi-charity', title:'Daftar Penggalangan', active:false},
                 {name:'users', icon:'mdi-account-group', title:'Daftar Pengguna', active:false},
                 {name:'donations', icon:'mdi-cash-multiple', title:'Daftar Donasi', active:false},
+                {name:'withdraws', icon:'mdi-comment-check', title:'Daftar Pencairan', active:false},
             ]
         }),
         computed: {

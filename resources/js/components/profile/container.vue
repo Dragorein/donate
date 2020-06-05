@@ -56,7 +56,7 @@
                                 <v-icon left>mdi-history</v-icon>Riwayat Donasi
                             </v-tab>
                             <v-tab>
-                                <v-icon left>mdi-bank</v-icon>Penarikan Dana
+                                <v-icon left>mdi-bank</v-icon>Pencairan Dana
                             </v-tab>
                             <v-tab>
                                 <v-icon left>mdi-account-edit</v-icon>Ubah Profil
@@ -126,6 +126,20 @@
                                     <v-pagination color="error" v-model="page" :length="lengthHistoryDonation" :page="page" :total-visible="totalVisible" @input="getDataPage(currentUser.user_id,page)"></v-pagination>
                                 </v-list>
                             </v-tab-item>
+                             <v-tab-item>
+                                <v-card-title>Pencairan Dana</v-card-title>
+                                <v-card-subtitle>Menampilkan Pencairan data yang akan di proses</v-card-subtitle>
+                                <v-form :value="csrf">
+                                    <v-container class="px-12 pb-12">
+                                        <v-select name="totalrequestmoney" label="Pilih Penggalangan Dana" v-model="selected" prepend-inner-icon="mdi-charity" required outlined clearable></v-select>
+                                        <v-text-field label="Jumlah Pencairan Dana" name="totalrequestmoney" prepend-inner-icon="mdi-numeric" type="text" required outlined clearable/>
+                                        <v-text-field label="Bank" name="bankname" prepend-inner-icon="mdi-bank" type="text" required outlined clearable/>
+                                        <v-divider/>
+                                        <v-btn color="error" class="mr-2" @click="">Proses</v-btn>
+                                        <v-btn text class="mr-2">Batal</v-btn>
+                                    </v-container>
+                                </v-form>
+                            </v-tab-item>
                             <v-tab-item>
                                 <v-card-title>Ubah Profil</v-card-title>
                                 <v-card-subtitle></v-card-subtitle>
@@ -179,6 +193,7 @@
     export default {
         data: () => ({
             actives: [],
+            selected:"",
             submisishistory: [],
             submisisactive: [],
             donations:[],
@@ -228,7 +243,7 @@
                 this.$data.update.phoneNumber = this.currentUser.user_phone;
                 this.$data.update.email = this.currentUser.user_mail;
                 this.loadData(this.currentUser.user_id);
-            }
+            },
         },
         methods: {
             callSubmitUpdateProfile() {

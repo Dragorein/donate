@@ -17,7 +17,7 @@ class CreateTDonations extends Migration
             $table->increments('donation_id');
             $table->unsignedInteger('submisi_id');
             $table->unsignedInteger('user_id');
-            $table->foreign('submisi_id')->references('submisi_id')->on('t_submissions');
+            $table->foreign('submisi_id')->references('submisi_id')->on('t_submissions')->onDelete('cascade');
             $table->string('donation_name', 255);
             $table->string('donation_mail', 255);
             $table->string('donation_phone', 255);

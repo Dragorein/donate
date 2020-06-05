@@ -4,7 +4,7 @@
         <v-list>
             <v-list-item link two-line dense class="px-2" @click="reroutes('/profile')">
                 <v-list-item-avatar>
-                    <v-img src="https://randomuser.me/api/portraits/women/85.jpg"></v-img>
+                    <v-img :src="'/storage/profile/'+currentUser.user_foto"></v-img>
                 </v-list-item-avatar>
                 <v-list-item-content>
                     <v-list-item-title class="title">{{currentUser.user_name}}</v-list-item-title>
@@ -52,12 +52,14 @@
     export default {
         props: ['start'],
         data: () => ({
+            nama: '',
             currentPage: '',
             pages: [
                 {name:'feeds', icon:'mdi-apps', title:'Feeds', active:false},
                 {name:'campaigns', icon:'mdi-charity', title:'Daftar Penggalangan', active:false},
                 {name:'users', icon:'mdi-account-group', title:'Daftar Pengguna', active:false},
                 {name:'donations', icon:'mdi-cash-multiple', title:'Daftar Donasi', active:false},
+                {name:'withdraws', icon:'mdi-comment-check', title:'Daftar Pencairan', active:false},
             ]
         }),
         computed: {

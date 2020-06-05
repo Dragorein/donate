@@ -7,112 +7,65 @@
             <section class="top-space bg-section-1">
                 <v-container class="pb-12">
                     <v-card>
-                        <v-card-title>Buat Penggalangan Baru</v-card-title>
-                        <v-stepper v-model="e1" vertical>
-                                <v-stepper-step :complete="e1 > 1" step="1" color="error">Data Diri</v-stepper-step>
+                        <v-card-title>Buat Penggalangan Dana</v-card-title>
+                        <v-stepper v-model="step" vertical>
+                                <v-stepper-step :complete="step > 1" step="1" color="error">Informasi Penggalangan</v-stepper-step>
 
                                 <v-stepper-content step="1">
                                     <v-card-text>
-                                        <!-- step 1 -->
                                         <v-form>
-                                            <v-text-field label="Nama Kamu" name="nama" prepend-inner-icon="person" type="text" :rules="namaRules" v-model="nama" required filled clearable/>
-                                            <v-text-field label="Linkedin atau sosial media kamu" name="mediasosial" prepend-inner-icon="mdi-account-group-outline" type="text" :rules="mediasosialRules" v-model="mediasosial" required filled clearable/>
-                                            <v-text-field label="Email" name="email" prepend-inner-icon="mail" type="text" :rules="emailRules" v-model="email" required filled clearable/>
-                                            <v-text-field label="Nomor Handphone" name="noHandphone" prepend-inner-icon="phone" type="text" :rules="noHandphoneRules" v-model="noHandphone" :counter="14" required filled clearable/>
-                                            <v-text-field label="Alamat" name="alamat" prepend-inner-icon="mdi-folder-home" type="text" :rules="alamatRules" v-model="alamat" required filled clearable/>
-                                            <v-btn color="error" @click="e1 = 2" class="mr-2">Lanjut</v-btn>
+                                            <v-select prepend-inner-icon="mdi-file-document-box-check" :items="items" filled label="Pilih Kategori Yang Sesuai" v-model="submission.type" :error-messages="errors.submission.type" dense></v-select>
+                                            <v-text-field label="Judul Penggalangan Dana" name="title" prepend-inner-icon="mdi-mastodon-variant" type="text" :counter="50" v-model="submission.title" :error-messages="errors.submission.title" required filled clearable/>
+                                            <hr/>
+                                            <v-text-field label="Penerima Manfaat" name="recipient" prepend-inner-icon="mdi-account-heart" type="text" v-model="submission.recipient" :error-messages="errors.submission.recipient" required filled clearable/>
+                                            <v-textarea label="Cerita" name="story" prepend-inner-icon="mdi-chat-processing" type="text" :counter="255" v-model="submission.story" :error-messages="errors.submission.story" required filled auto-grow clearable no-rezise></v-textarea>
+                                            <hr/>
+                                            <v-text-field label="Target Donasi" name="target" prepend-inner-icon="mdi-cash" prefix="Rp." type="text" v-model="submission.target" :error-messages="errors.submission.target" required filled clearable/>
+                                            <v-menu ref="menu" v-model="menu" :close-on-content-click="false" :return-value.sync="submission.date" transition="scale-transition" offset-y min-width="290px">
+                                                <template v-slot:activator="{ on }">
+                                                <v-text-field v-model="date" label="Batas Waktu Penggalangan Dana" name="Waktu" prepend-inner-icon="event" readonly v-on="on" :error-messages="errors.submission.date" required filled></v-text-field>
+                                                </template>
+                                                <v-date-picker v-model="date" no-title scrollable>
+                                                <v-spacer></v-spacer>
+                                                <v-btn text color="red" @click="menu = false">Batal</v-btn>
+                                                <v-btn text color="primary" @click="$refs.menu.save(date)">OK</v-btn>
+                                                </v-date-picker>
+                                            </v-menu>
+                                            <v-btn color="error" @click="callSubmit()" class="mr-2">Lanjut</v-btn>
                                             <v-btn text class="mr-2" @click="goBack">Batal</v-btn>
                                         </v-form>
+
                                     </v-card-text>
                                 </v-stepper-content>
 
-                                <v-stepper-step :complete="e1 > 2" step="2" color="error">Detail</v-stepper-step>
+                                <v-stepper-step :complete="step > 2" step="2" color="error">Foto</v-stepper-step>
 
                                 <v-stepper-content step="2">
                                     <v-card-text>
-                                        <!-- step 2 -->
                                         <v-form>
-                                            <v-select prepend-inner-icon="mdi-file-document-box-check" :items="items"  v-model="tipe" filled label="Pilih Kategori Yang Sesuai" dense></v-select>
-                                            <v-text-field label="Judul Penggalangan Dana" name="judul" prepend-inner-icon="mdi-mastodon-variant" type="text" :counter="50" :rules="judulRules" v-model="judul" required filled clearable/>
-                                            <v-text-field label="Target Donasi" name="target" prepend-inner-icon="mdi-database" prefix="Rp." type="curency" :rules="targetRules" v-model="target" required filled clearable/>
-                                            <v-text-field label="Penerima Manfaat" name="penerima" prepend-inner-icon="mdi-account-heart" type="text" :rules="penerimaRules" v-model="penerima" required filled clearable/>
-                                            <v-text-field label="Cerita" name="cerita" prepend-inner-icon="mdi-chat-processing" type="text" :rules="ceritaRules" v-model="cerita" required filled clearable/>
-                                                <v-menu
-                                                    ref="menu"
-                                                    v-model="menu"
-                                                    :close-on-content-click="false"
-                                                    :return-value.sync="date"
-                                                    transition="scale-transition"
-                                                    offset-y
-                                                    min-width="290px"
-                                                >
-                                                    <template v-slot:activator="{ on }">
-                                                    <!-- <v-text-field
-                                                        v-model="date"
-                                                        label="Batas Waktu Penggalangan Dana"
-                                                        prepend-inner-icon="event"
-                                                        readonly
-                                                        v-on="on" :rules="waktuRules" required filled name="Waktu"
-                                                    ></v-text-field> -->
-                                                    <v-text-field
-                                                        v-model="date"
-                                                        label="Batas Waktu Penggalangan Dana"
-                                                        prepend-inner-icon="event"
-                                                        readonly
-                                                        v-on="on" required filled name="Waktu"
-                                                    ></v-text-field>
-                                                    </template>
-                                                    <v-date-picker v-model="date" no-title scrollable>
-                                                    <v-spacer></v-spacer>
-                                                    <v-btn text color="red" @click="menu = false">Cancel</v-btn>
-                                                    <v-btn text color="primary" @click="$refs.menu.save(date)">OK</v-btn>
-                                                    </v-date-picker>
-                                                </v-menu>
-                                                <v-btn color="error" @click="e1 = 3" class="mr-2">Lanjut</v-btn>
-                                                <v-btn text class="mr-2" @click="e1 = 1">Batal</v-btn>
-
+                                            <v-file-input label="Pilih foto utama penggalangan dana mu" filled prepend-icon="mdi-camera" accept="image/png, image/jpeg, image/bmp" v-model="submission.image" :error-messages="errors.submission.image" @change="onImageChange" type="file"></v-file-input>
+                                            <v-btn color="error" @click="callSubmit()" class="mr-2">Lanjut</v-btn>
+                                            <v-btn text class="mr-2" @click="changeStep(1)">Kembali</v-btn>
                                         </v-form>
-
                                     </v-card-text>
                                 </v-stepper-content>
 
-                                <v-stepper-step :complete="e1 > 3" step="3" color="error">Foto</v-stepper-step>
+                                <v-stepper-step :complete="step > 3" step="3" color="error">Syarat & Ketentuan</v-stepper-step>
 
                                 <v-stepper-content step="3">
                                     <v-card-text>
                                         <v-form>
-                                            <v-file-input label="Pilih salah satu foto utama untuk penggalangan danamu" filled prepend-icon="mdi-camera" accept="image/png, image/jpeg, image/bmp" :rules="imageRules" v-model="image" @change="onImageChange" type="file"></v-file-input>
-                                            <v-btn color="error" @click="e1 = 4 " class="mr-2">Lanjut</v-btn>
-                                            <v-btn text class="mr-2" @click="e1 = 2">Batal</v-btn>
-                                        </v-form>
-                                    </v-card-text>
-                                </v-stepper-content>
-
-                                <v-stepper-step :complete="e1 > 4" step="4" color="error">Konfirmasi</v-stepper-step>
-
-                                <v-stepper-content step="4">
-                                    <v-card-text>
-                                        <v-form>
-                                            <v-card
-                                                max-width="644"
-                                                outlined
-                                            >
-                                                <v-list-item three-line>
-                                                    <v-list-item-content>
-                                                        <v-list-item-subtitle>Saya setuju dengan Syarat & Ketentuan Donasi di kindly, termasuk biaya administrasi platform sebesar 5% dari total donasi online yang terkumpul.</v-list-item-subtitle>
-                                                    </v-list-item-content>
-                                                </v-list-item>
-
+                                            <v-card max-width="644" outlined>
+                                                <v-card-subtitle>Kindly tidak memfasilitasi: </v-card-subtitle>
+                                                <v-alert border="left" icon="mdi-cancel" type="error" text dense class="mx-4">Galang dana untuk diri sendiri</v-alert>
+                                                <v-alert border="left" icon="mdi-cancel" type="error" text dense class="mx-4">Galang dana fiktif</v-alert>
+                                                <v-alert border="left" icon="mdi-cancel" type="error" text dense class="mx-4">Galang dana untuk kegiatan radikalisme & terorisme</v-alert>
                                                 <v-card-actions>
-                                                    <v-checkbox
-                                                    v-model="checkbox"
-                                                    label="Apakah Anda Setuju?"
-                                                    required
-                                                    ></v-checkbox>
+                                                    <v-checkbox class="ml-2" v-model="submission.confirm" label="Saya setuju dengan Syarat & Ketentuan Donasi di Kindly, termasuk biaya administrasi platform sebesar 5% dari total donasi yang terkumpul." :error-messages="errors.submission.confirm" required></v-checkbox>
                                                 </v-card-actions>
                                             </v-card>
-                                            <v-btn color="error" @click="submit()" class="mr-2 mt-5">Daftar</v-btn>
-                                            <v-btn text @click="e1 = 3" class="mr-2 mt-5">Kembali</v-btn>
+                                            <v-btn color="error" @click="callSubmit()" class="mr-2 mt-5">Daftar</v-btn>
+                                            <v-btn text @click="changeStep(2)" class="mr-2 mt-5">Kembali</v-btn>
                                         </v-form>
                                     </v-card-text>
                                 </v-stepper-content>
@@ -131,87 +84,68 @@
 <script>
 export default {
     data: () => ({
-        // date: new Date().toISOString().substr(0, 10),
         menu: false,
-        e1: 1,
-        valid: true,
-        // step 1
-        nama: "",
-        namaRules: [v => !!v || "Wajib untuk di isi"],
-        mediasosial: "",
-        mediasosialRules: [v => !!v || "Wajib untuk di isi"],
-        email: "",
-        emailRules: [
-            v => !!v || "E-mail tidak boleh kosong",
-            v => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || "E-mail harus valid"
-        ],
-        noHandphone: "",
-        noHandphoneRules: [
-            v => !!v || "No.Handphone tidak boleh kosong",
-            v => v && v.length <= 14
-        ],
-        alamat: "",
-        alamatRules: [v => !!v || "Wajib untuk di isi"],
-        
-        // step 2
-        tipe: "",
-        items: ['Pendidikan', 'Bencana Alaman', 'Kemanusiaan', 'Lingkungan','Kegiata Sosial','Saran dan Infrastruktur'],
-        judul: "",
-        judulRules: [
-            a => !!a || "Wajib untuk di isi",
-            a => a && a.length <= 50
-        ],
-        target: "",
-        targetRules: [v => !!v || "Wajib untuk di isi"],
-        penerima: "",
-        penerimaRules: [v => !!v || "Wajib untuk di isi"],
-        cerita: "",
-        ceritaRules: [
-            v => !!v || "Rician penggunaan dana terlalu pendek (Minimal 30 karakter)",
-            v => v && v.length >= 30
-        ],
-        image: {},
-        imageRules:[v => !!v || v.size < 10000000 || 'Foto tidak boleh lebih dari 10MB! '],
-        date: "",
-        // password: "",
-        // passwordRules: [v => !!v || "Password is required"],
-        
-
+        items: ['Pendidikan', 'Bencana Alam', 'Kemanusiaan', 'Lingkungan','Kegiatan Sosial','Sarana dan Infrastruktur'],
+        submission: {
+            type: "",
+            title: "",
+            target: "",
+            recipient: "",
+            story: "",
+            date: "",
+            image: undefined,
+            confirm: false,
+        }
     }),
+    computed: {
+        currentUser: {
+            get() {
+                return this.$store.state.user.user;
+            }
+        },
+        step: {
+            get() {
+                return this.$store.state.user.submissionStep;
+            }
+        },
+        errors: {
+            get() {
+                return this.$store.state.user.errors;
+            }
+        },
+        message: {
+            get() {
+                return this.$store.state.user.message;
+            }
+        }
+    },
     methods: {
         onImageChange(event) {
-                console.log(event);
-                this.image = this.$refs.file.files[0]
-                this.imagename = this.$refs.file.files[0].name;
+                this.submission.image = this.$refs.file.files[0]
+                this.submission.imagename = this.$refs.file.files[0].name;
         },
-        submit() {
-            console.log(this.$data);
-                let temp = this.$data
+        changeStep(step) {
+        this.$store.commit("user/setSubmissionStep", step);
+        },
+        callSubmit() {
+            let temp = this.$data.submission;
 
-                let formData = new FormData();
-                formData.append('image', this.image);
-                formData.append('judul', temp.judul);
-                formData.append('cerita', temp.cerita);
-                formData.append('noHandphone', temp.noHandphone);
-                formData.append('tipe', temp.tipe);
-                formData.append('medsos', temp.mediasosial);
-                formData.append('total', temp.target);
-                formData.append('penerima', temp.penerima);
-                formData.append('dedline', temp.date);
-            axios
-                .post("/user/start", formData, {
-                    headers: {
-                        'accept': 'application/json',
-                        'Accept-Language': 'en-US,en;q=0.8',
-                        'Content-Type': `multipart/form-data`,
-                    }
-                })
-                .then(data => {
-                    this.$router.push({ path: '/' });
-                })
-                .catch(e => {
-                    console.error(e);
-                })
+            let formData = new FormData();
+            formData.append('author', this.currentUser.user_id);
+            formData.append('phone', this.currentUser.user_phone);
+            formData.append('type', temp.type);
+            formData.append('title', temp.title);
+            formData.append('target', temp.target);
+            formData.append('recipient', temp.recipient);
+            formData.append('story', temp.story);
+            formData.append('date', temp.date);
+            formData.append('image', temp.image);
+            if(temp.confirm) {
+                formData.append('confirm', temp.confirm);
+            }
+            formData.append('step', this.step);
+
+            this.$store.dispatch("user/start", formData);
         },
         submitForm(e) {
             e.preventDefault();

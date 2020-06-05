@@ -12,12 +12,12 @@
         <v-text-field class="mr-2 only-lg" @mousedown="reroutes('/search')" rounded filled hide-details dense placeholder="Cari galang dana" prepend-inner-icon="search"/> 
         <v-btn class="mr-2 only-md" @mousedown="reroutes('/search')" icon><v-icon>mdi-magnify</v-icon></v-btn>
         <v-btn @click="reroutes('/campaign')" large text class="mr-3 only-lg">Donasi</v-btn>
-        <v-btn @click="reroutes('/start')" large text class="mr-3 only-lg">Galang Dana</v-btn>
+        <v-btn @click="ifLoggedIn('/start')" large text class="mr-3 only-lg">Galang Dana</v-btn>
 
         <template v-if="loggedin == false">
             <v-dialog v-model="logindialog" max-width="600px">
                 <template v-slot:activator="{ on }">
-                    <v-btn href="/register" large color="error" class="mr-3">Daftar</v-btn>
+                    <v-btn @click="reroutes('/register')" large color="error" class="mr-3">Daftar</v-btn>
                     <v-btn large text color="error" class="mr-3" v-on="on">Masuk</v-btn>
                 </template>
                 <v-card tile color="#F1F1F1">
@@ -42,7 +42,7 @@
                             </v-form>
                             <v-row>
                                 <v-col cols="12" class="text-center">
-                                    <p>Belum punya akun Kindly? <a href="/register">Daftar</a></p>
+                                    <p>Belum punya akun Kindly? <a @click="reroutes('/register')">Daftar</a></p>
                                 </v-col>
                             </v-row>
                         </v-container>
@@ -69,7 +69,7 @@
                             <v-icon left>mdi-charity</v-icon>Donasi
                         </v-list-item-title>
                     </v-list-item>
-                    <v-list-item @click="reroutes('/start')">
+                    <v-list-item @click="ifLoggedIn('/start')">
                         <v-list-item-title>
                             <v-icon left>mdi-flag-plus</v-icon>Galang Dana
                         </v-list-item-title>
@@ -136,6 +136,13 @@
             reroutes(url) {
                 this.$router.push({ path: url });
             },
+            ifLoggedIn(url) {
+                if(!this.loggedin) {
+                    this.$data.logindialog = true;
+                } else {
+                    this.reroutes(url);
+                }
+            },
             handleScroll() {
                 if(window.scrollY > 0) {
                     navbar.classList.add("nav-bg");
@@ -144,7 +151,12 @@
                 }
             },
             callLogin() {
-                this.$store.dispatch("user/login", this.$data.login);
+                this.$store.dispatch("user/login", this.$data.login)
+                .then(() => {
+                    if(this.$route.path == '/register') {
+                        this.$router.push({path: '/'});
+                    }
+                });
             },
             callLogout() {
                 this.$store.dispatch("user/logout")

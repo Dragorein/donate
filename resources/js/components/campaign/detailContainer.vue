@@ -9,7 +9,7 @@
                     <v-row>
                         <v-col cols="12">
                             <v-card>
-                                <v-img :src="'/picture/'+submission.submisi_foto" height="450px"></v-img>
+                                <v-img :src="'/storage/submission/'+submission.submisi_foto" height="450px"></v-img>
                                 <v-card-text>
                                     <h2 style="display-1" >{{submission.submisi_judul}}</h2>
                                     <span><strong class="deep-orange--text title">{{submission.submisi_terkumpul}}</strong>{{' Terkumpul dari ' + submission.submisi_target}}</span>
@@ -105,7 +105,7 @@
 
                                         <v-list-item-content>
                                             <v-list-item-title>{{donation.donation_name}}</v-list-item-title>
-                                            <v-list-item-subtitle>{{'Donasi Rp' +donation.donation_nominal}}</v-list-item-subtitle>
+                                            <v-list-item-subtitle>{{'Donasi ' +donation.donation_nominal}}</v-list-item-subtitle>
                                         </v-list-item-content>
                                         </v-list-item>
                                     </template>

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Carbon\Carbon;
 
 class DonationController extends Controller
 {
@@ -29,8 +28,8 @@ class DonationController extends Controller
             'donation_nominal' => $request->amount,
             'donation_is_anonymous' => "1",
             'payment_type' => "BCA",
-            'created_at' => Carbon::now()->DateTimeZone('Asia/Jakarta'),
-            'updated_at' => Carbon::now()->DateTimeZone('Asia/Jakarta'),
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
 
         if($data)
@@ -69,6 +68,9 @@ class DonationController extends Controller
                 ->orderByDesc('donation_id')
                 ->limit(1)
                 ->get();
+
+        $data[0]->donation_nominal = $this->currency($data[0]->donation_nominal);
+        
         return $data;
     }
 }

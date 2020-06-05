@@ -15,6 +15,7 @@ class SubmissionController extends Controller
     {
         $sql = array(
             DB::raw('t_submissions.submisi_terkumpul as total_donasi'),
+            DB::raw('t_submissions.submisi_target as target_donasi'),
             DB::raw('submisi_terkumpul/submisi_target*100 as kekurangan_donasi'),
             DB::raw('(DATEDIFF(submisi_expired_at, now())) as day_left'),
             DB::raw('t_submissions.submisi_id'),
@@ -28,7 +29,13 @@ class SubmissionController extends Controller
             ->distinct()
             ->whereRaw('DATEDIFF(submisi_expired_at, now()) > 0')
             ->paginate(6);
-            
+        
+        foreach($data as $key => $value)
+        {
+            $data[$key]->total_donasi = $this->currency($data[$key]->total_donasi);
+            $data[$key]->target_donasi = $this->currency($data[$key]->target_donasi);
+        }
+
         return $data;
     }
 
@@ -52,6 +59,9 @@ class SubmissionController extends Controller
             ->where('t_submissions.submisi_id',$id)
             ->get()->first();
 
+        $submission->submisi_terkumpul = $this->currency($submission->submisi_terkumpul);
+        $submission->submisi_target = $this->currency($submission->submisi_target);
+
         $sql_donations = array(
             DB::raw('donation_id'),
             DB::raw('donation_name'),
@@ -64,33 +74,80 @@ class SubmissionController extends Controller
             ->orderByDesc('donation_id')
             ->get();
 
+        foreach($donations as $key => $value)
+        {
+            $donations[$key]->donation_nominal = $this->currency($donations[$key]->donation_nominal);
+        }
+
         return response(['submission' => $submission, 'donations' => $donations]);
     }
 
     public function store(Request $request)
     {
-        // var_dump($request->file('image'));
-        $ext = $request->file('image')->getClientOriginalExtension();
-        $current_timestamp = now()->timestamp;
-        $imageFile = $current_timestamp.'.'.$ext;
+        if($request->step == 1) {
+            $request->validate([
+                'type' => 'required|string',
+                'title' => 'required|string|max:50',
+                'target' => 'required|numeric|min:1000000',
+                'recipient' => 'required|string',
+                'story' => 'required|string|max:255',
+                'date' => 'required|date|after:now',
+                'image' => '',
+                'confirm' => '',
+            ]);
 
-        $t_submissions = new Submission();
-        $t_submissions -> user_id = 1;
-        $t_submissions -> submisi_judul = $request -> judul;
-        $t_submissions -> submisi_cerita = $request -> cerita;
-        $t_submissions -> submisi_phone = $request -> noHandphone;
-        $t_submissions -> submisi_tipe = $request -> tipe;
-        $t_submissions -> submisi_hub_relasi = $request -> medsos;
-        $t_submissions -> submisi_target = $request -> total;
-        $t_submissions -> submisi_penerima = $request -> penerima;
-        $t_submissions -> submisi_foto = $imageFile;
-        $t_submissions -> submisi_is_active = 1;
-        $t_submissions -> submisi_expired_at = $request -> dedline;
+            return response(['response' => 'step-2']);
+        }
+        
+        if($request->step == 2) {
+            $request->validate([
+                'type' => 'required|string',
+                'title' => 'required|string|max:50',
+                'target' => 'required|numeric|min:1000000',
+                'recipient' => 'required|string',
+                'story' => 'required|string|max:255',
+                'date' => 'required|date|after:now',
+                'image' => 'required|mimes:jpg,jpeg,png',
+                'confirm' => '',
+            ]);
 
-        $t_submissions -> save();
+            return response(['response' => 'step-3']);
+        }
 
-        $request->file('image')->storeAs('submission', $current_timestamp.'.'.$ext);
+        if($request->step == 3) {
+            $request->validate([
+                'type' => 'required|string',
+                'title' => 'required|string|max:50',
+                'target' => 'required|numeric|min:1000000',
+                'recipient' => 'required|string',
+                'story' => 'required|string|max:255',
+                'date' => 'required|date|after:now',
+                'image' => 'required|mimes:jpg,jpeg,png',
+                'confirm' => 'required',
+            ]);
 
-        return $t_submissions;
+            $ext = $request->file('image')->getClientOriginalExtension();
+            $current_timestamp = now()->timestamp;
+            $imageFile = $current_timestamp.'.'.$ext;
+    
+            $t_submissions = new Submission();
+            $t_submissions->user_id = $request->author;
+            $t_submissions->submisi_phone = $request->phone;
+            $t_submissions->submisi_tipe = $request->type;
+            $t_submissions->submisi_judul = ucfirst($request->title);
+            $t_submissions->submisi_target = ucfirst($request->target);
+            $t_submissions->submisi_terkumpul = 0;
+            $t_submissions->submisi_penerima = ucfirst($request->recipient);
+            $t_submissions->submisi_cerita = ucfirst($request->story);
+            $t_submissions->submisi_expired_at = $request->date;
+            $t_submissions->submisi_foto = $imageFile;
+            $t_submissions->submisi_is_active = 1;
+    
+            $t_submissions -> save();
+
+            $request->file('image')->storeAs('public/submission', $current_timestamp.'.'.$ext);
+    
+            return response(['response' => 'success', 'message' => 'Pembuatan galang dana berhasil!']);
+        }
     }
 }

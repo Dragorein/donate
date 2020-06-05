@@ -69,6 +69,7 @@
                                         <v-text-field label="Nama donatur" filled clearable name="name" type="text" v-model="payment.name" :error-messages="errors.payment.name"></v-text-field>
                                         <v-text-field label="Email donatur" filled clearable name="email" type="text" v-model="payment.email" :error-messages="errors.payment.email"></v-text-field>
                                         <v-text-field label="Nomor Telepon" filled clearable name="phoneNumber" type="text" v-model="payment.phoneNumber" :error-messages="errors.payment.phoneNumber"></v-text-field>
+                                        <v-text-field v-show="false" name="userId" type="text" v-model="payment.userId = 0"></v-text-field>
                                     </template>
 
                                     <v-card-title class="pt-sm-0 pt-md-4">Pembayaran</v-card-title>

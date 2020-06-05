@@ -17,52 +17,7 @@
                                         <v-row justify="center">
                                             <template>
                                             <div class="text-center">
-                                                <v-dialog
-                                                v-model="dialog"
-                                                width="500"
-                                                >
-                                                <template v-slot:activator="{ on }">
-                                                    <v-btn large color="error" v-on="on" class="mt-6" >Bantu sekarang</v-btn>
-                                                </template>
-                                                    <v-card max-width="500">
-                                                        <v-img
-                                                        class="white--text align-end"
-                                                        height="200px"
-                                                        src="https://www.voyagerit.com/wp-content/uploads/2019/03/GettyImages-968545728.jpg"
-                                                        >
-                                                        <v-card-title></v-card-title>
-                                                        </v-img>
-
-                                                        <v-card-subtitle class="pb-0 mt-2">Kindly tidak memfasilitasi penggalangan dana untuk : </v-card-subtitle>
-                                                         <v-chip class="ma-2 ml-6" color="red lighten-3" label="1">
-                                                            <v-avatar left>
-                                                                <v-icon color="red darken-1">mdi-cancel</v-icon>
-                                                            </v-avatar>
-                                                            Galang dana untuk diri sendiri
-                                                            </v-chip>
-                                                            <v-chip class="ma-2 ml-6" color="red lighten-3" label="1">
-                                                            <v-avatar left>
-                                                                <v-icon color="red darken-1">mdi-cancel</v-icon>
-                                                            </v-avatar>
-                                                            Penggalangan dana fiktif
-                                                            </v-chip>
-                                                            <v-chip class="ma-2 ml-6" color="red lighten-3" label="1">
-                                                            <v-avatar left>
-                                                                <v-icon color="red darken-1">mdi-cancel</v-icon>
-                                                            </v-avatar>
-                                                            Galang dana untuk kegiatan radikalisme & terorisme
-                                                            </v-chip>
-
-
-
-
-                                                        <v-card-actions>
-                                                            <v-btn href="/start" block color="success" class="my-3" large dark>
-                                                                Ya,saya mengerti
-                                                            </v-btn>
-                                                        </v-card-actions>
-                                                    </v-card>
-                                                </v-dialog>
+                                                <v-btn large color="error" class="mt-6" >Bantu sekarang</v-btn>
                                             </div>
                                             </template>
                                         </v-row>
@@ -77,10 +32,10 @@
                 <v-container class="py-12 px-lg-12">
                     <h1 class="display-1 font-weight-bold text-center">Bantu siapa hari ini ?</h1>
                     <v-row>
-                        <v-col v-for="submission in submissions.data" v-if="submission.kekurangan_donasi < 2" :key="submission.submission_id" cols="12" sm="6" md="4">
+                        <v-col v-for="submission in submissions.data" :key="submission.submission_id" cols="12" sm="6" md="4">
                         <v-hover v-slot:default="{ hover }">
                             <v-card @click="reroutes('/campaign/'+submission.submisi_id)" :elevation="hover ? 24 : 6" class="my-4 card-transform">
-                                <v-img :src="'/picture/' + submission.submisi_foto" height="200px"></v-img>
+                                <v-img :src="'/storage/submission/' + submission.submisi_foto" height="200px"></v-img>
 
                                 <v-card-title v-text="submission.submisi_judul"></v-card-title>
 
@@ -91,7 +46,7 @@
                                 </v-card-text>
 
                                 <v-card-text class="d-flex justify-space-between">
-                                    <span><strong class="deep-orange--text title">{{submission.total_donasi}}</strong> Terkumpul</span>
+                                    <span><strong class="deep-orange--text title">{{submission.total_donasi}}</strong> Terkumpul <br/> {{'dari ' + submission.target_donasi}}</span>
                                     <span><strong class="deep-orange--text title">{{submission.day_left}}</strong> hari lagi</span>
                                 </v-card-text>
 
@@ -122,7 +77,7 @@
                         <v-col v-for="submission in submissions.data" v-if="submission.kekurangan_donasi > 2" :key="submission.submission_id" cols="12" sm="6" md="4">
                         <v-hover v-slot:default="{ hover }">
                             <v-card @click="reroutes('/campaign/'+submission.submisi_id)" :elevation="hover ? 24 : 6" class="my-4 card-transform">
-                                <v-img :src="'/picture/' + submission.submisi_foto" height="200px"></v-img>
+                                <v-img :src="'/storage/submission/'+submission.submisi_foto" height="200px"></v-img>
 
                                 <v-card-title v-text="submission.submisi_judul"></v-card-title>
 
@@ -133,7 +88,7 @@
                                 </v-card-text>
 
                                 <v-card-text class="d-flex justify-space-between">
-                                    <span><strong class="deep-orange--text title">{{submission.total_donasi}}</strong> Terkumpul</span>
+                                    <span><strong class="deep-orange--text title">{{submission.total_donasi}}</strong> Terkumpul <br/> {{'dari ' + submission.target_donasi}}</span>
                                     <span><strong class="deep-orange--text title">{{submission.day_left}}</strong> hari lagi</span>
                                 </v-card-text>
 
@@ -185,6 +140,11 @@
                 get() {
                     return this.$store.state.user.message;
                 }
+            },
+            loggedin: {
+                get() {
+                    return this.$store.state.user.loggedin;
+                }
             }
         },
         created() {
@@ -196,9 +156,9 @@
                 this.submissions = response.data;
             });
             },
-            reroutes: function (url) {
+            reroutes(url) {
                 this.$router.push({ path: url });
-            }
+            },
         }
     }
 </script>

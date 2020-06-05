@@ -17,30 +17,21 @@ Route::get('/', function () {
     return view('landing');
 });
 
-Route::get('/search/{any}', function () {
-    return view('home');
-});
-
-
-Route::get('/welcome', function () {
-    return view('welcome');
-});
-
 Route::post('/auth/register', 'UserController@register');
 Route::post('/auth/login', 'UserController@login');
 Route::post('/auth/logout', 'UserController@logout');
 Route::get('/auth/current', 'UserController@currentUser');
 
 Route::get('/dashboard/all', 'DashboardController@index');
-Route::post('/user/start', 'SubmissionController@store');
+Route::put('/dashboard/submission/close', 'DashboardController@close_submission');
+Route::delete('/dashboard/submission/destroy', 'DashboardController@destroy_submission');
+Route::delete('/dashboard/user/destroy', 'DashboardController@destroy_user');
+Route::put('/dashboard/withdraw/accept', 'DashboardController@accept_withdraw');
+Route::put('/dashboard/withdraw/decline', 'DashboardController@decline_withdraw');
 Route::post('/auth/updateProfile', 'ProfileController@update_profile');
 Route::post('/auth/ChangePassword', 'ProfileController@update_password');
 
-// Route::get('/Search', 'SearchController@index');
-
-// Auth::routes();
-
-// Route::get('/home', 'HomeController@index')->name('home');
+Route::post('/user/start', 'SubmissionController@store');
 
 Route::get('/{vue_capture?}', function () {
     return view('landing');

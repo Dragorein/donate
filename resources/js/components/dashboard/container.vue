@@ -1,6 +1,7 @@
 <template>
 <v-app>
-    <drawer-admin :start="page" @pageChanged="page = $event"/>
+    <drawer-admin :start="page" @pageChanged="changePage($event)"/>
+    <alert :message="message" color="green lighten-5" colorIcon="success" colorText="success--text" v-if="message"/>
     
     <v-content class="bg-section-1">
         <div class="fluid">
@@ -15,39 +16,31 @@
                     <template v-if="page == 'feeds'">
                         <v-row>
                             <v-col cols="12" md="6" lg="3">
-                                <v-card color="blue lighten-1" class="pl-2">
-                                    <v-card flat>
-                                        <v-card-title class="title">Total Galang Dana<v-icon right>mdi-charity</v-icon></v-card-title>
-                                        <v-card-subtitle class="headline font-weight-bold">{{campaigns.length}}</v-card-subtitle>
-                                    </v-card>
-                                </v-card>
+                                <v-alert border="left" icon="mdi-charity" prominent colored-border color="blue lighten-1" class="py-0">
+                                    <v-card-title class="subtitle-1">Total Galang Dana</v-card-title>
+                                    <v-card-subtitle class="headline font-weight-bold">{{campaigns.length}}</v-card-subtitle>
+                                </v-alert>
                             </v-col>
 
                             <v-col cols="12" md="6" lg="3">
-                                <v-card color="green lighten-1" class="pl-2">
-                                    <v-card flat>
-                                        <v-card-title class="title">Total Pengguna<v-icon right>mdi-account-group</v-icon></v-card-title>
-                                        <v-card-subtitle class="headline font-weight-bold">{{users.length}}</v-card-subtitle>
-                                    </v-card>
-                                </v-card>
+                                <v-alert border="left" icon="mdi-account-group" prominent colored-border color="green lighten-1" class="py-0">
+                                    <v-card-title class="subtitle-1">Total Pengguna</v-card-title>
+                                    <v-card-subtitle class="headline font-weight-bold">{{users.length}}</v-card-subtitle>
+                                </v-alert>
                             </v-col>
 
                             <v-col cols="12" md="6" lg="3">
-                                <v-card color="cyan lighten-1" class="pl-2">
-                                    <v-card flat>
-                                        <v-card-title class="title">Total Bantuan<v-icon right>mdi-cash-multiple</v-icon></v-card-title>
-                                        <v-card-subtitle class="headline font-weight-bold">{{totalCampaigns}}</v-card-subtitle>
-                                    </v-card>
-                                </v-card>
+                                <v-alert border="left" icon="mdi-cash-multiple" prominent colored-border color="cyan lighten-1" class="py-0">
+                                    <v-card-title class="subtitle-1">Total Bantuan</v-card-title>
+                                    <v-card-subtitle class="headline font-weight-bold">{{totalCampaigns}}</v-card-subtitle>
+                                </v-alert>
                             </v-col>
 
                             <v-col cols="12" md="6" lg="3">
-                                <v-card color="yellow lighten-1" class="pl-2">
-                                    <v-card flat>
-                                        <v-card-title class="title">Notifikasi<v-icon right>mdi-chat-alert</v-icon></v-card-title>
-                                        <v-card-subtitle class="headline font-weight-bold">12</v-card-subtitle>
-                                    </v-card>
-                                </v-card>
+                                <v-alert border="left" icon="mdi-chat-alert" prominent colored-border color="yellow lighten-1" class="py-0">
+                                    <v-card-title class="subtitle-1">Butuh Persetujuan</v-card-title>
+                                    <v-card-subtitle class="headline font-weight-bold">{{needApprove}}</v-card-subtitle>
+                                </v-alert>
                             </v-col>
                         </v-row>
 
@@ -74,19 +67,19 @@
                                 <template v-slot:item.actions="{ item }">
                                     <v-tooltip top>
                                         <template v-slot:activator="{ on }">
-                                            <v-icon small color="green mr-2" v-on="on" @click="editItem(item)">mdi-information</v-icon>
+                                            <v-icon small color="green mr-2" v-on="on" @click="reroutes('/campaign/'+item.submisi_id)">mdi-information</v-icon>
                                         </template>
                                         <span>Lihat penggalangan</span>
                                     </v-tooltip>
                                     <v-tooltip top>
-                                        <template v-slot:activator="{ on }">
-                                            <v-icon small color="orange mr-2" v-on="on" @click="deleteItem(item)">mdi-close-box</v-icon>
+                                        <template v-slot:activator="{ on }" v-if="item.submisi_is_active == 'aktif'">
+                                            <v-icon small color="orange mr-2" v-on="on" @click="closeCampaign(item)">mdi-close-box</v-icon>
                                         </template>
                                         <span>Tutup penggalangan</span>
                                     </v-tooltip>
                                     <v-tooltip top>
                                         <template v-slot:activator="{ on }">
-                                            <v-icon small color="red mr-2" v-on="on" @click="deleteItem(item)">mdi-delete</v-icon>
+                                            <v-icon small color="red mr-2" v-on="on" @click="deleteCampaign(item)">mdi-delete</v-icon>
                                         </template>
                                         <span>Hapus penggalangan</span>
                                     </v-tooltip>
@@ -107,6 +100,32 @@
                         </v-card>
                     </template>
 
+                    <template v-if="page == 'withdraws'">
+                        <v-card>
+                            <v-card-title> 
+                                Daftar Pencairan
+                                <v-spacer></v-spacer>
+                                <v-text-field v-model="search" append-icon="mdi-magnify" label="Search" single-line hide-details></v-text-field>
+                            </v-card-title>
+                            <v-data-table :headers="withdrawsHeaders" :items="withdraws" :search="search">
+                                <template v-slot:item.actions="{ item }">
+                                    <v-tooltip top v-if="item.withdraw_is_approved == 'menunggu persetujuan'">
+                                        <template v-slot:activator="{ on }">
+                                            <v-icon small color="green mr-2" v-on="on" @click="acceptWithdraw(item)">mdi-checkbox-marked</v-icon>
+                                        </template>
+                                        <span>Setujui pencairan</span>
+                                    </v-tooltip>
+                                    <v-tooltip top v-if="item.withdraw_is_approved == 'menunggu persetujuan'">
+                                        <template v-slot:activator="{ on }">
+                                            <v-icon small color="red mr-2" v-on="on" @click="cancelWithdraw(item)">mdi-close-box</v-icon>
+                                        </template>
+                                        <span>Tolak pencairan</span>
+                                    </v-tooltip>
+                                </template>
+                            </v-data-table>
+                        </v-card>
+                    </template>
+
                     <template v-if="page == 'users'">
                         <v-card>
                             <v-card-title> 
@@ -118,13 +137,13 @@
                                 <template v-slot:item.actions="{ item }">
                                     <v-tooltip top>
                                         <template v-slot:activator="{ on }">
-                                            <v-icon small color="green mr-2" v-on="on" @click="editItem(item)">mdi-information</v-icon>
+                                            <v-icon small color="green mr-2" v-on="on" @click="">mdi-information</v-icon>
                                         </template>
                                         <span>Lihat pengguna</span>
                                     </v-tooltip>
                                     <v-tooltip top>
                                         <template v-slot:activator="{ on }">
-                                            <v-icon small color="red mr-2" v-on="on" @click="deleteItem(item)">mdi-delete</v-icon>
+                                            <v-icon small color="red mr-2" v-on="on" @click="deleteUser(item)">mdi-delete</v-icon>
                                         </template>
                                         <span>Hapus pengguna</span>
                                     </v-tooltip>
@@ -142,9 +161,11 @@
 <script>
     export default {
         data: () => ({
-            page: 'feeds',
             search: '',
             totalCampaigns: 'Rp 0',
+            needApprove: 0,
+            message: '',
+            errors: {},
 
             campaigns: [],
             campaignHeaders: [
@@ -174,6 +195,18 @@
                 { text: 'Diperbarui', value: 'donation_updated_at' },
             ],
 
+            withdraws: [],
+            withdrawsHeaders: [
+                { text: 'Id', align: 'start', sortable: false, value: 'withdraw_id' },
+                { text: 'Submisi', value: 'submission.submisi_judul' },
+                { text: 'Nama', value: 'user.user_name' },
+                { text: 'Nominal', value: 'withdraw_nominal' },
+                { text: 'Status', value: 'withdraw_is_approved' },
+                { text: 'Dibuat', value: 'withdraw_created_at' },
+                { text: 'Diperbarui', value: 'withdraw_updated_at' },  
+                { text: 'Aksi', value: 'actions', sortable: false },
+            ],
+
             users: [],
             usersHeaders: [
                 { text: 'Id', align: 'start', sortable: false, value: 'user_id' },
@@ -188,6 +221,11 @@
             ],
         }),
         computed: {
+            page: {
+                get() {
+                    return this.$store.state.user.dashPage;
+                }
+            },
             loggedin: {
                 get() {
                     return this.$store.state.user.loggedin;
@@ -200,25 +238,155 @@
             },
         },
         created() {
-            axios
-            .get("/dashboard/all")
-            .then(response => {
-            console.log(response.data);
-                if(response.data != null) {
-                    this.$data.campaigns = response.data.campaigns;
-                    this.$data.totalCampaigns = response.data.totalCampaigns;
-                    this.$data.donations = response.data.donations;
-                    this.$data.users = response.data.users;
-                }
-            });
-
+            this.loadData();
             this.$store.dispatch('user/getUser');
 
         },
         methods: {
             reroutes: function (url) {
                 this.$router.push({ path: url });
-            }
+            },
+            changePage(page) {
+                this.$store.commit('user/setDashboardPage', page)
+            },
+            loadData() {
+            axios
+                .get("/dashboard/all")
+                .then(response => {
+                    if(response.data != null) {
+                        this.$data.campaigns = response.data.campaigns;
+                        this.$data.totalCampaigns = response.data.totalCampaigns;
+                        this.$data.donations = response.data.donations;
+                        this.$data.withdraws = response.data.withdraws;
+                        this.$data.needApprove = response.data.needApprove;
+                        this.$data.users = response.data.users;
+                    }
+                });
+            },
+            closeCampaign(item) {
+                if(confirm('Apakah kamu yakin menutup galang dana ini?')) {
+                    axios
+                        .put("/dashboard/submission/close", {
+                            id: item.submisi_id
+                        })
+                        .then(response => {
+                            if (response.data.response == 'success') {
+                                var editedItem = item;
+                                editedItem.submisi_is_active = 'ditutup';
+                                Object.assign(this.campaigns[this.campaigns.indexOf(item)], this.editedItem);
+
+                                this.message = response.data.message;
+                                setTimeout(() => {
+                                    this.message = "";
+                                }, 4050);
+                            }
+                        })
+                        .catch(e => {
+                            if (e.response.status == 422) {
+                                this.errors = e.response.data.errors;
+                                this.message = "";
+                            }
+                        });
+                };
+            },
+            deleteCampaign(item) {
+                if(confirm('Apakah kamu yakin menghapus galang dana ini?')) {
+                    axios
+                        .delete("/dashboard/submission/destroy", {
+                            data: {id: item.submisi_id}
+                        })
+                        .then(response => {
+                            if (response.data.response == 'success') {
+                                const index = this.campaigns.indexOf(item);
+                                this.campaigns.splice(index, 1);
+                                this.loadData();
+                                this.message = response.data.message;
+                                setTimeout(() => {
+                                    this.message = "";
+                                }, 4050);
+                            }
+                        })
+                        .catch(e => {
+                            if (e.response.status == 422) {
+                                this.errors = e.response.data.errors;
+                                this.message = "";
+                            }
+                        });
+                };
+            },
+            deleteUser(item) {
+                if(confirm('Apakah kamu yakin menghapus pengguna ini?')) {
+                    axios
+                        .delete("/dashboard/user/destroy", {
+                            data: {id: item.user_id}
+                        })
+                        .then(response => {
+                            if (response.data.response == 'success') {
+                                const index = this.users.indexOf(item);
+                                this.users.splice(index, 1);
+                                this.loadData();
+                                this.message = response.data.message;
+                                setTimeout(() => {
+                                    this.message = "";
+                                }, 4050);
+                            }
+                        })
+                        .catch(e => {
+                            if (e.response.status == 422) {
+                                this.errors = e.response.data.errors;
+                                this.message = "";
+                            }
+                        });
+                };
+            },
+            acceptWithdraw(item) {
+                axios
+                    .put("/dashboard/withdraw/accept", {
+                        id: item.withdraw_id
+                    })
+                    .then(response => {
+                        if (response.data.response == 'success') {
+                            var editedItem = item;
+                            editedItem.withdraw_is_approved = 'disetujui';
+                            Object.assign(this.withdraws[this.withdraws.indexOf(item)], this.editedItem);
+
+                            this.message = response.data.message;
+                            setTimeout(() => {
+                                this.message = "";
+                            }, 4050);
+                        }
+                    })
+                    .catch(e => {
+                        if (e.response.status == 422) {
+                            this.errors = e.response.data.errors;
+                            this.message = "";
+                        }
+                    });
+            },
+            cancelWithdraw(item) {
+                axios
+                    .put("/dashboard/withdraw/decline", {
+                        id: item.withdraw_id
+                    })
+                    .then(response => {
+                        if (response.data.response == 'success') {
+                            var editedItem = item;
+                            editedItem.withdraw_is_approved = 'ditolak';
+                            Object.assign(this.withdraws[this.withdraws.indexOf(item)], this.editedItem);
+
+                            this.message = response.data.message;
+                            setTimeout(() => {
+                                this.message = "";
+                            }, 4050);
+                        }
+                    })
+                    .catch(e => {
+                        if (e.response.status == 422) {
+                            this.errors = e.response.data.errors;
+                            this.message = "";
+                        }
+                    });
+            },
         }
     }
 </script>

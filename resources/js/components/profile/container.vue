@@ -12,7 +12,7 @@
                                 <v-card-text>
                                     <div class="d-flex align-center mx-4 mr-md-0">
                                         <v-avatar size="96" left>
-                                            <img :src="currentUser.user_photo">
+                                            <img :src="'storage/profile/'+currentUser.user_foto">
                                         </v-avatar>
                                         <div class="mx-3">
                                             <v-card-title class="headline font-weight-bold pb-6">{{currentUser.user_name}}<v-icon right color="green">mdi-check-circle mdi-18px</v-icon></v-card-title>
@@ -26,12 +26,12 @@
                                     <v-card-text>
                                         <v-row>
                                             <v-col cols="12" md="auto">
-                                                <v-card-subtitle class="py-1">Pasien terdonasikan</v-card-subtitle>
-                                                <v-card-title class="headline font-weight-bold py-1">Rp 1.521.420</v-card-title>
+                                                <v-card-subtitle class="py-1">Total Mendonasikan</v-card-subtitle>
+                                                <v-card-title class="headline font-weight-bold py-1">Rp {{participation.total_donation}}</v-card-title>
                                             </v-col>
                                             <v-col cols="12" md="auto">
                                                 <v-card-subtitle class="py-1">Pasien terdonasikan</v-card-subtitle>
-                                                <v-card-title class="headline font-weight-bold py-1">10</v-card-title>
+                                                <v-card-title class="headline font-weight-bold py-1">{{participation.total_participant}}</v-card-title>
                                             </v-col>
                                         </v-row>
                                     </v-card-text>
@@ -67,9 +67,9 @@
                                 <v-card-subtitle>Menampilkan semua penggalangan dana-mu yang sedang aktif.</v-card-subtitle>
                                 <v-list two-line>
                                     <template v-for="active in submisisactive">
-                                        <v-list-item @click="reroutes('/campaign/'+active.submisi_id)">
-                                            <v-list-item-avatar tile size="70" width="120">
-                                                <v-img :src="'/picture/'+active.submisi_foto"></v-img>
+                                        <v-list-item >
+                                            <v-list-item-avatar tile size="70" width="120" @click="reroutes('/campaign/'+active.submisi_id)">
+                                                <v-img :src="'storage/profile/'+active.submisi_foto"></v-img>
                                             </v-list-item-avatar>
                                             
                                             <v-list-item-content>
@@ -79,7 +79,7 @@
                                             </v-list-item-content>
 
                                             <v-list-item-content>
-                                                <v-btn color="error">Tutup</v-btn>
+                                                <v-btn color="error" @click="callCloseSubmisi(active.submisi_id)">Tutup</v-btn>
                                             </v-list-item-content>
                                         </v-list-item>
                                     </template>
@@ -92,7 +92,7 @@
                                     <template v-for="history in submisishistory">
                                         <v-list-item @click="reroutes('/campaign/'+history.submisi_id)">
                                             <v-list-item-avatar tile size="70" width="120">
-                                                <v-img :src="'/picture/'+history.submisi_foto"></v-img>
+                                                <v-img :src="'storage/profile/'+history.submisi_foto"></v-img>
                                             </v-list-item-avatar>
                                             
                                             <v-list-item-content>
@@ -111,7 +111,7 @@
                                     <template v-for="donation in donations">
                                         <v-list-item @click="reroutes('/campaign/'+donation.submisi_id)">
                                             <v-list-item-avatar tile size="70" width="120">
-                                                <v-img :src="'/picture/' +donation.submisi_foto"></v-img>
+                                                <v-img :src="'storage/submission/' +donation.submisi_foto"></v-img>
                                             </v-list-item-avatar>
                                             
                                             <v-list-item-content>
@@ -126,20 +126,20 @@
                             <v-tab-item>
                                 <v-card-title>Ubah Profil</v-card-title>
                                 <v-card-subtitle></v-card-subtitle>
-                                <v-form>
+                                <v-form :value="csrf">
                                     <v-container class="px-12 pb-12">
-                                    
+                                        <v-alert type="error" text dense transition="slide-y-transition"  v-if="messages">{{messages}}</v-alert>
                                         <div class="d-flex align-center mb-4">
                                             <v-avatar size="96" left>
                                                 <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John">
                                             </v-avatar>
                                             <v-card-subtitle>Maksimal ukuran foto 1MB. Disarankan beresolusi 180px x 180px.</v-card-subtitle>
                                         </div>
-                                        <v-file-input label="Foto Profil" prepend-icon="" prepend-inner-icon="mdi-paperclip" outlined clearable/>
+                                        <v-file-input label="Foto Profil" prepend-icon="" prepend-inner-icon="mdi-paperclip" accept="image/png, image/jpeg, image/bmp" v-model="update.image" type="file" filled outlined clearable/>
                                         <v-divider/>
                                         <v-text-field label="Nama Depan" name="firstname" prepend-inner-icon="person" type="text" v-model="update.firstName"  required outlined clearable/>
                                         <v-text-field label="Nama Belakang" name="lastname" prepend-inner-icon="person" type="text" v-model="update.lastName"  required outlined clearable/>
-                                        <v-text-field label="Email" name="email" prepend-inner-icon="mail" type="text" v-model="update.email"  required outlined clearable/>
+                                        <v-text-field label="Email" name="email" prepend-inner-icon="mail" type="text" v-model="update.email" readonly required outlined/>
                                         <v-text-field label="Nomor Handphone" name="noHandphone" prepend-inner-icon="phone" v-model="update.phoneNumber" type="text" :counter="14" required outlined clearable/>
                                         <v-divider/>
                                         <v-btn color="error" class="mr-2"  @click="callSubmitUpdateProfile()">Ganti</v-btn>
@@ -152,8 +152,9 @@
                                 <v-card-subtitle></v-card-subtitle>
                                 <v-form>
                                     <v-container class="px-12 pb-12">
+                                            <v-alert type="error" text dense transition="slide-y-transition"  v-if="messages">{{messages}}</v-alert>
                                             <v-text-field id="oldpassword" label="Password Saat Ini" name="oldpassword" prepend-inner-icon="mdi-lock-question" v-model="updatePassword.oldpassword" type="password" required outlined clearable/>
-                                            <v-text-field id="newpassword" label="Password Baru" name="newpassword" prepend-inner-icon="mdi-lock-open" type="password" v-model="updatePassword.newpassword" required outlined clearable/>
+                                            <v-text-field id="newpassword" label="Password Baru" name="newpassword"  prepend-inner-icon="mdi-lock-open" type="password" v-model="updatePassword.newpassword" required outlined clearable/>
                                             <v-text-field id="passwordconfirm" label="Ketik Ulang Password Baru" name="passwordconfirm" prepend-inner-icon="lock" type="password" v-model="updatePassword.confirmpassword" required outlined clearable/>
                                         <v-divider/>
                                         <v-btn color="error" @click=" callSubmitUpdatePassword()" class="mr-2">Ganti</v-btn>
@@ -179,8 +180,9 @@
             submisishistory: [],
             submisisactive: [],
             donations:[],
+            participation:[],
+            messages:"",
             update: {
-                id:0,
                 firstName: "",
                 lastName: "",
                 email: "",
@@ -189,7 +191,6 @@
                 csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
             },
             updatePassword: {
-                id:0,
                 oldpassword: "",
                 newpassword: "",
                 confirmpassword: "",
@@ -214,16 +215,6 @@
                     this.loadData();
                 }
             },
-            errors: {
-                get() {
-                    return this.$store.state.user.errors;
-                }
-            },
-            message: {
-                get() {
-                    return this.$store.state.user.messageDialog;
-                }
-            }
         },
         watch: {
             currentUser:function (value) {
@@ -231,8 +222,6 @@
                 this.$data.update.lastName = this.currentUser.user_name.split(" ")[1];
                 this.$data.update.phoneNumber = this.currentUser.user_phone;
                 this.$data.update.email = this.currentUser.user_mail;
-                this.$data.update.id = this.currentUser.user_id;
-                this.$data.updatePassword.id = this.currentUser.user_id;
                 this.loadData(this.currentUser.user_id);
             }
         },
@@ -240,14 +229,12 @@
             callSubmitUpdateProfile() {
                 let temp = this.$data.update
                 let formData = new FormData()
-                formData.append('id', temp.id)
+                formData.append('id', this.currentUser.user_id)
                 formData.append('firstName', temp.firstName)
                 formData.append('lastName', temp.lastName)
-                formData.append('email', temp.email)
                 formData.append('phoneNumber', temp.phoneNumber)
                 formData.append('image', temp.image)
                 formData.append('token', temp.csrf)
-                console.log(temp.firstName)
                 axios
                 .post("/auth/updateProfile", formData, {
                     headers: {
@@ -256,23 +243,26 @@
                         'Content-Type': `multipart/form-data`,
                     }
                 })
-                .then(data => {
-                    console.log(data);
+                .then(response=> {
+                    if(response.data.response == "BAD"){
+                        this.$data.messages = "Tolong Periksa Profile anda saat ini, Pastikan diisi dengan benar!";
+                    }else{
+                        this.reloadPage();
+                    }
                 })
                 .catch(e => {
-                    console.error(e);
+                    this.$data.messages = "Tolong Periksa Profile anda saat ini, Pastikan diisi dengan benar!";
                 })
             },
             callSubmitUpdatePassword() {
                 let temp = this.$data.updatePassword
                 let formData = new FormData()
-                formData.append('id', temp.id)
+                formData.append('id', this.currentUser.user_id)
                 formData.append('oldpassword', temp.oldpassword)
                 formData.append('newpassword', temp.newpassword)
                 formData.append('confirmpassword', temp.confirmpassword)
                 formData.append('email', this.currentUser.user_mail)
                 formData.append('token', temp.csrf)
-                console.log(formData)
                 axios
                 .post("/auth/ChangePassword", formData, {
                     headers: {
@@ -281,12 +271,26 @@
                         'Content-Type': `multipart/form-data`,
                     }
                 })
-                .then(data => {
-                    // this.$router.push({ path: '/profile' });
-                    console.log(data);
+                .then(response => {
+                    if(response.data.response == "BAD"){
+                        this.$data.messages = "Tolong Periksa Password anda saat ini, Pastikan diisi dengan benar!";
+                    }else{
+                        this.reloadPage();
+                    }
                 })
                 .catch(e => {
-                    console.error(e);
+                    if(e.response.data.message){
+                        this.$data.messages = "Tolong Periksa Password anda saat ini, Pastikan password terbaru Minimal 4 huruf";
+                    }
+                })
+            },
+            callCloseSubmisi(id) {
+                axios.post("/api/CloseSubmisi/"+id)
+                .then(response => {
+                    this.reloadPage();
+                })
+                .catch(e => {
+                    console.log(e);
                 })
             },
             loadData(id) {
@@ -294,7 +298,11 @@
                     this.donations = response.data.donations;
                     this.submisishistory = response.data.submissionhistory;
                     this.submisisactive = response.data.submissionactive;
+                    this.participation = response.data.participations[0];
                 });
+            },
+            reloadPage(){
+                window.location.reload()
             },
             reroutes: function (url) {
                 this.$router.push({ path: url });

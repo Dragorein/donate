@@ -20,3 +20,4 @@ Route::get('/DataSubmision/{id}','SubmissionController@show_campaign_detail');
 Route::post('/donation', 'DonationController@Donations');
 Route::get('/informationpayment', 'DonationController@information_donation');
 Route::get('/cari', 'SearchController@index');
+Route::post('/CloseSubmisi/{id}','ProfileController@Close_Submission');

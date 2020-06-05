@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\UploadedFile;
 use App\User;
+use App\Submission;
 
 class ProfileController extends Controller
 {
@@ -19,14 +20,12 @@ class ProfileController extends Controller
             'firstName' => 'required|string',
             'lastName' => 'required|string',
             'phoneNumber' => 'required|numeric|min:10',
-            'email' => 'required|email',
             'image' => '',
         ]);
         
         
         $userupdate = User::find($request->id);
         $userupdate->user_name = ucfirst($request->firstName).' '.ucfirst($request->lastName);
-        $userupdate->user_mail = $request->email;
         $userupdate->user_token = $request->token;
         $userupdate->user_phone = $request->phoneNumber;
        
@@ -41,11 +40,11 @@ class ProfileController extends Controller
             $current_timestamp = now()->timestamp;
             $imageFile = $current_timestamp.'.'.$ext;
             $userupdate->user_foto = $imageFile;
-            $request->file('image')->storeAs('profile', $current_timestamp.'.'.$ext);
+            $request->file('image')->storeAs('public/profile', $current_timestamp.'.'.$ext);
             $userupdate -> save();
             Session::put('user', $userupdate);
         }
-        return response(['response' => 'success', 'message' => 'Update akun berhasil!']);
+        return response(['response' => 'success', 'message' => "Update Profile berhasil!"]);
     }
 
     // Update Password
@@ -116,10 +115,32 @@ class ProfileController extends Controller
             ->where('t_donations.user_id',$id)
             ->get();
 
+
+        $sql_total_donations = array(
+            DB::raw('SUM(t_donations.donation_nominal) as total_donation'),
+            DB::raw('COUNT(t_donations.submisi_id) as total_participant'),
+        );
+        $total_donations = DB::table('t_donations')
+            ->join('t_submissions', 't_donations.submisi_id', '=', 't_submissions.submisi_id')
+            ->join('m_user', 't_submissions.user_id', '=', 'm_user.user_id')
+            ->select($sql_total_donations)
+            ->where('t_donations.user_id',$id)
+            ->get();
+
         return response([
             'submissionhistory' => $submission_history, 
             'submissionactive' => $submission_active, 
             'donations' => $donations,
+            "participations" => $total_donations
         ]);
+    }
+
+    //close the active submission
+    public function Close_Submission($id)
+    {
+        $closeSubmission = Submission::find($id);
+        $closeSubmission->submisi_is_active = '0';
+        $closeSubmission -> save();
+        return response(['response' => 'success', 'message' => "Berhasil!"]);
     }
 }

@@ -70,7 +70,7 @@
             chips: [],
             submisis: [],
             filter: ['Galang', 'Dana'],
-            // length: 0,
+            length: 0,
             nextIcon: 'navigate_next',
             prevIcon: 'navigate_before',
             page: 1,

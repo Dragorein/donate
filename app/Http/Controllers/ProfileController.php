@@ -99,7 +99,7 @@ class ProfileController extends Controller
                 ['t_submissions.user_id',$id],
                 ['t_submissions.submisi_is_active',0]
             ])
-            ->get();
+            ->paginate(6);
 
         $sql_donations = array(
             DB::raw('t_submissions.submisi_id'),
@@ -113,7 +113,7 @@ class ProfileController extends Controller
             ->join('m_user', 't_submissions.user_id', '=', 'm_user.user_id')
             ->select($sql_donations)
             ->where('t_donations.user_id',$id)
-            ->get();
+            ->paginate(6);
 
 
         $sql_total_donations = array(

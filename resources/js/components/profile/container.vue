@@ -1,7 +1,7 @@
 <template>
 <v-app>
     <navbar/>
-
+    <alert :message="message" color="green lighten-5" colorIcon="success" colorText="success--text" v-if="message"/>
     <main class="h-100">
         <div class="fluid">
             <section class="top-space bg-section-1">
@@ -56,6 +56,9 @@
                                 <v-icon left>mdi-history</v-icon>Riwayat Donasi
                             </v-tab>
                             <v-tab>
+                                <v-icon left>mdi-bank</v-icon>Penarikan Dana
+                            </v-tab>
+                            <v-tab>
                                 <v-icon left>mdi-account-edit</v-icon>Ubah Profil
                             </v-tab>
                             <v-tab>
@@ -69,7 +72,7 @@
                                     <template v-for="active in submisisactive">
                                         <v-list-item >
                                             <v-list-item-avatar tile size="70" width="120" @click="reroutes('/campaign/'+active.submisi_id)">
-                                                <v-img :src="'storage/profile/'+active.submisi_foto"></v-img>
+                                                <v-img :src="'/storage/profile/'+active.submisi_foto"></v-img>
                                             </v-list-item-avatar>
                                             
                                             <v-list-item-content>
@@ -92,7 +95,7 @@
                                     <template v-for="history in submisishistory">
                                         <v-list-item @click="reroutes('/campaign/'+history.submisi_id)">
                                             <v-list-item-avatar tile size="70" width="120">
-                                                <v-img :src="'storage/profile/'+history.submisi_foto"></v-img>
+                                                <v-img :src="'/storage/submission/'+history.submisi_foto"></v-img>
                                             </v-list-item-avatar>
                                             
                                             <v-list-item-content>
@@ -101,7 +104,7 @@
                                             </v-list-item-content>
                                         </v-list-item>
                                     </template>
-                                    <v-pagination color="error" v-model="page" :length="length" :page="page" :total-visible="totalVisible"></v-pagination>
+                                    <v-pagination color="error" v-model="page" :length="lengthHistorySubmission" :page="page" :total-visible="totalVisible" @input="getDataPage(currentUser.user_id,page)"></v-pagination>
                                 </v-list>
                             </v-tab-item>
                             <v-tab-item>
@@ -111,7 +114,7 @@
                                     <template v-for="donation in donations">
                                         <v-list-item @click="reroutes('/campaign/'+donation.submisi_id)">
                                             <v-list-item-avatar tile size="70" width="120">
-                                                <v-img :src="'storage/submission/' +donation.submisi_foto"></v-img>
+                                                <v-img :src="'/storage/submission/' +donation.submisi_foto"></v-img>
                                             </v-list-item-avatar>
                                             
                                             <v-list-item-content>
@@ -120,7 +123,7 @@
                                             </v-list-item-content>
                                         </v-list-item>
                                     </template>
-                                    <v-pagination color="error" v-model="page" :length="length" :page="page" :total-visible="totalVisible"></v-pagination>
+                                    <v-pagination color="error" v-model="page" :length="lengthHistoryDonation" :page="page" :total-visible="totalVisible" @input="getDataPage(currentUser.user_id,page)"></v-pagination>
                                 </v-list>
                             </v-tab-item>
                             <v-tab-item>
@@ -128,19 +131,18 @@
                                 <v-card-subtitle></v-card-subtitle>
                                 <v-form :value="csrf">
                                     <v-container class="px-12 pb-12">
-                                        <v-alert type="error" text dense transition="slide-y-transition"  v-if="messages">{{messages}}</v-alert>
                                         <div class="d-flex align-center mb-4">
                                             <v-avatar size="96" left>
-                                                <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John">
+                                                <img :src="'storage/profile/'+currentUser.user_foto">
                                             </v-avatar>
                                             <v-card-subtitle>Maksimal ukuran foto 1MB. Disarankan beresolusi 180px x 180px.</v-card-subtitle>
                                         </div>
                                         <v-file-input label="Foto Profil" prepend-icon="" prepend-inner-icon="mdi-paperclip" accept="image/png, image/jpeg, image/bmp" v-model="update.image" type="file" filled outlined clearable/>
                                         <v-divider/>
-                                        <v-text-field label="Nama Depan" name="firstname" prepend-inner-icon="person" type="text" v-model="update.firstName"  required outlined clearable/>
-                                        <v-text-field label="Nama Belakang" name="lastname" prepend-inner-icon="person" type="text" v-model="update.lastName"  required outlined clearable/>
+                                        <v-text-field label="Nama Depan" name="firstname" prepend-inner-icon="person" type="text" v-model="update.firstName" :error-messages="errors.firstName"  required outlined clearable/>
+                                        <v-text-field label="Nama Belakang" name="lastname" prepend-inner-icon="person" type="text" v-model="update.lastName" :error-messages="errors.lastName" required outlined clearable/>
                                         <v-text-field label="Email" name="email" prepend-inner-icon="mail" type="text" v-model="update.email" readonly required outlined/>
-                                        <v-text-field label="Nomor Handphone" name="noHandphone" prepend-inner-icon="phone" v-model="update.phoneNumber" type="text" :counter="14" required outlined clearable/>
+                                        <v-text-field label="Nomor Handphone" name="noHandphone" prepend-inner-icon="phone" v-model="update.phoneNumber" type="text" :error-messages="errors.phoneNumber" :counter="14" required outlined clearable/>
                                         <v-divider/>
                                         <v-btn color="error" class="mr-2"  @click="callSubmitUpdateProfile()">Ganti</v-btn>
                                         <v-btn text class="mr-2">Batal</v-btn>
@@ -152,10 +154,10 @@
                                 <v-card-subtitle></v-card-subtitle>
                                 <v-form>
                                     <v-container class="px-12 pb-12">
-                                            <v-alert type="error" text dense transition="slide-y-transition"  v-if="messages">{{messages}}</v-alert>
-                                            <v-text-field id="oldpassword" label="Password Saat Ini" name="oldpassword" prepend-inner-icon="mdi-lock-question" v-model="updatePassword.oldpassword" type="password" required outlined clearable/>
-                                            <v-text-field id="newpassword" label="Password Baru" name="newpassword"  prepend-inner-icon="mdi-lock-open" type="password" v-model="updatePassword.newpassword" required outlined clearable/>
-                                            <v-text-field id="passwordconfirm" label="Ketik Ulang Password Baru" name="passwordconfirm" prepend-inner-icon="lock" type="password" v-model="updatePassword.confirmpassword" required outlined clearable/>
+                                            <v-alert type="error" text dense transition="slide-y-transition"  v-if="messageoldpassword">{{messageoldpassword}}</v-alert>
+                                            <v-text-field id="oldpassword" label="Password Saat Ini"  name="oldpassword" :error-messages="errors.oldpassword" prepend-inner-icon="mdi-lock-question" v-model="updatePassword.oldpassword" type="password" required outlined clearable/>
+                                            <v-text-field id="newpassword" label="Password Baru" name="newpassword" :error-messages="errors.newpassword"  prepend-inner-icon="mdi-lock-open" type="password" v-model="updatePassword.newpassword" required outlined clearable/>
+                                            <v-text-field id="passwordconfirm" label="Ketik Ulang Password Baru" :error-messages="errors.confirmpassword" name="passwordconfirm" prepend-inner-icon="lock" type="password" v-model="updatePassword.confirmpassword" required outlined clearable/>
                                         <v-divider/>
                                         <v-btn color="error" @click=" callSubmitUpdatePassword()" class="mr-2">Ganti</v-btn>
                                         <v-btn text class="mr-2">Batal</v-btn>
@@ -181,7 +183,9 @@
             submisisactive: [],
             donations:[],
             participation:[],
-            messages:"",
+            errors:[],
+            message:"",
+            messageoldpassword:"",
             update: {
                 firstName: "",
                 lastName: "",
@@ -196,7 +200,8 @@
                 confirmpassword: "",
                 csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
             },
-            length: 2,
+            lengthHistoryDonation: 0,
+            lengthHistorySubmission: 0,
             nextIcon: 'navigate_next',
             prevIcon: 'navigate_before',
             page: 1,
@@ -244,14 +249,11 @@
                     }
                 })
                 .then(response=> {
-                    if(response.data.response == "BAD"){
-                        this.$data.messages = "Tolong Periksa Profile anda saat ini, Pastikan diisi dengan benar!";
-                    }else{
-                        this.reloadPage();
-                    }
+                    this.reloadPage();
+                    this.message = "Berhasil Perbarui Akun!";
                 })
                 .catch(e => {
-                    this.$data.messages = "Tolong Periksa Profile anda saat ini, Pastikan diisi dengan benar!";
+                    this.errors = e.response.data.errors;
                 })
             },
             callSubmitUpdatePassword() {
@@ -273,21 +275,21 @@
                 })
                 .then(response => {
                     if(response.data.response == "BAD"){
-                        this.$data.messages = "Tolong Periksa Password anda saat ini, Pastikan diisi dengan benar!";
+                        this.$data.messageoldpassword = "Tolong Periksa Password Lama anda, Pastikan diisi dengan benar!";
                     }else{
                         this.reloadPage();
+                        this.message = "Berhasil Menganti Password Akun!";
                     }
                 })
                 .catch(e => {
-                    if(e.response.data.message){
-                        this.$data.messages = "Tolong Periksa Password anda saat ini, Pastikan password terbaru Minimal 4 huruf";
-                    }
+                    this.errors = e.response.data.errors;
                 })
             },
             callCloseSubmisi(id) {
                 axios.post("/api/CloseSubmisi/"+id)
                 .then(response => {
                     this.reloadPage();
+                    this.message = "Berhasil Menutup Penggalangan Dana!";
                 })
                 .catch(e => {
                     console.log(e);
@@ -295,10 +297,22 @@
             },
             loadData(id) {
                 axios.get("/api/getProfileInformation/"+id).then(response => {
-                    this.donations = response.data.donations;
-                    this.submisishistory = response.data.submissionhistory;
+                    this.donations = response.data.donations.data;
+                    this.submisishistory = response.data.submissionhistory.data;
                     this.submisisactive = response.data.submissionactive;
                     this.participation = response.data.participations[0];
+                    this.lengthHistoryDonation = response.data.donations.last_page;
+                    this.lengthHistorySubmission = response.data.submissionhistory.last_page;
+                });
+            },
+            getDataPage(id,toPage) {
+                axios.get("/api/getProfileInformation/"+id+"?page="+toPage).then(response => {
+                    this.donations = response.data.donations.data;
+                    this.submisishistory = response.data.submissionhistory.data;
+                    this.submisisactive = response.data.submissionactive;
+                    this.participation = response.data.participations[0];
+                    this.lengthHistoryDonation = response.data.donations.last_page;
+                    this.lengthHistorySubmission = response.data.submissionhistory.last_page;
                 });
             },
             reloadPage(){

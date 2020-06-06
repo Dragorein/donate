@@ -55,7 +55,12 @@
             <v-menu offset-y open-on-hover transition="slide-y-transition" bottom>
                 <template v-slot:activator="{ on }">
                     <v-btn large text v-on="on">
-                        <v-icon left>mdi-account-circle mdi-24px</v-icon><template v-if="loggedin == true">{{currentUser.user_name}}</template>
+                        <template v-if="loggedin == true">
+                            <v-avatar size="40" class="mr-2">
+                                <img :src="'/storage/profile/'+currentUser.user_foto">
+                            </v-avatar>
+                            {{currentUser.user_name}}
+                        </template>
                     </v-btn>
                 </template>
                 <v-list>

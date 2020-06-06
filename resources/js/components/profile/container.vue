@@ -11,12 +11,13 @@
                             <v-col cols="12" md="6">
                                 <v-card-text>
                                     <div class="d-flex align-center mx-4 mr-md-0">
-                                        <v-avatar size="96" left>
+                                        <v-avatar size="102" left>
                                             <img :src="'storage/profile/'+currentUser.user_foto">
                                         </v-avatar>
                                         <div class="mx-3">
-                                            <v-card-title class="headline font-weight-bold pb-6">{{currentUser.user_name}}<v-icon right color="green">mdi-check-circle mdi-18px</v-icon></v-card-title>
-                                            <v-card-subtitle>Identitas terverifikasi</v-card-subtitle>
+                                            <v-card-title class="headline font-weight-bold pb-6">{{currentUser.user_name}}</v-card-title>
+                                            <v-card-subtitle class="pb-0" v-if="currentUser.user_is_admin"><v-icon left color="blue">mdi-shield-check mdi-18px</v-icon>Admin</v-card-subtitle>
+                                            <v-card-subtitle class="pt-0" v-if="currentUser.user_is_active"><v-icon left color="green">mdi-check-circle mdi-18px</v-icon>Identitas terverifikasi</v-card-subtitle>
                                         </div>
                                     </div>
                                 </v-card-text>
@@ -27,7 +28,7 @@
                                         <v-row>
                                             <v-col cols="12" md="auto">
                                                 <v-card-subtitle class="py-1">Total Mendonasikan</v-card-subtitle>
-                                                <v-card-title class="headline font-weight-bold py-1">Rp {{participation.total_donation}}</v-card-title>
+                                                <v-card-title class="headline font-weight-bold py-1">{{participation.total_donation}}</v-card-title>
                                             </v-col>
                                             <v-col cols="12" md="auto">
                                                 <v-card-subtitle class="py-1">Pasien terdonasikan</v-card-subtitle>
@@ -65,116 +66,151 @@
                                 <v-icon left>mdi-textbox-password</v-icon>Ganti Password
                             </v-tab>
 
-                            <v-tab-item>
+                            <v-tab-item class="mb-4">
                                 <v-card-title>Penggalangan Aktif</v-card-title>
                                 <v-card-subtitle>Menampilkan semua penggalangan dana-mu yang sedang aktif.</v-card-subtitle>
-                                <v-list two-line>
-                                    <template v-for="active in submisisactive">
-                                        <v-list-item >
-                                            <v-list-item-avatar tile size="70" width="120" @click="reroutes('/campaign/'+active.submisi_id)">
-                                                <v-img :src="'/storage/profile/'+active.submisi_foto"></v-img>
-                                            </v-list-item-avatar>
+                                <template v-if="submisisactive.length">
+                                    <v-list two-line>
+                                        <template v-for="active in submisisactive">
+                                            <v-list-item>
+                                                <v-list-item-avatar tile size="70" width="120" @click="reroutes('/campaign/'+active.submisi_id)">
+                                                    <v-img :src="'/storage/submission/'+active.submisi_foto"></v-img>
+                                                </v-list-item-avatar>
                                             
-                                            <v-list-item-content>
-                                                <v-list-item-title v-html="active.submisi_judul"></v-list-item-title>
-                                                <v-list-item-subtitle>Aktif</v-list-item-subtitle>
-                                                <v-list-item-subtitle v-html="active.sisa_hari + ' hari lagi'"></v-list-item-subtitle>
-                                            </v-list-item-content>
+                                                <v-list-item-content>
+                                                    <v-list-item-title v-html="active.submisi_judul"></v-list-item-title>
+                                                    <v-list-item-subtitle v-html="active.submisi_terkumpul+' terkumpul dari '+active.submisi_target"></v-list-item-subtitle>
+                                                    <v-list-item-subtitle v-html="'aktif sampai '+active.sisa_hari+' hari lagi'"></v-list-item-subtitle>
+                                                </v-list-item-content>
+                                                
+                                                <v-list-item-content style="max-width: 192px">
+                                                    <v-btn color="success" @click="reroutes('/campaign/'+active.submisi_id)">Kunjungi</v-btn>
+                                                    <v-btn color="error" @click="callCloseSubmisi(active.submisi_id)">Tutup</v-btn>
+                                                </v-list-item-content>
+                                            </v-list-item>
+                                        </template>
+                                    </v-list>
+                                </template>
 
-                                            <v-list-item-content>
-                                                <v-btn color="error" @click="callCloseSubmisi(active.submisi_id)">Tutup</v-btn>
-                                            </v-list-item-content>
-                                        </v-list-item>
-                                    </template>
-                                </v-list>
+                                <template v-else>
+                                    <v-alert prominent type="error" text icon="mdi-cancel" class="ma-4">
+                                        <v-row align="center">
+                                            <v-col class="grow">Kamu sedang tidak memiliki penggalangan dana yang aktif.</v-col>
+                                            <v-col class="shrink">
+                                                <v-btn outlined color="error" @click="reroutes('/start')">Galang Sekarang</v-btn>
+                                            </v-col>
+                                        </v-row>
+                                    </v-alert>
+                                </template>
                             </v-tab-item>
-                            <v-tab-item>
+                            <v-tab-item class="mb-4">
                                 <v-card-title>Riwayat Penggalangan</v-card-title>
                                 <v-card-subtitle>Menampilkan semua riwayat penggalangan dana yang sudah kamu buka, mulai dari yang aktif sampai yang sudah tutup.</v-card-subtitle>
-                                <v-list two-line>
-                                    <template v-for="history in submisishistory">
-                                        <v-list-item @click="reroutes('/campaign/'+history.submisi_id)">
-                                            <v-list-item-avatar tile size="70" width="120">
-                                                <v-img :src="'/storage/submission/'+history.submisi_foto"></v-img>
-                                            </v-list-item-avatar>
-                                            
-                                            <v-list-item-content>
-                                                <v-list-item-title v-html="history.submisi_judul"></v-list-item-title>
-                                                <v-list-item-subtitle>Ditutup</v-list-item-subtitle>
-                                            </v-list-item-content>
-                                        </v-list-item>
-                                    </template>
+                                <template v-if="submisishistory.length">
+                                    <v-list two-line>
+                                        <template v-for="history in submisishistory">
+                                            <v-list-item @click="reroutes('/campaign/'+history.submisi_id)">
+                                                <v-list-item-avatar tile size="70" width="120">
+                                                    <v-img :src="'/storage/submission/'+history.submisi_foto"></v-img>
+                                                </v-list-item-avatar>
+                                                
+                                                <v-list-item-content>
+                                                    <v-list-item-title v-html="history.submisi_judul"></v-list-item-title>
+                                                    <v-list-item-subtitle>{{history.submisi_is_active}}</v-list-item-subtitle>
+                                                </v-list-item-content>
+                                            </v-list-item>
+                                        </template>
+                                    </v-list>
                                     <v-pagination color="error" v-model="page" :length="lengthHistorySubmission" :page="page" :total-visible="totalVisible" @input="getDataPage(currentUser.user_id,page)"></v-pagination>
-                                </v-list>
+                                </template>
+                                
+                                <template v-else>
+                                    <v-alert prominent type="error" text icon="mdi-cancel" class="ma-4">
+                                        <v-row align="center">
+                                            <v-col class="grow">Kamu belum pernah membuka penggalangan dana.</v-col>
+                                            <v-col class="shrink">
+                                                <v-btn outlined color="error" @click="reroutes('/start')">Galang Sekarang</v-btn>
+                                            </v-col>
+                                        </v-row>
+                                    </v-alert>
+                                </template>
                             </v-tab-item>
-                            <v-tab-item>
+                            <v-tab-item class="mb-4">
                                 <v-card-title>Riwayat Donasi</v-card-title>
                                 <v-card-subtitle>Menampilkan semua riwayat donasi yang telah kamu salurkan.</v-card-subtitle>
-                                <v-list two-line>
-                                    <template v-for="donation in donations">
-                                        <v-list-item @click="reroutes('/campaign/'+donation.submisi_id)">
-                                            <v-list-item-avatar tile size="70" width="120">
-                                                <v-img :src="'/storage/submission/' +donation.submisi_foto"></v-img>
-                                            </v-list-item-avatar>
-                                            
-                                            <v-list-item-content>
-                                                <v-list-item-title v-html="donation.submisi_judul"></v-list-item-title>
-                                                <v-list-item-subtitle v-html="'Dibuka oleh ' + donation.user_name + ' - ' + donation.sisa_hari+' hari lagi'"></v-list-item-subtitle>
-                                            </v-list-item-content>
-                                        </v-list-item>
-                                    </template>
+                                <template v-if="donations.length">
+                                    <v-list two-line>
+                                        <template v-for="donation in donations">
+                                            <v-list-item @click="reroutes('/campaign/'+donation.submisi_id)">
+                                                <v-list-item-avatar tile size="70" width="120">
+                                                    <v-img :src="'/storage/submission/'+donation.submisi_foto"></v-img>
+                                                </v-list-item-avatar>
+                                                
+                                                <v-list-item-content>
+                                                    <v-list-item-title v-html="donation.submisi_judul"></v-list-item-title>
+                                                    <v-list-item-subtitle v-html="'Sebesar '+donation.donation_nominal"></v-list-item-subtitle>
+                                                </v-list-item-content>
+                                            </v-list-item>
+                                        </template>
+                                    </v-list>
                                     <v-pagination color="error" v-model="page" :length="lengthHistoryDonation" :page="page" :total-visible="totalVisible" @input="getDataPage(currentUser.user_id,page)"></v-pagination>
-                                </v-list>
+                                </template>
+                                
+                                <template v-else>
+                                    <v-alert prominent type="error" text icon="mdi-cancel" class="ma-4">
+                                        <v-row align="center">
+                                            <v-col class="grow">Oh tidak! Kamu belum pernah melakukan donasi.</v-col>
+                                            <v-col class="shrink">
+                                                <v-btn outlined color="error" @click="reroutes('/start')">Donasi Sekarang</v-btn>
+                                            </v-col>
+                                        </v-row>
+                                    </v-alert>
+                                </template>
                             </v-tab-item>
                              <v-tab-item>
                                 <v-card-title>Pencairan Dana</v-card-title>
-                                <v-card-subtitle>Menampilkan Pencairan data yang akan di proses</v-card-subtitle>
-                                <v-form :value="csrf">
+                                <v-form ref="withdrawForm" :value="csrf">
                                     <v-container class="px-12 pb-12">
-                                        <v-select name="totalrequestmoney" label="Pilih Penggalangan Dana" v-model="selected" prepend-inner-icon="mdi-charity" required outlined clearable></v-select>
-                                        <v-text-field label="Jumlah Pencairan Dana" name="totalrequestmoney" prepend-inner-icon="mdi-numeric" type="text" required outlined clearable/>
-                                        <v-text-field label="Bank" name="bankname" prepend-inner-icon="mdi-bank" type="text" required outlined clearable/>
-                                        <v-divider/>
-                                        <v-btn color="error" class="mr-2" @click="">Proses</v-btn>
-                                        <v-btn text class="mr-2">Batal</v-btn>
+                                        <v-select name="totalrequestmoney" label="Pilih Penggalangan Dana" v-model="withdraw.campaign" prepend-inner-icon="mdi-charity" required filled clearable></v-select>
+                                        <v-text-field label="Nominal Pencairan Dana" name="totalrequestmoney" v-model="withdraw.nominal" prepend-inner-icon="mdi-cash" type="text" required filled clearable/>
+                                        <v-text-field label="Nomor Rekening Tujuan" name="bankname" prepend-inner-icon="mdi-bank" v-model="withdraw.bank" type="text" required filled clearable/>
+                                        <v-btn color="error" class="mr-2" @click="">Ajukan</v-btn>
+                                        <v-btn text class="mr-2" @click="resetWithdraw()">Reset</v-btn>
                                     </v-container>
                                 </v-form>
                             </v-tab-item>
-                            <v-tab-item>
+                            <v-tab-item class="mb-4">
                                 <v-card-title>Ubah Profil</v-card-title>
                                 <v-card-subtitle></v-card-subtitle>
-                                <v-form :value="csrf">
+                                <v-form ref="profileForm" :value="csrf">
                                     <v-container class="px-12 pb-12">
                                         <div class="d-flex align-center mb-4">
-                                            <v-avatar size="96" left>
+                                            <v-avatar size="106" left>
                                                 <img :src="'storage/profile/'+currentUser.user_foto">
                                             </v-avatar>
-                                            <v-card-subtitle>Maksimal ukuran foto 1MB. Disarankan beresolusi 180px x 180px.</v-card-subtitle>
+                                            <v-card-subtitle>Disarankan foto profil memiliki aspect ratio 1:1.</v-card-subtitle>
                                         </div>
-                                        <v-file-input label="Foto Profil" prepend-icon="" prepend-inner-icon="mdi-paperclip" accept="image/png, image/jpeg, image/bmp" v-model="update.image" type="file" filled outlined clearable/>
+                                        <v-file-input label="Ganti foto profil baru" prepend-icon="" prepend-inner-icon="mdi-camera" accept="image/png, image/jpeg, image/bmp" v-model="update.image" type="file" filled clearable/>
                                         <v-divider/>
-                                        <v-text-field label="Nama Depan" name="firstname" prepend-inner-icon="person" type="text" v-model="update.firstName" :error-messages="errors.firstName"  required outlined clearable/>
-                                        <v-text-field label="Nama Belakang" name="lastname" prepend-inner-icon="person" type="text" v-model="update.lastName" :error-messages="errors.lastName" required outlined clearable/>
-                                        <v-text-field label="Email" name="email" prepend-inner-icon="mail" type="text" v-model="update.email" readonly required outlined/>
-                                        <v-text-field label="Nomor Handphone" name="noHandphone" prepend-inner-icon="phone" v-model="update.phoneNumber" type="text" :error-messages="errors.phoneNumber" :counter="14" required outlined clearable/>
-                                        <v-divider/>
+                                        <v-text-field label="Nama Depan" name="firstname" prepend-inner-icon="person" type="text" v-model="update.firstName" :error-messages="errors.firstName"  required filled clearable/>
+                                        <v-text-field label="Nama Belakang" name="lastname" prepend-inner-icon="person" type="text" v-model="update.lastName" :error-messages="errors.lastName" required filled clearable/>
+                                        <v-text-field label="Nomor Handphone" name="noHandphone" prepend-inner-icon="phone" v-model="update.phoneNumber" type="text" :error-messages="errors.phoneNumber" :counter="14" required filled clearable/>
                                         <v-btn color="error" class="mr-2"  @click="callSubmitUpdateProfile()">Ganti</v-btn>
-                                        <v-btn text class="mr-2">Batal</v-btn>
+                                        <v-btn text class="mr-2" @click="resetProfile()">Reset</v-btn>
                                     </v-container>
                                 </v-form>
                             </v-tab-item>
                             <v-tab-item>
                                 <v-card-title>Ganti Password</v-card-title>
                                 <v-card-subtitle></v-card-subtitle>
-                                <v-form>
+                                <v-form ref="passwordForm">
                                     <v-container class="px-12 pb-12">
                                             <v-alert type="error" text dense transition="slide-y-transition"  v-if="messageoldpassword">{{messageoldpassword}}</v-alert>
-                                            <v-text-field id="oldpassword" label="Password Saat Ini"  name="oldpassword" :error-messages="errors.oldpassword" prepend-inner-icon="mdi-lock-question" v-model="updatePassword.oldpassword" type="password" required outlined clearable/>
-                                            <v-text-field id="newpassword" label="Password Baru" name="newpassword" :error-messages="errors.newpassword"  prepend-inner-icon="mdi-lock-open" type="password" v-model="updatePassword.newpassword" required outlined clearable/>
-                                            <v-text-field id="passwordconfirm" label="Ketik Ulang Password Baru" :error-messages="errors.confirmpassword" name="passwordconfirm" prepend-inner-icon="lock" type="password" v-model="updatePassword.confirmpassword" required outlined clearable/>
-                                        <v-divider/>
-                                        <v-btn color="error" @click=" callSubmitUpdatePassword()" class="mr-2">Ganti</v-btn>
-                                        <v-btn text class="mr-2">Batal</v-btn>
+                                            <v-text-field id="oldpassword" label="Password Saat Ini"  name="oldpassword" :error-messages="errors.oldPassword" prepend-inner-icon="mdi-lock-question" v-model="updatePassword.oldPassword" type="password" required filled clearable/>
+                                            <v-text-field id="newpassword" label="Password Baru" name="newpassword" :error-messages="errors.newPassword"  prepend-inner-icon="mdi-lock-open" type="password" v-model="updatePassword.newPassword" required filled clearable/>
+                                            <v-text-field id="passwordconfirm" label="Ketik Ulang Password Baru" :error-messages="errors.confirmPassword" name="passwordconfirm" prepend-inner-icon="lock" type="password" v-model="updatePassword.confirmPassword" required filled clearable/>
+                                        <v-btn color="error" @click="callSubmitUpdatePassword()" class="mr-2">Ganti</v-btn>
+                                        <v-btn text class="mr-2" @click="resetPassword()">Reset</v-btn>
                                     </v-container>
                                 </v-form>
                             </v-tab-item>
@@ -193,7 +229,6 @@
     export default {
         data: () => ({
             actives: [],
-            selected:"",
             submisishistory: [],
             submisisactive: [],
             donations:[],
@@ -201,18 +236,22 @@
             errors:[],
             message:"",
             messageoldpassword:"",
+            withdraw: {
+                campaign: "",
+                nominal: "",
+                bank: ""
+            },
             update: {
                 firstName: "",
                 lastName: "",
-                email: "",
                 phoneNumber: "",
                 image: undefined,
                 csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
             },
             updatePassword: {
-                oldpassword: "",
-                newpassword: "",
-                confirmpassword: "",
+                oldPassword: "",
+                newPassword: "",
+                confirmPassword: "",
                 csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
             },
             lengthHistoryDonation: 0,
@@ -238,14 +277,36 @@
         },
         watch: {
             currentUser:function (value) {
+                this.$data.selected = "";
                 this.$data.update.firstName = this.currentUser.user_name.split(" ")[0];
                 this.$data.update.lastName = this.currentUser.user_name.split(" ")[1];
                 this.$data.update.phoneNumber = this.currentUser.user_phone;
-                this.$data.update.email = this.currentUser.user_mail;
                 this.loadData(this.currentUser.user_id);
             },
         },
         methods: {
+            resetWithdraw() {
+                var withdraw = this.$data.withdraw;
+                withdraw.campaign = "";
+                withdraw.nominal = "";
+                withdraw.bank = "";
+                this.$data.errors = [];
+            },
+            resetProfile() {
+                var update = this.$data.update;
+                update.image = undefined;
+                update.firstName = this.currentUser.user_name.split(" ")[0];
+                update.lastName = this.currentUser.user_name.split(" ")[1];
+                update.phoneNumber = this.currentUser.user_phone;
+                this.$data.errors = [];
+            },
+            resetPassword() {
+                var updatePassword = this.$data.updatePassword;
+                updatePassword.oldPassword = "";
+                updatePassword.newPassword = "";
+                updatePassword.confirmPassword = "";
+                this.$data.errors = [];
+            },
             callSubmitUpdateProfile() {
                 let temp = this.$data.update
                 let formData = new FormData()
@@ -275,25 +336,19 @@
                 let temp = this.$data.updatePassword
                 let formData = new FormData()
                 formData.append('id', this.currentUser.user_id)
-                formData.append('oldpassword', temp.oldpassword)
-                formData.append('newpassword', temp.newpassword)
-                formData.append('confirmpassword', temp.confirmpassword)
+                formData.append('oldPassword', temp.oldPassword)
+                formData.append('newPassword', temp.newPassword)
+                formData.append('confirmPassword', temp.confirmPassword)
                 formData.append('email', this.currentUser.user_mail)
                 formData.append('token', temp.csrf)
                 axios
-                .post("/auth/ChangePassword", formData, {
-                    headers: {
-                        'accept': 'application/json',
-                        'Accept-Language': 'en-US,en;q=0.8',
-                        'Content-Type': `multipart/form-data`,
-                    }
-                })
+                .post("/auth/ChangePassword", formData)
                 .then(response => {
                     if(response.data.response == "BAD"){
-                        this.$data.messageoldpassword = "Tolong Periksa Password Lama anda, Pastikan diisi dengan benar!";
+                        this.$data.messageoldpassword = response.data.message;
                     }else{
                         this.reloadPage();
-                        this.message = "Berhasil Menganti Password Akun!";
+                        this.message = response.data.message;
                     }
                 })
                 .catch(e => {
@@ -315,7 +370,7 @@
                     this.donations = response.data.donations.data;
                     this.submisishistory = response.data.submissionhistory.data;
                     this.submisisactive = response.data.submissionactive;
-                    this.participation = response.data.participations[0];
+                    this.participation = response.data.participations;
                     this.lengthHistoryDonation = response.data.donations.last_page;
                     this.lengthHistorySubmission = response.data.submissionhistory.last_page;
                 });
@@ -325,7 +380,7 @@
                     this.donations = response.data.donations.data;
                     this.submisishistory = response.data.submissionhistory.data;
                     this.submisisactive = response.data.submissionactive;
-                    this.participation = response.data.participations[0];
+                    this.participation = response.data.participations;
                     this.lengthHistoryDonation = response.data.donations.last_page;
                     this.lengthHistorySubmission = response.data.submissionhistory.last_page;
                 });

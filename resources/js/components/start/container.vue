@@ -43,7 +43,7 @@
                                 <v-stepper-content step="2">
                                     <v-card-text>
                                         <v-form>
-                                            <v-file-input label="Pilih foto utama penggalangan dana mu" filled prepend-icon="mdi-camera" accept="image/png, image/jpeg, image/bmp" v-model="submission.image" :error-messages="errors.submission.image" @change="onImageChange" type="file"></v-file-input>
+                                            <v-file-input label="Pilih foto utama penggalangan dana mu" filled prepend-icon="" prepend-inner-icon="mdi-camera" accept="image/png, image/jpeg, image/bmp" v-model="submission.image" :error-messages="errors.submission.image" @change="onImageChange" type="file"></v-file-input>
                                             <v-btn color="error" @click="callSubmit()" class="mr-2">Lanjut</v-btn>
                                             <v-btn text class="mr-2" @click="changeStep(1)">Kembali</v-btn>
                                         </v-form>

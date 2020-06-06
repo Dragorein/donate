@@ -50,21 +50,24 @@ class ProfileController extends Controller
     // Update Password
     public function update_password(Request $request)
     {
-
         $request->validate([
-            'oldpassword' => 'required|min:4',
-            'newpassword' => 'required|min:4|required_with:confirmpassword|same:confirmpassword',
-            'confirmpassword' => 'min:4',
+            'oldPassword' => 'required|min:4'
         ]);
-        $password =  $request->oldpassword; 
+        $password =  $request->oldPassword; 
         $email = $request->email;
         if(!Auth::attempt(['user_mail' => $email,'password' => $password])) {
-            return response(['response' => 'BAD','message' => 'Invalid Old Password.']);
+            return response(['response' => 'BAD','message' => 'Invalid existing password!']);
         }
+
+        $request->validate([
+            'oldPassword' => 'required|min:4',
+            'newPassword' => 'required|min:4|required_with:confirmPassword|same:confirmPassword',
+            'confirmPassword' => 'min:4',
+        ]);
         $userupdate = User::find($request->id);
-        $userupdate->user_password = bcrypt($request->newpassword);
-        $userupdate -> save();
-        return response(['response' => 'success', 'message' => 'Update Password akun berhasil!']);
+        $userupdate->update(['user_password' => bcrypt($request->newPassword)]);
+
+        return response(['response' => 'success', 'message' => 'Ubah password berhasil!']);
     }
     //Get Information Submision and Donation History
     public function get_history_submision_donation($id)
@@ -73,6 +76,8 @@ class ProfileController extends Controller
             DB::raw('t_submissions.submisi_id'),
             DB::raw('t_submissions.submisi_foto'),
             DB::raw('t_submissions.submisi_judul'),
+            DB::raw('t_submissions.submisi_target'),
+            DB::raw('t_submissions.submisi_terkumpul'),
             DB::raw('m_user.user_name'),
             DB::raw('(DATEDIFF(submisi_expired_at, now())) as sisa_hari'),
         );
@@ -84,11 +89,18 @@ class ProfileController extends Controller
                 ['t_submissions.submisi_is_active',1]
             ])
             ->get();
+            
+        foreach($submission_active as $key => $value)
+        {
+            $submission_active[$key]->submisi_target = $this->currency($submission_active[$key]->submisi_target);
+            $submission_active[$key]->submisi_terkumpul = $this->currency($submission_active[$key]->submisi_terkumpul);
+        }
 
         $sql_submission_history = array(
             DB::raw('t_submissions.submisi_id'),
             DB::raw('t_submissions.submisi_foto'),
             DB::raw('t_submissions.submisi_judul'),
+            DB::raw('t_submissions.submisi_is_active'),
             DB::raw('m_user.user_name'),
             DB::raw('(DATEDIFF(submisi_expired_at, now())) as sisa_hari'),
         );
@@ -96,17 +108,25 @@ class ProfileController extends Controller
             ->join('m_user', 't_submissions.user_id', '=', 'm_user.user_id')
             ->select($sql_submission_history)
             ->where([
-                ['t_submissions.user_id',$id],
-                ['t_submissions.submisi_is_active',0]
+                ['t_submissions.user_id',$id]
             ])
             ->paginate(6);
+
+        foreach($submission_history as $key => $value)
+        {
+            $status = $submission_history[$key]->submisi_is_active;
+            if($status == 1)
+                $submission_history[$key]->submisi_is_active = 'masih aktif';
+            else
+                $submission_history[$key]->submisi_is_active = 'ditutup';
+        }
 
         $sql_donations = array(
             DB::raw('t_submissions.submisi_id'),
             DB::raw('t_submissions.submisi_foto'),
             DB::raw('t_submissions.submisi_judul'),
             DB::raw('m_user.user_name'),
-            DB::raw('(DATEDIFF(submisi_expired_at, now())) as sisa_hari'),
+            DB::raw('t_donations.donation_nominal'),
         );
         $donations = DB::table('t_donations')
             ->join('t_submissions', 't_donations.submisi_id', '=', 't_submissions.submisi_id')
@@ -114,18 +134,27 @@ class ProfileController extends Controller
             ->select($sql_donations)
             ->where('t_donations.user_id',$id)
             ->paginate(6);
+        
+        foreach($donations as $key => $value)
+        {
+            $donations[$key]->donation_nominal = $this->currency($donations[$key]->donation_nominal);
+        }
 
 
         $sql_total_donations = array(
             DB::raw('SUM(t_donations.donation_nominal) as total_donation'),
-            DB::raw('COUNT(t_donations.submisi_id) as total_participant'),
+            DB::raw('COUNT(distinct t_donations.submisi_id) as total_participant'),
         );
         $total_donations = DB::table('t_donations')
             ->join('t_submissions', 't_donations.submisi_id', '=', 't_submissions.submisi_id')
             ->join('m_user', 't_submissions.user_id', '=', 'm_user.user_id')
             ->select($sql_total_donations)
             ->where('t_donations.user_id',$id)
-            ->get();
+            ->get()->first();
+        
+        if($total_donations->total_donation == null)
+            $total_donations->total_donation = 0;
+        $total_donations->total_donation = $this->currency($total_donations->total_donation);
 
         return response([
             'submissionhistory' => $submission_history, 

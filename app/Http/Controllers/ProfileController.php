@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\UploadedFile;
 use App\User;
 use App\Submission;
+use App\Donation;
+use App\Withdraw;
 
 class ProfileController extends Controller
 {
@@ -44,7 +46,7 @@ class ProfileController extends Controller
             $userupdate -> save();
             Session::put('user', $userupdate);
         }
-        return response(['response' => 'success', 'message' => "Update Profile berhasil!"]);
+        return response(['response' => 'success', 'message' => "Perubahan Profile berhasil!"]);
     }
 
     // Update Password
@@ -170,6 +172,49 @@ class ProfileController extends Controller
         $closeSubmission = Submission::find($id);
         $closeSubmission->submisi_is_active = '0';
         $closeSubmission -> save();
-        return response(['response' => 'success', 'message' => "Berhasil!"]);
+        return response(['response' => 'success', 'message' => "Penutupan galang dana berhasil!"]);
+    }
+
+    public function submit_withdraw(Request $request)
+    {
+        $rules = [
+            'id' => 'required',
+            'campaign' => 'required'
+        ];
+
+        $messages = [
+            'campaign.required' => 'Kolom penggalangan perlu dipilih terlebih dahulu.',
+        ];
+        $this->validate($request, $rules, $messages);
+
+        $nominal_total = Donation::where('submisi_id', $request->campaign)->sum('donation_nominal');
+        $nominal_withdrawed =  Withdraw::where('submisi_id', $request->campaign)->where('withdraw_is_approved', '!=', 2)->sum('withdraw_nominal');
+        $max = $nominal_total*0.95;
+        $difference = $max - $nominal_withdrawed;
+
+        $rules = [
+            'nominal' => 'required|integer|min:100000|max:'.$difference,
+            'bank' => 'required|digits:10',
+        ];
+
+        $messages = [
+            'nominal.required' => 'Kolom nominal perlu diisi.',
+            'nominal.min' => 'Minimal nominal pencairan adalah Rp100,000.',
+            'nominal.max' => 'Maksimal Nominal pencairan adalah '.$this->currency($difference).'.',
+            'bank.required' => 'Kolom nomor rekening perlu diisi.',
+            'bank.digits' => 'Nomor Rekening harus memiliki 10 digit.'
+        ];
+        $this->validate($request, $rules, $messages);
+
+        $withdraw = new Withdraw;
+        $withdraw->submisi_id = $request->campaign;
+        $withdraw->user_id = $request->id;
+        $withdraw->withdraw_nominal = $request->nominal;
+        $withdraw->withdraw_bank_number = $request->bank;
+        $withdraw->withdraw_is_approved = 0;
+
+        $withdraw->save();
+
+        return response(['response' => 'success', 'message' => "Pengajuan pencairan dana berhasil! Ajuan pencairan akan diverifikasi oleh admin maksimal 2 hari."]);
     }
 }

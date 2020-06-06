@@ -18,28 +18,28 @@
                             <v-col cols="12" md="6" lg="3">
                                 <v-alert border="left" icon="mdi-charity" prominent colored-border color="blue lighten-1" class="py-0">
                                     <v-card-title class="subtitle-1">Total Galang Dana</v-card-title>
-                                    <v-card-subtitle class="headline font-weight-bold">{{campaigns.length}}</v-card-subtitle>
+                                    <v-card-subtitle class="title font-weight-bold pr-0">{{campaigns.length}}</v-card-subtitle>
                                 </v-alert>
                             </v-col>
 
                             <v-col cols="12" md="6" lg="3">
                                 <v-alert border="left" icon="mdi-account-group" prominent colored-border color="green lighten-1" class="py-0">
                                     <v-card-title class="subtitle-1">Total Pengguna</v-card-title>
-                                    <v-card-subtitle class="headline font-weight-bold">{{users.length}}</v-card-subtitle>
+                                    <v-card-subtitle class="title font-weight-bold pr-0">{{users.length}}</v-card-subtitle>
                                 </v-alert>
                             </v-col>
 
                             <v-col cols="12" md="6" lg="3">
                                 <v-alert border="left" icon="mdi-cash-multiple" prominent colored-border color="cyan lighten-1" class="py-0">
                                     <v-card-title class="subtitle-1">Total Bantuan</v-card-title>
-                                    <v-card-subtitle class="headline font-weight-bold">{{totalCampaigns}}</v-card-subtitle>
+                                    <v-card-subtitle class="title font-weight-bold pr-0">{{totalCampaigns}}</v-card-subtitle>
                                 </v-alert>
                             </v-col>
 
                             <v-col cols="12" md="6" lg="3">
                                 <v-alert border="left" icon="mdi-chat-alert" prominent colored-border color="yellow lighten-1" class="py-0">
                                     <v-card-title class="subtitle-1">Butuh Persetujuan</v-card-title>
-                                    <v-card-subtitle class="headline font-weight-bold">{{needApprove}}</v-card-subtitle>
+                                    <v-card-subtitle class="title font-weight-bold pr-0">{{needApprove}}</v-card-subtitle>
                                 </v-alert>
                             </v-col>
                         </v-row>

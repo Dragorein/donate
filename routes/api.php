@@ -21,3 +21,5 @@ Route::post('/donation', 'DonationController@Donations');
 Route::get('/informationpayment', 'DonationController@information_donation');
 Route::get('/cari', 'SearchController@index');
 Route::post('/CloseSubmisi/{id}','ProfileController@Close_Submission');
+Route::post('/CloseSubmisi/{id}','ProfileController@Close_Submission');
+Route::post('/withdraw','ProfileController@submit_withdraw');

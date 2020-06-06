@@ -169,12 +169,12 @@
                             </v-tab-item>
                              <v-tab-item>
                                 <v-card-title>Pencairan Dana</v-card-title>
-                                <v-form ref="withdrawForm" :value="csrf">
+                                <v-form :value="csrf">
                                     <v-container class="px-12 pb-12">
-                                        <v-select name="totalrequestmoney" label="Pilih Penggalangan Dana" v-model="withdraw.campaign" prepend-inner-icon="mdi-charity" required filled clearable></v-select>
-                                        <v-text-field label="Nominal Pencairan Dana" name="totalrequestmoney" v-model="withdraw.nominal" prepend-inner-icon="mdi-cash" type="text" required filled clearable/>
-                                        <v-text-field label="Nomor Rekening Tujuan" name="bankname" prepend-inner-icon="mdi-bank" v-model="withdraw.bank" type="text" required filled clearable/>
-                                        <v-btn color="error" class="mr-2" @click="">Ajukan</v-btn>
+                                        <v-select name="totalrequestmoney" :items="submisisactive" item-text="submisi_judul" item-value="submisi_id" label="Pilih Penggalangan Dana" v-model="withdraw.campaign" prepend-inner-icon="mdi-charity" :error-messages="errors.campaign" required filled clearable></v-select>
+                                        <v-text-field label="Nominal Pencairan Dana" name="totalrequestmoney" v-model="withdraw.nominal" prepend-inner-icon="mdi-cash" type="text" :error-messages="errors.nominal" required filled clearable/>
+                                        <v-text-field label="Nomor Rekening Tujuan" name="bankname" prepend-inner-icon="mdi-bank" v-model="withdraw.bank" type="text" :error-messages="errors.bank" required filled clearable/>
+                                        <v-btn color="error" class="mr-2" @click="callSubmitWithdraw()">Ajukan</v-btn>
                                         <v-btn text class="mr-2" @click="resetWithdraw()">Reset</v-btn>
                                     </v-container>
                                 </v-form>
@@ -192,7 +192,7 @@
                                         </div>
                                         <v-file-input label="Ganti foto profil baru" prepend-icon="" prepend-inner-icon="mdi-camera" accept="image/png, image/jpeg, image/bmp" v-model="update.image" type="file" filled clearable/>
                                         <v-divider/>
-                                        <v-text-field label="Nama Depan" name="firstname" prepend-inner-icon="person" type="text" v-model="update.firstName" :error-messages="errors.firstName"  required filled clearable/>
+                                        <v-text-field label="Nama Depan" name="firstname" prepend-inner-icon="person" type="text" v-model="update.firstName" :error-messages="errors.firstName" required filled clearable/>
                                         <v-text-field label="Nama Belakang" name="lastname" prepend-inner-icon="person" type="text" v-model="update.lastName" :error-messages="errors.lastName" required filled clearable/>
                                         <v-text-field label="Nomor Handphone" name="noHandphone" prepend-inner-icon="phone" v-model="update.phoneNumber" type="text" :error-messages="errors.phoneNumber" :counter="14" required filled clearable/>
                                         <v-btn color="error" class="mr-2"  @click="callSubmitUpdateProfile()">Ganti</v-btn>
@@ -203,7 +203,7 @@
                             <v-tab-item>
                                 <v-card-title>Ganti Password</v-card-title>
                                 <v-card-subtitle></v-card-subtitle>
-                                <v-form ref="passwordForm">
+                                <v-form>
                                     <v-container class="px-12 pb-12">
                                             <v-alert type="error" text dense transition="slide-y-transition"  v-if="messageoldpassword">{{messageoldpassword}}</v-alert>
                                             <v-text-field id="oldpassword" label="Password Saat Ini"  name="oldpassword" :error-messages="errors.oldPassword" prepend-inner-icon="mdi-lock-question" v-model="updatePassword.oldPassword" type="password" required filled clearable/>
@@ -348,6 +348,25 @@
                         this.$data.messageoldpassword = response.data.message;
                     }else{
                         this.reloadPage();
+                        this.message = response.data.message;
+                    }
+                })
+                .catch(e => {
+                    this.errors = e.response.data.errors;
+                })
+            },
+            callSubmitWithdraw() {
+                let temp = this.$data.withdraw
+                let formData = new FormData()
+                formData.append('id', this.currentUser.user_id)
+                formData.append('campaign', temp.campaign)
+                formData.append('nominal', temp.nominal)
+                formData.append('bank', temp.bank)
+                axios
+                .post("/api/withdraw", formData)
+                .then(response => {
+                    if(response.data.response == "success"){
+                        this.reloadPage();                        
                         this.message = response.data.message;
                     }
                 })

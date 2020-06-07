@@ -48,6 +48,7 @@ class SubmissionController extends Controller
             DB::raw('m_user.user_name'),
             DB::raw('t_submissions.submisi_terkumpul'),
             DB::raw('t_submissions.submisi_target'),
+            DB::raw('t_submissions.submisi_is_active'),
             DB::raw('submisi_terkumpul/submisi_target*100 as kekurangan_donasi'),
             DB::raw('(DATEDIFF(submisi_expired_at, now())) as sisa_hari'),
         );

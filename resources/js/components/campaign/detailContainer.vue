@@ -14,11 +14,12 @@
                                     <h2 style="display-1" >{{submission.submisi_judul}}</h2>
                                     <span><strong class="deep-orange--text title">{{submission.submisi_terkumpul}}</strong>{{' Terkumpul dari ' + submission.submisi_target}}</span>
                                     <v-progress-linear rounded height="8" v-model="submission.kekurangan_donasi" color="deep-orange" class="my-4"></v-progress-linear>
-                                    <span><strong class="deep-orange--text title">{{submission.sisa_hari}}</strong> hari lagi</span>
+                                    <span v-if="submission.submisi_is_active"><strong class="deep-orange--text title" >{{submission.sisa_hari}}</strong> hari lagi</span>
                                 </v-card-text>
 
                                 <v-card-text>
-                                    <v-btn @click="reroutes('/payment/'+$route.params.id)" rounded block depressed large color="error">Donasi Sekarang</v-btn>
+                                    <v-btn @click="reroutes('/payment/'+$route.params.id)" rounded block depressed large color="error" v-if="submission.submisi_is_active">Donasi Sekarang</v-btn>
+                                    <v-btn rounded block depressed large disabled v-else>Donasi Telah Berakhir</v-btn>
                                 </v-card-text>
                             </v-card>
                         </v-col>

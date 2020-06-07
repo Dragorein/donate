@@ -62,7 +62,7 @@ export default {
       image: undefined,
       password: "",
       confirmPassword: "",
-      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
     },
   }),
   computed: {

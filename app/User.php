@@ -6,33 +6,23 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Model;
-use Tymon\JWTAuth\Contracts\JWTSubject;
+use Laravel\Passport\HasApiTokens;
 
-class User extends Authenticatable implements JWTSubject
+class User extends Authenticatable
 {
-    use Notifiable;
+    Use HasApiTokens, Notifiable;
 
     protected $table = 'm_user';
 
     protected $primaryKey = 'user_id';
 
     protected $fillable = [
-        'user_name','user_mail','user_token','user_phone','user_foto','user_password'
+        'user_name','user_mail','user_phone','user_foto','user_password'
     ];
     
     protected $hidden = [
         'user_password'
     ];
-
-    public function getJWTIdentifier()
-    {
-        return $this->getKey();
-    }
-    
-    public function getJWTCustomClaims()
-    {
-        return [];
-    }
 
     public function getAuthPassword()
     {

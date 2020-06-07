@@ -14,6 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::prefix('/auth')->group(function() {
+    Route::post('/register', 'UserController@register');
+    Route::post('/login', 'UserController@login');
+    Route::middleware('auth:api')->get('/current', 'UserController@currentUser');
+});
+
 Route::get('/','SubmissionController@all');
 Route::get('/getProfileInformation/{id}','ProfileController@get_history_submision_donation');
 Route::get('/DataSubmision/{id}','SubmissionController@show_campaign_detail');

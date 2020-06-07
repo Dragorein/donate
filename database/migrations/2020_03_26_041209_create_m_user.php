@@ -17,7 +17,6 @@ class CreateMUser extends Migration
             $table->increments('user_id');
             $table->string('user_name', 255);
             $table->string('user_mail', 255);
-            $table->string('user_token', 255);
             $table->string('user_phone', 255);
             $table->string('user_foto', 255);
             $table->string('user_password', 255);

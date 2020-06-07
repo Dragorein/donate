@@ -20,7 +20,7 @@ const getters = {};
 const actions = {
     register({}, user) {
         axios
-            .post("/auth/register", user, {
+            .post("/api/auth/register", user, {
                 headers: {
                     'accept': 'application/json',
                     'Accept-Language': 'en-US,en;q=0.8',
@@ -49,16 +49,22 @@ const actions = {
 
     login({}, user) {
         axios
-            .post("/auth/login", {
+            .post("/api/auth/login", {
                 email: user.email,
-                password: user.password,
-                token: user.csrf
+                password: user.password
             })
             .then((response) => {
-                state.user = response.data.user;
-                state.loggedin = response.data.loggedin;
-                state.admin = response.data.isadmin;
-                state.messageDialog = response.data.message;
+                console.log(response.data);
+                if(response.data.access_token) {
+                    //saving token in local storage
+                    localStorage.setItem(
+                        "access_token", response.data.access_token
+                    )
+                    state.user = response.data.user;
+                    state.loggedin = response.data.loggedin;
+                    state.admin = response.data.isadmin;
+                    state.messageDialog = response.data.message;
+                }
             })
             .catch(e => {
                 if (e.response.status == 422) {
@@ -69,57 +75,60 @@ const actions = {
     },
 
     logout() {
-        axios
-            .post("/auth/logout")
-            .then((response) => {
-            })
-            .catch(e => {
-                console.error(e);
-            });
+        localStorage.removeItem("access_token");
     },
     
     getUser({commit}) {
-        axios
-            .get("/auth/current")
-            .then(response => {
-                if (response.data != null) {
-                    commit('setUser', response.data);
-                    commit('setUserStatus', response.data);
-                    commit('setUserAdmin', response.data);
-                }
-            });
+        if(localStorage.hasOwnProperty("access_token")) {
+            axios
+                .get("/api/auth/current", {
+                    headers: {
+                        'Authorization': 'Bearer ' + localStorage.getItem("access_token")
+                    }
+                })
+                .then(response => {
+                    if (response.data != null) {
+                        commit('setUser', response.data);
+                        commit('setUserStatus', response.data);
+                        commit('setUserAdmin', response.data);
+                    }
+                });
+        }
     },
 
     start({}, submission) {
-        axios
-            .post("/user/start", submission, {
-                headers: {
-                    'accept': 'application/json',
-                    'Accept-Language': 'en-US,en;q=0.8',
-                    'Content-Type': `multipart/form-data`,
-                }
-            })
-            .then(response => {
-                if (response.data.response == 'step-2' && state.submissionStep == 1) {
-                    state.submissionStep = 2;
-                } else if (response.data.response == 'step-3' && state.submissionStep == 2) {
-                    state.submissionStep = 3;
-                } else if (response.data.response == 'success' && state.submissionStep == 3) {
-                    state.message = response.data.message;
-                    state.submissionStep = 1;
-                    router.push({path: '/'});
-                    setTimeout(() => {
+        if(localStorage.hasOwnProperty("access_token")) {
+            axios
+                .post("/api/user/start", submission, {
+                    headers: {
+                        'Authorization': 'Bearer ' + localStorage.getItem("access_token"),
+                        'accept': 'application/json',
+                        'Accept-Language': 'en-US,en;q=0.8',
+                        'Content-Type': `multipart/form-data`,
+                    }
+                })
+                .then(response => {
+                    if (response.data.response == 'step-2' && state.submissionStep == 1) {
+                        state.submissionStep = 2;
+                    } else if (response.data.response == 'step-3' && state.submissionStep == 2) {
+                        state.submissionStep = 3;
+                    } else if (response.data.response == 'success' && state.submissionStep == 3) {
+                        state.message = response.data.message;
+                        state.submissionStep = 1;
+                        router.push({path: '/'});
+                        setTimeout(() => {
+                            state.message = "";
+                            state.messageDialog = "";
+                        }, 4050);
+                    }
+                })
+                .catch(e => {
+                    if (e.response.status == 422) {
+                        state.errors.submission = e.response.data.errors;
                         state.message = "";
-                        state.messageDialog = "";
-                    }, 4050);
-                }
-            })
-            .catch(e => {
-                if (e.response.status == 422) {
-                    state.errors.submission = e.response.data.errors;
-                    state.message = "";
-                }
-            });
+                    }
+                });
+        }
     },
 };
 const mutations = {

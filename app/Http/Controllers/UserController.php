@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
+use Illuminate\Notifications\notifiable;
 use App\User;
 
 class UserController extends Controller
@@ -38,7 +38,6 @@ class UserController extends Controller
             $userRegister = new User;
             $userRegister->user_name = ucfirst($request->firstName).' '.ucfirst($request->lastName);
             $userRegister->user_mail = $request->email;
-            $userRegister->user_token = $request->token;
             $userRegister->user_phone = $request->phoneNumber;
             $userRegister->user_password = bcrypt($request->password);
             $userRegister->user_is_active = 1;
@@ -66,35 +65,27 @@ class UserController extends Controller
         $userLoggingIn = new User;
         $userLoggingIn = $request->validate([
             'email' => 'required|email',
-            'password' => 'required|string',
-            'token' => 'required'
+            'password' => 'required|string'
         ]);
 
         if(!Auth::attempt(['user_mail' => $userLoggingIn['email'], 'password' => $userLoggingIn['password']])) {
-            return response(['user' => '', 'loggedin' => false, 'message' => 'Invalid login credentials.']);
+            return response(['user' => '', 'loggedin' => false, 'message' => 'Email atau password tidak valid.']);
         }
 
-        $userId = Auth::user()->user_id;
-        $userData = User::find($userId);
-        $userData->update(['user_token' => $userLoggingIn['token']]);
-        Session::put('user', $userData);
-        Session::put('loggedin', true);
-        if($userData->user_is_admin == 1) {
-            Session::put('isadmin', true);
-        }
-        return response(['user' => Session::get('user'), 'loggedin' => Session::get('loggedin'), 'isadmin' => Session::has('isadmin')]);
-    }
-
-    public function logout()
-    {
-        Session::flush();
+        $accessToken = Auth::user()->createToken('authToken')->accessToken;
+        $isAdmin = false;
+        if(Auth::user()->user_is_admin == 1)
+            $isAdmin = true;
+            
+        return response(['user' => Auth::user(), 'loggedin' => true, 'isadmin' => $isAdmin, 'access_token' => $accessToken]);
     }
 
     public function currentUser()
     {
-        if (!Session::has('loggedin')) {
-            return response(['user' => '', 'loggedin' => false]);
-        }
-        return response(['user' => Session::get('user'), 'loggedin' => Session::get('loggedin'), 'isadmin' => Session::has('isadmin')]);
+        $isAdmin = false;
+        if(Auth::user()->user_is_admin == 1)
+            $isAdmin = true;
+            
+        return response(['user' => Auth::user(), 'loggedin' => true, 'isadmin' => $isAdmin]);
     }
 }

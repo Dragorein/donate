@@ -17,11 +17,6 @@ Route::get('/', function () {
     return view('landing');
 });
 
-Route::post('/auth/register', 'UserController@register');
-Route::post('/auth/login', 'UserController@login');
-Route::post('/auth/logout', 'UserController@logout');
-Route::get('/auth/current', 'UserController@currentUser');
-
 Route::get('/dashboard/all', 'DashboardController@index');
 Route::put('/dashboard/submission/close', 'DashboardController@close_submission');
 Route::delete('/dashboard/submission/destroy', 'DashboardController@destroy_submission');

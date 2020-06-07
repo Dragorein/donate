@@ -30,15 +30,11 @@ const routes = [
         name: "register",
         path: "/register",
         beforeEnter(to, from, next) {
-            axios
-            .get("/auth/current")
-            .then(response => {
-                if (!response.data.loggedin) {
-                    next();
-                } else {
-                    next('/');
-                }
-            });
+            if(!localStorage.hasOwnProperty("access_token")) {
+                next();
+            } else {
+                next('/');
+            }
         }
     },
     {
@@ -66,15 +62,11 @@ const routes = [
         name: "profile",
         path: "/profile",
         beforeEnter(to, from, next) {
-            axios
-            .get("/auth/current")
-            .then(response => {
-                if (response.data.loggedin) {
-                    next();
-                } else {
-                    next('/');
-                }
-            });
+            if(localStorage.hasOwnProperty("access_token")) {
+                next();
+            } else {
+                next('/');
+            }
         }
     },
     {
@@ -82,13 +74,21 @@ const routes = [
         name: "dashboard",
         path: "/dashboard",
         beforeEnter(to, from, next) {
-            axios
-            .get("/auth/current")
-            .then(response => {
-                if (response.data.isadmin) {
-                    next();
-                }
-            });
+            if(localStorage.hasOwnProperty("access_token")) {
+                axios
+                .get("/api/auth/current", {
+                    headers: {'Authorization': 'Bearer ' + localStorage.getItem("access_token")}
+                })
+                .then(response => {
+                    if (response.data.isadmin) {
+                        next();
+                    } else {
+                        next('/');
+                    }
+                });
+            } else {
+                next('/');
+            }
         }
     },
     {
@@ -96,15 +96,11 @@ const routes = [
         name: "start",
         path: "/start",
         beforeEnter(to, from, next) {
-            axios
-            .get("/auth/current")
-            .then(response => {
-                if (response.data.loggedin) {
-                    next();
-                } else {
-                    next('/');
-                }
-            });
+            if(localStorage.hasOwnProperty("access_token")) {
+                next();
+            } else {
+                next('/');
+            }
         }
     }
 ];

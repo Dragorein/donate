@@ -137,12 +137,6 @@
                                 <template v-slot:item.actions="{ item }">
                                     <v-tooltip top>
                                         <template v-slot:activator="{ on }">
-                                            <v-icon small color="green mr-2" v-on="on" @click="">mdi-information</v-icon>
-                                        </template>
-                                        <span>Lihat pengguna</span>
-                                    </v-tooltip>
-                                    <v-tooltip top>
-                                        <template v-slot:activator="{ on }">
                                             <v-icon small color="red mr-2" v-on="on" @click="deleteUser(item)">mdi-delete</v-icon>
                                         </template>
                                         <span>Hapus pengguna</span>
@@ -238,6 +232,7 @@
             },
         },
         created() {
+            axios.defaults.headers.common["Authorization"] = "Bearer " + localStorage.getItem("access_token");
             this.loadData();
             this.$store.dispatch('user/getUser');
 
@@ -250,23 +245,23 @@
                 this.$store.commit('user/setDashboardPage', page)
             },
             loadData() {
-            axios
-                .get("/dashboard/all")
-                .then(response => {
-                    if(response.data != null) {
-                        this.$data.campaigns = response.data.campaigns;
-                        this.$data.totalCampaigns = response.data.totalCampaigns;
-                        this.$data.donations = response.data.donations;
-                        this.$data.withdraws = response.data.withdraws;
-                        this.$data.needApprove = response.data.needApprove;
-                        this.$data.users = response.data.users;
-                    }
-                });
+                axios
+                    .get("/api/dashboard/all")
+                    .then(response => {
+                        if(response.data != null) {
+                            this.$data.campaigns = response.data.campaigns;
+                            this.$data.totalCampaigns = response.data.totalCampaigns;
+                            this.$data.donations = response.data.donations;
+                            this.$data.withdraws = response.data.withdraws;
+                            this.$data.needApprove = response.data.needApprove;
+                            this.$data.users = response.data.users;
+                        }
+                    });
             },
             closeCampaign(item) {
                 if(confirm('Apakah kamu yakin menutup galang dana ini?')) {
                     axios
-                        .put("/dashboard/submission/close", {
+                        .put("/api/dashboard/submission/close", {
                             id: item.submisi_id
                         })
                         .then(response => {
@@ -292,7 +287,7 @@
             deleteCampaign(item) {
                 if(confirm('Apakah kamu yakin menghapus galang dana ini?')) {
                     axios
-                        .delete("/dashboard/submission/destroy", {
+                        .delete("/api/dashboard/submission/destroy", {
                             data: {id: item.submisi_id}
                         })
                         .then(response => {
@@ -317,7 +312,7 @@
             deleteUser(item) {
                 if(confirm('Apakah kamu yakin menghapus pengguna ini?')) {
                     axios
-                        .delete("/dashboard/user/destroy", {
+                        .delete("/api/dashboard/user/destroy", {
                             data: {id: item.user_id}
                         })
                         .then(response => {
@@ -341,7 +336,7 @@
             },
             acceptWithdraw(item) {
                 axios
-                    .put("/dashboard/withdraw/accept", {
+                    .put("/api/dashboard/withdraw/accept", {
                         id: item.withdraw_id
                     })
                     .then(response => {
@@ -365,7 +360,7 @@
             },
             cancelWithdraw(item) {
                 axios
-                    .put("/dashboard/withdraw/decline", {
+                    .put("/api/dashboard/withdraw/decline", {
                         id: item.withdraw_id
                     })
                     .then(response => {

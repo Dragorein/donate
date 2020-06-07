@@ -81,14 +81,14 @@
         },
         methods: {
             loadData() {
-                axios.get("/api/").then(response => {
+                axios.get("/api/campaign/all").then(response => {
                     this.submisis = response.data.data;
                     this.length = response.data.last_page;
                     this.list = response.data;
                 });
             },
             getDataPage(id) {
-                axios.get("/api?page="+id).then(response => {
+                axios.get("/api/campaign/all?page="+id).then(response => {
                     this.list = response.data;
                     this.submisis = response.data.data;
                     this.length = response.data.last_page;

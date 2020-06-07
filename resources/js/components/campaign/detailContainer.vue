@@ -138,7 +138,7 @@
         methods: {
             loadDataSubmisi() {
                 axios
-                .get("/api/DataSubmision/"+this.$route.params.id)
+                .get("/api/campaign/"+this.$route.params.id)
                 .then(response=> {
                     this.$data.submission = response.data.submission;
                     this.$data.donations = response.data.donations;

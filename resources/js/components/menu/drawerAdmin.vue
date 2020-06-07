@@ -89,7 +89,7 @@
             callLogout() {
                 this.$store.dispatch("user/logout")
                 .then(() => {
-                    this.$router.push({ path: '/' });
+                    this.$router.go('/');
                 });
             }
         },

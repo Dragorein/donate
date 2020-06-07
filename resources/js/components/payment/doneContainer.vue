@@ -92,7 +92,7 @@ export default {
     },
     methods: {
         loadData() {
-        axios.get("http://localhost:8000/api/informationpayment").then(response => {
+        axios.get("/api/donation/done").then(response => {
             this.title = response.data[0].submisi_judul;
             this.author = response.data[0].user_name;
             this.target = response.data[0].submisi_penerima;

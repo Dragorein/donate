@@ -138,7 +138,7 @@
         methods: {
             submit() {
                 axios
-                .post("/api/donation", {
+                .post("/api/donation/store", {
                     submisi: this.$route.params.id,
                     amount: this.$data.payment.amount,
                     user_id: this.$data.payment.userId,
@@ -162,7 +162,7 @@
             },
             loadData() {
                 axios
-                .get("/api/DataSubmision/"+this.$route.params.id)
+                .get("/api/campaign/"+this.$route.params.id)
                 .then(response => {
                     this.$data.submission = response.data.submission;
                 });

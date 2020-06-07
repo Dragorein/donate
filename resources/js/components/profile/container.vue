@@ -169,7 +169,7 @@
                             </v-tab-item>
                             <v-tab-item>
                                 <v-card-title>Pencairan Dana</v-card-title>
-                                <v-form :value="csrf">
+                                <v-form>
                                     <v-container class="px-12 pb-12">
                                         <v-select name="totalrequestmoney" :items="submisisactive" item-text="submisi_judul" item-value="submisi_id" label="Pilih Penggalangan Dana" v-model="withdraw.campaign" prepend-inner-icon="mdi-charity" :error-messages="errors.campaign" required filled clearable></v-select>
                                         <v-text-field label="Nominal Pencairan Dana" name="totalrequestmoney" v-model="withdraw.nominal" prepend-inner-icon="mdi-cash" type="text" :error-messages="errors.nominal" required filled clearable/>
@@ -182,7 +182,7 @@
                             <v-tab-item class="mb-4">
                                 <v-card-title>Ubah Profil</v-card-title>
                                 <v-card-subtitle></v-card-subtitle>
-                                <v-form ref="profileForm" :value="csrf">
+                                <v-form>
                                     <v-container class="px-12 pb-12">
                                         <div class="d-flex align-center mb-4">
                                             <v-avatar size="106" left>
@@ -246,13 +246,11 @@
                 lastName: "",
                 phoneNumber: "",
                 image: undefined,
-                csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
             },
             updatePassword: {
                 oldPassword: "",
                 newPassword: "",
                 confirmPassword: "",
-                csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
             },
             lengthHistoryDonation: 0,
             lengthHistorySubmission: 0,
@@ -284,6 +282,9 @@
                 this.loadData(this.currentUser.user_id);
             },
         },
+        created() {
+            axios.defaults.headers.common["Authorization"] = "Bearer " + localStorage.getItem("access_token");
+        },
         methods: {
             resetWithdraw() {
                 var withdraw = this.$data.withdraw;
@@ -307,6 +308,7 @@
                 updatePassword.confirmPassword = "";
                 this.$data.errors = [];
             },
+
             callSubmitUpdateProfile() {
                 let temp = this.$data.update
                 let formData = new FormData()
@@ -315,9 +317,8 @@
                 formData.append('lastName', temp.lastName)
                 formData.append('phoneNumber', temp.phoneNumber)
                 formData.append('image', temp.image)
-                formData.append('token', temp.csrf)
                 axios
-                .post("/auth/updateProfile", formData, {
+                .post("/api/profile/update", formData, {
                     headers: {
                         'accept': 'application/json',
                         'Accept-Language': 'en-US,en;q=0.8',
@@ -340,13 +341,10 @@
                 formData.append('newPassword', temp.newPassword)
                 formData.append('confirmPassword', temp.confirmPassword)
                 formData.append('email', this.currentUser.user_mail)
-                formData.append('token', temp.csrf)
                 axios
-                .post("/auth/ChangePassword", formData)
+                .post("/api/profile/password/change", formData)
                 .then(response => {
-                    if(response.data.response == "BAD"){
-                        this.$data.messageoldpassword = response.data.message;
-                    }else{
+                    if(response.data.response == "success"){
                         this.reloadPage();
                         this.message = response.data.message;
                     }
@@ -363,7 +361,7 @@
                 formData.append('nominal', temp.nominal)
                 formData.append('bank', temp.bank)
                 axios
-                .post("/api/withdraw", formData)
+                .post("/api/campaign/withdraw", formData)
                 .then(response => {
                     if(response.data.response == "success"){
                         this.reloadPage();                        
@@ -375,7 +373,7 @@
                 })
             },
             callCloseSubmisi(id) {
-                axios.post("/api/CloseSubmisi/"+id)
+                axios.post("/api/campaign/close/"+id)
                 .then(response => {
                     this.reloadPage();
                     this.message = "Berhasil Menutup Penggalangan Dana!";
@@ -385,7 +383,7 @@
                 })
             },
             loadData(id) {
-                axios.get("/api/getProfileInformation/"+id).then(response => {
+                axios.get("/api/profile/info/"+id).then(response => {
                     this.donations = response.data.donations.data;
                     this.submisishistory = response.data.submissionhistory.data;
                     this.submisisactive = response.data.submissionactive;
@@ -395,7 +393,7 @@
                 });
             },
             getDataPage(id,toPage) {
-                axios.get("/api/getProfileInformation/"+id+"?page="+toPage).then(response => {
+                axios.get("/api/profile/info/"+id+"?page="+toPage).then(response => {
                     this.donations = response.data.donations.data;
                     this.submisishistory = response.data.submissionhistory.data;
                     this.submisisactive = response.data.submissionactive;

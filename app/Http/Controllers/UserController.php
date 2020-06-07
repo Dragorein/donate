@@ -17,20 +17,17 @@ class UserController extends Controller
                 'lastName' => 'required|string',
                 'phoneNumber' => 'required|numeric|min:10',
                 'email' => 'required|email|unique:App\User,user_mail',
-                'image' => 'required|mimes:jpg,jpeg,png',
             ];
 
             $messages = [
                 'firstName.required' => 'Kolom nama depan harus diisi.',
                 'lastName.required' => 'Kolom nama belakang harus diisi.',
                 'phoneNumber.required' => 'Kolom nomor telepon harus diisi.',
-                'phoneNumber.numeric' => 'Nomor telepon harus diisi dengan angka',
-                'phoneNumber.min' => 'Minimal nomor telepon adalah 10',
+                'phoneNumber.numeric' => 'Nomor telepon harus diisi dengan angka.',
+                'phoneNumber.min' => 'Minimal digit pada nomor telepon adalah 10.',
                 'email.required' => 'Kolom email harus diisi.',
-                'email.email' => 'Tolong Masukan email yang valid.',
-                'email.unique' => 'Maaf email ini sudah terpakai.',
-                'image.required' => 'File gambar harus ada.',
-                'image.mimes' => 'File gambar harus berupa .jpg, .jpeg atau .png.',
+                'email.email' => 'Format email harus valid.',
+                'email.unique' => 'Email ini sudah terdaftar.',
             ];
 
             $this->validate($request, $rules, $messages);
@@ -46,7 +43,7 @@ class UserController extends Controller
             $messages = [
                 'password.required' => 'Kolom password harus diisi.',
                 'password.min' => 'Minimal karakter pada password adalah 4.',
-                'password.required_with' => 'Password dibutuh dikonfirmasi.',
+                'password.required_with' => 'Password butuh dikonfirmasi.',
                 'password.same' => 'Password dan konfirmasi password harus sama.',
                 'confirmPassword.required' => 'Kolom konfirmasi password harus diisi.',
                 'confirmPassword.min' => 'Minimal karakter pada konfirmasi password adalah 4.',
@@ -79,14 +76,22 @@ class UserController extends Controller
     
     public function login(Request $request)
     {
-        $userLoggingIn = new User;
-        $userLoggingIn = $request->validate([
+        $rules = [
             'email' => 'required|email',
-            'password' => 'required|string'
-        ]);
+            'password' => 'required'
+        ];
+        
+        $messages = [
+            'email.required' => 'Kolom email harus diisi.',
+            'email.email' => 'Format email harus valid.',
+            'password.required' => 'Kolom password harus diisi.',
+        ];
+
+        $userLoggingIn = new User;
+        $userLoggingIn = $this->validate($request, $rules, $messages);
 
         if(!Auth::attempt(['user_mail' => $userLoggingIn['email'], 'password' => $userLoggingIn['password']])) {
-            return response(['user' => '', 'loggedin' => false, 'message' => 'Email atau password tidak valid.']);
+            return response(['user' => '', 'loggedin' => false, 'message' => 'Email atau password yang dimasukkan salah.']);
         }
 
         $accessToken = Auth::user()->createToken('authToken')->accessToken;

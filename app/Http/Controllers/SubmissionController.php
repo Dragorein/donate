@@ -95,16 +95,16 @@ class SubmissionController extends Controller
 
             $messages = [
                 'type.required' => 'Kolom kategori harus diisi.',
-                'title.required'=> 'Kolom Judul harus diisi.',
-                'title.max'=> 'Maksimal 50 karakter.',
-                'target.required'=> 'Kolom Target harus diisi.',
-                'target.numeric'=> 'Kolom Target harus diisi dengan angka.',
+                'title.required'=> 'Kolom judul harus diisi.',
+                'title.max'=> 'Kolom judul maksimal 50 karakter.',
+                'target.required'=> 'Kolom target harus diisi.',
+                'target.numeric'=> 'Kolom target harus diisi dengan angka.',
                 'target.min'=> 'Minimal target donasi adalah Rp 1.000.000.',
-                'recipient.required'=> 'Kolom Penerima harus diisi.',
-                'story.required'=> 'Kolom Cerita harus diisi.',
-                'story.max'=> 'Maksimal 255 karakter.',
-                'date.required'=> 'Kolom Tanggal harus diisi.',
-                'date.after'=> 'Tanggal tidak boleh pada hari yang sama.',
+                'recipient.required'=> 'Kolom penerima harus diisi.',
+                'story.required'=> 'Kolom cerita harus diisi.',
+                'story.max'=> 'Kolom cerita maksimal 255 karakter.',
+                'date.required'=> 'Kolom tanggal harus diisi.',
+                'date.after'=> 'Batas waktu harus minimal sehari setelah hari ini.',
             ];
 
             $this->validate($request, $rules, $messages);
@@ -118,7 +118,7 @@ class SubmissionController extends Controller
 
             $messages = [
                 'image.required' => 'File gambar harus ada.',
-                'image.mimes' => 'File gambar harus berupa .jpg, .jpeg atau .png.',
+                'image.mimes' => 'File gambar harus berupa .jpg, .jpeg, atau .png.',
             ];
 
             $this->validate($request, $rules, $messages);

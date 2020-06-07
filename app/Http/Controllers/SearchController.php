@@ -19,12 +19,12 @@ class SearchController extends Controller
             DB::raw('t_submissions.submisi_id'),
             DB::raw('m_user.user_name as author'),
             DB::raw('t_submissions.submisi_foto as src'),
-            DB::raw('t_submissions.submisi_terkumpul as raised'),
         );
         $data = DB::table('t_submissions')
                 ->select($sql)
                 ->join('m_user', 't_submissions.user_id', '=', 'm_user.user_id')
                 ->where('submisi_judul', 'like', '%'.$search.'%')->get();
+
         return $data;
     }
 }

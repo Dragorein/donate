@@ -20,12 +20,12 @@
                                 <template v-for="submission in submissions">
                                     <v-list-item @click="reroutes('/campaign/'+submission.submisi_id)">
                                         <v-list-item-avatar tile size="70" width="120">
-                                            <v-img :src="'/picture/'+submission.src"></v-img>
+                                            <v-img :src="'/storage/submission/'+submission.src"></v-img>
                                         </v-list-item-avatar>
                                         
                                         <v-list-item-content>
                                             <v-list-item-title v-html="submission.submisi_judul"></v-list-item-title>
-                                            <v-list-item-subtitle v-html="submission.author + ' ' + submission.raised"></v-list-item-subtitle>
+                                            <v-list-item-subtitle v-html="submission.author"></v-list-item-subtitle>
                                         </v-list-item-content>
                                     </v-list-item>
                                 </template>
@@ -60,7 +60,7 @@
                 this.$router.go(-1);
             },
             searchSubmission() {
-                axios.get('http://localhost:8000/api/cari?q='+this.query)
+                axios.get('/api/campaign/search?q='+this.query)
                 .then(response => {
                     this.submissions = response.data;
                 })

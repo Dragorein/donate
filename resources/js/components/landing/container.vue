@@ -152,7 +152,7 @@
         },
         methods: {
             loadData() {
-            axios.get("/api/").then(response => {
+            axios.get("/api/campaign/all").then(response => {
                 this.submissions = response.data;
             });
             },

@@ -4,13 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\UploadedFile;
 use App\User;
 use App\Submission;
 use App\Donation;
 use App\Withdraw;
+use Illuminate\Validation\ValidationException;
 
 class ProfileController extends Controller
 {
@@ -37,14 +37,12 @@ class ProfileController extends Controller
 
         $userupdate = User::find($request->id);
         $userupdate->user_name = ucfirst($request->firstName).' '.ucfirst($request->lastName);
-        $userupdate->user_token = $request->token;
         $userupdate->user_phone = $request->phoneNumber;
         
         $file = $request -> file('image');
 
         if ($file == null) {
             $userupdate -> save();
-            Session::put('user', $userupdate);
         }else {
             $ext = $request->file('image')->getClientOriginalExtension();
             $current_timestamp = now()->timestamp;
@@ -52,7 +50,6 @@ class ProfileController extends Controller
             $userupdate->user_foto = $imageFile;
             $request->file('image')->storeAs('public/profile', $current_timestamp.'.'.$ext);
             $userupdate -> save();
-            Session::put('user', $userupdate);
         }
         return response(['response' => 'success', 'message' => "Perubahan Profile berhasil!"]);
     }
@@ -65,7 +62,7 @@ class ProfileController extends Controller
         ];
 
         $messages = [
-            'oldPassword.required' => 'Kolom ini harus Diisi terlebih dahulu.',
+            'oldPassword.required' => 'Kolom ini harus diisi terlebih dahulu.',
             'oldPassword.min' => 'Minimal karakter untuk kolom ini adalah 4.',
         ];
 
@@ -73,8 +70,8 @@ class ProfileController extends Controller
 
         $password =  $request->oldPassword; 
         $email = $request->email;
-        if(!Auth::attempt(['user_mail' => $email,'password' => $password])) {
-            return response(['response' => 'BAD','message' => 'Password yang sudah ada tidak valid!']);
+        if(!Auth::guard('web')->attempt(['user_mail' => $email,'password' => $password])) {
+            throw ValidationException::withMessages(['oldPassword' => 'Password saat ini salah.']);
         }
 
         $rules = [

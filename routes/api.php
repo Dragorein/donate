@@ -14,18 +14,37 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::prefix('/campaign')->group(function() {
+    Route::get('/search', 'SearchController@index');
+    Route::get('/all','SubmissionController@all');
+    Route::get('/{id}','SubmissionController@show_campaign_detail');
+    Route::middleware('auth:api')->post('/start', 'SubmissionController@store');
+    Route::middleware('auth:api')->post('/close/{id}','ProfileController@Close_Submission');
+    Route::middleware('auth:api')->post('/withdraw','ProfileController@submit_withdraw');
+});
+
+Route::prefix('/donation')->group(function() {
+    Route::post('/store', 'DonationController@Donations');
+    Route::get('/done', 'DonationController@information_donation');
+});
+
 Route::prefix('/auth')->group(function() {
     Route::post('/register', 'UserController@register');
     Route::post('/login', 'UserController@login');
     Route::middleware('auth:api')->get('/current', 'UserController@currentUser');
 });
 
-Route::get('/','SubmissionController@all');
-Route::get('/getProfileInformation/{id}','ProfileController@get_history_submision_donation');
-Route::get('/DataSubmision/{id}','SubmissionController@show_campaign_detail');
-Route::post('/donation', 'DonationController@Donations');
-Route::get('/informationpayment', 'DonationController@information_donation');
-Route::get('/cari', 'SearchController@index');
-Route::post('/CloseSubmisi/{id}','ProfileController@Close_Submission');
-Route::post('/CloseSubmisi/{id}','ProfileController@Close_Submission');
-Route::post('/withdraw','ProfileController@submit_withdraw');
+Route::prefix('/profile')->group(function() {
+    Route::middleware('auth:api')->get('/info/{id}','ProfileController@get_history_submision_donation');
+    Route::middleware('auth:api')->post('/update', 'ProfileController@update_profile');
+    Route::middleware('auth:api')->post('/password/change', 'ProfileController@update_password');
+});
+
+Route::prefix('/dashboard')->group(function() {
+    Route::middleware('auth:api')->get('/all', 'DashboardController@index');
+    Route::middleware('auth:api')->put('/submission/close', 'DashboardController@close_submission');
+    Route::middleware('auth:api')->put('/withdraw/accept', 'DashboardController@accept_withdraw');
+    Route::middleware('auth:api')->put('/withdraw/decline', 'DashboardController@decline_withdraw');
+    Route::middleware('auth:api')->delete('/submission/destroy', 'DashboardController@destroy_submission');
+    Route::middleware('auth:api')->delete('/user/destroy', 'DashboardController@destroy_user');
+});

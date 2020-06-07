@@ -17,17 +17,6 @@ Route::get('/', function () {
     return view('landing');
 });
 
-Route::get('/dashboard/all', 'DashboardController@index');
-Route::put('/dashboard/submission/close', 'DashboardController@close_submission');
-Route::delete('/dashboard/submission/destroy', 'DashboardController@destroy_submission');
-Route::delete('/dashboard/user/destroy', 'DashboardController@destroy_user');
-Route::put('/dashboard/withdraw/accept', 'DashboardController@accept_withdraw');
-Route::put('/dashboard/withdraw/decline', 'DashboardController@decline_withdraw');
-Route::post('/auth/updateProfile', 'ProfileController@update_profile');
-Route::post('/auth/ChangePassword', 'ProfileController@update_password');
-
-Route::post('/user/start', 'SubmissionController@store');
-
 Route::get('/{vue_capture?}', function () {
     return view('landing');
 })->where('vue_capture', '[\/\w\.-]*');

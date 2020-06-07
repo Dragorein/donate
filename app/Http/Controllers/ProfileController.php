@@ -18,19 +18,27 @@ class ProfileController extends Controller
     public function update_profile(Request $request)
     {
 
-        $request->validate([
+        $rules = [
             'firstName' => 'required|string',
             'lastName' => 'required|string',
             'phoneNumber' => 'required|numeric|min:10',
             'image' => '',
-        ]);
+        ];
+
+        $messages =[
+            'firstName.required' => 'Kolom nama depan harus diisi.',
+            'lastName.required' => 'Kolom nama belakang harus diisi',
+            'phoneNumber.required' => 'Kolom nomor telepon harus diisi',
+            'phoneNumber.numeric' => 'Nomor telepon harus diisi dengan angka',
+            'phoneNumber.min' => 'Minimal nomor telepon adalah 10',
+        ];
         
-        
+        $this->validate($request, $rules, $messages);
+
         $userupdate = User::find($request->id);
         $userupdate->user_name = ucfirst($request->firstName).' '.ucfirst($request->lastName);
         $userupdate->user_token = $request->token;
         $userupdate->user_phone = $request->phoneNumber;
-       
         
         $file = $request -> file('image');
 
@@ -52,20 +60,40 @@ class ProfileController extends Controller
     // Update Password
     public function update_password(Request $request)
     {
-        $request->validate([
+        $rules = [
             'oldPassword' => 'required|min:4'
-        ]);
+        ];
+
+        $messages = [
+            'oldPassword.required' => 'Kolom ini harus Diisi terlebih dahulu.',
+            'oldPassword.min' => 'Minimal karakter untuk kolom ini adalah 4.',
+        ];
+
+        $this->validate($request, $rules, $messages);
+
         $password =  $request->oldPassword; 
         $email = $request->email;
         if(!Auth::attempt(['user_mail' => $email,'password' => $password])) {
-            return response(['response' => 'BAD','message' => 'Invalid existing password!']);
+            return response(['response' => 'BAD','message' => 'Password yang sudah ada tidak valid!']);
         }
 
-        $request->validate([
+        $rules = [
             'oldPassword' => 'required|min:4',
             'newPassword' => 'required|min:4|required_with:confirmPassword|same:confirmPassword',
             'confirmPassword' => 'min:4',
-        ]);
+        ];
+
+        $messages = [
+            'oldPassword.required' => 'Kolom password lama harus diisi terlebih dahulu.',
+            'oldPassword.min' => 'Minimal karakter untuk kolom password lama adalah 4.',
+            'newPassword.required' => 'Kolom psasword baru harus diisi terlebih dahulu.',
+            'newPassword.min' => 'Minimal karakter untuk kolom password baru adalah 4.',
+            'newPassword.required_with' => 'Kolom konfirmasi password harus diisi.',
+            'newPassword.same' => 'Password tidak sama dengan konfirmasi password.',
+            'confirmPassword.min' => 'Minimal karakter untuk kolom konfirmasi password adalah 4.',
+        ];
+
+        $this->validate($request, $rules, $messages);
         $userupdate = User::find($request->id);
         $userupdate->update(['user_password' => bcrypt($request->newPassword)]);
 
@@ -199,7 +227,8 @@ class ProfileController extends Controller
 
         $messages = [
             'nominal.required' => 'Kolom nominal perlu diisi.',
-            'nominal.min' => 'Minimal nominal pencairan adalah Rp100,000.',
+            'nominal.integer' => 'Kolom nominal harus diisi dengan angka.',
+            'nominal.min' => 'Minimal nominal pencairan adalah Rp 100,000.',
             'nominal.max' => 'Maksimal Nominal pencairan adalah '.$this->currency($difference).'.',
             'bank.required' => 'Kolom nomor rekening perlu diisi.',
             'bank.digits' => 'Nomor Rekening harus memiliki 10 digit.'

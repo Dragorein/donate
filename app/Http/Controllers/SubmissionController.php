@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Submission;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Http\UploadedFile;
-
 
 class SubmissionController extends Controller
 {
@@ -85,46 +83,56 @@ class SubmissionController extends Controller
     public function store(Request $request)
     {
         if($request->step == 1) {
-            $request->validate([
+            
+            $rules = [
                 'type' => 'required|string',
                 'title' => 'required|string|max:50',
                 'target' => 'required|numeric|min:1000000',
                 'recipient' => 'required|string',
                 'story' => 'required|string|max:255',
                 'date' => 'required|date|after:now',
-                'image' => '',
-                'confirm' => '',
-            ]);
+            ];
 
+            $messages = [
+                'type.required' => 'Kolom kategori harus diisi.',
+                'title.required'=> 'Kolom Judul harus diisi.',
+                'title.max'=> 'Maksimal 50 karakter.',
+                'target.required'=> 'Kolom Target harus diisi.',
+                'target.numeric'=> 'Kolom Target harus diisi dengan angka.',
+                'target.min'=> 'Minimal target donasi adalah Rp 1.000.000.',
+                'recipient.required'=> 'Kolom Penerima harus diisi.',
+                'story.required'=> 'Kolom Cerita harus diisi.',
+                'story.max'=> 'Maksimal 255 karakter.',
+                'date.required'=> 'Kolom Tanggal harus diisi.',
+                'date.after'=> 'Tanggal tidak boleh pada hari yang sama.',
+            ];
+
+            $this->validate($request, $rules, $messages);
             return response(['response' => 'step-2']);
         }
         
         if($request->step == 2) {
-            $request->validate([
-                'type' => 'required|string',
-                'title' => 'required|string|max:50',
-                'target' => 'required|numeric|min:1000000',
-                'recipient' => 'required|string',
-                'story' => 'required|string|max:255',
-                'date' => 'required|date|after:now',
+            $rules = [
                 'image' => 'required|mimes:jpg,jpeg,png',
-                'confirm' => '',
-            ]);
+            ];
 
+            $messages = [
+                'image.required' => 'File gambar harus ada.',
+                'image.mimes' => 'File gambar harus berupa .jpg, .jpeg atau .png.',
+            ];
+
+            $this->validate($request, $rules, $messages);
             return response(['response' => 'step-3']);
         }
 
         if($request->step == 3) {
-            $request->validate([
-                'type' => 'required|string',
-                'title' => 'required|string|max:50',
-                'target' => 'required|numeric|min:1000000',
-                'recipient' => 'required|string',
-                'story' => 'required|string|max:255',
-                'date' => 'required|date|after:now',
-                'image' => 'required|mimes:jpg,jpeg,png',
-                'confirm' => 'required',
-            ]);
+            $rules = [
+                'confirm' => 'required:true',
+            ];
+
+            $messages =[
+                'confirm.required' => 'Anda harus menyetujui Syarat & Ketentuan yang berlaku'
+            ];
 
             $ext = $request->file('image')->getClientOriginalExtension();
             $current_timestamp = now()->timestamp;

@@ -118,8 +118,6 @@
                 amount: "",
                 methods: [
                     { title: 'BCA Virtual Account', avatar: '/icon/BCA.png', value:"BCA" },
-                    // { title: 'BNI', avatar: '/icon/BNI.png',value:"BNI" },
-                    // { title: 'Permata', avatar: '/icon/Permata.png', value:"Permata" },
                 ],
             },
             errors: {

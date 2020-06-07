@@ -167,7 +167,7 @@
                                     </v-alert>
                                 </template>
                             </v-tab-item>
-                             <v-tab-item>
+                            <v-tab-item>
                                 <v-card-title>Pencairan Dana</v-card-title>
                                 <v-form :value="csrf">
                                     <v-container class="px-12 pb-12">
@@ -262,7 +262,7 @@
             totalVisible: 10,
             valid: true,
         }),
-         computed: {
+        computed: {
             loggedin: {
                 get() {
                     return this.$store.state.user.loggedin;

@@ -9,13 +9,8 @@
         data() {
             return {
                 user: null,
-                // initiated: false,
             }
         },
-        // created() {
-        //     this.awal();
-            
-        // },
         methods:{
         }
     }

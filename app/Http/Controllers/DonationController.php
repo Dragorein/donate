@@ -9,13 +9,27 @@ class DonationController extends Controller
 {
     public function Donations (Request $request){
 
-        $request->validate([
+        $rules = [
             'submisi' => 'required',
             'name' => 'required|string',
             'email' => 'required|email',
             'phoneNumber' => 'required|numeric',
             'amount' => 'required|numeric|min:10000',
-        ]);
+        ];
+
+        $messages = [
+            'submisi.required' => 'Submisi dibutuhkan.',
+            'name.required' => 'Kolom nama harus diisi.',
+            'email.required' => 'Kolom email harus diisi.',
+            'email.email' => 'Kolom email harus diisi dengan email yang valid.',
+            'phoneNumber.required' => 'Kolom nomor telepon harus diisi.',
+            'phoneNumber.numeric' => 'Kolom nomor telepon harus diisi dengan angka.',
+            'amount.required' => 'Kolom jumlah donasi harus diisi.',
+            'amount.numeric' => 'Kolom jumlah donasi harus diisi.',
+            'amount.min' => 'Jumlah minimal donasi adalah Rp 10,000.',
+        ];
+
+        $this->validate($request, $rules, $messages);
 
         DB::beginTransaction();
 

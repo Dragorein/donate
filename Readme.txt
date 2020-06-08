@@ -21,3 +21,7 @@ step 1-4 cuma buat awal clone pertama kali.
 Note Migrate DB :
 
 Kalo DB kosong ketik "php artisan migrate" di bash
+
+6. Cron Job (Update Submisi yang telah lewat dari hari ini, Jika ingin Menjalan kan nya di server perlu konfigurasi)
+   Jalankan : php artisan Update:Submisi
+   Note : Di konfigurasi untuk Setiap Jam bisa diatur ke hari.

@@ -25,7 +25,11 @@ class SearchController extends Controller
                 ->join('m_user', 't_submissions.user_id', '=', 'm_user.user_id')
                 ->where('submisi_judul', 'like', '%'.$search.'%')->get();
 
-        return $data;
+            if ($data->isEmpty()){
+                return response(['response' => 'failed', 'message' => 'Maaf submisi tidak ada.']);
+            } else {
+                return response(['response' => 'success', 'data' => $data]);
+            }
     }
 
     public function popular(){

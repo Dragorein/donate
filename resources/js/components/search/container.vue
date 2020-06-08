@@ -31,25 +31,43 @@
                                 </template>
                             </v-list>
                         </v-card>
-                        
-                        <v-card width="95%" class="mb-3 elevation-12">
-                            <v-list two-line>
-                                <v-subheader>Results</v-subheader>
 
-                                <template v-for="submission in submissions">
-                                    <v-list-item @click="reroutes('/campaign/'+submission.submisi_id)">
-                                        <v-list-item-avatar tile size="70" width="120">
-                                            <v-img :src="'/storage/submission/'+submission.src"></v-img>
-                                        </v-list-item-avatar>
-                                        
-                                        <v-list-item-content>
-                                            <v-list-item-title v-html="submission.submisi_judul"></v-list-item-title>
-                                            <v-list-item-subtitle v-html="submission.author"></v-list-item-subtitle>
-                                        </v-list-item-content>
-                                    </v-list-item>
-                                </template>
-                            </v-list>
-                        </v-card>  
+                        <template v-if ="submissions.length">
+                        <!-- <template> -->
+                            <v-card width="95%" class="mb-3 elevation-12">
+                                <v-list two-line>
+                                    <v-subheader>Results</v-subheader>
+
+                                    <template v-for="submission in submissions">
+                                        <v-list-item @click="reroutes('/campaign/'+submission.submisi_id)">
+                                            <v-list-item-avatar tile size="70" width="120">
+                                                <v-img :src="'/storage/submission/'+submission.src"></v-img>
+                                            </v-list-item-avatar>
+                                            
+                                            <v-list-item-content>
+                                                <v-list-item-title v-html="submission.submisi_judul"></v-list-item-title>
+                                                <v-list-item-subtitle v-html="submission.author"></v-list-item-subtitle>
+                                            </v-list-item-content>
+                                        </v-list-item>
+                                    </template>
+                                </v-list>
+                            </v-card>
+                        </template>
+
+                        <template v-if="message">
+                        <!-- <template> -->
+                            <v-card width="95%" class="mb-3 elevation-12">
+                                <v-list two-line>
+                                    <v-subheader>Results</v-subheader>
+
+                                    <template>
+                                        <v-alert prominent type="error" text icon="mdi-cancel" class="ma-4">
+                                            {{message}}
+                                        </v-alert>
+                                    </template>
+                                </v-list>
+                            </v-card>
+                        </template>  
                     </v-row>
                 </v-container>
             </section>
@@ -66,6 +84,7 @@
             showsearh: false,
             query: null,
             populars: [],
+            message: '',
         }),
         watch: {
             query(after, before){
@@ -91,7 +110,12 @@
             searchSubmission() {
                 axios.get('/api/campaign/search?q='+this.query)
                 .then(response => {
-                    this.submissions = response.data;
+                    if (response.data.response == 'failed'){
+                        this.message = response.data.message;
+                        this.submissions = '';
+                    }  else if (response.data.response == 'success') {
+                        this.submissions = response.data.data;
+                    }
                 })
                 .catch(error => {
                     console.log(error);

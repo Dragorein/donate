@@ -15,6 +15,25 @@
                     <v-row justify="center">
                         <v-card width="95%" class="mb-3 elevation-12">
                             <v-list two-line>
+                                <v-subheader>Popular</v-subheader>
+
+                                <template v-for="popular in populars">
+                                    <v-list-item @click="reroutes('/campaign/'+popular.submisi_id)">
+                                        <v-list-item-avatar tile size="70" width="120">
+                                            <v-img :src="'/storage/submission/'+popular.src"></v-img>
+                                        </v-list-item-avatar>
+                                        
+                                        <v-list-item-content>
+                                            <v-list-item-title v-html="popular.submisi_judul"></v-list-item-title>
+                                            <v-list-item-subtitle v-html="popular.author"></v-list-item-subtitle>
+                                        </v-list-item-content>
+                                    </v-list-item>
+                                </template>
+                            </v-list>
+                        </v-card>
+                        
+                        <v-card width="95%" class="mb-3 elevation-12">
+                            <v-list two-line>
                                 <v-subheader>Results</v-subheader>
 
                                 <template v-for="submission in submissions">
@@ -46,11 +65,21 @@
             search: '',
             showsearh: false,
             query: null,
+            populars: [],
         }),
         watch: {
             query(after, before){
                 this.searchSubmission();
             }
+        },
+        created(){
+            axios.get('/api/campaign/search/popular')
+            .then(response => {
+                this.populars = response.data;
+            })
+            .catch(error => {
+                console.log(error);
+            });
         },
         methods: {
             reroutes: function (url) {

@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::prefix('/campaign')->group(function() {
+    Route::get('/search/popular', 'SearchController@popular');
     Route::get('/search', 'SearchController@index');
     Route::get('/all','SubmissionController@all');
     Route::get('/{id}','SubmissionController@show_campaign_detail');

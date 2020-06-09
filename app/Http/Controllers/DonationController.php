@@ -74,6 +74,7 @@ class DonationController extends Controller
             DB::raw('t_donations.donation_nominal'),
             DB::raw('t_donations.payment_type'),
             DB::raw('m_user.user_name'),
+            DB::raw('m_user.user_foto'),
         );
         $data = DB::table('t_donations')
                 ->join('t_submissions', 't_submissions.submisi_id', '=', 't_donations.submisi_id')

@@ -18,7 +18,7 @@
                                                 <v-list-item-title>Penggalang</v-list-item-title>
                                                 <div class="d-flex align-center pt-2">
                                                     <v-avatar left>
-                                                        <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John">
+                                                        <img :src="'/storage/profile/'+submission.user_foto" >
                                                     </v-avatar>
                                                     <div class="mx-3">
                                                         <span class="green--text">{{submission.user_name}}<v-icon right color="green">mdi-check-circle mdi-18px</v-icon></span>

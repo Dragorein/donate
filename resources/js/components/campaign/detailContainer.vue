@@ -32,7 +32,7 @@
                                 <v-card-text>
                                     <div class="d-flex align-center pl-4">
                                         <v-avatar left>
-                                            <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John">
+                                            <img :src="'/storage/profile/'+submission.user_foto" alt="John">
                                         </v-avatar>
                                         <div class="mx-3">
                                             <span class="green--text">{{submission.user_name}}<v-icon right color="green">mdi-check-circle mdi-18px</v-icon></span>

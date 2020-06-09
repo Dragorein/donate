@@ -34,7 +34,7 @@
                                             <v-list-item-title>Penggalang</v-list-item-title>
                                             <div class="d-flex align-center pt-2">
                                                 <v-avatar left>
-                                                    <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John">
+                                                    <img :src="'/storage/profile/'+foto" >
                                                 </v-avatar>
                                                 <div class="mx-3">
                                                     <span class="green--text">{{author}}<v-icon right color="green">mdi-check-circle mdi-18px</v-icon></span>
@@ -85,10 +85,23 @@ export default {
         title: '',
         donasi: '',
         bank: '',
+        foto:'',
         icon: '/icon/BCA.png',
     }),
     created() {
         this.loadData();
+    },
+    computed: {
+        loggedin: {
+            get() {
+                return this.$store.state.user.loggedin;
+            }
+        },
+        currentUser: {
+            get() {
+                return this.$store.state.user.user;
+            }
+        }
     },
     methods: {
         loadData() {
@@ -98,6 +111,7 @@ export default {
             this.target = response.data[0].submisi_penerima;
             this.donasi = response.data[0].donation_nominal;
             this.bank = response.data[0].payment_type;
+            this.foto = response.data[0].user_foto;
 
             if(response.data[0].payment_type == "BCA"){
                 this.icon =  '/icon/BCA.png';

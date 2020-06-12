@@ -9,14 +9,6 @@
                     <h1 class="display-1 font-weight-bold text-left">Galang Dana</h1>
                     <p>Dukung mereka untuk sembuh kembali. Mulai dari seribu rupiah.</p>
                     
-                    <v-combobox v-model="chips" :items="filter" chips clearable label="Your favorite hobbies" multiple prepend-icon="filter_list" solo>
-                        <template v-slot:selection="{ attrs, item, select, selected }">
-                            <v-chip v-bind="attrs" :input-value="selected" close @click="select" @click:close="remove(item)">
-                                <strong>{{ item }}</strong>
-                            </v-chip>
-                        </template>
-                    </v-combobox>
-
                     <v-row>
                         
                         <v-col v-for="submisi in submisis" :key="submisi.submisi_id" cols="12" sm="6" md="4" xl="4" class="px-2">

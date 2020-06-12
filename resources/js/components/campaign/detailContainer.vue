@@ -74,14 +74,6 @@
                                     <v-tab href="#tab-1">
                                         Cerita <v-icon>mdi-account-search</v-icon>
                                     </v-tab>
-
-                                    <v-tab href="#tab-2">
-                                        Perkembangan <v-icon>mdi-account-heart mdi-flip-h</v-icon>
-                                    </v-tab>
-
-                                    <v-tab href="#tab-3">
-                                        Rincian Dana <v-icon>mdi-cash-usd</v-icon>
-                                    </v-tab>
                                 </v-tabs>
 
                                 <v-tabs-items v-model="tab">
@@ -98,7 +90,7 @@
                             <v-card class="mx-auto">
                                 <v-list two-line dense>
                                     <v-subheader class="title" v-text="donations.length >= 1 ? 'Donatur (' + donations.length + ')' : 'Donatur (0)'"></v-subheader>
-                                    <template v-for="(donation, index) in donations" v-if="index < 5">
+                                    <template v-for="(donation) in donations">
                                         <v-list-item :key="donation.donation_id" >
                                         <v-list-item-avatar>
                                             <v-icon>mdi-account-circle</v-icon>
@@ -111,9 +103,6 @@
                                         </v-list-item>
                                     </template>
                                 </v-list>
-                                <template v-if="donations.length > 5">
-                                    <v-btn block text large>Lihat lebih<v-icon right>mdi-dots-horizontal</v-icon></v-btn>
-                                </template>
                             </v-card>
                         </v-col>
                     </v-row>

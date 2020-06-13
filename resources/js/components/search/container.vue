@@ -15,7 +15,7 @@
                     <v-row justify="center">
                         <v-card width="95%" class="mb-3 elevation-12">
                             <v-list two-line>
-                                <v-subheader>Popular</v-subheader>
+                                <v-subheader>Pilihan Kami</v-subheader>
 
                                 <template v-for="popular in populars">
                                     <v-list-item @click="reroutes('/campaign/'+popular.submisi_id)">
@@ -36,7 +36,7 @@
                         <!-- <template> -->
                             <v-card width="95%" class="mb-3 elevation-12">
                                 <v-list two-line>
-                                    <v-subheader>Results</v-subheader>
+                                    <v-subheader>Hasil Pencarian</v-subheader>
 
                                     <template v-for="submission in submissions">
                                         <v-list-item @click="reroutes('/campaign/'+submission.submisi_id)">
@@ -58,7 +58,7 @@
                         <!-- <template> -->
                             <v-card width="95%" class="mb-3 elevation-12">
                                 <v-list two-line>
-                                    <v-subheader>Results</v-subheader>
+                                    <v-subheader>Hasil Pencarian</v-subheader>
 
                                     <template>
                                         <v-alert prominent type="error" text icon="mdi-cancel" class="ma-4">

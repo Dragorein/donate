@@ -12,7 +12,7 @@
         <v-text-field class="mr-2 only-lg" @mousedown="reroutes('/search')" rounded filled hide-details dense placeholder="Cari galang dana" prepend-inner-icon="search"/> 
         <v-btn class="mr-2 only-md" @mousedown="reroutes('/search')" icon><v-icon>mdi-magnify</v-icon></v-btn>
         <v-btn @click="reroutes('/campaign')" large text class="mr-3 only-lg">Donasi</v-btn>
-        <v-btn @click="ifLoggedIn('/start')" large text class="mr-3 only-lg">Galang Dana</v-btn>
+        <v-btn @click="ifLoggedIn('/start')" large text class="mr-3 only-lg" v-if="!currentUser.user_is_admin">Galang Dana</v-btn>
 
         <template v-if="loggedin == false">
             <v-dialog v-model="logindialog" max-width="600px">
@@ -74,7 +74,7 @@
                             <v-icon left>mdi-charity</v-icon>Donasi
                         </v-list-item-title>
                     </v-list-item>
-                    <v-list-item @click="ifLoggedIn('/start')">
+                    <v-list-item @click="ifLoggedIn('/start')" v-if="!currentUser.user_is_admin">
                         <v-list-item-title>
                             <v-icon left>mdi-flag-plus</v-icon>Galang Dana
                         </v-list-item-title>

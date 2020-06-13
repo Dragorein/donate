@@ -71,6 +71,8 @@
                                         <v-text-field label="Nomor Telepon" filled clearable name="phoneNumber" type="text" v-model="payment.phoneNumber" :error-messages="errors.payment.phoneNumber"></v-text-field>
                                         <v-text-field v-show="false" name="userId" type="text" v-model="payment.userId = 0"></v-text-field>
                                     </template>
+                                    <v-card-title class="pt-sm-0 pt-md-4">Opsi privasi</v-card-title>
+                                    <v-switch v-model="payment.anonymous" label="Donatur anonim" class="m-0"></v-switch>
 
                                     <v-card-title class="pt-sm-0 pt-md-4">Pembayaran</v-card-title>
                                     <v-text-field label="Nominal donasi" prefix="Rp " name="amount" type="text" v-model="payment.amount" :error-messages="errors.payment.amount" filled clearable></v-text-field>
@@ -116,6 +118,7 @@
                 email: "",
                 phoneNumber: "",
                 amount: "",
+                anonymous: false,
                 methods: [
                     { title: 'BCA Virtual Account', avatar: '/icon/BCA.png', value:"BCA" },
                 ],
@@ -145,6 +148,7 @@
                     name: this.$data.payment.name,
                     email: this.$data.payment.email,
                     phoneNumber : this.$data.payment.phoneNumber,
+                    anonymous: this.$data.payment.anonymous,
                 })
                 .then(response => {
                     if(response.data == "OK")
@@ -176,3 +180,9 @@
         }
     }
 </script>
+
+<style>
+    .v-input--switch .v-label {
+        margin: 0;
+    }
+</style>

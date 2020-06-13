@@ -13,7 +13,7 @@ class DonationController extends Controller
             'submisi' => 'required',
             'name' => 'required|string',
             'email' => 'required|email',
-            'phoneNumber' => 'required|numeric',
+            'phoneNumber' => 'required|numeric|digits:12',
             'amount' => 'required|numeric|min:10000',
         ];
 
@@ -24,6 +24,7 @@ class DonationController extends Controller
             'email.email' => 'Kolom email harus diisi dengan email yang valid.',
             'phoneNumber.required' => 'Kolom nomor telepon harus diisi.',
             'phoneNumber.numeric' => 'Kolom nomor telepon harus diisi dengan angka.',
+            'phoneNumber.digits' => 'Kolom nomor telepon harus 12 digit.',
             'amount.required' => 'Kolom jumlah donasi harus diisi.',
             'amount.numeric' => 'Kolom jumlah donasi harus diisi.',
             'amount.min' => 'Jumlah minimal donasi adalah Rp 10,000.',
@@ -40,7 +41,7 @@ class DonationController extends Controller
             'donation_mail' => $request->email,
             'donation_phone' => $request->phoneNumber,
             'donation_nominal' => $request->amount,
-            'donation_is_anonymous' => "1",
+            'donation_is_anonymous' => $request->anonymous,
             'payment_type' => "BCA",
             'created_at' => now(),
             'updated_at' => now(),

@@ -15,7 +15,7 @@ class UserController extends Controller
             $rules = [
                 'firstName' => 'required|string',
                 'lastName' => 'required|string',
-                'phoneNumber' => 'required|numeric|min:10',
+                'phoneNumber' => 'required|numeric|digits:12',
                 'email' => 'required|email|unique:App\User,user_mail',
             ];
 
@@ -24,7 +24,7 @@ class UserController extends Controller
                 'lastName.required' => 'Kolom nama belakang harus diisi.',
                 'phoneNumber.required' => 'Kolom nomor telepon harus diisi.',
                 'phoneNumber.numeric' => 'Nomor telepon harus diisi dengan angka.',
-                'phoneNumber.min' => 'Minimal digit pada nomor telepon adalah 10.',
+                'phoneNumber.digits' => 'Kolom nomor telepon harus 12 digit.',
                 'email.required' => 'Kolom email harus diisi.',
                 'email.email' => 'Format email harus valid.',
                 'email.unique' => 'Email ini sudah terdaftar.',
@@ -36,18 +36,15 @@ class UserController extends Controller
 
         if($request->step == 2) {
             $rules = [
-                'password' => 'required|min:4|required_with:confirmPassword|same:confirmPassword',
-                'confirmPassword' => 'required|min:4',
+                'password' => 'required|min:6',
             ];
             
             $messages = [
                 'password.required' => 'Kolom password harus diisi.',
-                'password.min' => 'Minimal karakter pada password adalah 4.',
-                'password.required_with' => 'Password butuh dikonfirmasi.',
-                'password.same' => 'Password dan konfirmasi password harus sama.',
-                'confirmPassword.required' => 'Kolom konfirmasi password harus diisi.',
-                'confirmPassword.min' => 'Minimal karakter pada konfirmasi password adalah 4.',
+                'password.min' => 'Minimal karakter pada password adalah 6.',
             ];
+            
+            $this->validate($request, $rules, $messages);
             
             $userRegister = new User;
             $userRegister->user_name = ucfirst($request->firstName).' '.ucfirst($request->lastName);

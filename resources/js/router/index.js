@@ -97,7 +97,17 @@ const routes = [
         path: "/start",
         beforeEnter(to, from, next) {
             if(localStorage.hasOwnProperty("access_token")) {
-                next();
+                axios
+                .get("/api/auth/current", {
+                    headers: {'Authorization': 'Bearer ' + localStorage.getItem("access_token")}
+                })
+                .then(response => {
+                    if (!response.data.isadmin) {
+                        next();
+                    } else {
+                        next('/');
+                    }
+                });
             } else {
                 next('/');
             }

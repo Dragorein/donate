@@ -31,6 +31,7 @@ const actions = {
             if (response.data.response == 'continue' && state.registerStep == 1) {
                 state.registerStep = 2;
             } else if (response.data.response == 'success') {
+                state.registerStep = 1;
                 state.message = response.data.message;
                 router.push({path: '/'});
                 setTimeout(() => {

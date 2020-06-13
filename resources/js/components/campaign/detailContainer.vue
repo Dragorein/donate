@@ -97,7 +97,8 @@
                                         </v-list-item-avatar>
 
                                         <v-list-item-content>
-                                            <v-list-item-title>{{donation.donation_name}}</v-list-item-title>
+                                            <v-list-item-title v-if="!donation.donation_is_anonymous">{{donation.donation_name}}</v-list-item-title>
+                                            <v-list-item-title v-else>Anonim</v-list-item-title>
                                             <v-list-item-subtitle>{{'Donasi ' +donation.donation_nominal}}</v-list-item-subtitle>
                                         </v-list-item-content>
                                         </v-list-item>

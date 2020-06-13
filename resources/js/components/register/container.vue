@@ -31,7 +31,6 @@
                   <v-card-text>
                     <v-form>
                       <v-text-field id="password" label="Password" name="password" prepend-inner-icon="mdi-lock-open" v-model="register.password" :error-messages="errors.register.password" :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'" @click:append="show1 = !show1" :type="show1 ? 'text' : 'password'" required filled clearable />
-                      <v-text-field id="passwordconfirm" label="Ketik Ulang Password" name="passwordconfirm" prepend-inner-icon="lock" v-model="register.confirmPassword" :error-messages="errors.register.confirmPassword" :append-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'" @click:append="show2 = !show2" :type="show2 ? 'text' : 'password'" required filled clearable />
                       <v-btn color="error" @click="callSubmit()" class="mr-2">Daftar</v-btn>
                       <v-btn text @click="changeStep(1)" class="mr-2">Kembali</v-btn>
                     </v-form>
@@ -61,7 +60,6 @@ export default {
       phoneNumber: "",
       image: undefined,
       password: "",
-      confirmPassword: "",
       csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
     },
   }),
@@ -93,7 +91,6 @@ export default {
       formData.append('phoneNumber', temp.phoneNumber);
       formData.append('image', temp.image);
       formData.append('password', temp.password);
-      formData.append('confirmPassword', temp.confirmPassword);
       formData.append('token', temp.csrf);
       formData.append('step', this.$store.state.user.registerStep);
 

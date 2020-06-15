@@ -51,7 +51,7 @@
                                 <div class="subtitle-1 text--primary">Tidak ada aktivitas baru hari ini.</br>Teruskan kerja bagusmu!</div>
                             </v-card-text>
                             <v-card-actions>
-                            <v-btn class="primary">ke halaman utama!</v-btn>
+                            <v-btn @click="reroutes('/')" class="primary">ke halaman utama!</v-btn>
                             </v-card-actions>
                         </v-card>
                     </template>

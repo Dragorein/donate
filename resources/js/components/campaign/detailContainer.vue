@@ -17,10 +17,12 @@
                                     <span v-if="submission.submisi_is_active"><strong class="deep-orange--text title" >{{submission.sisa_hari}}</strong> hari lagi</span>
                                 </v-card-text>
 
-                                <v-card-text>
-                                    <v-btn @click="reroutes('/payment/'+$route.params.id)" rounded block depressed large color="error" v-if="submission.submisi_is_active">Donasi Sekarang</v-btn>
-                                    <v-btn rounded block depressed large disabled v-else>Donasi Telah Berakhir</v-btn>
-                                </v-card-text>
+                                <template v-if="!currentUser || currentUser.user_id != submission.user_id">
+                                    <v-card-text>
+                                        <v-btn @click="reroutes('/payment/'+$route.params.id)" rounded block depressed large color="error" v-if="submission.submisi_is_active">Donasi Sekarang</v-btn>
+                                        <v-btn rounded block depressed large disabled v-else>Donasi Telah Berakhir</v-btn>
+                                    </v-card-text>
+                                </template>
                             </v-card>
                         </v-col>
                     </v-row>
@@ -125,6 +127,13 @@
         }),
         created() {
             this.loadDataSubmisi();
+        },
+        computed: {
+            currentUser: {
+                get() {
+                    return this.$store.state.user.user;
+                }
+            },
         },
         methods: {
             loadDataSubmisi() {

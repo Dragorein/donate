@@ -45,6 +45,7 @@ class SubmissionController extends Controller
             DB::raw('t_submissions.submisi_judul'),
             DB::raw('t_submissions.submisi_cerita'),
             DB::raw('t_submissions.submisi_penerima'),
+            DB::raw('m_user.user_id'),
             DB::raw('m_user.user_name'),
             DB::raw('m_user.user_foto'),
             DB::raw('t_submissions.submisi_terkumpul'),
